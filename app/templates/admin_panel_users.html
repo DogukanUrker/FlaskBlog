@@ -1,0 +1,141 @@
+{% extends 'layout.html' %} {% block head %}
+<title>{{translations.admin_panel_users.title}}</title>
+{% endblock head %} {% block body %}
+<div class="text-center">
+    <h1 class="my-4 text-4xl font-medium select-none">
+        {{translations.admin_panel_users.users}}
+    </h1>
+
+    {% for user in users %}
+    <div
+        class="w-12/12 md:w-8/12 lg:w-7/12 xl:w-5/12 h-fit mx-px md:mx-auto py-2 px-2 my-4 border-2 rounded-md shadow-md border-gray-500/25"
+    >
+        <section class="mb-4 text-center">
+            <img
+                src="{{ user[4] }}"
+                alt="{{ user[1] }}"
+                class="w-20 m-2 mx-auto select-none"
+            />
+            <p class="self-end">
+                <a
+                    href="/user/{{ user[1].lower() }}"
+                    class="hover:text-rose-500 duration-150"
+                    >{{ user[1] }}</a
+                >
+            </p>
+        </section>
+
+        <section class="flex w-full justify-between my-4">
+            <div class="flex items-center">
+                <i class="ti ti-id mr-1 text-xl"></i>
+                <p class="hidden md:block mr-1">
+                    {{translations.admin_panel_users.id}}:
+                </p>
+                <p class="font-medium">{{ user[0] }}</p>
+            </div>
+            <div class="flex items-center">
+                <i class="ti ti-user mr-1 text-xl"></i>
+                <p class="hidden md:block mr-1">
+                    {{translations.admin_panel_users.role}}:
+                </p>
+                {% if user[5] == "admin"%}
+                <p class="font-medium">{{translations.roles.admin}}</p>
+                {% elif user[5] == "user"%}
+                <p class="font-medium">{{translations.roles.user}}</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="flex w-full justify-between my-4">
+            <div class="flex items-center text-left text-sm md:text-base">
+                <i class="ti ti-mail mr-1 text-xl"></i>
+                <p class="hidden md:block mr-1">
+                    {{translations.admin_panel_users.email}}:
+                </p>
+                <p class="break-all font-medium">{{ user[2] }}</p>
+            </div>
+            <div class="flex items-center">
+                <i class="ti ti-sparkles mr-1 text-xl"></i>
+                <p class="hidden md:block mr-1">
+                    {{translations.admin_panel_users.points}}:
+                </p>
+                <p class="font-medium">{{ user[6] }}</p>
+            </div>
+        </section>
+
+        <section class="flex w-full justify-between my-4">
+            <div class="flex items-center">
+                <i class="ti ti-calendar mr-1 text-xl"></i>
+                <p class="hidden md:block mr-1">
+                    {{translations.admin_panel_users.join_date}}:
+                </p>
+                <p class="date font-medium">{{ user[7] }}</p>
+            </div>
+            <div class="flex items-center w-fit">
+                <i class="ti ti-clock mr-1 text-xl"></i>
+                <p class="hidden md:block mr-1">
+                    {{translations.admin_panel_users.join_time}}:
+                </p>
+                <p class="time font-medium">{{ user[7] }}</p>
+            </div>
+        </section>
+
+        <section class="flex w-full justify-between mt-4">
+            <form method="post">
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}"
+                />
+                <input type="hidden" name="username" value="{{ user[1] }}" />
+                <button
+                    type="submit"
+                    name="user_delete_button"
+                    class="flex items-center hover:text-rose-500 duration-150 font-medium select-none"
+                >
+                    <i class="ti ti-trash mr-1 text-xl"></i>
+                    <p class="hidden md:block">
+                        {{translations.admin_panel_users.delete}}
+                    </p>
+                </button>
+            </form>
+
+            <form method="post">
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}"
+                />
+                <input type="hidden" name="username" value="{{ user[1] }}" />
+                <button
+                    type="submit"
+                    name="user_role_change_button"
+                    class="flex items-center hover:text-rose-500 duration-150 font-medium select-none"
+                >
+                    {% if user[5] == "admin" %}
+                    <i class="ti ti-user-down mr-1 text-xl"></i>
+                    <p class="hidden md:block">
+                        {{translations.admin_panel_users.set_user}}
+                    </p>
+                    {% else %}
+                    <i class="ti ti-user-up mr-1 text-xl"></i>
+                    <p class="hidden md:block">
+                        {{translations.admin_panel_users.set_admin}}
+                    </p>
+                    {% endif %}
+                </button>
+            </form>
+        </section>
+    </div>
+    {% endfor %}
+</div>
+
+{% from "components/pagination.html" import pagination %} {{ pagination(page,
+total_pages, request.path) }}
+
+<a href="/admin" class="hidden md:block fixed bottom-0 left-1">
+    <i
+        class="ti ti-arrow-back mr-1 text-xl hover:text-rose-500 duration-150"
+    ></i>
+</a>
+{% endblock body %}

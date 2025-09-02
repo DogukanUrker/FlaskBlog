@@ -1,5 +1,5 @@
 {% extends 'layout.html' %} {% block head %}
-<title>{{ translations.about.title }} {{ appName }}</title>
+<title>{{ translations.about.title }} {{ app_name }}</title>
 {% endblock head %} {% block body %}
 <div
     class="w-10/12 md:w-4/6 lg:w-6/12 xl:w-5/12 mx-auto mt-20 md:mt-32 break-words text-center text-lg"
@@ -9,19 +9,19 @@
         href="https://dogukanurker.com/flaskblog"
         target="_blank"
     >
-        {{ appName }}
+        {{ app_name }}
     </a>
 
     <div class="mt-1 text-xs">
-        {{ translations.about.version }}: {{ appVersion }}
+        {{ translations.about.version }}: {{ app_version }}
     </div>
 
     <div class="mt-4 mx-auto">{{ translations.about.description }}</div>
 
     <div class="mt-4 mx-auto">
         <a href="https://github.com/DogukanUrker/flaskBlog" target="_blank">
-            {{ translations.about.moreInfo }}
-            <p class="text-rose-500 inline-block">{{ appName }}</p>
+            {{ translations.about.more_info }}
+            <p class="text-rose-500 inline-block">{{ app_name }}</p>
             <p class="inline-block"><i class="ti ti-brand-github"></i></p>
         </a>
     </div>
@@ -32,7 +32,7 @@
             target="_blank"
             class="text-rose-500 font-medium block"
         >
-            {{ translations.about.sourceRepo }}</a
+            {{ translations.about.source_repo }}</a
         >
         {{ translations.about.credits | safe }}
     </div>

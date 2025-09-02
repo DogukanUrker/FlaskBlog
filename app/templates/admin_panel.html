@@ -1,0 +1,35 @@
+{% extends 'layout.html' %} {% block head %}
+<title>{{translations.admin_panel.title }}</title>
+{% endblock head %} {% block body %}
+<div class="w-fit mx-auto mt-32 text-center text-2xl font-medium">
+    <h1 class="my-4">
+        <a
+            href="admin/users"
+            class="hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
+        >
+            <i class="ti ti-users mr-1 text-2xl"></i> {{
+            translations.admin_panel.users }}
+        </a>
+    </h1>
+
+    <h1 class="my-4">
+        <a
+            href="admin/posts"
+            class="hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
+        >
+            <i class="ti ti-files mr-1 text-2xl"></i> {{
+            translations.admin_panel.posts }}
+        </a>
+    </h1>
+
+    <h1 class="my-4">
+        <a
+            href="admin/comments"
+            class="hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
+        >
+            <i class="ti ti-messages mr-1 text-2xl"></i> {{
+            translations.admin_panel.comments }}
+        </a>
+    </h1>
+</div>
+{% endblock body %}

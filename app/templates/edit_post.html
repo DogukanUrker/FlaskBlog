@@ -1,0 +1,113 @@
+{% extends 'layout.html' %} {% block head %}
+<title>{{translations.edit_post.title}}</title>
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/markdown_editor.css') }}"
+/>
+{% endblock head %} {% block body %}
+<div class="w-fit mx-auto mt-8">
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+        {{ form.post_title(class_="input input-bordered w-full my-2",
+        autocomplete="off",placeholder=translations.edit_post.title_placeholder)
+        }} {{ form.post_tags(class_="input input-bordered w-full my-2",
+        autocomplete="off",placeholder=translations.edit_post.tags) }} {{
+        form.post_abstract(class_="textarea textarea-bordered w-full my-2",
+        autocomplete="off",placeholder=translations.edit_post.abstract_placeholder)
+        }}
+        <p class="text-xs text-center w-fit mx-auto mb-2">
+            {{translations.edit_post.separate}}
+        </p>
+
+        <div class="w-fit mx-auto text-center my-4">
+            <p class="mb-2">{{translations.edit_post.current}}</p>
+            <img
+                src="{{ url_for('return_post_banner.return_post_banner', post_id= id) }}"
+                class="h-48 w-64 group-hover:scale-110 transition duration-150 object-cover rounded-md mx-auto select-none"
+            />
+            <p class="mt-2">{{translations.edit_post.new}}</p>
+            {{ form.post_banner(class_="file-input file-input-bordered w-full",
+            placeholder=translations.edit_post.banner_placeholder) }}
+        </div>
+
+        <div class="mx-auto w-fit">
+            <label class="block my-1 text-center"
+                >{{translations.edit_post.category}}</label
+            >
+            <select
+                class="select select-bordered w-72"
+                id="post_category"
+                name="post_category"
+                required=""
+            >
+                <option value="Apps">{{translations.categories.apps}}</option>
+                <option value="Art">{{ translations.categories.art }}</option>
+                <option value="Books">
+                    {{ translations.categories.books }}
+                </option>
+                <option value="Business">
+                    {{ translations.categories.business }}
+                </option>
+                <option value="Code">{{ translations.categories.code }}</option>
+                <option value="Education">
+                    {{ translations.categories.education }}
+                </option>
+                <option value="Finance">
+                    {{ translations.categories.finance }}
+                </option>
+                <option value="Foods">
+                    {{ translations.categories.foods }}
+                </option>
+                <option value="Games">
+                    {{ translations.categories.games }}
+                </option>
+                <option value="Health">
+                    {{ translations.categories.health }}
+                </option>
+                <option value="History">
+                    {{ translations.categories.history }}
+                </option>
+                <option value="Movies">
+                    {{ translations.categories.movies }}
+                </option>
+                <option value="Music">
+                    {{ translations.categories.music }}
+                </option>
+                <option value="Nature">
+                    {{ translations.categories.nature }}
+                </option>
+                <option value="Science">
+                    {{ translations.categories.science }}
+                </option>
+                <option value="Series">
+                    {{ translations.categories.series }}
+                </option>
+                <option value="Sports">
+                    {{ translations.categories.sports }}
+                </option>
+                <option value="Technology">
+                    {{ translations.categories.technology }}
+                </option>
+                <option value="Travel">
+                    {{ translations.categories.travel }}
+                </option>
+                <option value="Web">{{ translations.categories.web }}</option>
+                <option value="Other">
+                    {{ translations.categories.other }}
+                </option>
+            </select>
+        </div>
+
+        <div>
+            {{ form.post_content(class_="textarea textarea-bordered w-full h-96",
+            id_="markdown-editor", autocomplete="off") }}
+        </div>
+
+        <button type="submit" class="btn btn-neutral btn-block mt-4">
+            {{translations.edit_post.save}}
+        </button>
+    </form>
+    <script src="{{ url_for('static', filename='js/markdown_editor.js') }}"></script>
+</div>
+{% endblock body %}

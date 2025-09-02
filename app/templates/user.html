@@ -4,7 +4,7 @@
 <meta property="og:title" content="{{user[1]}}" />
 <meta property="og:image" content="{{user[4]}}" />
 <meta property="og:url" content="{{request.base_url}}" />
-<meta property="og:site_name" content="{{appName}}" />
+<meta property="og:site_name" content="{{app_name}}" />
 <meta property="og:description" content="{{ user[1] }}'s Profile" />
 <meta name="twitter:image" content="{{user[4]}}" />
 <meta name="twitter:description" content="{{ user[1] }}'s Profile" />
@@ -37,7 +37,7 @@
         <section class="flex w-full justify-between my-4">
             <div class="flex items-center">
                 <i class="ti ti-calendar mr-1 text-xl"></i>
-                <p class="hidden md:block">{{translations.user.joinDate}}:</p>
+                <p class="hidden md:block">{{translations.user.join_date}}:</p>
                 <p class="ml-1 date font-medium">{{user[7]}}</p>
             </div>
             <div class="flex items-center">
@@ -47,15 +47,15 @@
             </div>
         </section>
 
-        {% if session["userName"] == user[1] %}
+        {% if session["username"] == user[1] %}
         <section class="flex w-full items-center justify-between my-4">
             <div
                 class="flex items-center w-fit hover:text-rose-500 duration-150"
             >
-                <a href="/accountsettings"
+                <a href="/account_settings"
                     ><i class="ti ti-settings mr-1 text-xl"></i
                 ></a>
-                <a href="/accountsettings" class=""
+                <a href="/account_settings" class=""
                     >{{translations.user.settings}}</a
                 >
             </div>
@@ -69,7 +69,7 @@
                     >{{translations.user.dashboard}}</a
                 >
             </div>
-            {% endif %} {% if user[5] == "admin" and session["userName"] ==
+            {% endif %} {% if user[5] == "admin" and session["username"] ==
             user[1] %}
             <div
                 class="flex items-center w-fit hover:text-rose-500 duration-150"
@@ -78,31 +78,31 @@
                 <a href="/admin" class="">{{translations.user.admin}}</a>
             </div>
         </section>
-        {% endif %} {% if "userName" in session and session['userName'] ==
+        {% endif %} {% if "username" in session and session['username'] ==
         "{{user[1]}}"%}
         <div class="flex items-center w-fit hover:text-rose-500 duration-150">
-            <a href="/dashboard/{{session['userName']}}"
+            <a href="/dashboard/{{session['username']}}"
                 ><i class="ti ti-clipboard-text mr-1 text-xl"></i
             ></a>
-            <a href="/dashboard/{{session['userName']}}" class=""
+            <a href="/dashboard/{{session['username']}}" class=""
                 >{{translations.user.dashboard}}</a
             >
         </div>
         {% endif %}
     </div>
-    {% if showPosts %}
+    {% if show_posts %}
     <h1 class="my-4 text-center text-2xl text-rose-500 select-none">
         {{translations.user.posts}}
     </h1>
     <div
         class="flex item-center justify-center flex-wrap gap-x-2 gap-y-6 mx-auto w-11/12 md:w-10/12 lg:w-9/12 2xl:w-8/12 my-6"
     >
-        {% for post in posts %} {% from "components/postCardMacro.html" import
-        postCard%} {{
-        postCard(post=post,authorProfilePicture=getProfilePicture(post[5])) }}
-        {% endfor %}
+        {% for post in posts %} {% from "components/post_card_macro.html" import
+        post_card%} {{
+        post_card(post=post,author_profile_picture=get_profile_picture(post[5]))
+        }} {% endfor %}
     </div>
-    {% endif %} {% if showComments %}
+    {% endif %} {% if show_comments %}
     <h1 class="mb-4 text-center text-2xl text-rose-500 select-none">
         {{translations.user.comments}}
     </h1>
@@ -115,20 +115,20 @@
             <div class="flex items-center">
                 <i class="ti ti-clock mr-1 text-xl"></i>
                 <p class="hidden md:block mr-1">
-                    {{translations.user.createTime}}:
+                    {{translations.user.create_time}}:
                 </p>
                 <p class="time font-medium">{{comment[4]}}</p>
             </div>
             <div class="flex items-center">
                 <i class="ti ti-calendar mr-1 text-xl"></i>
                 <p class="hidden md:block mr-1">
-                    {{translations.user.createDate}}:
+                    {{translations.user.create_date}}:
                 </p>
                 <p class="date font-medium">{{comment[4]}}</p>
             </div>
         </section>
         <a
-            href="/post/{{ getPostUrlIdFromPost(comment[1]) }}"
+            href="/post/{{ url_id(comment[1]) }}"
             class="text-rose-500 hover:text-rose-500/75 duration-150 select-none my-2"
             >{{translations.user.go}}</a
         >

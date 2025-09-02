@@ -12,18 +12,19 @@ from flask import (
     session,
 )
 from passlib.hash import sha512_crypt as encryption
-from requests import post as requestsPost
+from requests import post as requests_post
+
 from settings import Settings
-from utils.addPoints import addPoints
-from utils.flashMessage import flashMessage
-from utils.forms.SignUpForm import SignUpForm
+from utils.add_points import add_points
+from utils.flash_message import flash_message
+from utils.forms.sign_up_form import SignUpForm
 from utils.log import Log
-from utils.time import currentTimeStamp
+from utils.time import current_time_stamp
 
-signUpBlueprint = Blueprint("signup", __name__)
+sign_up_blueprint = Blueprint("signup", __name__)
 
 
-@signUpBlueprint.route("/signup", methods=["GET", "POST"])
+@sign_up_blueprint.route("/signup", methods=["GET", "POST"])
 def signup():
     """
     This function handles the sign up route.
@@ -37,51 +38,51 @@ def signup():
     """
 
     if Settings.REGISTRATION:
-        if "userName" in session:
-            Log.error(f'USER: "{session["userName"]}" ALREADY LOGGED IN')
+        if "username" in session:
+            Log.error(f'USER: "{session["username"]}" ALREADY LOGGED IN')
             return redirect("/")
         else:
             form = SignUpForm(request.form)
 
             if request.method == "POST":
-                userName = request.form["userName"]
+                username = request.form["username"]
                 email = request.form["email"]
                 password = request.form["password"]
-                passwordConfirm = request.form["passwordConfirm"]
+                password_confirm = request.form["password_confirm"]
 
-                userName = userName.replace(" ", "")
+                username = username.replace(" ", "")
                 Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
 
                 connection = sqlite3.connect(Settings.DB_USERS_ROOT)
                 connection.set_trace_callback(Log.database)
                 cursor = connection.cursor()
 
-                cursor.execute("select userName from users")
+                cursor.execute("select username from users")
                 users = str(cursor.fetchall())
                 cursor.execute("select email from users")
                 mails = str(cursor.fetchall())
 
-                if userName not in users and email not in mails:
-                    if passwordConfirm == password:
-                        if userName.isascii():
+                if username not in users and email not in mails:
+                    if password_confirm == password:
+                        if username.isascii():
                             password = encryption.hash(password)
 
                             if Settings.RECAPTCHA:
-                                secretResponse = request.form["g-recaptcha-response"]
-                                verifyResponse = requestsPost(
-                                    url=f"{Settings.RECAPTCHA_VERIFY_URL}?secret={Settings.RECAPTCHA_SECRET_KEY}&response={secretResponse}"
+                                secret_response = request.form["g-recaptcha-response"]
+                                verify_response = requests_post(
+                                    url=f"{Settings.RECAPTCHA_VERIFY_URL}?secret={Settings.RECAPTCHA_SECRET_KEY}&response={secret_response}"
                                 ).json()
                                 if not (
-                                    verifyResponse["success"] is True
-                                    or verifyResponse.get("score", 0) > 0.5
+                                    verify_response["success"] is True
+                                    or verify_response.get("score", 0) > 0.5
                                 ):
                                     Log.error(
-                                        f"Signup reCAPTCHA | verification: {verifyResponse.get('success')} | score: {verifyResponse.get('score')}",
+                                        f"Signup reCAPTCHA | verification: {verify_response.get('success')} | score: {verify_response.get('score')}",
                                     )
                                     abort(401)
 
                                 Log.success(
-                                    f"Signup reCAPTCHA | verification: {verifyResponse['success']} | score: {verifyResponse.get('score')}",
+                                    f"Signup reCAPTCHA | verification: {verify_response['success']} | score: {verify_response.get('score')}",
                                 )
 
                             # Create user account
@@ -90,29 +91,29 @@ def signup():
                             cursor = connection.cursor()
                             cursor.execute(
                                 """
-                                insert into users(userName,email,password,profilePicture,role,points,timeStamp,isVerified) \
+                                insert into users(username,email,password,profile_picture,role,points,time_stamp,is_verified) \
                                 values(?, ?, ?, ?, ?, ?, ?, ?)
                                 """,
                                 (
-                                    userName,
+                                    username,
                                     email,
                                     password,
-                                    f"https://api.dicebear.com/7.x/identicon/svg?seed={userName}&radius=10",
+                                    f"https://api.dicebear.com/7.x/identicon/svg?seed={username}&radius=10",
                                     "user",
                                     0,
-                                    currentTimeStamp(),
+                                    current_time_stamp(),
                                     "False",
                                 ),
                             )
                             connection.commit()
 
-                            Log.success(f'User: "{userName}" added to database')
+                            Log.success(f'User: "{username}" added to database')
 
-                            session["userName"] = userName
-                            addPoints(1, session["userName"])
-                            Log.success(f'User: "{userName}" logged in')
+                            session["username"] = username
+                            add_points(1, session["username"])
+                            Log.success(f'User: "{username}" logged in')
 
-                            flashMessage(
+                            flash_message(
                                 page="signup",
                                 message="success",
                                 category="success",
@@ -131,7 +132,7 @@ def signup():
 
                             mail = EmailMessage()
                             mail.set_content(
-                                f"Hi {userName}👋,\n Welcome to {Settings.APP_NAME}"
+                                f"Hi {username}👋,\n Welcome to {Settings.APP_NAME}"
                             )
                             mail.add_alternative(
                                 f"""\
@@ -142,7 +143,7 @@ def signup():
                                 >
                                 <div style="text-align: center;">
                                     <h1 style="color: #F43F5E;">
-                                    Hi {userName}, <br />
+                                    Hi {username}, <br />
                                     Welcome to {Settings.APP_NAME}!
                                     </h1>
                                     <p style="font-size: 16px;">
@@ -162,12 +163,12 @@ def signup():
                             server.send_message(mail)
                             server.quit()
 
-                            return redirect("/verifyUser/codesent=false")
+                            return redirect("/verify-user/codesent=false")
                         else:
                             Log.error(
-                                f'Username: "{userName}" do not fits to ascii characters',
+                                f'Username: "{username}" do not fits to ascii characters',
                             )
-                            flashMessage(
+                            flash_message(
                                 page="signup",
                                 message="ascii",
                                 category="error",
@@ -176,34 +177,35 @@ def signup():
                     else:
                         Log.error("Passwords do not match")
 
-                        flashMessage(
+                        flash_message(
                             page="signup",
                             message="password",
                             category="error",
                             language=session["language"],
                         )
 
-                if userName in users and email in mails:
-                    Log.error(f'"{userName}" & "{email}" is unavailable ')
-                    flashMessage(
+                if username in users and email in mails:
+                    Log.error(f'"{username}" & "{email}" is unavailable ')
+                    flash_message(
                         page="signup",
                         message="taken",
                         category="error",
                         language=session["language"],
                     )
-                if userName not in users and email in mails:
+                if username not in users and email in mails:
                     Log.error(f'This email "{email}" is unavailable')
 
-                    flashMessage(
+                    flash_message(
                         page="signup",
                         message="email",
                         category="error",
                         language=session["language"],
                     )
-                if userName in users and email not in mails:
-                    Log.error(f'This username "{userName}" is unavailable')
 
-                    flashMessage(
+                if username in users and email not in mails:
+                    Log.error(f'This username "{username}" is unavailable')
+
+                    flash_message(
                         page="signup",
                         message="username",
                         category="error",
@@ -213,8 +215,8 @@ def signup():
             return render_template(
                 "signup.html",
                 form=form,
-                hideSignUp=True,
-                siteKey=Settings.RECAPTCHA_SITE_KEY,
+                hide_sign_up=True,
+                site_key=Settings.RECAPTCHA_SITE_KEY,
                 recaptcha=Settings.RECAPTCHA,
             )
     else:

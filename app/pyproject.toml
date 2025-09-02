@@ -6,14 +6,14 @@ description = "Blog application built with Flask"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "flask-wtf>=1.2.2",
+    "tamga>=1.4.0",
     "flask>=3.1.0",
+    "flask-wtf>=1.2.2",
     "geoip2>=5.0.1",
     "passlib>=1.7.4",
-    "tamga>=1.4.0",
     "user-agents>=2.2.0",
     "wtforms>=3.2.1",
-    "markdown2",
-    "bleach",
-    "html2text",
+    "markdown2>=2.5.3",
+    "bleach>=6.2.0",
+    "html2text>=2025.4.15",
 ]

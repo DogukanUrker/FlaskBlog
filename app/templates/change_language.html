@@ -1,0 +1,45 @@
+{% extends 'layout.html' %} {% block head %}
+<title>{{ translations.change_language.title }}</title>
+{% endblock head %} {% block body %}
+<div class="text-center mt-24 flex flex-col text-lg">
+    <h1 class="text-xl font-bold select-none mb-4">
+        {{ translations.change_language.title }}
+    </h1>
+    <a href="/set_language/en" class="m-2 hover:text-rose-500 duration-150">
+        🇬🇧 English
+    </a>
+    <a href="/set_language/tr" class="m-2 hover:text-rose-500 duration-150">
+        🇹🇷 Türkçe
+    </a>
+    <a href="/set_language/de" class="m-2 hover:text-rose-500 duration-150">
+        🇩🇪 Deutsch
+    </a>
+    <a href="/set_language/es" class="m-2 hover:text-rose-500 duration-150">
+        🇪🇸 Español
+    </a>
+    <a href="/set_language/pl" class="m-2 hover:text-rose-500 duration-150">
+        🇵🇱 Polski
+    </a>
+    <a href="/set_language/fr" class="m-2 hover:text-rose-500 duration-150">
+        🇫🇷 Français
+    </a>
+    <a href="/set_language/pt" class="m-2 hover:text-rose-500 duration-150">
+        🇵🇹 Português
+    </a>
+    <a href="/set_language/uk" class="m-2 hover:text-rose-500 duration-150">
+        🇺🇦 Українська
+    </a>
+    <a href="/set_language/ru" class="m-2 hover:text-rose-500 duration-150">
+        🇷🇺 Русский
+    </a>
+    <a href="/set_language/ja" class="m-2 hover:text-rose-500 duration-150">
+        🇯🇵 日本人
+    </a>
+    <a href="/set_language/zh" class="m-2 hover:text-rose-500 duration-150">
+        🇨🇳 中国人
+    </a>
+    <a href="/set-language/hi" class="m-2 hover:text-rose-500 duration-150">
+        🇮🇳 हिन्दी
+    </a>
+</div>
+{% endblock body %}

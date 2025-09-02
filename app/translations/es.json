@@ -3,44 +3,44 @@
     "title": "Acerca de",
     "version": "Versión",
     "description": "Aplicación de blog simple hecha con Flask, SQLite3, WTForms, Passlib, reCAPTCHA, Requests, TailwindCSS, Tabler Icons",
-    "moreInfo": "Haga clic para obtener más información sobre",
-    "sourceRepo": "código fuente",
+    "more_info": "Haga clic para obtener más información sobre",
+    "source_repo": "código fuente",
     "credits": "Hecho con <i class='ti ti-heart-filled text-rose-500'></i> por <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
   },
-  "accountSettings": {
+  "account_settings": {
     "title": "Configuraciones de la Cuenta",
     "username": "cambiar nombre de usuario",
     "password": "cambiar contraseña",
     "delete": "eliminar cuenta",
     "language": "cambiar idioma",
-    "profilePicture": "cambiar foto de perfil"
+    "profile_picture": "cambiar foto de perfil"
   },
-  "adminPanel": {
+  "admin_panel": {
     "title": "Panel de Administrador",
     "users": "Usuarios",
     "posts": "Publicaciones",
     "comments": "Comentarios"
   },
-  "adminPanelComments": {
+  "admin_panel_comments": {
     "title": "Panel de Administrador - Comentarios",
     "comments": "Comentarios",
-    "postID": "ID de Publicación",
-    "creationTime": "Hora de Creación",
-    "creationDate": "Fecha de Creación",
+    "post_id": "ID de Publicación",
+    "creation_time": "Hora de Creación",
+    "creation_date": "Fecha de Creación",
     "author": "Autor"
   },
-  "adminPanelUsers": {
+  "admin_panel_users": {
     "title": "Panel de Administrador - Usuarios",
     "id": "ID",
     "users": "Usuarios",
     "email": "Correo Electrónico",
-    "joinTime": "Hora de Unión",
-    "joinDate": "Fecha de Unión",
+    "join_time": "Hora de Unión",
+    "join_date": "Fecha de Unión",
     "role": "Rol",
     "points": "Puntos",
     "delete": "eliminar usuario",
-    "setUser": "establecer rol de usuario a usuario",
-    "setAdmin": "establecer rol de usuario a administrador"
+    "set_user": "establecer rol de usuario a usuario",
+    "set_admin": "establecer rol de usuario a administrador"
   },
   "categories": {
     "all": "Todos",
@@ -66,75 +66,75 @@
     "web": "Web",
     "other": "Otros"
   },
-  "changeLanguage": {
+  "change_language": {
     "title": "Seleccionar Idioma"
   },
-  "changePassword": {
+  "change_password": {
     "title": "Cambiar Contraseña",
-    "currentPassword": "Contraseña Actual",
-    "newPassword": "Nueva Contraseña",
-    "confirmPassword": "Confirmar Contraseña",
+    "current_password": "Contraseña Actual",
+    "new_password": "Nueva Contraseña",
+    "confirm_password": "Confirmar Contraseña",
     "change": "Cambiar Contraseña"
   },
-  "changeProfilePicture": {
+  "change_profile_picture": {
     "title": "Cambiar Foto de Perfil",
     "default": "la semilla predeterminada es tu nombre de usuario",
     "info": "haga clic para obtener más información sobre las semillas de la imagen de perfil",
     "set": "Establecer Foto de Perfil",
     "placeholder": "Ingrese semilla para la foto de perfil"
   },
-  "changeUserName": {
+  "change_user_name": {
     "title": "Cambiar Nombre de Usuario",
     "placeholder": "Nuevo Nombre de Usuario",
     "change": "Cambiar Nombre de Usuario"
   },
-  "createPost": {
+  "create_post": {
     "title": "Crear Publicación",
-    "titlePlaceholder": "título de la publicación",
+    "title_placeholder": "título de la publicación",
     "category": "Selecciona una Categoría",
     "content": "Contenido",
     "banner": "Subir un Banner",
-    "bannerPlaceholder": "banner de la publicación",
+    "banner_placeholder": "banner de la publicación",
     "tags": "etiquetas",
     "post": "Publicar",
     "separate": "(Separe las etiquetas con comas)",
     "abstract": "Resumen",
-    "abstractPlaceholder": "resumen del post"
+    "abstract_placeholder": "resumen del post"
   },
-  "csrfError": {
+  "csrf_error": {
     "reason": "Razón",
     "description": "Complete el mismo formulario nuevamente."
   },
   "dashboard": {
     "title": "Panel de Control",
-    "titleAdmin": "Panel de Administrador - Publicaciones",
+    "title_admin": "Panel de Administrador - Publicaciones",
     "posts": "Publicaciones",
     "comments": "Comentarios",
     "tags": "Etiquetas",
     "views": "Vistas",
-    "creationTime": "Hora de Creación",
-    "creationDate": "Fecha de Creación",
-    "editTime": "Hora de Última Edición",
-    "editDate": "Fecha de Última Edición",
+    "creation_time": "Hora de Creación",
+    "creation_date": "Fecha de Creación",
+    "edit_time": "Hora de Última Edición",
+    "edit_date": "Fecha de Última Edición",
     "author": "Autor",
     "category": "Categoría",
-    "noPosts": "Este usuario aún no ha creado ninguna publicación.",
-    "noPost": "Aún no hay publicaciones,",
+    "no_posts": "Este usuario aún no ha creado ninguna publicación.",
+    "no_post": "Aún no hay publicaciones,",
     "create": "crea una",
     "go": "ir a la publicación"
   },
-  "editPost": {
+  "edit_post": {
     "title": "Editar Publicación",
-    "titlePlaceholder": "título de la publicación",
+    "title_placeholder": "título de la publicación",
     "category": "Selecciona una Categoría",
     "current": "Banner Actual",
     "new": "Nuevo Banner",
     "tags": "etiquetas",
     "separate": "(Separe las etiquetas con comas)",
     "save": "Guardar Cambios",
-    "bannerPlaceholder": "banner de la publicación",
+    "banner_placeholder": "banner de la publicación",
     "abstract": "Resumen",
-    "abstractPlaceholder": "resumen del post"
+    "abstract_placeholder": "resumen del post"
   },
   "login": {
     "title": "Iniciar Sesión",
@@ -142,28 +142,28 @@
     "password": "contraseña",
     "forgot": "¿Olvidaste tu contraseña?"
   },
-  "notFound": {
+  "not_found": {
     "text": "No sé qué es",
     "sorry": "lo siento",
     "home": "ir a inicio"
   },
-  "passwordReset": {
+  "password_reset": {
     "title": "Restablecimiento de Contraseña",
     "email": "correo electrónico",
     "username": "nombre de usuario",
     "send": "Enviar Correo de Restablecimiento",
     "reset": "Restablecer Contraseña",
     "code": "Enviar Código",
-    "codePlaceholder": "Ingrese el código que recibió",
-    "newPassword": "Nueva Contraseña",
-    "confirmPassword": "Confirmar Contraseña"
+    "code_placeholder": "Ingrese el código que recibió",
+    "new_password": "Nueva Contraseña",
+    "confirm_password": "Confirmar Contraseña"
   },
   "post": {
-    "minRead": "min de lectura",
+    "min_read": "min de lectura",
     "placeholder": "¿Cuáles son tus pensamientos?",
-    "viewPerformance": "Ver Rendimiento"
+    "view_performance": "Ver Rendimiento"
   },
-  "sortMenu": {
+  "sort_menu": {
     "asc": "Ascendente",
     "desc": "Descendente",
     "create": "Fecha de Creación",
@@ -175,12 +175,12 @@
   },
   "search": {
     "title": "Buscar",
-    "noResults": "Sin resultados",
+    "no_results": "Sin resultados",
     "users": "Usuarios",
     "posts": "Publicaciones",
     "results": "Resultados"
   },
-  "searchBar": {
+  "search_bar": {
     "title": "Buscar",
     "placeholder": "buscar"
   },
@@ -202,9 +202,9 @@
     "posts": "Publicaciones",
     "comments": "Comentarios",
     "points": "Puntos",
-    "joinDate": "Fecha de Unión",
-    "createDate": "Fecha de Creación",
-    "createTime": "Hora de Creación",
+    "join_date": "Fecha de Unión",
+    "create_date": "Fecha de Creación",
+    "create_time": "Hora de Creación",
     "dashboard": "panel de control",
     "role": "Rol",
     "user": "Usuario",
@@ -213,29 +213,29 @@
     "views": "Vistas",
     "go": "ir a la publicación"
   },
-  "verifyUser": {
+  "verify_user": {
     "title": "Verificar Cuenta",
     "placeholder": "Ingrese el código que recibió",
     "send": "Haga clic para enviar el código de verificación"
   },
   "flash": {
-    "changePassword": {
+    "change_password": {
       "same": "La nueva contraseña no puede ser la misma que la antigua.",
       "match": "Las contraseñas no coinciden.",
       "success": "La contraseña ha sido cambiada.",
       "old": "La antigua contraseña es incorrecta.",
       "login": "Necesitas iniciar sesión para cambiar tu contraseña."
     },
-    "changeProfilePicture": {
+    "change_profile_picture": {
       "success": "La imagen de perfil ha sido cambiada."
     },
-    "changeUserName": {
+    "change_user_name": {
       "same": "Este ya es tu nombre de usuario.",
       "success": "El nombre de usuario ha sido cambiado.",
       "taken": "Este nombre de usuario ya está en uso.",
       "ascii": "El nombre de usuario solo puede contener caracteres ASCII."
     },
-    "createPost": {
+    "create_post": {
       "success": "Has ganado 20 puntos por crear una publicación.",
       "login": "Necesitas iniciar sesión para crear una publicación.",
       "empty": "No puedes dejar el título o el contenido vacío."
@@ -243,7 +243,7 @@
     "dashboard": {
       "login": "Necesitas iniciar sesión para ver tu panel."
     },
-    "editPost": {
+    "edit_post": {
       "success": "La publicación ha sido editada.",
       "login": "Necesitas iniciar sesión para editar una publicación.",
       "empty": "No puedes dejar el título o el contenido vacío.",
@@ -252,18 +252,18 @@
     "login": {
       "success": "Has iniciado sesión con éxito.",
       "password": "Contraseña incorrecta",
-      "notFound": "Usuario no encontrado"
+      "not_found": "Usuario no encontrado"
     },
     "logout": {
       "success": "Has cerrado sesión con éxito."
     },
-    "passwordReset": {
+    "password_reset": {
       "success": "La contraseña ha sido restablecida. Puedes iniciar sesión con tu nueva contraseña.",
       "email": "Correo electrónico enviado.",
       "code": "Código enviado.",
       "same": "La nueva contraseña no puede ser la misma que la antigua.",
       "match": "Las contraseñas no coinciden.",
-      "notFound": "Usuario no encontrado.",
+      "not_found": "Usuario no encontrado.",
       "wrong": "Código incorrecto."
     },
     "delete": {
@@ -271,7 +271,7 @@
       "post": "La publicación ha sido eliminada.",
       "comment": "El comentario ha sido eliminado."
     },
-    "setLanguage": {
+    "set_language": {
       "success": "El idioma ha sido cambiado."
     },
     "post": {
@@ -285,63 +285,43 @@
       "password": "Las contraseñas no coinciden.",
       "taken": "Este nombre de usuario y correo electrónico ya están en uso."
     },
-    "verifyUser": {
+    "verify_user": {
       "success": "Tu cuenta ha sido verificada.",
       "code": "Código enviado.",
-      "notFound": "Usuario no encontrado.",
+      "not_found": "Usuario no encontrado.",
       "wrong": "Código incorrecto."
     },
     "error": {
-      "wrongCall": "Has hecho una llamada de mensaje flash incorrecta en el servidor."
+      "wrong_call": "Has hecho una llamada de mensaje flash incorrecta en el servidor."
     }
   },
   "roles": {
     "user": "Usuario",
     "admin": "Administrador"
   },
-  "privacyPolicy": {
+  "privacy_policy": {
     "title": "Política de Privacidad",
     "intro": "Esta Política de Privacidad describe cómo el Blog de Flask de Doğukan Ürker ('nosotros', 'nos' o 'nuestro') recopila, utiliza y divulga su información cuando utiliza nuestra aplicación móvil (la 'App').",
     "information": "Recopilación y Uso de Información",
-    "informationText": "Cuando utiliza nuestra App, recopilamos y registramos varios tipos de datos de actividad del usuario, incluidos, entre otros:",
-    "informationUser": "Datos de inicio de sesión del usuario: Recopilamos información relacionada con las actividades de inicio de sesión del usuario para fines de autenticación y seguridad.",
-    "informationPost": "Datos de publicaciones y comentarios: Recopilamos información sobre publicaciones y comentarios realizados dentro de la App con fines de funcionalidad y participación del usuario.",
-    "informationGeneral": "Actividad general del usuario: Registramos varias actividades del usuario dentro de la App para mejorar la experiencia del usuario, solucionar problemas técnicos y analizar patrones de uso.",
+    "information_text": "Cuando utiliza nuestra App, recopilamos y registramos varios tipos de datos de actividad del usuario, incluidos, entre otros:",
+    "information_user": "Datos de inicio de sesión del usuario: Recopilamos información relacionada con las actividades de inicio de sesión del usuario para fines de autenticación y seguridad.",
+    "information_post": "Datos de publicaciones y comentarios: Recopilamos información sobre publicaciones y comentarios realizados dentro de la App con fines de funcionalidad y participación del usuario.",
+    "information_general": "Actividad general del usuario: Registramos varias actividades del usuario dentro de la App para mejorar la experiencia del usuario, solucionar problemas técnicos y analizar patrones de uso.",
     "cookies": "Cookies",
-    "cookiesText": "Nuestra App utiliza cookies para mejorar la experiencia del usuario. Las cookies que utilizamos incluyen:",
-    "cookiesTheme": "Cookie de tema de interfaz de usuario: Almacenamos la preferencia de tema de interfaz de usuario seleccionada por el usuario para personalizar la apariencia de la App.",
-    "cookiesLanguage": "Idioma predeterminado del navegador: Almacenamos la preferencia de idioma predeterminado del navegador del usuario para proporcionar contenido localizado.",
-    "serviceProviders": "Proveedores de Servicios",
-    "serviceProvidersText": "Podemos emplear empresas o individuos de terceros para facilitar nuestra App o proporcionar servicios en nuestro nombre. Estos terceros pueden tener acceso a su información para realizar tareas como análisis, alojamiento y soporte técnico. Sin embargo, están obligados a no divulgarla ni utilizarla para ningún otro propósito.",
-    "otherLinks": "Enlaces a Otros Sitios",
-    "otherLinksText": "Nuestra App puede contener enlaces a sitios externos, incluyendo X y el sitio personal de Doğukan Ürker. No somos responsables del contenido ni de las prácticas de privacidad de dichos sitios externos. Recomendamos a los usuarios que revisen las políticas de privacidad de estos sitios antes de proporcionar cualquier información personal.",
+    "cookies_text": "Nuestra App utiliza cookies para mejorar la experiencia del usuario. Las cookies que utilizamos incluyen:",
+    "cookies_theme": "Cookie de tema de interfaz de usuario: Almacenamos la preferencia de tema de interfaz de usuario seleccionada por el usuario para personalizar la apariencia de la App.",
+    "cookies_language": "Idioma predeterminado del navegador: Almacenamos la preferencia de idioma predeterminado del navegador del usuario para proporcionar contenido localizado.",
+    "service_providers": "Proveedores de Servicios",
+    "service_providers_text": "Podemos emplear empresas o individuos de terceros para facilitar nuestra App o proporcionar servicios en nuestro nombre. Estos terceros pueden tener acceso a su información para realizar tareas como análisis, alojamiento y soporte técnico. Sin embargo, están obligados a no divulgarla ni utilizarla para ningún otro propósito.",
+    "other_links": "Enlaces a Otros Sitios",
+    "other_links_text": "Nuestra App puede contener enlaces a sitios externos, incluyendo X y el sitio personal de Doğukan Ürker. No somos responsables del contenido ni de las prácticas de privacidad de dichos sitios externos. Recomendamos a los usuarios que revisen las políticas de privacidad de estos sitios antes de proporcionar cualquier información personal.",
     "security": "Seguridad",
-    "securityText": "Tomamos precauciones razonables para proteger la información recopilada a través de nuestra App. Sin embargo, tenga en cuenta que ningún método de transmisión por Internet ni de almacenamiento electrónico es 100% seguro, y no podemos garantizar la seguridad absoluta.",
+    "security_text": "Tomamos precauciones razonables para proteger la información recopilada a través de nuestra App. Sin embargo, tenga en cuenta que ningún método de transmisión por Internet ni de almacenamiento electrónico es 100% seguro, y no podemos garantizar la seguridad absoluta.",
     "children": "Privacidad de los Niños",
-    "childrenText": "Nuestra App no está destinada a ser utilizada por personas menores de 13 años. No recopilamos conscientemente información personal identificable de niños menores de 13 años. Si usted es un padre o tutor y sabe que su hijo nos ha proporcionado información personal, por favor contáctenos para que podamos tomar las medidas necesarias.",
+    "children_text": "Nuestra App no está destinada a ser utilizada por personas menores de 13 años. No recopilamos conscientemente información personal identificable de niños menores de 13 años. Si usted es un padre o tutor y sabe que su hijo nos ha proporcionado información personal, por favor contáctenos para que podamos tomar las medidas necesarias.",
     "changes": "Cambios a Esta Política de Privacidad",
-    "changesText": "Podemos actualizar nuestra Política de Privacidad de vez en cuando. Por lo tanto, se le aconseja que revise esta página periódicamente para ver cualquier cambio. Le notificaremos de cualquier cambio publicando la nueva Política de Privacidad en esta página. Estos cambios entran en vigor inmediatamente después de ser publicados en esta página.",
+    "changes_text": "Podemos actualizar nuestra Política de Privacidad de vez en cuando. Por lo tanto, se le aconseja que revise esta página periódicamente para ver cualquier cambio. Le notificaremos de cualquier cambio publicando la nueva Política de Privacidad en esta página. Estos cambios entran en vigor inmediatamente después de ser publicados en esta página.",
     "contact": "Contáctenos",
-    "contactText": "Si tiene alguna pregunta o sugerencia sobre nuestra Política de Privacidad, no dude en contactarnos. Correo electrónico:"
-  },
-  "analytics": {
-    "title": "Analítica",
-    "goToPage": "Ir a la página",
-    "totalVisitor": "Visitantes Totales",
-    "todaysVisitor": "Visitantes de Hoy",
-    "category": "Categoría",
-    "onPosted": "Publicado en",
-    "trafficCount": "Recuento de Tráfico",
-    "sincePosted": "Desde Publicación",
-    "last1month": "Último 1m",
-    "last7days": "Últimos 7d",
-    "last24hours": "Últimas 24h",
-    "last48hours": "Últimas 48h",
-    "traffic": "Tráfico",
-    "visitorCounts": "Recuento de Visitantes",
-    "computerOS": "Sistema Operativo",
-    "topCountries": "Países Principales",
-    "visitor": "Visitante",
-    "viewAll": "Ver Todo"
+    "contact_text": "Si tiene alguna pregunta o sugerencia sobre nuestra Política de Privacidad, no dude en contactarnos. Correo electrónico:"
   }
 }

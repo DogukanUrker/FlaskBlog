@@ -3,44 +3,44 @@
     "title": "Hakkında",
     "version": "Sürüm",
     "description": "Flask, SQLite3, WTForms, Passlib, reCAPTCHA, Requests, TailwindCSS, Tabler Icons ile yapılmış basit blog uygulaması",
-    "moreInfo": "Daha fazla bilgi için tıklayın",
-    "sourceRepo": "kaynak kodu",
+    "more_info": "Daha fazla bilgi için tıklayın",
+    "source_repo": "kaynak kodu",
     "credits": "<i class='ti ti-heart-filled text-rose-500'></i> ile yapılmıştır - <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
   },
-  "accountSettings": {
+  "account_settings": {
     "title": "Hesap Ayarları",
     "username": "kullanıcı adını değiştir",
     "password": "şifreyi değiştir",
     "delete": "hesabı sil",
     "language": "dili değiştir",
-    "profilePicture": "profil resmini değiştir"
+    "profile_picture": "profil resmini değiştir"
   },
-  "adminPanel": {
+  "admin_panel": {
     "title": "Yönetici Paneli",
     "users": "Kullanıcılar",
     "posts": "Gönderiler",
     "comments": "Yorumlar"
   },
-  "adminPanelComments": {
+  "admin_panel_comments": {
     "title": "Yönetici Paneli - Yorumlar",
     "comments": "Yorumlar",
-    "postID": "Gönderi ID",
-    "creationTime": "Oluşturma Saati",
-    "creationDate": "Oluşturma Tarihi",
+    "post_id": "Gönderi ID",
+    "creation_time": "Oluşturma Saati",
+    "creation_date": "Oluşturma Tarihi",
     "author": "Yazar"
   },
-  "adminPanelUsers": {
+  "admin_panel_users": {
     "title": "Yönetici Paneli - Kullanıcılar",
     "id": "ID",
     "users": "Kullanıcılar",
     "email": "Email",
-    "joinTime": "Katılım Saati",
-    "joinDate": "Katılım Tarihi",
+    "join_time": "Katılım Saati",
+    "join_date": "Katılım Tarihi",
     "role": "Rol",
     "points": "Puanlar",
     "delete": "kullanıcıyı sil",
-    "setUser": "kullanıcı rolünü kullanıcı olarak ayarla",
-    "setAdmin": "kullanıcı rolünü yönetici olarak ayarla"
+    "set_user": "kullanıcı rolünü kullanıcı olarak ayarla",
+    "set_admin": "kullanıcı rolünü yönetici olarak ayarla"
   },
   "categories": {
     "all": "Tümü",
@@ -66,75 +66,75 @@
     "web": "Web",
     "other": "Diğer"
   },
-  "changeLanguage": {
+  "change_language": {
     "title": "Dil Seç"
   },
-  "changePassword": {
+  "change_password": {
     "title": "Şifreyi Değiştir",
-    "currentPassword": "Mevcut Şifre",
-    "newPassword": "Yeni Şifre",
-    "confirmPassword": "Şifreyi Onayla",
+    "current_password": "Mevcut Şifre",
+    "new_password": "Yeni Şifre",
+    "confirm_password": "Şifreyi Onayla",
     "change": "Şifreyi Değiştir"
   },
-  "changeProfilePicture": {
+  "change_profile_picture": {
     "title": "Profil Resmini Değiştir",
     "default": "varsayılan seed kullanıcı adınızdır",
     "info": "profil resmi seedleri hakkında daha fazla bilgi için tıklayın",
     "set": "Profil Resmini Ayarla",
     "placeholder": "Profil resmi için seed girin"
   },
-  "changeUserName": {
+  "change_user_name": {
     "title": "Kullanıcı Adını Değiştir",
     "placeholder": "Yeni Kullanıcı Adı",
     "change": "Kullanıcı Adını Değiştir"
   },
-  "createPost": {
+  "create_post": {
     "title": "Gönderi Oluştur",
-    "titlePlaceholder": "gönderi başlığı",
+    "title_placeholder": "gönderi başlığı",
     "category": "Bir Kategori Seçin",
     "content": "İçerik",
     "banner": "Afiş Yükle",
-    "bannerPlaceholder": "gönderi afişi",
+    "banner_placeholder": "gönderi afişi",
     "tags": "etiketler",
     "post": "Gönder",
     "separate": "(Etiketleri virgülle ayırın)",
     "abstract": "Özet",
-    "abstractPlaceholder": "gönderi özeti"
+    "abstract_placeholder": "gönderi özeti"
   },
-  "csrfError": {
+  "csrf_error": {
     "reason": "Sebep",
     "description": "Aynı formu tekrar doldurun."
   },
   "dashboard": {
     "title": "Gösterge Paneli",
-    "titleAdmin": "Yönetici Paneli - Gönderiler",
+    "title_admin": "Yönetici Paneli - Gönderiler",
     "posts": "Gönderiler",
     "comments": "Yorumlar",
     "tags": "Etiketler",
     "views": "Görüntülenme",
-    "creationTime": "Oluşturma Saati",
-    "creationDate": "Oluşturma Tarihi",
-    "editTime": "Son Düzenleme Saati",
-    "editDate": "Son Düzenleme Tarihi",
+    "creation_time": "Oluşturma Saati",
+    "creation_date": "Oluşturma Tarihi",
+    "edit_time": "Son Düzenleme Saati",
+    "edit_date": "Son Düzenleme Tarihi",
     "author": "Yazar",
     "category": "Kategori",
-    "noPosts": "Bu kullanıcı henüz herhangi bir gönderi oluşturmadı.",
-    "noPost": "Henüz gönderi yok,",
+    "no_posts": "Bu kullanıcı henüz herhangi bir gönderi oluşturmadı.",
+    "no_post": "Henüz gönderi yok,",
     "create": "bir tane oluştur",
     "go": "gönderiye git"
   },
-  "editPost": {
+  "edit_post": {
     "title": "Gönderiyi Düzenle",
-    "titlePlaceholder": "gönderi başlığı",
+    "title_placeholder": "gönderi başlığı",
     "category": "Bir Kategori Seçin",
     "current": "Mevcut Afiş",
     "new": "Yeni Afiş",
     "tags": "etiketler",
     "separate": "(Etiketleri virgülle ayırın)",
     "save": "Değişiklikleri Kaydet",
-    "bannerPlaceholder": "gönderi afişi",
+    "banner_placeholder": "gönderi afişi",
     "abstract": "Özet",
-    "abstractPlaceholder": "gönderi özeti"
+    "abstract_placeholder": "gönderi özeti"
   },
   "login": {
     "title": "Giriş Yap",
@@ -142,28 +142,28 @@
     "password": "şifre",
     "forgot": "Şifremi Unuttum?"
   },
-  "notFound": {
+  "not_found": {
     "text": "Ne olduğunu bilmiyorum",
     "sorry": "üzgünüm",
     "home": "ana sayfaya git"
   },
-  "passwordReset": {
+  "password_reset": {
     "title": "Şifre Sıfırlama",
     "email": "email",
     "username": "kullanıcı adı",
     "send": "Sıfırlama Emaili Gönder",
     "reset": "Şifreyi Sıfırla",
     "code": "Kodu Gönder",
-    "codePlaceholder": "Aldığınız kodu girin",
-    "newPassword": "Yeni Şifre",
-    "confirmPassword": "Şifreyi Onayla"
+    "code_placeholder": "Aldığınız kodu girin",
+    "new_password": "Yeni Şifre",
+    "confirm_password": "Şifreyi Onayla"
   },
   "post": {
-    "minRead": "dakika okuma",
+    "min_read": "dakika okuma",
     "placeholder": "Düşünceleriniz nedir?",
-    "viewPerformance": "Performansı Görüntüle"
+    "view_performance": "Performansı Görüntüle"
   },
-  "sortMenu": {
+  "sort_menu": {
     "asc": "Artan",
     "desc": "Azalan",
     "create": "Oluşturma Tarihi",
@@ -175,12 +175,12 @@
   },
   "search": {
     "title": "Arama",
-    "noResults": "Sonuç bulunamadı",
+    "no_results": "Sonuç bulunamadı",
     "users": "Kullanıcılar",
     "posts": "Gönderiler",
     "results": "Sonuçlar"
   },
-  "searchBar": {
+  "search_bar": {
     "title": "Arama",
     "placeholder": "arama"
   },
@@ -202,9 +202,9 @@
     "posts": "Gönderiler",
     "comments": "Yorumlar",
     "points": "Puanlar",
-    "joinDate": "Katılım Tarihi",
-    "createDate": "Oluşturma Tarihi",
-    "createTime": "Oluşturma Saati",
+    "join_date": "Katılım Tarihi",
+    "create_date": "Oluşturma Tarihi",
+    "create_time": "Oluşturma Saati",
     "dashboard": "gösterge paneli",
     "role": "Rol",
     "user": "Kullanıcı",
@@ -213,29 +213,29 @@
     "views": "Görüntülenme",
     "go": "gönderiye git"
   },
-  "verifyUser": {
+  "verify_user": {
     "title": "Hesabı Doğrula",
     "placeholder": "Aldığınız kodu girin",
     "send": "Doğrulama kodunu göndermek için tıklayın"
   },
   "flash": {
-    "changePassword": {
+    "change_password": {
       "same": "Yeni şifre eski şifre ile aynı olamaz.",
       "match": "Şifreler uyuşmuyor.",
       "success": "Şifre değiştirildi.",
       "old": "Eski şifre yanlış.",
       "login": "Şifrenizi değiştirmek için giriş yapmanız gerekiyor."
     },
-    "changeProfilePicture": {
+    "change_profile_picture": {
       "success": "Profil resmi değiştirildi."
     },
-    "changeUserName": {
+    "change_user_name": {
       "same": "Bu zaten sizin kullanıcı adınız.",
       "success": "Kullanıcı adı değiştirildi.",
       "taken": "Bu kullanıcı adı zaten alınmış.",
       "ascii": "Kullanıcı adı sadece ASCII karakterler içerebilir."
     },
-    "createPost": {
+    "create_post": {
       "success": "Gönderi oluşturduğunuz için 20 puan kazandınız.",
       "login": "Gönderi oluşturmak için giriş yapmanız gerekiyor.",
       "empty": "Başlık veya içerik boş bırakılamaz."
@@ -243,7 +243,7 @@
     "dashboard": {
       "login": "Gösterge panelinizi görmek için giriş yapmanız gerekiyor."
     },
-    "editPost": {
+    "edit_post": {
       "success": "Gönderi düzenlendi.",
       "login": "Gönderiyi düzenlemek için giriş yapmanız gerekiyor.",
       "empty": "Başlık veya içerik boş bırakılamaz.",
@@ -252,18 +252,18 @@
     "login": {
       "success": "Başarıyla giriş yaptınız.",
       "password": "Yanlış şifre",
-      "notFound": "Kullanıcı bulunamadı"
+      "not_found": "Kullanıcı bulunamadı"
     },
     "logout": {
       "success": "Başarıyla çıkış yaptınız."
     },
-    "passwordReset": {
+    "password_reset": {
       "success": "Şifre sıfırlandı. Yeni şifrenizle giriş yapabilirsiniz.",
       "email": "E-posta gönderildi.",
       "code": "Kod gönderildi.",
       "same": "Yeni şifre eski şifre ile aynı olamaz.",
       "match": "Şifreler uyuşmuyor.",
-      "notFound": "Kullanıcı bulunamadı.",
+      "not_found": "Kullanıcı bulunamadı.",
       "wrong": "Yanlış kod."
     },
     "delete": {
@@ -271,7 +271,7 @@
       "post": "Gönderi silindi.",
       "comment": "Yorum silindi."
     },
-    "setLanguage": {
+    "set_language": {
       "success": "Dil değiştirildi."
     },
     "post": {
@@ -285,63 +285,43 @@
       "password": "Şifreler uyuşmuyor.",
       "taken": "Bu kullanıcı adı ve e-posta zaten alınmış."
     },
-    "verifyUser": {
+    "verify_user": {
       "success": "Hesabınız doğrulandı.",
       "code": "Kod gönderildi.",
-      "notFound": "Kullanıcı bulunamadı.",
+      "not_found": "Kullanıcı bulunamadı.",
       "wrong": "Yanlış kod."
     },
     "error": {
-      "wrongCall": "Sunucu tarafında yanlış bir flash mesaj çağrısı yaptınız."
+      "wrong_call": "Sunucu tarafında yanlış bir flash mesaj çağrısı yaptınız."
     }
   },
   "roles": {
     "user": "Kullanıcı",
     "admin": "Yönetici"
   },
-  "privacyPolicy": {
+  "privacy_policy": {
     "title": "Gizlilik Politikası",
     "intro": "Bu Gizlilik Politikası, Doğukan Ürker'in Flask Blog'u ('biz', 'bizi' veya 'bizim') mobil uygulamamızı ('Uygulama') kullanırken bilgilerinizi nasıl topladığını, kullandığını ve açıkladığını açıklar.",
     "information": "Bilgi Toplama ve Kullanım",
-    "informationText": "Uygulamamızı kullandığınızda, kullanıcı etkinlik verileri de dahil olmak üzere çeşitli türlerde veri toplar ve kaydederiz. Bunlar şunları içerir ancak bunlarla sınırlı değildir:",
-    "informationUser": "Kullanıcı giriş verileri: Kimlik doğrulama ve güvenlik amaçları için kullanıcı giriş faaliyetlerine ilişkin bilgileri toplarız.",
-    "informationPost": "Gönderi ve yorum verileri: Uygulama içinde yapılan gönderi ve yorumlar hakkında bilgi toplarız ve bu bilgiler işlevsellik ve kullanıcı etkileşimi amaçlarıyla kullanılır.",
-    "informationGeneral": "Genel kullanıcı etkinliği: Kullanıcı deneyimini iyileştirmek, teknik sorunları gidermek ve kullanım modellerini analiz etmek için uygulama içindeki çeşitli kullanıcı etkinliklerini kaydederiz.",
+    "information_text": "Uygulamamızı kullandığınızda, kullanıcı etkinlik verileri de dahil olmak üzere çeşitli türlerde veri toplar ve kaydederiz. Bunlar şunları içerir ancak bunlarla sınırlı değildir:",
+    "information_user": "Kullanıcı giriş verileri: Kimlik doğrulama ve güvenlik amaçları için kullanıcı giriş faaliyetlerine ilişkin bilgileri toplarız.",
+    "information_post": "Gönderi ve yorum verileri: Uygulama içinde yapılan gönderi ve yorumlar hakkında bilgi toplarız ve bu bilgiler işlevsellik ve kullanıcı etkileşimi amaçlarıyla kullanılır.",
+    "information_general": "Genel kullanıcı etkinliği: Kullanıcı deneyimini iyileştirmek, teknik sorunları gidermek ve kullanım modellerini analiz etmek için uygulama içindeki çeşitli kullanıcı etkinliklerini kaydederiz.",
     "cookies": "Çerezler",
-    "cookiesText": "Uygulamamız kullanıcı deneyimini geliştirmek için çerezler kullanır. Kullandığımız çerezler şunları içerir:",
-    "cookiesTheme": "Kullanıcı arayüzü teması çerezi: Uygulamanın görünümünü kişiselleştirmek için kullanıcının seçtiği kullanıcı arayüzü tema tercihini depolarız.",
-    "cookiesLanguage": "Tarayıcı varsayılan dili: Yerelleştirilmiş içerik sağlamak için kullanıcının tarayıcı varsayılan dil tercihini depolarız.",
-    "serviceProviders": "Hizmet Sağlayıcıları",
-    "serviceProvidersText": "Uygulamamızı kolaylaştırmak veya adımıza hizmet sağlamak için üçüncü taraf şirketler veya bireyler kullanabiliriz. Bu üçüncü taraflar, analiz, barındırma ve teknik destek gibi görevleri yerine getirmek için bilgilerinize erişebilirler. Ancak, bu bilgileri açıklamamaları veya başka amaçlar için kullanmamaları gerekmektedir.",
-    "otherLinks": "Diğer Sitelere Bağlantılar",
-    "otherLinksText": "Uygulamamız, X ve Doğukan Ürker'in kişisel sitesi de dahil olmak üzere harici sitelere bağlantılar içerebilir. Bu harici sitelerin içerikleri veya gizlilik uygulamalarından sorumlu değiliz. Kullanıcılara herhangi bir kişisel bilgi sağlamadan önce bu sitelerin gizlilik politikalarını gözden geçirmelerini öneririz.",
+    "cookies_text": "Uygulamamız kullanıcı deneyimini geliştirmek için çerezler kullanır. Kullandığımız çerezler şunları içerir:",
+    "cookies_theme": "Kullanıcı arayüzü teması çerezi: Uygulamanın görünümünü kişiselleştirmek için kullanıcının seçtiği kullanıcı arayüzü tema tercihini depolarız.",
+    "cookies_language": "Tarayıcı varsayılan dili: Yerelleştirilmiş içerik sağlamak için kullanıcının tarayıcı varsayılan dil tercihini depolarız.",
+    "service_providers": "Hizmet Sağlayıcıları",
+    "service_providers_text": "Uygulamamızı kolaylaştırmak veya adımıza hizmet sağlamak için üçüncü taraf şirketler veya bireyler kullanabiliriz. Bu üçüncü taraflar, analiz, barındırma ve teknik destek gibi görevleri yerine getirmek için bilgilerinize erişebilirler. Ancak, bu bilgileri açıklamamaları veya başka amaçlar için kullanmamaları gerekmektedir.",
+    "other_links": "Diğer Sitelere Bağlantılar",
+    "other_links_text": "Uygulamamız, X ve Doğukan Ürker'in kişisel sitesi de dahil olmak üzere harici sitelere bağlantılar içerebilir. Bu harici sitelerin içerikleri veya gizlilik uygulamalarından sorumlu değiliz. Kullanıcılara herhangi bir kişisel bilgi sağlamadan önce bu sitelerin gizlilik politikalarını gözden geçirmelerini öneririz.",
     "security": "Güvenlik",
-    "securityText": "Uygulamamız aracılığıyla toplanan bilgileri korumak için makul önlemler alırız. Ancak, internet üzerinden iletimin veya elektronik depolama yönteminin %100 güvenli olmadığını ve mutlak güvenliği garanti edemediğimizi lütfen unutmayın.",
+    "security_text": "Uygulamamız aracılığıyla toplanan bilgileri korumak için makul önlemler alırız. Ancak, internet üzerinden iletimin veya elektronik depolama yönteminin %100 güvenli olmadığını ve mutlak güvenliği garanti edemediğimizi lütfen unutmayın.",
     "children": "Çocukların Gizliliği",
-    "childrenText": "Uygulamamız, 13 yaşın altındaki bireyler tarafından kullanılmak üzere tasarlanmamıştır. 13 yaşın altındaki çocuklardan bilerek kişisel olarak tanımlanabilir bilgi toplamıyoruz. Ebeveyn veya veli iseniz ve çocuğunuzun bize kişisel bilgi sağladığını biliyorsanız, gerekli önlemleri alabilmemiz için lütfen bizimle iletişime geçin.",
+    "children_text": "Uygulamamız, 13 yaşın altındaki bireyler tarafından kullanılmak üzere tasarlanmamıştır. 13 yaşın altındaki çocuklardan bilerek kişisel olarak tanımlanabilir bilgi toplamıyoruz. Ebeveyn veya veli iseniz ve çocuğunuzun bize kişisel bilgi sağladığını biliyorsanız, gerekli önlemleri alabilmemiz için lütfen bizimle iletişime geçin.",
     "changes": "Bu Gizlilik Politikasındaki Değişiklikler",
-    "changesText": "Gizlilik Politikamızı zaman zaman güncelleyebiliriz. Bu nedenle, bu sayfayı periyodik olarak gözden geçirmeniz önerilir. Herhangi bir değişiklik olduğunda sizi bu sayfada yeni Gizlilik Politikası'nı yayınlayarak bilgilendireceğiz. Bu değişiklikler, bu sayfada yayınlandıktan hemen sonra yürürlüğe girer.",
+    "changes_text": "Gizlilik Politikamızı zaman zaman güncelleyebiliriz. Bu nedenle, bu sayfayı periyodik olarak gözden geçirmeniz önerilir. Herhangi bir değişiklik olduğunda sizi bu sayfada yeni Gizlilik Politikası'nı yayınlayarak bilgilendireceğiz. Bu değişiklikler, bu sayfada yayınlandıktan hemen sonra yürürlüğe girer.",
     "contact": "Bize Ulaşın",
-    "contactText": "Gizlilik Politikamız hakkında herhangi bir sorunuz veya öneriniz varsa, bizimle iletişime geçmekten çekinmeyin. E-posta:"
-  },
-  "analytics": {
-    "title": "Analitik",
-    "goToPage": "Sayfaya git",
-    "totalVisitor": "Toplam Ziyaretçi",
-    "todaysVisitor": "Bugünün Ziyaretçisi",
-    "category": "Kategori",
-    "onPosted": "Yayınlandığı Tarih",
-    "trafficCount": "Trafik Sayısı",
-    "sincePosted": "Yayınlandığından beri",
-    "last1month": "Son 1 ay",
-    "last7days": "Son 7 gün",
-    "last24hours": "Son 24 saat",
-    "last48hours": "Son 48 saat",
-    "traffic": "Trafik",
-    "visitorCounts": "Ziyaretçi Sayıları",
-    "computerOS": "Bilgisayar İşletim Sistemi",
-    "topCountries": "En Çok Ziyaretçi Ülkeler",
-    "visitor": "Ziyaretçi",
-    "viewAll": "Hepsini Gör"
+    "contact_text": "Gizlilik Politikamız hakkında herhangi bir sorunuz veya öneriniz varsa, bizimle iletişime geçmekten çekinmeyin. E-posta:"
   }
 }

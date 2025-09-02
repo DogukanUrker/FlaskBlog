@@ -1,0 +1,14 @@
+{% extends 'layout.html' %} {% block head %}
+<title>{{translations.change_user_name.title}}</title>
+{% endblock head %} {% block body %}
+<div class="text-center mt-32">
+    <form method="post" class="mx-auto w-fit mt-8">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        {{ form.new_username(class_="input input-bordered w-full my-2",
+        placeholder=translations.change_user_name.placeholder) }}
+        <button type="submit" class="btn btn-neutral mt-4">
+            {{translations.change_user_name.change}}
+        </button>
+    </form>
+</div>
+{% endblock body %}

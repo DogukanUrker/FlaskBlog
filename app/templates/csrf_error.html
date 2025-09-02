@@ -1,0 +1,7 @@
+{% extends 'layout.html' %} {% block head %} {% endblock head %} {% block body
+%}
+<div class="w-fit mx-auto text-center mt-16 text-lg">
+    <h1>{{translations.csrf_error.description}}</h1>
+    <p>{{translations.csrf_error.reason}}: {{ reason }}</p>
+</div>
+{% endblock body %}

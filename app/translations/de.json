@@ -3,44 +3,44 @@
     "title": "Über",
     "version": "Version",
     "description": "Einfache Blog-Anwendung erstellt mit Flask, SQLite3, WTForms, Passlib, reCAPTCHA, Requests, TailwindCSS, Tabler Icons",
-    "moreInfo": "Klicken Sie hier, um mehr über",
-    "sourceRepo": "Quellcode",
+    "more_info": "Klicken Sie hier, um mehr über",
+    "source_repo": "Quellcode",
     "credits": "Erstellt mit <i class='ti ti-heart-filled text-rose-500'></i> von <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
   },
-  "accountSettings": {
+  "account_settings": {
     "title": "Kontoeinstellungen",
     "username": "Benutzernamen ändern",
     "password": "Passwort ändern",
     "delete": "Konto löschen",
     "language": "Sprache ändern",
-    "profilePicture": "Profilbild ändern"
+    "profile_picture": "Profilbild ändern"
   },
-  "adminPanel": {
+  "admin_panel": {
     "title": "Admin-Bereich",
     "users": "Benutzer",
     "posts": "Beiträge",
     "comments": "Kommentare"
   },
-  "adminPanelComments": {
+  "admin_panel_comments": {
     "title": "Admin-Bereich - Kommentare",
     "comments": "Kommentare",
-    "postID": "Beitrags-ID",
-    "creationTime": "Erstellungszeit",
-    "creationDate": "Erstellungsdatum",
+    "post_id": "Beitrags-ID",
+    "creation_time": "Erstellungszeit",
+    "creation_date": "Erstellungsdatum",
     "author": "Autor"
   },
-  "adminPanelUsers": {
+  "admin_panel_users": {
     "title": "Admin-Bereich - Benutzer",
     "id": "ID",
     "users": "Benutzer",
     "email": "E-Mail",
-    "joinTime": "Beitrittszeit",
-    "joinDate": "Beitrittsdatum",
+    "join_time": "Beitrittszeit",
+    "join_date": "Beitrittsdatum",
     "role": "Rolle",
     "points": "Punkte",
     "delete": "Benutzer löschen",
-    "setUser": "Rolle als Benutzer festlegen",
-    "setAdmin": "Rolle als Administrator festlegen"
+    "set_user": "Rolle als Benutzer festlegen",
+    "set_admin": "Rolle als Administrator festlegen"
   },
   "categories": {
     "all": "Alle",
@@ -66,75 +66,75 @@
     "web": "Web",
     "other": "Andere"
   },
-  "changeLanguage": {
+  "change_language": {
     "title": "Sprache auswählen"
   },
-  "changePassword": {
+  "change_password": {
     "title": "Passwort ändern",
-    "currentPassword": "Aktuelles Passwort",
-    "newPassword": "Neues Passwort",
-    "confirmPassword": "Passwort bestätigen",
+    "current_password": "Aktuelles Passwort",
+    "new_password": "Neues Passwort",
+    "confirm_password": "Passwort bestätigen",
     "change": "Passwort ändern"
   },
-  "changeProfilePicture": {
+  "change_profile_picture": {
     "title": "Profilbild ändern",
     "default": "Der Standard-Seed ist Ihr Benutzername",
     "info": "Klicken Sie hier, um mehr über Profilbild-Seeds zu erfahren",
     "set": "Profilbild festlegen",
     "placeholder": "Seed für Profilbild eingeben"
   },
-  "changeUserName": {
+  "change_user_name": {
     "title": "Benutzernamen ändern",
     "placeholder": "Neuer Benutzername",
     "change": "Benutzernamen ändern"
   },
-  "createPost": {
+  "create_post": {
     "title": "Beitrag erstellen",
-    "titlePlaceholder": "Beitragstitel",
+    "title_placeholder": "Beitragstitel",
     "category": "Kategorie auswählen",
     "content": "Inhalt",
     "banner": "Banner hochladen",
-    "bannerPlaceholder": "Beitragsbanner",
+    "banner_placeholder": "Beitragsbanner",
     "tags": "Tags",
     "post": "Beitrag veröffentlichen",
     "separate": "(Trennen Sie die Tags mit Kommas)",
     "abstract": "Zusammenfassung",
-    "abstractPlaceholder": "Beitragszusammenfassung"
+    "abstract_placeholder": "Beitragszusammenfassung"
   },
-  "csrfError": {
+  "csrf_error": {
     "reason": "Grund",
     "description": "Füllen Sie das gleiche Formular erneut aus."
   },
   "dashboard": {
     "title": "Übersichtsseite",
-    "titleAdmin": "Admin-Bereich - Beiträge",
+    "title_admin": "Admin-Bereich - Beiträge",
     "posts": "Beiträge",
     "comments": "Kommentare",
     "tags": "Tags",
     "views": "Ansichten",
-    "creationTime": "Erstellungszeit",
-    "creationDate": "Erstellungsdatum",
-    "editTime": "Letzte Bearbeitungszeit",
-    "editDate": "Letztes Bearbeitungsdatum",
+    "creation_time": "Erstellungszeit",
+    "creation_date": "Erstellungsdatum",
+    "edit_time": "Letzte Bearbeitungszeit",
+    "edit_date": "Letztes Bearbeitungsdatum",
     "author": "Autor",
     "category": "Kategorie",
-    "noPosts": "Dieser Benutzer hat noch keine Beiträge erstellt.",
-    "noPost": "Noch keine Beiträge,",
+    "no_posts": "Dieser Benutzer hat noch keine Beiträge erstellt.",
+    "no_post": "Noch keine Beiträge,",
     "create": "einen erstellen",
     "go": "zum Beitrag gehen"
   },
-  "editPost": {
+  "edit_post": {
     "title": "Beitrag bearbeiten",
-    "titlePlaceholder": "Beitragstitel",
+    "title_placeholder": "Beitragstitel",
     "category": "Kategorie auswählen",
     "current": "Aktuelles Banner",
     "new": "Neues Banner",
     "tags": "Tags",
     "separate": "(Trennen Sie die Tags mit Kommas)",
     "save": "Änderungen speichern",
-    "bannerPlaceholder": "Beitragsbanner",
+    "banner_placeholder": "Beitragsbanner",
     "abstract": "Zusammenfassung",
-    "abstractPlaceholder": "Beitragszusammenfassung"
+    "abstract_placeholder": "Beitragszusammenfassung"
   },
   "login": {
     "title": "Anmelden",
@@ -142,28 +142,28 @@
     "password": "Passwort",
     "forgot": "Passwort vergessen?"
   },
-  "notFound": {
+  "not_found": {
     "text": "Ich weiß nicht, was das ist",
     "sorry": "Entschuldigung",
     "home": "Zur Startseite"
   },
-  "passwordReset": {
+  "password_reset": {
     "title": "Passwort zurücksetzen",
     "email": "E-Mail",
     "username": "Benutzername",
     "send": "Zurücksetzungs-E-Mail senden",
     "reset": "Passwort zurücksetzen",
     "code": "Code senden",
-    "codePlaceholder": "Den erhaltenen Code eingeben",
-    "newPassword": "Neues Passwort",
-    "confirmPassword": "Passwort bestätigen"
+    "code_placeholder": "Den erhaltenen Code eingeben",
+    "new_password": "Neues Passwort",
+    "confirm_password": "Passwort bestätigen"
   },
   "post": {
-    "minRead": "Minuten Lesezeit",
+    "min_read": "Minuten Lesezeit",
     "placeholder": "Was sind Ihre Gedanken?",
-    "viewPerformance": "Leistung Anzeigen"
+    "view_performance": "Leistung Anzeigen"
   },
-  "sortMenu": {
+  "sort_menu": {
     "asc": "Aufsteigend",
     "desc": "Absteigend",
     "create": "Erstellungsdatum",
@@ -175,12 +175,12 @@
   },
   "search": {
     "title": "Suche",
-    "noResults": "Keine Ergebnisse",
+    "no_results": "Keine Ergebnisse",
     "users": "Benutzer",
     "posts": "Beiträge",
     "results": "Ergebnisse"
   },
-  "searchBar": {
+  "search_bar": {
     "title": "Suche",
     "placeholder": "suche"
   },
@@ -202,9 +202,9 @@
     "posts": "Beiträge",
     "comments": "Kommentare",
     "points": "Punkte",
-    "joinDate": "Beitrittsdatum",
-    "createDate": "Erstellungsdatum",
-    "createTime": "Erstellungszeit",
+    "join_date": "Beitrittsdatum",
+    "create_date": "Erstellungsdatum",
+    "create_time": "Erstellungszeit",
     "dashboard": "Übersichtsseite",
     "role": "Rolle",
     "user": "Benutzer",
@@ -213,29 +213,29 @@
     "views": "Ansichten",
     "go": "zum Beitrag gehen"
   },
-  "verifyUser": {
+  "verify_user": {
     "title": "Konto verifizieren",
     "placeholder": "Den erhaltenen Code eingeben",
     "send": "Klicken, um den Verifizierungscode zu senden"
   },
   "flash": {
-    "changePassword": {
+    "change_password": {
       "same": "Das neue Passwort darf nicht mit dem alten Passwort übereinstimmen.",
       "match": "Passwörter stimmen nicht überein.",
       "success": "Passwort wurde geändert.",
       "old": "Altes Passwort ist falsch.",
       "login": "Sie müssen sich einloggen, um Ihr Passwort zu ändern."
     },
-    "changeProfilePicture": {
+    "change_profile_picture": {
       "success": "Profilbild wurde geändert."
     },
-    "changeUserName": {
+    "change_user_name": {
       "same": "Das ist bereits Ihr Benutzername.",
       "success": "Benutzername wurde geändert.",
       "taken": "Dieser Benutzername ist bereits vergeben.",
       "ascii": "Benutzername darf nur ASCII-Zeichen enthalten."
     },
-    "createPost": {
+    "create_post": {
       "success": "Sie haben 20 Punkte für das Erstellen eines Beitrags erhalten.",
       "login": "Sie müssen sich einloggen, um einen Beitrag zu erstellen.",
       "empty": "Titel oder Inhalt dürfen nicht leer sein."
@@ -243,7 +243,7 @@
     "dashboard": {
       "login": "Sie müssen sich einloggen, um Ihr Dashboard zu sehen."
     },
-    "editPost": {
+    "edit_post": {
       "success": "Beitrag wurde bearbeitet.",
       "login": "Sie müssen sich einloggen, um einen Beitrag zu bearbeiten.",
       "empty": "Titel oder Inhalt dürfen nicht leer sein.",
@@ -252,18 +252,18 @@
     "login": {
       "success": "Sie haben sich erfolgreich eingeloggt.",
       "password": "Falsches Passwort",
-      "notFound": "Benutzer nicht gefunden"
+      "not_found": "Benutzer nicht gefunden"
     },
     "logout": {
       "success": "Sie haben sich erfolgreich ausgeloggt."
     },
-    "passwordReset": {
+    "password_reset": {
       "success": "Passwort wurde zurückgesetzt. Sie können sich mit Ihrem neuen Passwort einloggen.",
       "email": "E-Mail wurde gesendet.",
       "code": "Code wurde gesendet.",
       "same": "Das neue Passwort darf nicht mit dem alten Passwort übereinstimmen.",
       "match": "Passwörter stimmen nicht überein.",
-      "notFound": "Benutzer nicht gefunden.",
+      "not_found": "Benutzer nicht gefunden.",
       "wrong": "Falscher Code."
     },
     "delete": {
@@ -271,7 +271,7 @@
       "post": "Beitrag wurde gelöscht.",
       "comment": "Kommentar wurde gelöscht."
     },
-    "setLanguage": {
+    "set_language": {
       "success": "Sprache wurde geändert."
     },
     "post": {
@@ -285,63 +285,43 @@
       "password": "Passwörter stimmen nicht überein.",
       "taken": "Dieser Benutzername und diese E-Mail sind bereits vergeben."
     },
-    "verifyUser": {
+    "verify_user": {
       "success": "Ihr Konto wurde verifiziert.",
       "code": "Code wurde gesendet.",
-      "notFound": "Benutzer nicht gefunden.",
+      "not_found": "Benutzer nicht gefunden.",
       "wrong": "Falscher Code."
     },
     "error": {
-      "wrongCall": "Sie haben einen falschen Flash-Nachrichtenaufruf auf der Serverseite gemacht."
+      "wrong_call": "Sie haben einen falschen Flash-Nachrichtenaufruf auf der Serverseite gemacht."
     }
   },
   "roles": {
     "user": "Benutzer",
     "admin": "Administrator"
   },
-  "privacyPolicy": {
+  "privacy_policy": {
     "title": "Datenschutzrichtlinie",
     "intro": "Diese Datenschutzrichtlinie beschreibt, wie Doğukan Ürkers Flask Blog ('wir', 'uns' oder 'unser') Ihre Informationen sammelt, verwendet und offenlegt, wenn Sie unsere mobile Anwendung (die 'App') nutzen.",
     "information": "Informationserhebung und -nutzung",
-    "informationText": "Wenn Sie unsere App nutzen, sammeln und protokollieren wir verschiedene Arten von Benutzerdaten, einschließlich, aber nicht beschränkt auf:",
-    "informationUser": "Benutzeranmeldedaten: Wir sammeln Informationen im Zusammenhang mit Benutzeranmeldeaktivitäten zu Authentifizierungs- und Sicherheitszwecken.",
-    "informationPost": "Beitrags- und Kommentardaten: Wir sammeln Informationen über Beiträge und Kommentare, die innerhalb der App erstellt wurden, um Funktionen bereitzustellen und die Benutzerbindung zu fördern.",
-    "informationGeneral": "Allgemeine Benutzeraktivitäten: Wir protokollieren verschiedene Benutzeraktivitäten innerhalb der App, um die Benutzererfahrung zu verbessern, technische Probleme zu beheben und Nutzungsmuster zu analysieren.",
+    "information_text": "Wenn Sie unsere App nutzen, sammeln und protokollieren wir verschiedene Arten von Benutzerdaten, einschließlich, aber nicht beschränkt auf:",
+    "information_user": "Benutzeranmeldedaten: Wir sammeln Informationen im Zusammenhang mit Benutzeranmeldeaktivitäten zu Authentifizierungs- und Sicherheitszwecken.",
+    "information_post": "Beitrags- und Kommentardaten: Wir sammeln Informationen über Beiträge und Kommentare, die innerhalb der App erstellt wurden, um Funktionen bereitzustellen und die Benutzerbindung zu fördern.",
+    "information_general": "Allgemeine Benutzeraktivitäten: Wir protokollieren verschiedene Benutzeraktivitäten innerhalb der App, um die Benutzererfahrung zu verbessern, technische Probleme zu beheben und Nutzungsmuster zu analysieren.",
     "cookies": "Cookies",
-    "cookiesText": "Unsere App verwendet Cookies, um die Benutzererfahrung zu verbessern. Die von uns verwendeten Cookies umfassen:",
-    "cookiesTheme": "UI-Theme-Cookie: Wir speichern die vom Benutzer ausgewählte UI-Theme-Voreinstellung, um das Erscheinungsbild der App zu personalisieren.",
-    "cookiesLanguage": "Browser-Standardsprache: Wir speichern die Standardspracheinstellung des Browsers des Benutzers, um lokalisierte Inhalte bereitzustellen.",
-    "serviceProviders": "Dienstanbieter",
-    "serviceProvidersText": "Wir können Drittunternehmen oder Einzelpersonen beauftragen, unsere App zu erleichtern oder Dienstleistungen in unserem Auftrag zu erbringen. Diese Dritten können Zugriff auf Ihre Informationen haben, um Aufgaben wie Analysen, Hosting und technischen Support durchzuführen. Sie sind jedoch verpflichtet, diese Informationen nicht offenzulegen oder für andere Zwecke zu verwenden.",
-    "otherLinks": "Links zu anderen Seiten",
-    "otherLinksText": "Unsere App kann Links zu externen Websites enthalten, einschließlich X und Doğukan Ürkers persönlicher Website. Wir sind nicht verantwortlich für die Inhalte oder Datenschutzpraktiken dieser externen Websites. Wir empfehlen den Benutzern, die Datenschutzrichtlinien dieser Websites zu überprüfen, bevor sie persönliche Informationen angeben.",
+    "cookies_text": "Unsere App verwendet Cookies, um die Benutzererfahrung zu verbessern. Die von uns verwendeten Cookies umfassen:",
+    "cookies_theme": "UI-Theme-Cookie: Wir speichern die vom Benutzer ausgewählte UI-Theme-Voreinstellung, um das Erscheinungsbild der App zu personalisieren.",
+    "cookies_language": "Browser-Standardsprache: Wir speichern die Standardspracheinstellung des Browsers des Benutzers, um lokalisierte Inhalte bereitzustellen.",
+    "service_providers": "Dienstanbieter",
+    "service_providers_text": "Wir können Drittunternehmen oder Einzelpersonen beauftragen, unsere App zu erleichtern oder Dienstleistungen in unserem Auftrag zu erbringen. Diese Dritten können Zugriff auf Ihre Informationen haben, um Aufgaben wie Analysen, Hosting und technischen Support durchzuführen. Sie sind jedoch verpflichtet, diese Informationen nicht offenzulegen oder für andere Zwecke zu verwenden.",
+    "other_links": "Links zu anderen Seiten",
+    "other_links_text": "Unsere App kann Links zu externen Websites enthalten, einschließlich X und Doğukan Ürkers persönlicher Website. Wir sind nicht verantwortlich für die Inhalte oder Datenschutzpraktiken dieser externen Websites. Wir empfehlen den Benutzern, die Datenschutzrichtlinien dieser Websites zu überprüfen, bevor sie persönliche Informationen angeben.",
     "security": "Sicherheit",
-    "securityText": "Wir ergreifen angemessene Vorsichtsmaßnahmen, um die über unsere App gesammelten Informationen zu schützen. Bitte beachten Sie jedoch, dass keine Methode der Übertragung über das Internet oder der elektronischen Speicherung 100% sicher ist und wir keine absolute Sicherheit garantieren können.",
+    "security_text": "Wir ergreifen angemessene Vorsichtsmaßnahmen, um die über unsere App gesammelten Informationen zu schützen. Bitte beachten Sie jedoch, dass keine Methode der Übertragung über das Internet oder der elektronischen Speicherung 100% sicher ist und wir keine absolute Sicherheit garantieren können.",
     "children": "Datenschutz von Kindern",
-    "childrenText": "Unsere App ist nicht zur Nutzung durch Personen unter 13 Jahren vorgesehen. Wir sammeln wissentlich keine persönlich identifizierbaren Informationen von Kindern unter 13 Jahren. Wenn Sie ein Elternteil oder Erziehungsberechtigter sind und wissen, dass Ihr Kind uns persönliche Informationen zur Verfügung gestellt hat, kontaktieren Sie uns bitte, damit wir die erforderlichen Maßnahmen ergreifen können.",
+    "children_text": "Unsere App ist nicht zur Nutzung durch Personen unter 13 Jahren vorgesehen. Wir sammeln wissentlich keine persönlich identifizierbaren Informationen von Kindern unter 13 Jahren. Wenn Sie ein Elternteil oder Erziehungsberechtigter sind und wissen, dass Ihr Kind uns persönliche Informationen zur Verfügung gestellt hat, kontaktieren Sie uns bitte, damit wir die erforderlichen Maßnahmen ergreifen können.",
     "changes": "Änderungen dieser Datenschutzrichtlinie",
-    "changesText": "Wir können unsere Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Daher wird empfohlen, diese Seite regelmäßig auf Änderungen zu überprüfen. Wir werden Sie über Änderungen informieren, indem wir die neue Datenschutzrichtlinie auf dieser Seite veröffentlichen. Diese Änderungen treten sofort nach ihrer Veröffentlichung auf dieser Seite in Kraft.",
+    "changes_text": "Wir können unsere Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Daher wird empfohlen, diese Seite regelmäßig auf Änderungen zu überprüfen. Wir werden Sie über Änderungen informieren, indem wir die neue Datenschutzrichtlinie auf dieser Seite veröffentlichen. Diese Änderungen treten sofort nach ihrer Veröffentlichung auf dieser Seite in Kraft.",
     "contact": "Kontaktieren Sie uns",
-    "contactText": "Wenn Sie Fragen oder Vorschläge zu unserer Datenschutzrichtlinie haben, zögern Sie nicht, uns zu kontaktieren. E-Mail:"
-  },
-  "analytics": {
-    "title": "Analyse",
-    "goToPage": "Gehe zur Seite",
-    "totalVisitor": "Gesamtbesucher",
-    "todaysVisitor": "Heutiger Besucher",
-    "category": "Kategorie",
-    "onPosted": "Veröffentlicht am",
-    "trafficCount": "Verkehrszählung",
-    "sincePosted": "Seit Veröffentlichung",
-    "last1month": "Letzter 1m",
-    "last7days": "Letzte 7d",
-    "last24hours": "Letzte 24h",
-    "last48hours": "Letzte 48h",
-    "traffic": "Verkehr",
-    "visitorCounts": "Besucherzahlen",
-    "computerOS": "Computer-Betriebssystem",
-    "topCountries": "Top Länder",
-    "visitor": "Besucher",
-    "viewAll": "Alle Anzeigen"
+    "contact_text": "Wenn Sie Fragen oder Vorschläge zu unserer Datenschutzrichtlinie haben, zögern Sie nicht, uns zu kontaktieren. E-Mail:"
   }
 }

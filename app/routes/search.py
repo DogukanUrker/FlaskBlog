@@ -2,16 +2,17 @@ import sqlite3
 from math import ceil
 
 from flask import Blueprint, render_template, request
+
 from settings import Settings
 from utils.log import Log
 
-searchBlueprint = Blueprint("search", __name__)
+search_blueprint = Blueprint("search", __name__)
 
 
-@searchBlueprint.route("/search/<query>", methods=["GET", "POST"])
+@search_blueprint.route("/search/<query>", methods=["GET", "POST"])
 def search(query):
     query = query.replace("%20", " ")
-    queryNoWhiteSpace = query.replace("+", "")
+    query_no_white_space = query.replace("+", "")
     query = query.replace("+", " ")
 
     page = request.args.get("page", 1, type=int)
@@ -25,17 +26,17 @@ def search(query):
     connection.set_trace_callback(Log.database)
     cursor = connection.cursor()
 
-    queryUsers = cursor.execute(
-        """select * from users where userName like ? """,
+    query_users = cursor.execute(
+        """select * from users where username like ? """,
         [
             ("%" + query + "%"),
         ],
     ).fetchall()
 
-    queryUsers = cursor.execute(
-        """select * from users where userName like ? """,
+    query_users = cursor.execute(
+        """select * from users where username like ? """,
         [
-            ("%" + queryNoWhiteSpace + "%"),
+            ("%" + query_no_white_space + "%"),
         ],
     ).fetchall()
     Log.database(f"Connecting to '{Settings.DB_POSTS_ROOT}' database")
@@ -44,45 +45,45 @@ def search(query):
     connection.set_trace_callback(Log.database)
     cursor = connection.cursor()
 
-    queryTags = cursor.execute(
-        """select * from posts where tags like ? order by timeStamp desc""",
+    query_tags = cursor.execute(
+        """select * from posts where tags like ? order by time_stamp desc""",
         [
             ("%" + query + "%"),
         ],
     ).fetchall()
 
-    queryTitles = cursor.execute(
-        """select * from posts where title like ? order by timeStamp desc""",
+    query_titles = cursor.execute(
+        """select * from posts where title like ? order by time_stamp desc""",
         [
             ("%" + query + "%"),
         ],
     ).fetchall()
 
-    queryAuthors = cursor.execute(
-        """select * from posts where author like ? order by timeStamp desc""",
+    query_authors = cursor.execute(
+        """select * from posts where author like ? order by time_stamp desc""",
         [
             ("%" + query + "%"),
         ],
     ).fetchall()
 
-    queryTags = cursor.execute(
-        """select * from posts where tags like ? order by timeStamp desc""",
+    query_tags = cursor.execute(
+        """select * from posts where tags like ? order by time_stamp desc""",
         [
-            ("%" + queryNoWhiteSpace + "%"),
+            ("%" + query_no_white_space + "%"),
         ],
     ).fetchall()
 
-    queryTitles = cursor.execute(
-        """select * from posts where title like ? order by timeStamp desc""",
+    query_titles = cursor.execute(
+        """select * from posts where title like ? order by time_stamp desc""",
         [
-            ("%" + queryNoWhiteSpace + "%"),
+            ("%" + query_no_white_space + "%"),
         ],
     ).fetchall()
 
-    queryAuthors = cursor.execute(
-        """select * from posts where author like ? order by timeStamp desc""",
+    query_authors = cursor.execute(
+        """select * from posts where author like ? order by time_stamp desc""",
         [
-            ("%" + queryNoWhiteSpace + "%"),
+            ("%" + query_no_white_space + "%"),
         ],
     ).fetchall()
 
@@ -92,34 +93,34 @@ def search(query):
 
     empty = False
 
-    if queryTags != []:
-        posts.append(queryTags)
+    if query_tags != []:
+        posts.append(query_tags)
 
-    if queryTitles != []:
-        posts.append(queryTitles)
+    if query_titles != []:
+        posts.append(query_titles)
 
-    if queryAuthors != []:
-        posts.append(queryAuthors)
+    if query_authors != []:
+        posts.append(query_authors)
 
-    if queryUsers != []:
-        users.append(queryUsers)
+    if query_users != []:
+        users.append(query_users)
 
     if not posts and not users:
         empty = True
 
-    resultsID = []
+    results_id = []
 
     for post in posts:
         for post in post:
-            if post[0] not in resultsID:
-                resultsID.append(post[0])
+            if post[0] not in results_id:
+                results_id.append(post[0])
 
     posts = []
 
-    for postID in resultsID:
+    for post_id in results_id:
         cursor.execute(
             """select * from posts where id = ? """,
-            [(postID)],
+            [(post_id)],
         )
 
         posts.append(cursor.fetchall())

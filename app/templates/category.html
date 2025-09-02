@@ -9,23 +9,22 @@
 <div
     class="flex justify-between mx-auto w-11/12 md:w-10/12 lg:w-9/12 2xl:w-8/12 mt-8"
 >
-    {% from "components/categoryContainer.html" import categoryContainer %} {{
-    categoryContainer(translations, category) }} {% from
-    "components/sortMenu.html" import sortMenu %} {{
-    sortMenu(sortName,source,translations) }}
+    {% from "components/category_container.html" import category)_container %}
+    {{ category_container(translations, category) }} {% from
+    "components/sort_menu.html" import sort_menu %} {{
+    sort_menu(sort_name,source,translations) }}
 </div>
 
 <div
     class="flex item-center justify-center flex-wrap gap-x-2 gap-y-6 mx-auto w-11/12 md:w-10/12 lg:w-9/12 2xl:w-8/12 mt-6"
 >
-    {% for post in posts %}
-        {% from "components/postCardMacro.html" import postCard with context %}
-        {{ postCard(post=post, authorProfilePicture=getProfilePicture(post[5])) }}
-    {% endfor %}
+    {% for post in posts %} {% from "components/post_card_macro.html" import
+    post_card with context %} {{ post_card(post=post,
+    author_profile_picture=get_profile_picture(post[5])) }} {% endfor %}
 </div>
 
-{% from "components/pagination.html" import pagination %}
-{{ pagination(page, total_pages, request.path) }}
+{% from "components/pagination.html" import pagination %} {{ pagination(page,
+total_pages, request.path) }}
 
 <div class="text-center mt-4 mb-2 text-xs font-medium">
     <div class="mb-1">

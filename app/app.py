@@ -10,128 +10,123 @@ from flask_wtf.csrf import (
     CSRFProtect,
 )
 from routes.about import (
-    aboutBlueprint,
+    about_blueprint,
 )
-from routes.accountSettings import (
-    accountSettingsBlueprint,
+from routes.account_settings import (
+    account_settings_blueprint,
 )
-from routes.adminPanel import (
-    adminPanelBlueprint,
+from routes.admin_panel import (
+    admin_panel_blueprint,
 )
-from routes.adminPanelComments import (
-    adminPanelCommentsBlueprint,
+from routes.admin_panel_comments import (
+    admin_panel_comments_blueprint,
 )
-from routes.adminPanelPosts import (
-    adminPanelPostsBlueprint,
+from routes.admin_panel_posts import (
+    admin_panel_posts_blueprint,
 )
-from routes.adminPanelUsers import (
-    adminPanelUsersBlueprint,
+from routes.admin_panel_users import (
+    admin_panel_users_blueprint,
 )
 from routes.category import (
-    categoryBlueprint,
+    category_blueprint,
 )
-from routes.changeLanguage import (
-    changeLanguageBlueprint,
+from routes.change_language import (
+    change_language_blueprint,
 )
-from routes.changePassword import (
-    changePasswordBlueprint,
+from routes.change_password import (
+    change_password_blueprint,
 )
-from routes.changeProfilePicture import (
-    changeProfilePictureBlueprint,
+from routes.change_profile_picture import (
+    change_profile_picture_blueprint,
 )
-from routes.changeUserName import (
-    changeUserNameBlueprint,
+from routes.change_username import (
+    change_username_blueprint,
 )
-from routes.createPost import (
-    createPostBlueprint,
+from routes.create_post import (
+    create_post_blueprint,
 )
 from routes.dashboard import (
-    dashboardBlueprint,
+    dashboard_blueprint,
 )
-from routes.editPost import (
-    editPostBlueprint,
+from routes.edit_post import (
+    edit_post_blueprint,
 )
 from routes.index import (
-    indexBlueprint,
+    index_blueprint,
 )
 from routes.login import (
-    loginBlueprint,
+    login_blueprint,
 )
 from routes.logout import (
-    logoutBlueprint,
+    logout_blueprint,
 )
-from routes.passwordReset import (
-    passwordResetBlueprint,
+from routes.password_reset import (
+    password_reset_blueprint,
 )
-from routes.post import postBlueprint
-from routes.postsAnalytics import (
-    analyticsBlueprint,
+from routes.post import post_blueprint
+
+from routes.privacy_policy import (
+    privacy_policy_blueprint,
 )
-from routes.privacyPolicy import (
-    privacyPolicyBlueprint,
-)
-from routes.returnPostAnalyticsData import (
-    returnPostAnalyticsDataBlueprint,
-)
-from routes.returnPostBanner import (
-    returnPostBannerBlueprint,
+
+from routes.return_post_banner import (
+    return_post_banner_blueprint,
 )
 from routes.search import (
-    searchBlueprint,
+    search_blueprint,
 )
-from routes.searchBar import (
-    searchBarBlueprint,
+from routes.search_bar import (
+    search_bar_blueprint,
 )
-from routes.setLanguage import (
-    setLanguageBlueprint,
+from routes.set_language import (
+    set_language_blueprint,
 )
-from routes.setTheme import (
-    setThemeBlueprint,
+from routes.set_theme import (
+    set_theme_blueprint,
 )
 from routes.signup import (
-    signUpBlueprint,
+    sign_up_blueprint,
 )
-from routes.user import userBlueprint
-from routes.verifyUser import (
-    verifyUserBlueprint,
+from routes.user import user_blueprint
+from routes.verify_user import (
+    verify_user_blueprint,
 )
 from settings import Settings
-from utils.afterRequest import (
-    afterRequestLogger,
+from utils.after_request import after_request_logger
+from utils.before_request.browser_language import browser_language
+from utils.context_processor.is_login import is_login
+from utils.context_processor.is_registration import is_registration
+from utils.context_processor.markdown import markdown_processor
+from utils.context_processor.return_post_url_id import return_post_url_id
+from utils.context_processor.return_post_url_slug import return_post_url_slug
+from utils.context_processor.return_user_profile_picture import (
+    return_user_profile_picture,
 )
-from utils.beforeRequest.browserLanguage import browserLanguage
-from utils.contextProcessor.isLogin import isLogin
-from utils.contextProcessor.isRegistration import isRegistration
-from utils.contextProcessor.returnPostUrlID import returnPostUrlID
-from utils.contextProcessor.returnPostUrlSlug import returnPostUrlSlug
-from utils.contextProcessor.returnUserProfilePicture import returnUserProfilePicture
-from utils.contextProcessor.translations import injectTranslations
-from utils.contextProcessor.markdown import markdown_processor
-from utils.dbChecker import (
-    analyticsTable,
-    commentsTable,
-    dbFolder,
-    postsTable,
-    usersTable,
+from utils.context_processor.translations import inject_translations
+from utils.db_checker import (
+    comments_table,
+    db_folder,
+    posts_table,
+    users_table,
 )
-from utils.errorHandlers.csrfErrorHandler import (
-    csrfErrorHandler,
+from utils.error_handlers.csrf_error_handler import (
+    csrf_error_handler,
 )
-from utils.errorHandlers.notFoundErrorHandler import (
-    notFoundErrorHandler,
+from utils.error_handlers.not_found_error_handler import (
+    not_found_error_handler,
 )
-from utils.errorHandlers.unauthorizedErrorHandler import (
-    unauthorizedErrorHandler,
+from utils.error_handlers.unauthorized_error_handler import (
+    unauthorized_error_handler,
 )
-from utils.generateUrlIdFromPost import getSlugFromPostTitle
+from utils.generate_url_id_from_post import get_slug_from_post_title
 from utils.log import Log
-from utils.terminalASCII import terminalASCII
-from utils.time import currentTimeStamp
+from utils.terminal_ascii import terminal_ascii
+from utils.time import current_time_stamp
 
-startTime = currentTimeStamp()
+start_time = current_time_stamp()
 
 
-print(terminalASCII())
+print(terminal_ascii())
 
 
 Log.info("Starting...")
@@ -153,16 +148,16 @@ app.config["SESSION_PERMANENT"] = Settings.SESSION_PERMANENT
 csrf = CSRFProtect(app)
 
 
-app.context_processor(isLogin)
+app.context_processor(is_login)
 
-app.context_processor(isRegistration)
-app.context_processor(returnUserProfilePicture)
-app.context_processor(returnPostUrlID)
-app.context_processor(returnPostUrlSlug)
-app.context_processor(injectTranslations)
+app.context_processor(is_registration)
+app.context_processor(return_user_profile_picture)
+app.context_processor(return_post_url_id)
+app.context_processor(return_post_url_slug)
+app.context_processor(inject_translations)
 app.context_processor(markdown_processor)
-app.before_request(browserLanguage)
-app.jinja_env.globals.update(getSlugFromPostTitle=getSlugFromPostTitle)
+app.before_request(browser_language)
+app.jinja_env.globals.update(get_slug_from_post_title=get_slug_from_post_title)
 
 if Settings.WERKZEUG_LOGGER:
     Log.warning("Werkzeug default logger is enabled")
@@ -224,31 +219,30 @@ else:
     Log.info("Default admin is off")
 
 
-dbFolder()
-usersTable()
-postsTable()
-commentsTable()
-analyticsTable()
+db_folder()
+users_table()
+posts_table()
+comments_table()
 
 
 @app.errorhandler(404)
-def notFound(e):
-    return notFoundErrorHandler(e)
+def not_found(e):
+    return not_found_error_handler(e)
 
 
 @app.errorhandler(401)
 def unauthorized(e):
-    return unauthorizedErrorHandler(e)
+    return unauthorized_error_handler(e)
 
 
 @app.errorhandler(CSRFError)
-def csrfError(e):
-    return csrfErrorHandler(e)
+def csrf_error(e):
+    return csrf_error_handler(e)
 
 
 @app.after_request
-def afterRequest(response):
-    response = afterRequestLogger(response)
+def after_request(response):
+    response = after_request_logger(response)
     response.headers["Content-Security-Policy"] = (
         "default-src 'self'; "
         "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://code.jquery.com https://cdn.tailwindcss.com; "
@@ -259,51 +253,49 @@ def afterRequest(response):
     return response
 
 
-app.register_blueprint(postBlueprint)
-app.register_blueprint(userBlueprint)
-app.register_blueprint(indexBlueprint)
-app.register_blueprint(aboutBlueprint)
-app.register_blueprint(loginBlueprint)
-app.register_blueprint(signUpBlueprint)
-app.register_blueprint(logoutBlueprint)
-app.register_blueprint(searchBlueprint)
-app.register_blueprint(categoryBlueprint)
-app.register_blueprint(editPostBlueprint)
-app.register_blueprint(dashboardBlueprint)
-app.register_blueprint(searchBarBlueprint)
-app.register_blueprint(adminPanelBlueprint)
-app.register_blueprint(createPostBlueprint)
-app.register_blueprint(verifyUserBlueprint)
-app.register_blueprint(setLanguageBlueprint)
-app.register_blueprint(setThemeBlueprint)
-app.register_blueprint(privacyPolicyBlueprint)
-app.register_blueprint(passwordResetBlueprint)
-app.register_blueprint(changeUserNameBlueprint)
-app.register_blueprint(changePasswordBlueprint)
-app.register_blueprint(changeLanguageBlueprint)
-app.register_blueprint(adminPanelUsersBlueprint)
-app.register_blueprint(adminPanelPostsBlueprint)
-app.register_blueprint(accountSettingsBlueprint)
-app.register_blueprint(returnPostBannerBlueprint)
-app.register_blueprint(adminPanelCommentsBlueprint)
-app.register_blueprint(changeProfilePictureBlueprint)
-app.register_blueprint(analyticsBlueprint)
-app.register_blueprint(returnPostAnalyticsDataBlueprint)
+app.register_blueprint(post_blueprint)
+app.register_blueprint(user_blueprint)
+app.register_blueprint(index_blueprint)
+app.register_blueprint(about_blueprint)
+app.register_blueprint(login_blueprint)
+app.register_blueprint(sign_up_blueprint)
+app.register_blueprint(logout_blueprint)
+app.register_blueprint(search_blueprint)
+app.register_blueprint(category_blueprint)
+app.register_blueprint(edit_post_blueprint)
+app.register_blueprint(dashboard_blueprint)
+app.register_blueprint(search_bar_blueprint)
+app.register_blueprint(admin_panel_blueprint)
+app.register_blueprint(create_post_blueprint)
+app.register_blueprint(verify_user_blueprint)
+app.register_blueprint(set_language_blueprint)
+app.register_blueprint(set_theme_blueprint)
+app.register_blueprint(privacy_policy_blueprint)
+app.register_blueprint(password_reset_blueprint)
+app.register_blueprint(change_username_blueprint)
+app.register_blueprint(change_password_blueprint)
+app.register_blueprint(change_language_blueprint)
+app.register_blueprint(admin_panel_users_blueprint)
+app.register_blueprint(admin_panel_posts_blueprint)
+app.register_blueprint(account_settings_blueprint)
+app.register_blueprint(return_post_banner_blueprint)
+app.register_blueprint(admin_panel_comments_blueprint)
+app.register_blueprint(change_profile_picture_blueprint)
 
 
 if __name__ == "__main__":
     Log.info(f"Running on http://{Settings.APP_HOST}:{Settings.APP_PORT}")
     Log.success("App started")
 
-    print(terminalASCII())
+    print(terminal_ascii())
     app.run(debug=Settings.DEBUG_MODE, host=Settings.APP_HOST, port=Settings.APP_PORT)
 
-    endTime = currentTimeStamp()
-    runTime = endTime - startTime
-    runTime = str(timedelta(seconds=runTime))
+    end_time = current_time_stamp()
+    run_time = end_time - start_time
+    run_time = str(timedelta(seconds=run_time))
 
-    Log.info(f"Run time: {runTime} ")
+    Log.info(f"Run time: {run_time} ")
     Log.info("Shut down")
     Log.warning("App shut down")
 
-    print(terminalASCII())
+    print(terminal_ascii())

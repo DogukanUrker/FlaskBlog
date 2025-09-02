@@ -8,7 +8,7 @@
         <script src="{{ url_for('static', filename='js/recaptcha.js') }}"></script>
         <form
             method="post"
-            id="recaptchaForm"
+            id="recaptcha-form"
             action="{{ url_for('signup.signup') }}"
         >
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -20,7 +20,7 @@
                     <label class="label"
                         >{{translations.signup.username}}</label
                     >
-                    {{form.userName(class_="input input-bordered w-full",
+                    {{form.username(class_="input input-bordered w-full",
                     autocomplete="off",
                     placeholder=translations.signup.username)}}
                     <label class="label">{{translations.signup.email}}</label>
@@ -32,11 +32,11 @@
                     {{form.password(class_="input input-bordered w-full",
                     placeholder=translations.signup.password)}}
                     <label class="label">{{translations.signup.confirm}}</label>
-                    {{form.passwordConfirm(class_="input input-bordered w-full",
-                    placeholder=translations.signup.confirm)}}
+                    {{form.password_confirm(class_="input input-bordered
+                    w-full", placeholder=translations.signup.confirm)}}
                     <button
                         type="submit"
-                        data-sitekey="{{ siteKey }}"
+                        data-sitekey="{{ site_key }}"
                         data-callback="onSubmit"
                         data-action="submit"
                         class="g-recaptcha btn btn-neutral mt-4"
@@ -46,7 +46,7 @@
                     <div class="text-xs select-none mt-2">
                         {{translations.signup.by}}
                         <a
-                            href="/privacyPolicy"
+                            href="/privacy-policy"
                             class="font-medium text-rose-500 hover:text-rose-600 duration-150"
                             >{{translations.signup.policy}}</a
                         >
@@ -65,7 +65,7 @@
                     <label class="label"
                         >{{translations.signup.username}}</label
                     >
-                    {{form.userName(class_="input input-bordered w-full",
+                    {{form.username(class_="input input-bordered w-full",
                     autocomplete="off",
                     placeholder=translations.signup.username)}}
                     <label class="label">{{translations.signup.email}}</label>
@@ -77,14 +77,14 @@
                     {{form.password(class_="input input-bordered w-full",
                     placeholder=translations.signup.password)}}
                     <label class="label">{{translations.signup.confirm}}</label>
-                    {{form.passwordConfirm(class_="input input-bordered w-full",
-                    placeholder=translations.signup.confirm)}}
+                    {{form.password_confirm(class_="input input-bordered
+                    w-full", placeholder=translations.signup.confirm)}}
                     <button type="submit" class="btn btn-neutral mt-4">
                         {{translations.signup.title}}
                     </button>
                     <div class="text-xs select-none mt-2 w-full text-center">
                         {{translations.signup.by}}
-                        <a href="/privacyPolicy" class="font-medium link"
+                        <a href="/privacy-policy" class="font-medium link"
                             >{{translations.signup.policy}}</a
                         >
                     </div>

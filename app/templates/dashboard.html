@@ -1,9 +1,9 @@
 {% extends 'layout.html' %} {% block head %} {% if request.path ==
 "/admin/posts" %}
-<title>{{translations.dashboard.titleAdmin}}</title>
+<title>{{translations.dashboard.title_admin}}</title>
 {% else %}
 <title>{{translations.dashboard.title}}</title>
-{% endif %} {% endblock head %} {% block body %} {% if showPosts %}
+{% endif %} {% endblock head %} {% block body %} {% if show_posts %}
 <h1 class="my-4 text-4xl font-medium select-none text-center">
     {{translations.dashboard.posts}}
 </h1>
@@ -13,7 +13,7 @@
     class="w-11/12 md:w-10/12 lg:w-8/12 xl:w-5/12 h-fit mx-auto py-4 px-2 my-8 border-2 rounded-md shadow-md border-gray-500/25"
 >
     <img
-        src="{{ url_for('returnPostBanner.returnPostBanner', postID = post[0]) }}"
+        src="{{ url_for('return_post_banner.return_post_banner', post_id= post[0]) }}"
         class="w-96 rounded mx-auto"
     />
 
@@ -23,23 +23,26 @@
         >{{ post[1] }}</a
     >
 
-    <div tag="content" class="h-60 overflow-y-hidden mt-6 mb-3 break-words markdown-content compact">
+    <div
+        tag="content"
+        class="h-60 overflow-y-hidden mt-6 mb-3 break-words markdown-content compact"
+    >
         {{ render_markdown(post[3]) }}
     </div>
 
     <section class="flex items-center justify-between my-2">
         <a
-            href="/editpost/{{ post[10] }}"
+            href="/edit_post/{{ post[10] }}"
             class="hover:text-rose-500 duration-150 font-medium"
         >
             <i class="ti ti-edit mr-1 text-2xl"></i>
         </a>
         <form method="post">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <input type="hidden" name="postID" value="{{ post[0] }}" />
+            <input type="hidden" name="post_id" value="{{ post[0] }}" />
             <button
                 type="submit"
-                name="postDeleteButton"
+                name="post_delete_button"
                 class="hover:text-rose-500 duration-150 font-medium"
             >
                 <i class="ti ti-trash-x mr-1 text-2xl"></i>
@@ -66,14 +69,14 @@
         <div class="flex items-center">
             <i class="ti ti-clock mr-1 text-xl"></i>
             <p class="hidden md:block mr-1">
-                {{translations.dashboard.creationTime}}:
+                {{translations.dashboard.creation_time}}:
             </p>
             <p class="time font-medium">{{ post[7] }}</p>
         </div>
         <div class="flex items-center">
             <i class="ti ti-clock-edit mr-1 text-xl"></i>
             <p class="hidden md:block mr-1">
-                {{translations.dashboard.editTime}}:
+                {{translations.dashboard.edit_time}}:
             </p>
             <p class="time font-medium">{{ post[8] }}</p>
         </div>
@@ -83,14 +86,14 @@
         <div class="flex items-center">
             <i class="ti ti-calendar mr-1 text-xl"></i>
             <p class="hidden md:block mr-1">
-                {{translations.dashboard.creationDate}}:
+                {{translations.dashboard.creation_date}}:
             </p>
             <p class="date font-medium">{{ post[7] }}</p>
         </div>
         <div class="flex items-center">
             <i class="ti ti-calendar-dot mr-1 text-xl"></i>
             <p class="hidden md:block mr-1">
-                {{translations.dashboard.editDate}}:
+                {{translations.dashboard.edit_date}}:
             </p>
             <p class="date font-medium">{{ post[8] }}</p>
         </div>
@@ -119,19 +122,18 @@
         </div>
     </div>
 </div>
-{% endfor %}
-{% from "components/pagination.html" import pagination %}
-{{ pagination(page, total_pages, request.path) }}
-{% elif not showPosts %} {% if request.path == "/admin/posts" %}
-<h1>{{translations.dashboard.noPosts}}</h1>
+{% endfor %} {% from "components/pagination.html" import pagination %} {{
+pagination(page, total_pages, request.path) }} {% elif not show_posts %} {% if
+request.path == "/admin/posts" %}
+<h1>{{translations.dashboard.no_posts}}</h1>
 {% else %}
 <p class="text-center mt-32 select-none">
-    {{translations.dashboard.noPost}}
-    <a href="/createpost" class="hover:text-rose-500 duration-150 font-medium"
+    {{translations.dashboard.no_post}}
+    <a href="/create_post" class="hover:text-rose-500 duration-150 font-medium"
         >{{translations.dashboard.create}}</a
     >?
 </p>
-{% endif %} {% endif %} {% if showComments and not request.path ==
+{% endif %} {% endif %} {% if show_comments and not request.path ==
 "/admin/posts" %}
 <h1 class="my-4 text-4xl font-medium select-none text-center">
     {{translations.dashboard.comments}}
@@ -147,21 +149,21 @@
         <div class="flex items-center">
             <i class="ti ti-calendar mr-1 text-xl"></i>
             <p class="hidden md:block mr-1">
-                {{translations.dashboard.creationDate}}:
+                {{translations.dashboard.creation_date}}:
             </p>
             <p class="date">{{ comment[4] }}</p>
         </div>
         <div class="flex items-center">
             <i class="ti ti-clock mr-1 text-xl"></i>
             <p class="hidden md:block mr-1">
-                {{translations.dashboard.creationTime}}:
+                {{translations.dashboard.creation_time}}:
             </p>
             <p class="time">{{ comment[4] }}</p>
         </div>
     </section>
 
     <a
-        href="/post/{{ getPostUrlIdFromPost(comment[1]) }}"
+        href="/post/{{ url_id(comment[1]) }}"
         class="hover:text-rose-500 duration-150 font-medium"
         >{{translations.dashboard.go}}</a
     >
@@ -174,7 +176,7 @@
 </a>
 {% else %}
 <a
-    href='/user/{{ session["userName"] }}'
+    href='/user/{{ session["username"] }}'
     class="hidden md:block fixed bottom-0 left-1"
 >
     <i

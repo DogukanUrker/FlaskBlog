@@ -1,0 +1,83 @@
+{% macro sort_menu(sort_name,source,translations) %}
+<div class="dropdown">
+    <div
+        tabindex="0"
+        role="button"
+        class="btn w-full md:w-fit text-base-content"
+    >
+        {{sort_name}}
+    </div>
+    <ul
+        tabindex="0"
+        class="dropdown-content menu bg-base-100 rounded-box z-1 w-full md:w-fit p-2 shadow-sm"
+    >
+        <li class="menu-title">{{ translations.sort_menu.desc }}</li>
+        <li>
+            <a onclick="location = '{{source}}/by=time_stamp/sort=desc'">
+                {{ translations.sort_menu.create }}
+            </a>
+        </li>
+        <li>
+            <a onclick="location = '{{source}}/by=title/sort=desc'">
+                {{ translations.sort_menu.title }}
+            </a>
+        </li>
+        <li>
+            <a onclick="location = '{{source}}/by=views/sort=desc'">
+                {{ translations.sort_menu.views }}
+            </a>
+        </li>
+        <li>
+            <a onclick="location = '{{source}}/by=category/sort=desc'">
+                {{ translations.sort_menu.category }}
+            </a>
+        </li>
+        <li>
+            <a
+                onclick="location = '{{source}}/by=last_edit_time_stamp/sort=desc'"
+            >
+                {{ translations.sort_menu.edit }}
+            </a>
+        </li>
+        <li>
+            <a onclick="location = '{{source}}/by=hot/sort=desc'">
+                {{ translations.sort_menu.hot }}
+            </a>
+        </li>
+
+        <li class="menu-title">{{ translations.sort_menu.asc }}</li>
+        <li>
+            <a onclick="location = '{{source}}/by=time_stamp/sort=asc'">
+                {{ translations.sort_menu.create }}
+            </a>
+        </li>
+        <li>
+            <a onclick="location = '{{source}}/by=title/sort=asc'">
+                {{ translations.sort_menu.title }}
+            </a>
+        </li>
+        <li>
+            <a onclick="location = '{{source}}/by=views/sort=asc'">
+                {{ translations.sort_menu.views }}
+            </a>
+        </li>
+        <li>
+            <a onclick="location = '{{source}}/by=category/sort=asc'">
+                {{ translations.sort_menu.category }}
+            </a>
+        </li>
+        <li>
+            <a
+                onclick="location = '{{source}}/by=last_edit_time_stamp/sort=asc'"
+            >
+                {{ translations.sort_menu.edit }}
+            </a>
+        </li>
+        <li>
+            <a onclick="location = '{{source}}/by=hot/sort=asc'">
+                {{ translations.sort_menu.hot }}
+            </a>
+        </li>
+    </ul>
+</div>
+{% endmacro %}

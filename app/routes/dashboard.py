@@ -9,32 +9,33 @@ from flask import (
     session,
     url_for,
 )
+
 from settings import Settings
-from utils.delete import Delete
-from utils.flashMessage import flashMessage
+from utils.delete import delete_post
+from utils.flash_message import flash_message
 from utils.log import Log
 from utils.paginate import paginate_query
 
-dashboardBlueprint = Blueprint("dashboard", __name__)
+dashboard_blueprint = Blueprint("dashboard", __name__)
 
 
-@dashboardBlueprint.route("/dashboard/<userName>", methods=["GET", "POST"])
-def dashboard(userName):
-    if "userName" in session:
-        if session["userName"].lower() == userName.lower():
+@dashboard_blueprint.route("/dashboard/<username>", methods=["GET", "POST"])
+def dashboard(username):
+    if "username" in session:
+        if session["username"].lower() == username.lower():
             if request.method == "POST":
-                if "postDeleteButton" in request.form:
-                    Delete.post(request.form["postID"])
+                if "post_delete_button" in request.form:
+                    delete_post(request.form["post_id"])
 
                     return (
-                        redirect(url_for("dashboard.dashboard", userName=userName)),
+                        redirect(url_for("dashboard.dashboard", username=username)),
                         301,
                     )
             posts, page, total_pages = paginate_query(
                 Settings.DB_POSTS_ROOT,
                 "select count(*) from posts where author = ?",
-                "select * from posts where author = ? order by timeStamp desc",
-                [session["userName"]],
+                "select * from posts where author = ? order by time_stamp desc",
+                [session["username"]],
             )
             Log.database(f"Connecting to '{Settings.DB_COMMENTS_ROOT}' database")
 
@@ -43,20 +44,20 @@ def dashboard(userName):
             cursor = connection.cursor()
 
             cursor.execute(
-                """select * from comments where lower(user) = ? order by timeStamp desc""",
-                [(userName.lower())],
+                """select * from comments where lower(user) = ? order by time_stamp desc""",
+                [(username.lower())],
             )
             comments = cursor.fetchall()
 
             if posts == []:
-                showPosts = False
+                show_posts = False
             else:
-                showPosts = True
+                show_posts = True
 
             if comments == []:
-                showComments = False
+                show_comments = False
             else:
-                showComments = True
+                show_comments = True
 
             posts = list(posts)
 
@@ -64,9 +65,9 @@ def dashboard(userName):
                 posts[i] = list(posts[i])
 
             language = session.get("language")
-            translationFile = f"./translations/{language}.json"
+            translation_file = f"./translations/{language}.json"
 
-            with open(translationFile, "r", encoding="utf-8") as file:
+            with open(translation_file, "r", encoding="utf-8") as file:
                 translations = load(file)
 
             for post in posts:
@@ -76,20 +77,20 @@ def dashboard(userName):
                 "/dashboard.html",
                 posts=posts,
                 comments=comments,
-                showPosts=showPosts,
-                showComments=showComments,
+                show_posts=show_posts,
+                show_comments=show_comments,
                 page=page,
                 total_pages=total_pages,
             )
         else:
             Log.error(
-                f'User: "{session["userName"]}" tried to login to another users dashboard',
+                f'User: "{session["username"]}" tried to login to another users dashboard',
             )
 
-            return redirect(f"/dashboard/{session['userName'].lower()}")
+            return redirect(f"/dashboard/{session['username'].lower()}")
     else:
         Log.error(f"{request.remote_addr} tried to access the dashboard without login")
-        flashMessage(
+        flash_message(
             page="dashboard",
             message="login",
             category="error",

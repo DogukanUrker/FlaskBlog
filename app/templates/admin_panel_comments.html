@@ -1,0 +1,89 @@
+{% extends 'layout.html' %} {% block head %}
+<title>{{translations.admin_panel_comments.title}}</title>
+{% endblock head %} {% block body %}
+<h1 class="my-4 text-4xl font-medium select-none text-center">
+    {{translations.admin_panel_comments.comments}}
+</h1>
+
+{% for comment in comments %}
+<div
+    class="w-11/12 md:w-10/12 lg:w-3/4 xl:w-1/2 h-fit mx-auto py-4 px-2 my-8 border-2 rounded-md shadow-md border-gray-500/25"
+>
+    <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center">
+            <i class="ti ti-id mr-1 text-xl"></i>
+            {{translations.admin_panel_comments.post_id}}:
+            <a
+                href="/post/{{ url_id(comment[1]) }}"
+                class="ml-1 font-medium"
+                >{{ url_id(comment[1]) }}</a
+            >
+        </div>
+    </div>
+    <div tag="content" class="w-fit mx-auto my-4">{{ comment[2] | e }}</div>
+
+    <div class="flex items-center justify-between my-2">
+        <div class="flex items-center">
+            <i class="ti ti-clock mr-1 text-xl"></i>
+            <p class="hidden md:block mr-1">
+                {{translations.admin_panel_comments.creation_time}}:
+            </p>
+            <p class="time font-medium">{{ comment[4] }}</p>
+        </div>
+        <div class="flex items-center">
+            <i class="ti ti-calendar mr-1 text-xl"></i>
+            <p class="hidden md:block mr-1">
+                {{translations.admin_panel_comments.creation_date}}:
+            </p>
+            <p class="date font-medium">{{ comment[4] }}</p>
+        </div>
+    </div>
+
+    {% if request.path == "/admin/comments" %}
+    <div class="flex items-center justify-between mt-2">
+        <div class="flex items-center">
+            <i class="ti ti-user mr-1 text-xl"></i>
+            <p class="hidden md:block mr-1">
+                {{translations.admin_panel_comments.author}}:
+            </p>
+            <a
+                href="/user/{{ comment[3].lower() }}"
+                class="hover:text-rose-500 duration-150 font-medium"
+            >
+                {{ comment[3] }}
+            </a>
+        </div>
+
+        <div class="flex items-center">
+            <form method="post">
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}"
+                />
+                <input
+                    type="hidden"
+                    name="comment_id"
+                    value="{{ comment[0] }}"
+                />
+                <button
+                    type="submit"
+                    name="comment_delete_button"
+                    class="hover:text-rose-500 duration-150 font-medium"
+                >
+                    <i class="ti ti-trash-x mr-1 text-2xl"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endfor %} {% if request.path == "/admin/comments" %}
+{% from "components/pagination.html" import pagination %}
+{{ pagination(page, total_pages, request.path) }}
+<a href="/admin" class="hidden md:block fixed bottom-0 left-1">
+    <i
+        class="ti ti-arrow-back mr-1 text-xl hover:text-rose-500 duration-150"
+    ></i>
+</a>
+{% endif %} {% endblock body %}

@@ -6,7 +6,7 @@
         {% if recaptcha %}
         <script src="https://www.google.com/recaptcha/api.js"></script>
         <script src="{{ url_for('static', filename='js/recaptcha.js') }}"></script>
-        <form method="post" id="recaptchaForm">
+        <form method="post" id="recaptcha-form">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <div class="card-body">
                 <h1 class="text-3xl font-bold self-center">
@@ -14,13 +14,15 @@
                 </h1>
                 <fieldset class="fieldset">
                     <label class="label">{{translations.login.username}}</label>
-                    {{form.userName(autocomplete="off", class="input input-bordered w-full")}}
+                    {{form.username(autocomplete="off", class="input
+                    input-bordered w-full")}}
                     <label class="label">{{translations.login.password}}</label>
-                    {{form.password(autocomplete="off", class="input input-bordered w-full")}}
+                    {{form.password(autocomplete="off", class="input
+                    input-bordered w-full")}}
                     <div>
                         <a
                             class="link link-hover"
-                            href="/passwordreset/codesent=false"
+                            href="/password_reset/codesent=false"
                             >{{translations.login.forgot}}</a
                         >
                     </div>
@@ -42,13 +44,15 @@
                 </h1>
                 <fieldset class="fieldset">
                     <label class="label">{{translations.login.username}}</label>
-                    {{form.userName(autocomplete="off", class="input input-bordered w-full")}}
+                    {{form.username(autocomplete="off", class="input
+                    input-bordered w-full")}}
                     <label class="label">{{translations.login.password}}</label>
-                    {{form.password(autocomplete="off", class="input input-bordered w-full")}}
+                    {{form.password(autocomplete="off", class="input
+                    input-bordered w-full")}}
                     <div>
                         <a
                             class="link link-hover"
-                            href="/passwordreset/codesent=false"
+                            href="/password_reset/codesent=false"
                             >{{translations.login.forgot}}</a
                         >
                     </div>

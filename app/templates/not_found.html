@@ -1,0 +1,21 @@
+{% extends 'layout.html' %} {% block head %}
+<title>{{ request.path }} ?</title>
+{% endblock head %} {% block body %}
+<div class="w-fit mx-auto mt-32 text-2xl text-center">
+    <h1>{{translations.not_found.text}}</h1>
+
+    <h1 class="bg-rose-500 w-fit mx-auto p-1 m-1 rounded">
+        {{ request.path }}
+    </h1>
+
+    <h1>{{translations.not_found.sorry}}</h1>
+
+    <i class="ti ti-mood-sad my-4 text-4xl"></i>
+
+    <a href="/">
+        <h3 class="hover:text-rose-500 duration-150">
+            {{translations.not_found.home}}
+        </h3>
+    </a>
+</div>
+{% endblock body %}

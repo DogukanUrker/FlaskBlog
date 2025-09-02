@@ -1,0 +1,25 @@
+{% extends 'layout.html' %} {% block head %}
+<title>{{translations.verify_user.title}}</title>
+{% endblock head %} {% block body %}
+<div class="w-fit mx-auto mt-32 select-none">
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        {% if mail_sent %} {{ form.code(class_="input input-bordered w-full my-2", autocomplete="off",
+        placeholder=translations.verify_user.placeholder) }}
+        <button
+            type="submit"
+            class="btn btn-neutral mt-4"
+        >
+            {{translations.verify_user.title}}
+        </button>
+        {% else %}
+        <button
+            type="submit"
+            class="block mx-auto m-2 hover:text-rose-500 duration-150 font-medium"
+        >
+            {{ translations.verify_user.send }}
+        </button>
+        {% endif %}
+    </form>
+</div>
+{% endblock body %}

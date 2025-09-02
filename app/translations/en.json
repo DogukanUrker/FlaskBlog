@@ -3,44 +3,44 @@
     "title": "About",
     "version": "Version",
     "description": "Simple blog app made with Flask, SQLite3, WTForms, Passlib, reCAPTCHA, Requests, TailwindCSS, Tabler Icons",
-    "moreInfo": "Click for more information about",
-    "sourceRepo": "source code",
+    "more_info": "Click for more information about",
+    "source_repo": "source code",
     "credits": "Made with <i class='ti ti-heart-filled text-rose-500'></i> by <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
   },
-  "accountSettings": {
+  "account_settings": {
     "title": "Account Settings",
     "username": "change username",
     "password": "change password",
     "delete": "delete account",
     "language": "change language",
-    "profilePicture": "change profile picture"
+    "profile_picture": "change profile picture"
   },
-  "adminPanel": {
+  "admin_panel": {
     "title": "Admin Panel",
     "users": "Users",
     "posts": "Posts",
     "comments": "Comments"
   },
-  "adminPanelComments": {
+  "admin_panel_comments": {
     "title": "Admin Panel - Comments",
     "comments": "Comments",
-    "postID": "Post ID",
-    "creationTime": "Creation Time",
-    "creationDate": "Creation Date",
+    "post_id": "Post ID",
+    "creation_time": "Creation Time",
+    "creation_date": "Creation Date",
     "author": "Author"
   },
-  "adminPanelUsers": {
+  "admin_panel_users": {
     "title": "Admin Panel - Users",
     "id": "ID",
     "users": "Users",
     "email": "Email",
-    "joinTime": "Join Time",
-    "joinDate": "Join Date",
+    "join_time": "Join Time",
+    "join_date": "Join Date",
     "role": "Role",
     "points": "Points",
     "delete": "delete user",
-    "setUser": "set user role to user",
-    "setAdmin": "set user role to admin"
+    "set_user": "set user role to user",
+    "set_admin": "set user role to admin"
   },
   "categories": {
     "all": "All",
@@ -66,75 +66,75 @@
     "web": "Web",
     "other": "Other"
   },
-  "changeLanguage": {
+  "change_language": {
     "title": "Select Language"
   },
-  "changePassword": {
+  "change_password": {
     "title": "Change Password",
-    "currentPassword": "Current Password",
-    "newPassword": "New Password",
-    "confirmPassword": "Confirm Password",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
     "change": "Change Password"
   },
-  "changeProfilePicture": {
+  "change_profile_picture": {
     "title": "Change Profile Picture",
     "default": "default seed is your username",
     "info": "click for more information about profile picture seeds",
     "set": "Set Profile Picture",
     "placeholder": "Enter seed for profile picture"
   },
-  "changeUserName": {
+  "change_user_name": {
     "title": "Change Username",
     "placeholder": "New Username",
     "change": "Change Username"
   },
-  "createPost": {
+  "create_post": {
     "title": "Create Post",
-    "titlePlaceholder": "post title",
+    "title_placeholder": "post title",
     "category": "Select a Category",
     "content": "Content",
     "banner": "Upload a Banner",
-    "bannerPlaceholder": "post banner",
+    "banner_placeholder": "post banner",
     "tags": "tags",
     "post": "Post",
     "separate": "(Separate tags with commas)",
     "abstract": "Abstract",
-    "abstractPlaceholder": "post abstract"
+    "abstract_placeholder": "post abstract"
   },
-  "csrfError": {
+  "csrf_error": {
     "reason": "Reason",
     "description": "Fill the same form again."
   },
   "dashboard": {
     "title": "Dashboard",
-    "titleAdmin": "Admin Panel - Posts",
+    "title_admin": "Admin Panel - Posts",
     "posts": "Posts",
     "comments": "Comments",
     "tags": "Tags",
     "views": "Views",
-    "creationTime": "Creation Time",
-    "creationDate": "Creation Date",
-    "editTime": "Last Edit Time",
-    "editDate": "Last Edit Date",
+    "creation_time": "Creation Time",
+    "creation_date": "Creation Date",
+    "edit_time": "Last Edit Time",
+    "edit_date": "Last Edit Date",
     "author": "Author",
     "category": "Category",
-    "noPosts": "This users hasn't created any posts yet.",
-    "noPost": "No post yet,",
+    "no_posts": "This users hasn't created any posts yet.",
+    "no_post": "No post yet,",
     "create": "create one",
     "go": "go to post"
   },
-  "editPost": {
+  "edit_post": {
     "title": "Edit Post",
-    "titlePlaceholder": "post title",
+    "title_placeholder": "post title",
     "category": "Select a Category",
     "current": "Current Banner",
     "new": "New Banner",
     "tags": "tags",
     "separate": "(Separate tags with commas)",
     "save": "Save Changes",
-    "bannerPlaceholder": "post banner",
+    "banner_placeholder": "post banner",
     "abstract": "Abstract",
-    "abstractPlaceholder": "post abstract"
+    "abstract_placeholder": "post abstract"
   },
   "login": {
     "title": "Login",
@@ -142,28 +142,28 @@
     "password": "password",
     "forgot": "Forgot Password?"
   },
-  "notFound": {
+  "not_found": {
     "text": "I don't know what is",
     "sorry": "sorry",
     "home": "go to home"
   },
-  "passwordReset": {
+  "password_reset": {
     "title": "Password Reset",
     "email": "email",
     "username": "username",
     "send": "Send Reset Email",
     "reset": "Reset Password",
     "code": "Send Code",
-    "codePlaceholder": "Enter the code you received",
-    "newPassword": "New Password",
-    "confirmPassword": "Confirm Password"
+    "code_placeholder": "Enter the code you received",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password"
   },
   "post": {
-    "minRead": "min read",
+    "min_read": "min read",
     "placeholder": "What are your thoughts?",
-    "viewPerformance": "View Performance"
+    "view_performance": "View Performance"
   },
-  "sortMenu": {
+  "sort_menu": {
     "asc": "Ascending",
     "desc": "Descending",
     "create": "Creation Date",
@@ -175,12 +175,12 @@
   },
   "search": {
     "title": "Search",
-    "noResults": "No results",
+    "no_results": "No results",
     "users": "Users",
     "posts": "Posts",
     "results": "Results"
   },
-  "searchBar": {
+  "search_bar": {
     "title": "Search",
     "placeholder": "search"
   },
@@ -202,9 +202,9 @@
     "posts": "Posts",
     "comments": "Comments",
     "points": "Points",
-    "joinDate": "Join Date",
-    "createDate": "Creation Date",
-    "createTime": "Creation Time",
+    "join_date": "Join Date",
+    "create_date": "Creation Date",
+    "create_time": "Creation Time",
     "dashboard": "dashboard",
     "role": "Role",
     "user": "User",
@@ -213,29 +213,29 @@
     "views": "Views",
     "go": "go to post"
   },
-  "verifyUser": {
+  "verify_user": {
     "title": "Verify Account",
     "placeholder": "Enter the code you received",
     "send": "Click to send verification code"
   },
   "flash": {
-    "changePassword": {
+    "change_password": {
       "same": "New password can not be same with old password.",
       "match": "Passwords do not match.",
       "success": "Password has been changed.",
       "old": "Old password is wrong.",
       "login": "You need to login to change your password."
     },
-    "changeProfilePicture": {
+    "change_profile_picture": {
       "success": "Profile picture has been changed."
     },
-    "changeUserName": {
+    "change_user_name": {
       "same": "This is already your username.",
       "success": "Username has been changed.",
       "taken": "This username is already taken.",
       "ascii": "Username can only contain ASCII characters."
     },
-    "createPost": {
+    "create_post": {
       "success": "You earned 20 points for creating a post.",
       "login": "You need to login to create a post.",
       "empty": "You can not leave title or content empty."
@@ -243,7 +243,7 @@
     "dashboard": {
       "login": "You need to login to see your dashboard."
     },
-    "editPost": {
+    "edit_post": {
       "success": "Post has been edited.",
       "login": "You need to login to edit a post.",
       "empty": "You can not leave title or content empty.",
@@ -252,18 +252,18 @@
     "login": {
       "success": "You have successfully logged in.",
       "password": "Wrong password",
-      "notFound": "User not found"
+      "not_found": "User not found"
     },
     "logout": {
       "success": "You have successfully logged out."
     },
-    "passwordReset": {
+    "password_reset": {
       "success": "Password has been reset. You can login with your new password.",
       "email": "Email has been sent.",
       "code": "Code has been sent.",
       "same": "New password can not be same with old password.",
       "match": "Passwords do not match.",
-      "notFound": "User not found.",
+      "not_found": "User not found.",
       "wrong": "Wrong code."
     },
     "delete": {
@@ -271,7 +271,7 @@
       "post": "Post has been deleted.",
       "comment": "Comment has been deleted."
     },
-    "setLanguage": {
+    "set_language": {
       "success": "Language has been changed."
     },
     "post": {
@@ -285,63 +285,43 @@
       "password": "Passwords do not match.",
       "taken": "This username and email is already taken."
     },
-    "verifyUser": {
+    "verify_user": {
       "success": "Your account has been verified.",
       "code": "Code has been sent.",
-      "notFound": "User not found.",
+      "not_found": "User not found.",
       "wrong": "Wrong code."
     },
     "error": {
-      "wrongCall": "You made a wrong flash message call on server side."
+      "wrong_call": "You made a wrong flash message call on server side."
     }
   },
   "roles": {
     "user": "User",
     "admin": "Admin"
   },
-  "privacyPolicy": {
+  "privacy_policy": {
     "title": "Privacy Policy",
     "intro": "This Privacy Policy describes how Doğukan Ürker's Flask Blog ('we', 'us', or 'our') collects, uses, and discloses your information when you use our mobile application (the 'App').",
     "information": "Information Collection and Use",
-    "informationText": "When you use our App, we collect and log various types of user activity data, including but not limited to:",
-    "informationUser": "User login data: We collect information related to user login activities for authentication and security purposes.",
-    "informationPost": "Post and comment data: We collect information about posts and comments made within the App for functionality and user engagement purposes.",
-    "informationGeneral": "General user activity: We log various user activities within the App to improve user experience, troubleshoot technical issues, and analyze usage patterns.",
+    "information_text": "When you use our App, we collect and log various types of user activity data, including but not limited to:",
+    "information_user": "User login data: We collect information related to user login activities for authentication and security purposes.",
+    "information_post": "Post and comment data: We collect information about posts and comments made within the App for functionality and user engagement purposes.",
+    "information_general": "General user activity: We log various user activities within the App to improve user experience, troubleshoot technical issues, and analyze usage patterns.",
     "cookies": "Cookies",
-    "cookiesText": "Our App uses cookies to enhance the user experience. The cookies we use include:",
-    "cookiesTheme": "UI theme cookie: We store the user's selected UI theme preference to personalize the appearance of the App.",
-    "cookiesLanguage": "Browser default language: We store the user's browser default language preference to provide localized content.",
-    "serviceProviders": "Service Providers",
-    "serviceProvidersText": "We may employ third-party companies or individuals to facilitate our App or provide services on our behalf. These third parties may have access to your information to perform tasks such as analytics, hosting, and technical support. However, they are obligated not to disclose or use it for any other purpose.",
-    "otherLinks": "Links to Other Sites",
-    "otherLinksText": "Our App may contain links to external sites, including X and Doğukan Ürker's personal site. We are not responsible for the content or privacy practices of such external sites. We encourage users to review the privacy policies of these sites before providing any personal information.",
+    "cookies_text": "Our App uses cookies to enhance the user experience. The cookies we use include:",
+    "cookies_theme": "UI theme cookie: We store the user's selected UI theme preference to personalize the appearance of the App.",
+    "cookies_language": "Browser default language: We store the user's browser default language preference to provide localized content.",
+    "service_providers": "Service Providers",
+    "service_providers_text": "We may employ third-party companies or individuals to facilitate our App or provide services on our behalf. These third parties may have access to your information to perform tasks such as analytics, hosting, and technical support. However, they are obligated not to disclose or use it for any other purpose.",
+    "other_links": "Links to Other Sites",
+    "other_links_text": "Our App may contain links to external sites, including X and Doğukan Ürker's personal site. We are not responsible for the content or privacy practices of such external sites. We encourage users to review the privacy policies of these sites before providing any personal information.",
     "security": "Security",
-    "securityText": "We take reasonable precautions to protect the information collected through our App. However, lease be aware that no method of transmission over the internet or method of electronic storage is 100% secure, and we cannot guarantee absolute security.",
+    "security_text": "We take reasonable precautions to protect the information collected through our App. However, lease be aware that no method of transmission over the internet or method of electronic storage is 100% secure, and we cannot guarantee absolute security.",
     "children": "Children's Privacy",
-    "childrenText": "Our App is not intended for use by individuals under the age of 13. We do not knowingly collect personal identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to take necessary actions.",
+    "children_text": "Our App is not intended for use by individuals under the age of 13. We do not knowingly collect personal identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to take necessary actions.",
     "changes": "Changes to This Privacy Policy",
-    "changesText": "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.",
+    "changes_text": "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.",
     "contact": "Contact Us",
-    "contactText": "If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us. Mail:"
-  },
-  "analytics": {
-    "title": "Analytics",
-    "goToPage": "Go to page",
-    "totalVisitor": "Total Visitor",
-    "todaysVisitor": "Today's Visitor",
-    "category": "Category",
-    "onPosted": "On Posted",
-    "trafficCount": "Traffic Count",
-    "sincePosted": "Since Posted",
-    "last1month": "Last 1m",
-    "last7days": "Last 7d",
-    "last24hours": "Last 24h",
-    "last48hours": "Last 48h",
-    "traffic": "Traffic",
-    "visitorCounts": "Visitor Counts",
-    "computerOS": "Computer OS",
-    "topCountries": "Top Countries",
-    "visitor": "Visitor",
-    "viewAll": "View All"
+    "contact_text": "If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us. Mail:"
   }
 }

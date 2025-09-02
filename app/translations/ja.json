@@ -3,44 +3,44 @@
     "title": "概要",
     "version": "バージョン",
     "description": "Flask、SQLite3、WTForms、Passlib、reCAPTCHA、Requests、TailwindCSS、Tabler Iconsで作成されたシンプルなブログアプリ",
-    "moreInfo": "についての詳細情報はこちらをクリック",
-    "sourceRepo": "ソースコード",
+    "more_info": "についての詳細情報はこちらをクリック",
+    "source_repo": "ソースコード",
     "credits": "<i class='ti ti-heart-filled text-rose-500'></i> によって作成されました <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
   },
-  "accountSettings": {
+  "account_settings": {
     "title": "アカウント設定",
     "username": "ユーザー名の変更",
     "password": "パスワードの変更",
     "delete": "アカウントの削除",
     "language": "言語の変更",
-    "profilePicture": "プロフィール写真の変更"
+    "profile_picture": "プロフィール写真の変更"
   },
-  "adminPanel": {
+  "admin_panel": {
     "title": "管理パネル",
     "users": "ユーザー",
     "posts": "投稿",
     "comments": "コメント"
   },
-  "adminPanelComments": {
+  "admin_panel_comments": {
     "title": "管理パネル - コメント",
     "comments": "コメント",
-    "postID": "投稿ID",
-    "creationTime": "作成時間",
-    "creationDate": "作成日",
+    "post_id": "投稿ID",
+    "creation_time": "作成時間",
+    "creation_date": "作成日",
     "author": "著者"
   },
-  "adminPanelUsers": {
+  "admin_panel_users": {
     "title": "管理パネル - ユーザー",
     "id": "ID",
     "users": "ユーザー",
     "email": "メール",
-    "joinTime": "参加時間",
-    "joinDate": "参加日",
+    "join_time": "参加時間",
+    "join_date": "参加日",
     "role": "役割",
     "points": "ポイント",
     "delete": "ユーザーの削除",
-    "setUser": "ユーザーの役割をユーザーに設定",
-    "setAdmin": "ユーザーの役割を管理者に設定"
+    "set_user": "ユーザーの役割をユーザーに設定",
+    "set_admin": "ユーザーの役割を管理者に設定"
   },
   "categories": {
     "all": "すべて",
@@ -66,75 +66,75 @@
     "web": "ウェブ",
     "other": "その他"
   },
-  "changeLanguage": {
+  "change_language": {
     "title": "言語を選択"
   },
-  "changePassword": {
+  "change_password": {
     "title": "パスワードの変更",
-    "currentPassword": "現在のパスワード",
-    "newPassword": "新しいパスワード",
-    "confirmPassword": "パスワードの確認",
+    "current_password": "現在のパスワード",
+    "new_password": "新しいパスワード",
+    "confirm_password": "パスワードの確認",
     "change": "パスワードを変更"
   },
-  "changeProfilePicture": {
+  "change_profile_picture": {
     "title": "プロフィール写真の変更",
     "default": "デフォルトのシードはあなたのユーザー名です",
     "info": "プロフィール写真のシードについての詳細情報はこちらをクリック",
     "set": "プロフィール写真を設定",
     "placeholder": "プロフィール写真のシードを入力"
   },
-  "changeUserName": {
+  "change_user_name": {
     "title": "ユーザー名の変更",
     "placeholder": "新しいユーザー名",
     "change": "ユーザー名を変更"
   },
-  "createPost": {
+  "create_post": {
     "title": "投稿を作成",
-    "titlePlaceholder": "投稿タイトル",
+    "title_placeholder": "投稿タイトル",
     "category": "カテゴリを選択",
     "content": "内容",
     "banner": "バナーをアップロード",
-    "bannerPlaceholder": "投稿バナー",
+    "banner_placeholder": "投稿バナー",
     "tags": "タグ",
     "post": "投稿",
     "separate": "(タグはカンマで区切ってください)",
     "abstract": "概要",
-    "abstractPlaceholder": "投稿の概要"
+    "abstract_placeholder": "投稿の概要"
   },
-  "csrfError": {
+  "csrf_error": {
     "reason": "理由",
     "description": "同じフォームを再度記入してください。"
   },
   "dashboard": {
     "title": "ダッシュボード",
-    "titleAdmin": "管理パネル - 投稿",
+    "title_admin": "管理パネル - 投稿",
     "posts": "投稿",
     "comments": "コメント",
     "tags": "タグ",
     "views": "ビュー",
-    "creationTime": "作成時間",
-    "creationDate": "作成日",
-    "editTime": "最終編集時間",
-    "editDate": "最終編集日",
+    "creation_time": "作成時間",
+    "creation_date": "作成日",
+    "edit_time": "最終編集時間",
+    "edit_date": "最終編集日",
     "author": "著者",
     "category": "カテゴリ",
-    "noPosts": "このユーザーはまだ投稿を作成していません。",
-    "noPost": "まだ投稿がありません、",
+    "no_posts": "このユーザーはまだ投稿を作成していません。",
+    "no_post": "まだ投稿がありません、",
     "create": "作成する",
     "go": "投稿へ移動"
   },
-  "editPost": {
+  "edit_post": {
     "title": "投稿を編集",
-    "titlePlaceholder": "投稿タイトル",
+    "title_placeholder": "投稿タイトル",
     "category": "カテゴリを選択",
     "current": "現在のバナー",
     "new": "新しいバナー",
     "tags": "タグ",
     "separate": "(タグはカンマで区切ってください)",
     "save": "変更を保存",
-    "bannerPlaceholder": "投稿バナー",
+    "banner_placeholder": "投稿バナー",
     "abstract": "概要",
-    "abstractPlaceholder": "投稿の概要"
+    "abstract_placeholder": "投稿の概要"
   },
   "login": {
     "title": "ログイン",
@@ -142,28 +142,28 @@
     "password": "パスワード",
     "forgot": "パスワードを忘れましたか？"
   },
-  "notFound": {
+  "not_found": {
     "text": "それが何か分かりません",
     "sorry": "申し訳ありません",
     "home": "ホームに戻る"
   },
-  "passwordReset": {
+  "password_reset": {
     "title": "パスワードリセット",
     "email": "メール",
     "username": "ユーザー名",
     "send": "リセットメールを送信",
     "reset": "パスワードをリセット",
     "code": "コードを送信",
-    "codePlaceholder": "受け取ったコードを入力してください",
-    "newPassword": "新しいパスワード",
-    "confirmPassword": "パスワードの確認"
+    "code_placeholder": "受け取ったコードを入力してください",
+    "new_password": "新しいパスワード",
+    "confirm_password": "パスワードの確認"
   },
   "post": {
-    "minRead": "分で読む",
+    "min_read": "分で読む",
     "placeholder": "あなたの考えは何ですか？",
-    "viewPerformance": "パフォーマンスを表示"
+    "view_performance": "パフォーマンスを表示"
   },
-  "sortMenu": {
+  "sort_menu": {
     "asc": "昇順",
     "desc": "降順",
     "create": "作成日",
@@ -175,12 +175,12 @@
   },
   "search": {
     "title": "検索",
-    "noResults": "結果がありません",
+    "no_results": "結果がありません",
     "users": "ユーザー",
     "posts": "投稿",
     "results": "結果"
   },
-  "searchBar": {
+  "search_bar": {
     "title": "検索",
     "placeholder": "検索"
   },
@@ -202,9 +202,9 @@
     "posts": "投稿",
     "comments": "コメント",
     "points": "ポイント",
-    "joinDate": "参加日",
-    "createDate": "作成日",
-    "createTime": "作成時間",
+    "join_date": "参加日",
+    "create_date": "作成日",
+    "create_time": "作成時間",
     "dashboard": "ダッシュボード",
     "role": "役割",
     "user": "ユーザー",
@@ -213,29 +213,29 @@
     "views": "ビュー",
     "go": "投稿へ移動"
   },
-  "verifyUser": {
+  "verify_user": {
     "title": "アカウントの確認",
     "placeholder": "受け取ったコードを入力してください",
     "send": "確認コードを送信するにはクリックしてください"
   },
   "flash": {
-    "changePassword": {
+    "change_password": {
       "same": "新しいパスワードは旧パスワードと同じであってはなりません。",
       "match": "パスワードが一致しません。",
       "success": "パスワードが変更されました。",
       "old": "旧パスワードが間違っています。",
       "login": "パスワードを変更するにはログインする必要があります。"
     },
-    "changeProfilePicture": {
+    "change_profile_picture": {
       "success": "プロフィール写真が変更されました。"
     },
-    "changeUserName": {
+    "change_user_name": {
       "same": "これはすでにあなたのユーザー名です。",
       "success": "ユーザー名が変更されました。",
       "taken": "このユーザー名はすでに使用されています。",
       "ascii": "ユーザー名はASCII文字のみを含むことができます。"
     },
-    "createPost": {
+    "create_post": {
       "success": "投稿を作成すると20ポイントが獲得されました。",
       "login": "投稿を作成するにはログインする必要があります。",
       "empty": "タイトルまたは内容を空にすることはできません。"
@@ -243,7 +243,7 @@
     "dashboard": {
       "login": "ダッシュボードを表示するにはログインする必要があります。"
     },
-    "editPost": {
+    "edit_post": {
       "success": "投稿が編集されました。",
       "login": "投稿を編集するにはログインする必要があります。",
       "empty": "タイトルまたは内容を空にすることはできません。",
@@ -252,18 +252,18 @@
     "login": {
       "success": "ログインに成功しました。",
       "password": "パスワードが間違っています",
-      "notFound": "ユーザーが見つかりません"
+      "not_found": "ユーザーが見つかりません"
     },
     "logout": {
       "success": "ログアウトに成功しました。"
     },
-    "passwordReset": {
+    "password_reset": {
       "success": "パスワードがリセットされました。新しいパスワードでログインできます。",
       "email": "メールが送信されました。",
       "code": "コードが送信されました。",
       "same": "新しいパスワードは旧パスワードと同じであってはなりません。",
       "match": "パスワードが一致しません。",
-      "notFound": "ユーザーが見つかりません。",
+      "not_found": "ユーザーが見つかりません。",
       "wrong": "コードが間違っています。"
     },
     "delete": {
@@ -271,7 +271,7 @@
       "post": "投稿が削除されました。",
       "comment": "コメントが削除されました。"
     },
-    "setLanguage": {
+    "set_language": {
       "success": "言語が変更されました。"
     },
     "post": {
@@ -285,63 +285,43 @@
       "password": "パスワードが一致しません。",
       "taken": "このユーザー名とメールアドレスはすでに使用されています。"
     },
-    "verifyUser": {
+    "verify_user": {
       "success": "アカウントが確認されました。",
       "code": "コードが送信されました。",
-      "notFound": "ユーザーが見つかりません。",
+      "not_found": "ユーザーが見つかりません。",
       "wrong": "コードが間違っています。"
     },
     "error": {
-      "wrongCall": "サーバー側で誤ったフラッシュメッセージ呼び出しが行われました。"
+      "wrong_call": "サーバー側で誤ったフラッシュメッセージ呼び出しが行われました。"
     }
   },
   "roles": {
     "user": "ユーザー",
     "admin": "管理者"
   },
-  "privacyPolicy": {
+  "privacy_policy": {
     "title": "プライバシーポリシー",
     "intro": "このプライバシーポリシーは、Doğukan ÜrkerのFlask Blog（以下「私たち」、「私たちの」）が、モバイルアプリケーション（以下「アプリ」）を使用する際に、あなたの情報をどのように収集、使用、開示するかを説明します。",
     "information": "情報の収集と使用",
-    "informationText": "アプリを使用する際に、私たちは以下を含むさまざまなユーザー活動データを収集および記録しますが、これに限定されません：",
-    "informationUser": "ユーザーログインデータ：認証およびセキュリティ目的で、ユーザーログイン活動に関連する情報を収集します。",
-    "informationPost": "投稿およびコメントデータ：アプリ内での投稿およびコメントに関する情報を収集し、機能性およびユーザーエンゲージメント目的で使用します。",
-    "informationGeneral": "一般的なユーザー活動：アプリ内でのさまざまなユーザー活動を記録し、ユーザーエクスペリエンスの向上、技術的な問題のトラブルシューティング、使用パターンの分析を行います。",
+    "information_text": "アプリを使用する際に、私たちは以下を含むさまざまなユーザー活動データを収集および記録しますが、これに限定されません：",
+    "information_user": "ユーザーログインデータ：認証およびセキュリティ目的で、ユーザーログイン活動に関連する情報を収集します。",
+    "information_post": "投稿およびコメントデータ：アプリ内での投稿およびコメントに関する情報を収集し、機能性およびユーザーエンゲージメント目的で使用します。",
+    "information_general": "一般的なユーザー活動：アプリ内でのさまざまなユーザー活動を記録し、ユーザーエクスペリエンスの向上、技術的な問題のトラブルシューティング、使用パターンの分析を行います。",
     "cookies": "クッキー",
-    "cookiesText": "アプリはユーザーエクスペリエンスを向上させるためにクッキーを使用します。使用するクッキーには以下が含まれます：",
-    "cookiesTheme": "UIテーマクッキー：ユーザーが選択したUIテーマの設定を保存し、アプリの外観をパーソナライズします。",
-    "cookiesLanguage": "ブラウザのデフォルト言語：ユーザーのブラウザのデフォルト言語設定を保存し、ローカライズされたコンテンツを提供します。",
-    "serviceProviders": "サービスプロバイダー",
-    "serviceProvidersText": "アプリを運営するために、または私たちの代理でサービスを提供するために、第三者の会社や個人を雇うことがあります。これらの第三者は、分析、ホスティング、技術サポートなどのタスクを実行するために、あなたの情報にアクセスする場合があります。ただし、これらの情報を他の目的で開示または使用することは禁じられています。",
-    "otherLinks": "他のサイトへのリンク",
-    "otherLinksText": "アプリには、XやDoğukan Ürkerの個人サイトなど、外部サイトへのリンクが含まれることがあります。これらの外部サイトのコンテンツやプライバシー慣行については責任を負いません。個人情報を提供する前に、これらのサイトのプライバシーポリシーを確認することをお勧めします。",
+    "cookies_text": "アプリはユーザーエクスペリエンスを向上させるためにクッキーを使用します。使用するクッキーには以下が含まれます：",
+    "cookies_theme": "UIテーマクッキー：ユーザーが選択したUIテーマの設定を保存し、アプリの外観をパーソナライズします。",
+    "cookies_language": "ブラウザのデフォルト言語：ユーザーのブラウザのデフォルト言語設定を保存し、ローカライズされたコンテンツを提供します。",
+    "service_providers": "サービスプロバイダー",
+    "service_providers_text": "アプリを運営するために、または私たちの代理でサービスを提供するために、第三者の会社や個人を雇うことがあります。これらの第三者は、分析、ホスティング、技術サポートなどのタスクを実行するために、あなたの情報にアクセスする場合があります。ただし、これらの情報を他の目的で開示または使用することは禁じられています。",
+    "other_links": "他のサイトへのリンク",
+    "other_links_text": "アプリには、XやDoğukan Ürkerの個人サイトなど、外部サイトへのリンクが含まれることがあります。これらの外部サイトのコンテンツやプライバシー慣行については責任を負いません。個人情報を提供する前に、これらのサイトのプライバシーポリシーを確認することをお勧めします。",
     "security": "セキュリティ",
-    "securityText": "アプリを通じて収集された情報を保護するために、合理的な予防措置を講じています。ただし、インターネット経由の伝送方法や電子的保存方法は100％安全ではないため、絶対的なセキュリティを保証することはできません。",
+    "security_text": "アプリを通じて収集された情報を保護するために、合理的な予防措置を講じています。ただし、インターネット経由の伝送方法や電子的保存方法は100％安全ではないため、絶対的なセキュリティを保証することはできません。",
     "children": "子供のプライバシー",
-    "childrenText": "アプリは13歳未満の個人の使用を目的としていません。13歳未満の子供から個人を特定できる情報を故意に収集することはありません。もしあなたが親または保護者で、あなたの子供が私たちに個人情報を提供したことに気付いた場合は、必要な対策を講じるためにご連絡ください。",
+    "children_text": "アプリは13歳未満の個人の使用を目的としていません。13歳未満の子供から個人を特定できる情報を故意に収集することはありません。もしあなたが親または保護者で、あなたの子供が私たちに個人情報を提供したことに気付いた場合は、必要な対策を講じるためにご連絡ください。",
     "changes": "プライバシーポリシーの変更",
-    "changesText": "プライバシーポリシーは随時更新される場合があります。従って、このページを定期的に確認して変更点を確認することをお勧めします。変更があった場合は、新しいプライバシーポリシーをこのページに掲載します。これらの変更は、掲載後すぐに有効になります。",
+    "changes_text": "プライバシーポリシーは随時更新される場合があります。従って、このページを定期的に確認して変更点を確認することをお勧めします。変更があった場合は、新しいプライバシーポリシーをこのページに掲載します。これらの変更は、掲載後すぐに有効になります。",
     "contact": "お問い合わせ",
-    "contactText": "プライバシーポリシーについて質問や提案がある場合は、お気軽にご連絡ください。メール："
-  },
-  "analytics": {
-    "title": "分析",
-    "goToPage": "ページへ移動",
-    "totalVisitor": "総訪問者",
-    "todaysVisitor": "今日の訪問者",
-    "category": "カテゴリ",
-    "onPosted": "投稿日",
-    "trafficCount": "トラフィック数",
-    "sincePosted": "投稿以来",
-    "last1month": "過去1ヶ月",
-    "last7days": "過去7日",
-    "last24hours": "過去24時間",
-    "last48hours": "過去48時間",
-    "traffic": "トラフィック",
-    "visitorCounts": "訪問者数",
-    "computerOS": "コンピューターOS",
-    "topCountries": "トップの国々",
-    "visitor": "訪問者",
-    "viewAll": "すべて表示"
+    "contact_text": "プライバシーポリシーについて質問や提案がある場合は、お気軽にご連絡ください。メール："
   }
 }

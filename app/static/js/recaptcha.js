@@ -1,3 +1,3 @@
 function onSubmit(token) {
-  document.getElementById("recaptchaForm").submit();
+  document.getElementById("recaptcha-form").submit();
 }

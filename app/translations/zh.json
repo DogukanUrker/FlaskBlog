@@ -3,44 +3,44 @@
     "title": "关于",
     "version": "版本",
     "description": "使用 Flask, SQLite3, WTForms, Passlib, reCAPTCHA, Requests, TailwindCSS, Tabler Icons 制作的简单博客应用程序",
-    "moreInfo": "点击了解更多关于",
-    "sourceRepo": "源代码",
+    "more_info": "点击了解更多关于",
+    "source_repo": "源代码",
     "credits": "由 <i class='ti ti-heart-filled text-rose-500'></i> 制作 <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
   },
-  "accountSettings": {
+  "account_settings": {
     "title": "账户设置",
     "username": "更改用户名",
     "password": "更改密码",
     "delete": "删除账户",
     "language": "更改语言",
-    "profilePicture": "更改头像"
+    "profile_picture": "更改头像"
   },
-  "adminPanel": {
+  "admin_panel": {
     "title": "管理面板",
     "users": "用户",
     "posts": "帖子",
     "comments": "评论"
   },
-  "adminPanelComments": {
+  "admin_panel_comments": {
     "title": "管理面板 - 评论",
     "comments": "评论",
-    "postID": "帖子ID",
-    "creationTime": "创建时间",
-    "creationDate": "创建日期",
+    "post_id": "帖子ID",
+    "creation_time": "创建时间",
+    "creation_date": "创建日期",
     "author": "作者"
   },
-  "adminPanelUsers": {
+  "admin_panel_users": {
     "title": "管理面板 - 用户",
     "id": "ID",
     "users": "用户",
     "email": "电子邮件",
-    "joinTime": "加入时间",
-    "joinDate": "加入日期",
+    "join_time": "加入时间",
+    "join_date": "加入日期",
     "role": "角色",
     "points": "积分",
     "delete": "删除用户",
-    "setUser": "设为用户角色",
-    "setAdmin": "设为管理员角色"
+    "set_user": "设为用户角色",
+    "set_admin": "设为管理员角色"
   },
   "categories": {
     "all": "全部",
@@ -65,75 +65,75 @@
     "web": "网络",
     "other": "其他"
   },
-  "changeLanguage": {
+  "change_language": {
     "title": "选择语言"
   },
-  "changePassword": {
+  "change_password": {
     "title": "更改密码",
-    "currentPassword": "当前密码",
-    "newPassword": "新密码",
-    "confirmPassword": "确认密码",
+    "current_password": "当前密码",
+    "new_password": "新密码",
+    "confirm_password": "确认密码",
     "change": "更改密码"
   },
-  "changeProfilePicture": {
+  "change_profile_picture": {
     "title": "更改头像",
     "default": "默认种子是您的用户名",
     "info": "点击了解更多关于头像种子的信息",
     "set": "设置头像",
     "placeholder": "输入头像种子"
   },
-  "changeUserName": {
+  "change_user_name": {
     "title": "更改用户名",
     "placeholder": "新用户名",
     "change": "更改用户名"
   },
-  "createPost": {
+  "create_post": {
     "title": "创建帖子",
-    "titlePlaceholder": "帖子标题",
+    "title_placeholder": "帖子标题",
     "category": "选择分类",
     "content": "内容",
     "banner": "上传横幅",
-    "bannerPlaceholder": "帖子横幅",
+    "banner_placeholder": "帖子横幅",
     "tags": "标签",
     "post": "发布帖子",
     "separate": "(用逗号分隔标签)",
     "abstract": "摘要",
-    "abstractPlaceholder": "帖子摘要"
+    "abstract_placeholder": "帖子摘要"
   },
-  "csrfError": {
+  "csrf_error": {
     "reason": "原因",
     "description": "请再次填写相同的表单。"
   },
   "dashboard": {
     "title": "仪表板",
-    "titleAdmin": "管理面板 - 帖子",
+    "title_admin": "管理面板 - 帖子",
     "posts": "帖子",
     "comments": "评论",
     "tags": "标签",
     "views": "浏览量",
-    "creationTime": "创建时间",
-    "creationDate": "创建日期",
-    "editTime": "最后编辑时间",
-    "editDate": "最后编辑日期",
+    "creation_time": "创建时间",
+    "creation_date": "创建日期",
+    "edit_time": "最后编辑时间",
+    "edit_date": "最后编辑日期",
     "author": "作者",
     "category": "分类",
-    "noPosts": "该用户尚未创建任何帖子。",
-    "noPost": "还没有帖子，",
+    "no_posts": "该用户尚未创建任何帖子。",
+    "no_post": "还没有帖子，",
     "create": "创建一个",
     "go": "转到帖子"
   },
-  "editPost": {
+  "edit_post": {
     "title": "编辑帖子",
-    "titlePlaceholder": "帖子标题",
+    "title_placeholder": "帖子标题",
     "category": "选择分类",
     "current": "当前横幅",
     "new": "新横幅",
     "tags": "标签",
     "separate": "(用逗号分隔标签)",
     "save": "保存更改",
-    "bannerPlaceholder": "帖子横幅",
+    "banner_placeholder": "帖子横幅",
     "abstract": "摘要",
-    "abstractPlaceholder": "帖子摘要"
+    "abstract_placeholder": "帖子摘要"
   },
   "login": {
     "title": "登录",
@@ -141,28 +141,28 @@
     "password": "密码",
     "forgot": "忘记密码？"
   },
-  "notFound": {
+  "not_found": {
     "text": "我不知道这是什么",
     "sorry": "抱歉",
     "home": "回到首页"
   },
-  "passwordReset": {
+  "password_reset": {
     "title": "重置密码",
     "email": "电子邮件",
     "username": "用户名",
     "send": "发送重置邮件",
     "reset": "重置密码",
     "code": "发送验证码",
-    "codePlaceholder": "输入您收到的验证码",
-    "newPassword": "新密码",
-    "confirmPassword": "确认密码"
+    "code_placeholder": "输入您收到的验证码",
+    "new_password": "新密码",
+    "confirm_password": "确认密码"
   },
   "post": {
-    "minRead": "分钟阅读",
+    "min_read": "分钟阅读",
     "placeholder": "你有什么想法？",
-    "viewPerformance": "查看性能"
+    "view_performance": "查看性能"
   },
-  "sortMenu": {
+  "sort_menu": {
     "asc": "升序",
     "desc": "降序",
     "create": "创建日期",
@@ -174,12 +174,12 @@
   },
   "search": {
     "title": "搜索",
-    "noResults": "没有结果",
+    "no_results": "没有结果",
     "users": "用户",
     "posts": "帖子",
     "results": "结果"
   },
-  "searchBar": {
+  "search_bar": {
     "title": "搜索",
     "placeholder": "搜索"
   },
@@ -201,9 +201,9 @@
     "posts": "帖子",
     "comments": "评论",
     "points": "积分",
-    "joinDate": "加入日期",
-    "createDate": "创建日期",
-    "createTime": "创建时间",
+    "join_date": "加入日期",
+    "create_date": "创建日期",
+    "create_time": "创建时间",
     "dashboard": "仪表板",
     "role": "角色",
     "user": "用户",
@@ -212,29 +212,29 @@
     "views": "浏览量",
     "go": "转到帖子"
   },
-  "verifyUser": {
+  "verify_user": {
     "title": "验证账户",
     "placeholder": "输入您收到的验证码",
     "send": "点击发送验证码"
   },
   "flash": {
-    "changePassword": {
+    "change_password": {
       "same": "新密码不能与旧密码相同。",
       "match": "密码不匹配。",
       "success": "密码已更改。",
       "old": "旧密码错误。",
       "login": "您需要登录以更改密码。"
     },
-    "changeProfilePicture": {
+    "change_profile_picture": {
       "success": "头像已更改。"
     },
-    "changeUserName": {
+    "change_user_name": {
       "same": "这已经是您的用户名。",
       "success": "用户名已更改。",
       "taken": "此用户名已被占用。",
       "ascii": "用户名只能包含 ASCII 字符。"
     },
-    "createPost": {
+    "create_post": {
       "success": "您因创建帖子获得了 20 点积分。",
       "login": "您需要登录以创建帖子。",
       "empty": "标题或内容不能为空。"
@@ -242,7 +242,7 @@
     "dashboard": {
       "login": "您需要登录以查看您的仪表板。"
     },
-    "editPost": {
+    "edit_post": {
       "success": "帖子已编辑。",
       "login": "您需要登录以编辑帖子。",
       "empty": "标题或内容不能为空。",
@@ -251,18 +251,18 @@
     "login": {
       "success": "您已成功登录。",
       "password": "密码错误",
-      "notFound": "用户未找到"
+      "not_found": "用户未找到"
     },
     "logout": {
       "success": "您已成功登出。"
     },
-    "passwordReset": {
+    "password_reset": {
       "success": "密码已重置。您可以使用新密码登录。",
       "email": "电子邮件已发送。",
       "code": "代码已发送。",
       "same": "新密码不能与旧密码相同。",
       "match": "密码不匹配。",
-      "notFound": "用户未找到。",
+      "not_found": "用户未找到。",
       "wrong": "错误的代码。"
     },
     "delete": {
@@ -270,7 +270,7 @@
       "post": "帖子已删除。",
       "comment": "评论已删除。"
     },
-    "setLanguage": {
+    "set_language": {
       "success": "语言已更改。"
     },
     "post": {
@@ -284,63 +284,43 @@
       "password": "密码不匹配。",
       "taken": "此用户名和电子邮件已被占用。"
     },
-    "verifyUser": {
+    "verify_user": {
       "success": "您的帐户已验证。",
       "code": "代码已发送。",
-      "notFound": "用户未找到。",
+      "not_found": "用户未找到。",
       "wrong": "错误的代码。"
     },
     "error": {
-      "wrongCall": "您在服务器端发出了错误的闪存消息调用。"
+      "wrong_call": "您在服务器端发出了错误的闪存消息调用。"
     }
   },
   "roles": {
     "user": "用户",
     "admin": "管理员"
   },
-  "privacyPolicy": {
+  "privacy_policy": {
     "title": "隐私政策",
     "intro": "本隐私政策描述了Doğukan Ürker的Flask Blog（“我们”或“我们的”）如何在您使用我们的移动应用程序（“应用程序”）时收集、使用和披露您的信息。",
     "information": "信息收集和使用",
-    "informationText": "当您使用我们的应用程序时，我们会收集和记录各种类型的用户活动数据，包括但不限于：",
-    "informationUser": "用户登录数据：我们收集与用户登录活动相关的信息，以进行身份验证和安全目的。",
-    "informationPost": "帖子和评论数据：我们收集在应用程序中发布的帖子和评论的信息，以实现功能和用户参与目的。",
-    "informationGeneral": "一般用户活动：我们记录应用程序中的各种用户活动，以改进用户体验、解决技术问题并分析使用模式。",
+    "information_text": "当您使用我们的应用程序时，我们会收集和记录各种类型的用户活动数据，包括但不限于：",
+    "information_user": "用户登录数据：我们收集与用户登录活动相关的信息，以进行身份验证和安全目的。",
+    "information_post": "帖子和评论数据：我们收集在应用程序中发布的帖子和评论的信息，以实现功能和用户参与目的。",
+    "information_general": "一般用户活动：我们记录应用程序中的各种用户活动，以改进用户体验、解决技术问题并分析使用模式。",
     "cookies": "Cookies",
-    "cookiesText": "我们的应用程序使用Cookies来增强用户体验。我们使用的Cookies包括：",
-    "cookiesTheme": "用户界面主题Cookie：我们存储用户选择的用户界面主题偏好，以个性化应用程序的外观。",
-    "cookiesLanguage": "浏览器默认语言：我们存储用户的浏览器默认语言偏好，以提供本地化内容。",
-    "serviceProviders": "服务提供商",
-    "serviceProvidersText": "我们可能会雇佣第三方公司或个人来协助我们的应用程序或代表我们提供服务。这些第三方可能会访问您的信息以执行任务，如分析、托管和技术支持。但是，他们有义务不披露或用于任何其他目的。",
-    "otherLinks": "链接到其他网站",
-    "otherLinksText": "我们的应用程序可能包含指向外部网站的链接，包括X和Doğukan Ürker的个人网站。我们对这些外部网站的内容或隐私实践不负责任。我们鼓励用户在提供任何个人信息之前，查看这些网站的隐私政策。",
+    "cookies_text": "我们的应用程序使用Cookies来增强用户体验。我们使用的Cookies包括：",
+    "cookies_theme": "用户界面主题Cookie：我们存储用户选择的用户界面主题偏好，以个性化应用程序的外观。",
+    "cookies_language": "浏览器默认语言：我们存储用户的浏览器默认语言偏好，以提供本地化内容。",
+    "service_providers": "服务提供商",
+    "service_providers_text": "我们可能会雇佣第三方公司或个人来协助我们的应用程序或代表我们提供服务。这些第三方可能会访问您的信息以执行任务，如分析、托管和技术支持。但是，他们有义务不披露或用于任何其他目的。",
+    "other_links": "链接到其他网站",
+    "other_links_text": "我们的应用程序可能包含指向外部网站的链接，包括X和Doğukan Ürker的个人网站。我们对这些外部网站的内容或隐私实践不负责任。我们鼓励用户在提供任何个人信息之前，查看这些网站的隐私政策。",
     "security": "安全",
-    "securityText": "我们采取合理的预防措施来保护通过我们的应用程序收集的信息。但是，请注意，通过互联网传输或电子存储的方法不是100%安全的，我们不能保证绝对安全。",
+    "security_text": "我们采取合理的预防措施来保护通过我们的应用程序收集的信息。但是，请注意，通过互联网传输或电子存储的方法不是100%安全的，我们不能保证绝对安全。",
     "children": "儿童隐私",
-    "childrenText": "我们的应用程序不适用于13岁以下的个人使用。我们不会故意收集13岁以下儿童的个人身份信息。如果您是父母或监护人，并且您知道您的孩子向我们提供了个人信息，请与我们联系，以便我们采取必要的措施。",
+    "children_text": "我们的应用程序不适用于13岁以下的个人使用。我们不会故意收集13岁以下儿童的个人身份信息。如果您是父母或监护人，并且您知道您的孩子向我们提供了个人信息，请与我们联系，以便我们采取必要的措施。",
     "changes": "隐私政策的更改",
-    "changesText": "我们可能会不时更新我们的隐私政策。因此，建议您定期查看此页面的任何更改。我们将在此页面上发布新的隐私政策，通知您任何更改。这些更改在发布到此页面后立即生效。",
+    "changes_text": "我们可能会不时更新我们的隐私政策。因此，建议您定期查看此页面的任何更改。我们将在此页面上发布新的隐私政策，通知您任何更改。这些更改在发布到此页面后立即生效。",
     "contact": "联系我们",
-    "contactText": "如果您对我们的隐私政策有任何疑问或建议，请随时联系我们。电子邮件："
-  },
-  "analytics": {
-    "title": "分析",
-    "goToPage": "转到页面",
-    "totalVisitor": "总访问者",
-    "todaysVisitor": "今日访问者",
-    "category": "类别",
-    "onPosted": "发布于",
-    "trafficCount": "流量统计",
-    "sincePosted": "自发布以来",
-    "last1month": "最近 1 个月",
-    "last7days": "最近 7 天",
-    "last24hours": "最近 24 小时",
-    "last48hours": "最近 48 小时",
-    "traffic": "流量",
-    "visitorCounts": "访问计数",
-    "computerOS": "计算机操作系统",
-    "topCountries": "热门国家",
-    "visitor": "访客",
-    "viewAll": "查看全部"
+    "contact_text": "如果您对我们的隐私政策有任何疑问或建议，请随时联系我们。电子邮件："
   }
 }

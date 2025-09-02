@@ -10,16 +10,17 @@ purposes without permission is strictly prohibited.
 from json import load
 
 from flask import Blueprint, abort, redirect, render_template, session
+
 from settings import Settings
 from utils.log import Log
 from utils.paginate import paginate_query
 
-categoryBlueprint = Blueprint("category", __name__)
+category_blueprint = Blueprint("category", __name__)
 
 
-@categoryBlueprint.route("/category/<category>")
-@categoryBlueprint.route("/category/<category>/by=<by>/sort=<sort>")
-def category(category, by="timeStamp", sort="desc"):
+@category_blueprint.route("/category/<category>")
+@category_blueprint.route("/category/<category>/by=<by>/sort=<sort>")
+def category(category, by="time_stamp", sort="desc"):
     """
     This function handles requests for the category route.
 
@@ -53,10 +54,10 @@ def category(category, by="timeStamp", sort="desc"):
         "other",
     ]
 
-    byOptions = ["timeStamp", "title", "views", "category", "lastEditTimeStamp"]
-    sortOptions = ["asc", "desc"]
+    by_options = ["time_stamp", "title", "views", "category", "last_edit_time_stamp"]
+    sort_options = ["asc", "desc"]
 
-    if by not in byOptions or sort not in sortOptions:
+    if by not in by_options or sort not in sort_options:
         Log.warning(
             f"The provided sorting options are not valid: By: {by} Sort: {sort}"
         )
@@ -72,25 +73,25 @@ def category(category, by="timeStamp", sort="desc"):
         [category.lower()],
     )
 
-    if by == "timeStamp":
+    if by == "time_stamp":
         by = "create"
-    elif by == "lastEditTimeStamp":
+    elif by == "last_edit_time_stamp":
         by = "edit"
 
     language = session.get("language")
-    translationFile = f"./translations/{language}.json"
-    with open(translationFile, "r", encoding="utf-8") as file:
+    translation_file = f"./translations/{language}.json"
+    with open(translation_file, "r", encoding="utf-8") as file:
         translations = load(file)
 
-    sortName = translations["sortMenu"][by] + " - " + translations["sortMenu"][sort]
+    sort_name = translations["sort_menu"][by] + " - " + translations["sort_menu"][sort]
 
-    Log.info(f"Sorting posts on category/{category} page by: {sortName}")
+    Log.info(f"Sorting posts on category/{category} page by: {sort_name}")
 
     return render_template(
         "category.html",
         posts=posts,
         category=translations["categories"][category.lower()],
-        sortName=sortName,
+        sort_name=sort_name,
         source=f"/category/{category}",
         page=page,
         total_pages=total_pages,

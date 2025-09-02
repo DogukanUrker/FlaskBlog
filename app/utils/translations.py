@@ -4,7 +4,7 @@ from os.path import exists
 from utils.log import Log
 
 
-def loadTranslations(language):
+def load_translations(language):
     """
     Load the translations for the specified language.
 
@@ -15,9 +15,9 @@ def loadTranslations(language):
         dict: A dictionary containing the translations for the specified language.
     """
 
-    translationFile = f"./translations/{language}.json"
-    if exists(translationFile):
-        with open(translationFile, "r", encoding="utf-8") as file:
+    file = f"./translations/{language}.json"
+    if exists(file):
+        with open(file, "r", encoding="utf-8") as file:
             translations = load(file)
             Log.info(f"Loaded translations for language: {language}")
             return translations

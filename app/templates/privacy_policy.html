@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title>{{translations.privacy_policy.title}}</title>
+{% endblock head %}
+{% block body %}
+<div class="w-10/12 md:w-4/6 lg:w-6/12 xl:w-5/12 mx-auto mt-16">
+    <h1 class="text-3xl font-bold mb-4">{{translations.privacy_policy.title}}</h1>
+    <p class="mb-4">{{translations.privacy_policy.intro}}</p>
+
+    <h2 class="text-2xl font-semibold mb-2">{{translations.privacy_policy.information}}</h2>
+    <p class="mb-4">{{translations.privacy_policy.information_text}}</p>
+    <ul class="list-disc ml-8 mb-4">
+        <li>{{translations.privacy_policy.information_user}}</li>
+        <li>{{translations.privacy_policy.information_post}}</li>
+        <li>{{translations.privacy_policy.information_general}}</li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold mb-2">{{translations.privacy_policy.cookies}}</h2>
+    <p class="mb-4">O{{translations.privacy_policy.cookies_text}}</p>
+    <ul class="list-disc ml-8 mb-4">
+        <li>{{translations.privacy_policy.cookies_theme}}</li>
+        <li>{{translations.privacy_policy.cookies_language}}</li>
+    </ul>
+    </ul>
+
+    <h2 class="text-2xl font-semibold mb-2">{{translations.privacy_policy.service_providers}}</h2>
+    <p class="mb-4">{{translations.privacy_policy.service_providers_text}}</p>
+
+    <h2 class="text-2xl font-semibold mb-2">{{translations.privacy_policy.other_links}}</h2>
+    <p class="mb-4">{{translations.privacy_policy.other_links_text}}</p>
+
+    <h2 class="text-2xl font-semibold mb-2">{{translations.privacy_policy.security}}</h2>
+    <p class="mb-4">{{translations.privacy_policy.security_text}}</p>
+
+    <h2 class="text-2xl font-semibold mb-2">{{translations.privacy_policy.children}}</h2>
+    <p class="mb-4">{{translations.privacy_policy.children_text}}</p>
+
+    <h2 class="text-2xl font-semibold mb-2">{{translations.privacy_policy.changes}}</h2>
+    <p class="mb-4">{{translations.privacy_policy.changes_text}}</p>
+
+    <h2 class="text-2xl font-semibold mb-2">{{translations.privacy_policy.contact}}</h2>
+    <p>{{translations.privacy_policy.contact_text}}
+        <a href="mailto:dogukanurker@icloud.com"
+            class="text-rose-500 hover:text-rose-600 duration-150">dogukanurker@icloud.com</a>.
+    </p>
+</div>
+
+<div class="text-center mt-8 mb-2 text-xs font-medium">
+    <div class="mb-1">
+        <a href="/about" class="text-rose-500 hover:text-rose-600 duration-150" target="_blank">{{
+            translations.about.title }}</a>
+    </div>
+    {{ translations.about.credits | safe }}
+</div>
+{% endblock body %}

@@ -5,39 +5,40 @@ This module contains the route for viewing user profiles.
 import sqlite3
 
 from flask import Blueprint, render_template
+
 from settings import Settings
 from utils.log import Log
 
-userBlueprint = Blueprint("user", __name__)
+user_blueprint = Blueprint("user", __name__)
 
 
-@userBlueprint.route("/user/<userName>")
-def user(userName):
+@user_blueprint.route("/user/<username>")
+def user(username):
     """
     This function is used to render the user page.
 
-    :param userName: The username of the user.
-    :type userName: str
+    :param username: The username of the user.
+    :type username: str
     :return: The rendered user page.
     :rtype: flask.Response
     """
-    userName = userName.lower()
+    username = username.lower()
     Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
     connection = sqlite3.connect(Settings.DB_USERS_ROOT)
     connection.set_trace_callback(Log.database)
     cursor = connection.cursor()
-    cursor.execute("select userName from users")
+    cursor.execute("select username from users")
     users = cursor.fetchall()
     """
     This if statement checks if the given username exists in the database.
     If the username exists, the function fetches the user details and the number of views their posts have received.
     It also fetches all the posts made by the user and all the comments made by the user.
     """
-    if userName in str(users).lower():
-        Log.success(f'User: "{userName}" found')
+    if username in str(users).lower():
+        Log.success(f'User: "{username}" found')
         cursor.execute(
-            """select * from users where lower(userName) = ? """,
-            [(userName)],
+            """select * from users where lower(username) = ? """,
+            [(username)],
         )
         user = cursor.fetchone()
         Log.database(f"Connecting to '{Settings.DB_POSTS_ROOT}' database")
@@ -45,15 +46,15 @@ def user(userName):
         connection.set_trace_callback(Log.database)
         cursor = connection.cursor()
         cursor.execute(
-            """select views from posts where author = ? order by timeStamp desc""",
+            """select views from posts where author = ? order by time_stamp desc""",
             [(user[1])],
         )
-        viewsData = cursor.fetchall()
+        views_data = cursor.fetchall()
         views = 0
-        for view in viewsData:
+        for view in views_data:
             views += int(view[0])
         cursor.execute(
-            """select * from posts where author = ? order by timeStamp desc""",
+            """select * from posts where author = ? order by time_stamp desc""",
             [(user[1])],
         )
         posts = cursor.fetchall()
@@ -62,32 +63,32 @@ def user(userName):
         cursor = connection.cursor()
         cursor.execute(
             """select * from comments where lower(user) = ? """,
-            [(userName.lower())],
+            [(username.lower())],
         )
         comments = cursor.fetchall()
         """
         This if statement checks if the user has any posts or comments.
-        If the user has any posts, the variable showPosts is set to True.
-        If the user has any comments, the variable showComments is set to True.
+        If the user has any posts, the variable show_posts is set to True.
+        If the user has any comments, the variable show_comments is set to True.
         """
         if posts == []:
-            showPosts = False
+            show_posts = False
         else:
-            showPosts = True
+            show_posts = True
         if comments == []:
-            showComments = False
+            show_comments = False
         else:
-            showComments = True
-        Log.success(f'User: "{userName}"s data loaded')
+            show_comments = True
+        Log.success(f'User: "{username}"s data loaded')
         return render_template(
             "user.html",
             user=user,
             views=views,
             posts=posts,
             comments=comments,
-            showPosts=showPosts,
-            showComments=showComments,
+            show_posts=show_posts,
+            show_comments=show_comments,
         )
     else:
-        Log.error(f'User: "{userName}" not found')
-        return render_template("notFound.html")
+        Log.error(f'User: "{username}" not found')
+        return render_template("not_found.html")

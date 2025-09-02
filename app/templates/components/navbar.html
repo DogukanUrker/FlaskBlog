@@ -11,9 +11,9 @@
     <div class="hidden md:block">
         <input
             type="text"
-            id="searchInput"
+            id="search-input"
             autocomplete="off"
-            placeholder="{{translations.searchBar.placeholder}}"
+            placeholder="{{translations.search_bar.placeholder}}"
             class="input input-bordered w-64"
         />
         <button onclick="search()" class="btn btn-neutral">
@@ -23,20 +23,20 @@
 
     <div class="flex items-center justify-center gap-4 font-medium select-none">
         <div class="block md:hidden">
-            <a href="/searchbar"><i class="ti ti-search text-2xl"></i></a>
+            <a href="/search-bar"><i class="ti ti-search text-2xl"></i></a>
         </div>
 
-        {% if session["userName"] %}
-        <a href="/user/{{ session['userName'].lower() }}">
+        {% if session["username"] %}
+        <a href="/user/{{ session['username'].lower() }}">
             <div>
                 <img
                     class="block w-7 h-7"
-                    src="{{ getProfilePicture(session['userName']) }}"
+                    src="{{ get_profile_picture(session['username']) }}"
                 />
             </div>
         </a>
 
-        <a href="/createpost" class="text-center">
+        <a href="/create-post" class="text-center">
             <button class="hover:text-rose-500 duration-150">
                 <i class="ti ti-pencil-plus text-2xl"></i>
             </button>
@@ -50,25 +50,25 @@
             <i class="ti ti-logout text-2xl"></i>
         </a>
 
-        {% elif hideLogin %} {% if isRegistration %}
+        {% elif hide_login %} {% if is_registration %}
         <a href="/signup">
             <button class="hover:text-rose-500 duration-150">
                 <i class="ti ti-user-plus text-2xl"></i>
             </button>
         </a>
-        {% endif %} {% elif hideSignUp %} {% if isLogin %}
+        {% endif %} {% elif hide_sign_up %} {% if is_login %}
         <a href="/login/redirect=&">
             <button class="hover:text-rose-500 duration-150">
                 <i class="ti ti-login text-2xl"></i>
             </button>
         </a>
-        {% endif %} {% else %} {% if isLogin %}
+        {% endif %} {% else %} {% if is_login %}
         <a href="/login/redirect=&">
             <button class="hover:text-rose-500 duration-150">
                 <i class="ti ti-login text-2xl"></i>
             </button>
         </a>
-        {% endif %} {% if isRegistration %}
+        {% endif %} {% if is_registration %}
         <a href="/signup">
             <button class="hover:text-rose-500 duration-150">
                 <i class="ti ti-user-plus text-2xl"></i>

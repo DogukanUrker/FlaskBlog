@@ -1,5 +1,8 @@
 <!doctype html>
-<html lang="{{ session.get('language', 'en') }}" data-theme="{{ session.get('theme', 'winter') }}">
+<html
+    lang="{{ session.get('language', 'en') }}"
+    data-theme="{{ session.get('theme', 'winter') }}"
+>
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -65,7 +68,7 @@
     </head>
 
     <body id="body">
-        {% include 'components/changeTheme.html'%} {% include
+        {% include 'components/change_theme.html'%} {% include
         'components/navbar.html'%} {% from "components/flash.html" import flash
         %} {{ flash() }} {% block body %} {% endblock body %}
 
@@ -74,8 +77,8 @@
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"
         ></script>
-        
-        <script src="{{ url_for('static', filename='js/timeStamp.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='js/time_stamp.js') }}"></script>
         <link
             rel="stylesheet"
             href="{{ url_for('static', filename='css/recaptcha.css') }}"

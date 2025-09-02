@@ -19,12 +19,13 @@ class Settings:
         LOG_IN (bool): Toggle user login feature.
         REGISTRATION (bool): Toggle user registration feature.
         LANGUAGES (list): Supported languages for the application.
-        ANALYTICS (bool): Enable or disable analytics feature for posts.
         TAMGA_LOGGER (bool): Toggle custom logging feature.
         WERKZEUG_LOGGER (bool): Toggle werkzeug logging feature.
         LOG_TO_FILE (bool): Toggle logging to file feature.
+        LOG_TO_JSON (bool): Toggle logging to JSON feature.
         LOG_FOLDER_ROOT (str): Root path of the log folder.
         LOG_FILE_ROOT (str): Root path of the log file.
+        LOG_JSON_ROOT (str): Root path of the log JSON file.
         BREAKER_TEXT (str): Separator text used in log files.
         APP_SECRET_KEY (str): Secret key for Flask sessions.
         SESSION_PERMANENT (bool): Toggle permanent sessions for the Flask application.
@@ -32,7 +33,7 @@ class Settings:
         DB_USERS_ROOT (str): Root path of the users database.
         DB_POSTS_ROOT (str): Root path of the posts database.
         DB_COMMENTS_ROOT (str): Root path of the comments database.
-        DB_ANALYTICS_ROOT (str): Root path of the analytics database.
+
         SMTP_SERVER (str): SMTP server address.
         SMTP_PORT (int): SMTP server port.
         SMTP_MAIL (str): SMTP mail address.
@@ -50,7 +51,7 @@ class Settings:
     """
 
     # Application Configuration
-    APP_NAME = "flaskBlog"
+    APP_NAME = "FlaskBlog"
     APP_VERSION = "3.0.0dev"
     APP_ROOT_PATH = "."
     APP_HOST = "localhost"
@@ -60,7 +61,6 @@ class Settings:
     # Feature Toggles
     LOG_IN = True
     REGISTRATION = True
-    ANALYTICS = True
 
     # Internationalization
     LANGUAGES = ["en", "tr", "es", "de", "zh", "fr", "uk", "ru", "pt", "ja", "pl", "hi"]
@@ -108,8 +108,10 @@ class Settings:
     TAMGA_LOGGER = True
     WERKZEUG_LOGGER = False
     LOG_TO_FILE = True
+    LOG_TO_JSON = True
     LOG_FOLDER_ROOT = "log/"
     LOG_FILE_ROOT = LOG_FOLDER_ROOT + "log.log"
+    LOG_JSON_ROOT = LOG_FOLDER_ROOT + "log.json"
     BREAKER_TEXT = "\n"
 
     # Session Configuration
@@ -121,13 +123,12 @@ class Settings:
     DB_USERS_ROOT = DB_FOLDER_ROOT + "users.db"
     DB_POSTS_ROOT = DB_FOLDER_ROOT + "posts.db"
     DB_COMMENTS_ROOT = DB_FOLDER_ROOT + "comments.db"
-    DB_ANALYTICS_ROOT = DB_FOLDER_ROOT + "analytics.db"
 
     # SMTP Mail Configuration
     SMTP_SERVER = "smtp.gmail.com"
     SMTP_PORT = 587
     SMTP_MAIL = "flaskblogdogukanurker@gmail.com"
-    SMTP_PASSWORD = "lsooxsmnsfnhnixy"
+    SMTP_PASSWORD = "lsooxsmnsfnhnixy"  # replace this with your actual password
 
     # Default Admin Account Configuration
     DEFAULT_ADMIN = True

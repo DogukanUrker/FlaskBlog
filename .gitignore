@@ -161,10 +161,11 @@ cython_debug/
 #.idea/
 
 # App's default log files
-*.log
+log/
 
 # PyCharm files
 /.idea
+
 #vsocde files
 /.vscode
 
