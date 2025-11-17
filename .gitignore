@@ -173,3 +173,9 @@ cython_debug/
 
 # Secret key file
 .secret_key
+
+# Application database files
+app/db/*.db
+
+# Backup files
+*.backup
