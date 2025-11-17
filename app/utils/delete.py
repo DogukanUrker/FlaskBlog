@@ -41,7 +41,16 @@ class Delete:
 
         Returns:
         None
+
+        Security:
+        - Verifies user is logged in
+        - Verifies user owns the post or is admin
         """
+        # Authorization check
+        if "userName" not in session:
+            Log.error("Unauthorized post delete attempt - no session")
+            return False
+
         Log.database(f"Connecting to '{Settings.DB_POSTS_ROOT}' database")
         connection = sqlite3.connect(Settings.DB_POSTS_ROOT)
         connection.set_trace_callback(Log.database)
@@ -50,6 +59,24 @@ class Delete:
             """select author from posts where id = ? """,
             [(postID)],
         )
+        post_author = cursor.fetchone()
+
+        if not post_author:
+            Log.error(f"Post {postID} not found for deletion")
+            connection.close()
+            return False
+
+        # Check if user owns the post or is admin
+        if (
+            post_author[0] != session["userName"]
+            and session.get("userRole") != "admin"
+        ):
+            Log.error(
+                f"Unauthorized post delete attempt by {session['userName']} for post owned by {post_author[0]}"
+            )
+            connection.close()
+            return False
+
         cursor.execute(
             """delete from posts where id = ? """,
             [(postID)],
@@ -147,7 +174,16 @@ class Delete:
 
         Returns:
         None
+
+        Security:
+        - Verifies user is logged in
+        - Verifies user owns the comment or is admin
         """
+        # Authorization check
+        if "userName" not in session:
+            Log.error("Unauthorized comment delete attempt - no session")
+            return False
+
         connection = sqlite3.connect(Settings.DB_COMMENTS_ROOT)
         connection.set_trace_callback(Log.database)
         cursor = connection.cursor()
@@ -155,6 +191,24 @@ class Delete:
             """select user from comments where id = ? """,
             [(commentID)],
         )
+        comment_owner = cursor.fetchone()
+
+        if not comment_owner:
+            Log.error(f"Comment {commentID} not found for deletion")
+            connection.close()
+            return False
+
+        # Check if user owns the comment or is admin
+        if (
+            comment_owner[0] != session["userName"]
+            and session.get("userRole") != "admin"
+        ):
+            Log.error(
+                f"Unauthorized comment delete attempt by {session['userName']} for comment owned by {comment_owner[0]}"
+            )
+            connection.close()
+            return False
+
         cursor.execute(
             """delete from comments where id = ? """,
             [(commentID)],

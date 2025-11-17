@@ -148,6 +148,11 @@ app.jinja_options["autoescape"] = True
 
 app.secret_key = Settings.APP_SECRET_KEY
 app.config["SESSION_PERMANENT"] = Settings.SESSION_PERMANENT
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(seconds=Settings.PERMANENT_SESSION_LIFETIME)
+app.config["SESSION_COOKIE_SECURE"] = Settings.SESSION_COOKIE_SECURE
+app.config["SESSION_COOKIE_HTTPONLY"] = Settings.SESSION_COOKIE_HTTPONLY
+app.config["SESSION_COOKIE_SAMESITE"] = Settings.SESSION_COOKIE_SAMESITE
+app.config["MAX_CONTENT_LENGTH"] = Settings.MAX_UPLOAD_SIZE
 
 
 csrf = CSRFProtect(app)
@@ -249,13 +254,33 @@ def csrfError(e):
 @app.after_request
 def afterRequest(response):
     response = afterRequestLogger(response)
+
+    # Content Security Policy
     response.headers["Content-Security-Policy"] = (
         "default-src 'self'; "
-        "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://code.jquery.com https://cdn.tailwindcss.com; "
+        "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://code.jquery.com https://cdn.tailwindcss.com https://www.google.com https://www.gstatic.com; "
         "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.tailwindcss.com; "
         "img-src 'self' data: https: blob:; "
-        "font-src 'self' https://cdn.jsdelivr.net;"
+        "font-src 'self' https://cdn.jsdelivr.net; "
+        "connect-src 'self'; "
+        "frame-ancestors 'none'; "
+        "base-uri 'self'; "
+        "form-action 'self';"
     )
+
+    # Additional security headers
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+
+    # HSTS (only if using HTTPS)
+    if Settings.SESSION_COOKIE_SECURE:
+        response.headers["Strict-Transport-Security"] = (
+            "max-age=31536000; includeSubDomains"
+        )
+
     return response
 
 

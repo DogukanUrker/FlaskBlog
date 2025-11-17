@@ -10,6 +10,7 @@ from flask import (
 from settings import Settings
 from utils.addPoints import addPoints
 from utils.flashMessage import flashMessage
+from utils.fileUploadValidator import FileUploadValidator
 from utils.forms.CreatePostForm import CreatePostForm
 from utils.generateUrlIdFromPost import generateurlID
 from utils.log import Log
@@ -41,7 +42,7 @@ def createPost():
             postTags = request.form["postTags"]
             postAbstract = request.form["postAbstract"]
             postContent = request.form["postContent"]
-            postBanner = request.files["postBanner"].read()
+            postBannerFile = request.files.get("postBanner")
             postCategory = request.form["postCategory"]
 
             if postContent == "" or postAbstract == "":
@@ -55,6 +56,21 @@ def createPost():
                     f'User: "{session["userName"]}" tried to create a post with empty content',
                 )
             else:
+                # Validate file upload
+                is_valid, error_msg, postBanner = FileUploadValidator.validate_file(
+                    postBannerFile
+                )
+                if not is_valid:
+                    flashMessage(
+                        page="createPost",
+                        message=error_msg or "Invalid file upload",
+                        category="error",
+                        language=session["language"],
+                    )
+                    return render_template(
+                        "createPost.html",
+                        form=form,
+                    )
                 Log.database(f"Connecting to '{Settings.DB_POSTS_ROOT}' database")
                 connection = sqlite3.connect(Settings.DB_POSTS_ROOT)
                 connection.set_trace_callback(Log.database)
