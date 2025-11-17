@@ -8,6 +8,7 @@ from flask import (
     session,
 )
 from settings import Settings
+from utils.fileUploadValidator import FileUploadValidator
 from utils.flashMessage import flashMessage
 from utils.forms.CreatePostForm import CreatePostForm
 from utils.log import Log
@@ -69,7 +70,7 @@ def editPost(urlID):
                     postContent = request.form["postContent"]
                     postAbstract = request.form["postAbstract"]
                     postCategory = request.form["postCategory"]
-                    postBanner = request.files["postBanner"].read()
+                    postBannerFile = request.files.get("postBanner")
 
                     if postContent == "" or postAbstract == "":
                         flashMessage(
@@ -82,6 +83,25 @@ def editPost(urlID):
                             f'User: "{session["userName"]}" tried to edit a post with empty content',
                         )
                     else:
+                        # Validate file upload if a new file is provided
+                        is_valid, error_msg, postBanner = FileUploadValidator.validate_file(
+                            postBannerFile
+                        )
+                        if not is_valid:
+                            flashMessage(
+                                page="editPost",
+                                message=error_msg or "Invalid file upload",
+                                category="error",
+                                language=session["language"],
+                            )
+                            return render_template(
+                                "/editPost.html",
+                                id=post[0],
+                                title=post[1],
+                                tags=post[2],
+                                content=post[3],
+                                form=form,
+                            )
                         connection = sqlite3.connect(Settings.DB_POSTS_ROOT)
                         connection.set_trace_callback(Log.database)
                         cursor = connection.cursor()

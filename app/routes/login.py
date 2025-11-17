@@ -15,6 +15,8 @@ from utils.addPoints import addPoints
 from utils.flashMessage import flashMessage
 from utils.forms.LoginForm import LoginForm
 from utils.log import Log
+from utils.rateLimiter import RateLimiter
+from utils.redirectValidator import RedirectValidator
 
 loginBlueprint = Blueprint("login", __name__)
 
@@ -33,12 +35,13 @@ def login(direct):
     Raises:
         401: If the login is unsuccessful.
     """
-    direct = direct.replace("&", "/")
+    # Validate redirect URL to prevent open redirect attacks
+    safe_redirect = RedirectValidator.safe_redirect_path(direct)
     if Settings.LOG_IN:
         if "userName" in session:
             Log.error(f'User: "{session["userName"]}" already logged in')
             return (
-                redirect(direct),
+                redirect(safe_redirect),
                 301,
             )
         else:
@@ -47,6 +50,26 @@ def login(direct):
                 userName = request.form["userName"]
                 password = request.form["password"]
                 userName = userName.replace(" ", "")
+
+                # Check rate limiting
+                is_allowed, retry_after, rate_limit_msg = RateLimiter.check_rate_limit(
+                    userName
+                )
+                if not is_allowed:
+                    flashMessage(
+                        page="login",
+                        message=rate_limit_msg,
+                        category="error",
+                        language=session["language"],
+                    )
+                    return render_template(
+                        "login.html",
+                        form=form,
+                        hideLogin=True,
+                        siteKey=Settings.RECAPTCHA_SITE_KEY,
+                        recaptcha=Settings.RECAPTCHA,
+                    )
+
                 Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
                 connection = sqlite3.connect(Settings.DB_USERS_ROOT)
                 connection.set_trace_callback(Log.database)
@@ -56,16 +79,28 @@ def login(direct):
                     [(userName.lower())],
                 )
                 user = cursor.fetchone()
+
+                # Use generic error message to prevent username enumeration
+                login_failed = False
                 if not user:
                     Log.error(f'User: "{userName}" not found')
+                    login_failed = True
+                elif not encryption.verify(password, user[3]):
+                    Log.error(f'Wrong password for user: "{userName}"')
+                    login_failed = True
+
+                if login_failed:
+                    # Record failed attempt
+                    RateLimiter.record_attempt(userName, success=False)
                     flashMessage(
                         page="login",
-                        message="notFound",
+                        message="Invalid username or password",
                         category="error",
                         language=session["language"],
                     )
                 else:
-                    if encryption.verify(password, user[3]):
+                    # Password is correct
+                    if user:
                         if Settings.RECAPTCHA:
                             secretResponse = request.form["g-recaptcha-response"]
                             verifyResponse = requestsPost(
@@ -84,6 +119,9 @@ def login(direct):
                                 f"Login reCAPTCHA | verification: {verifyResponse['success']} | score: {verifyResponse.get('score')}",
                             )
 
+                        # Record successful login
+                        RateLimiter.record_attempt(userName, success=True)
+
                         session["userName"] = user[1]
                         session["userRole"] = user[5]
                         addPoints(1, session["userName"])
@@ -96,17 +134,8 @@ def login(direct):
                         )
 
                         return (
-                            redirect(direct),
+                            redirect(safe_redirect),
                             301,
-                        )
-
-                    else:
-                        Log.error("Wrong password")
-                        flashMessage(
-                            page="login",
-                            message="password",
-                            category="error",
-                            language=session["language"],
                         )
 
             return render_template(
@@ -118,6 +147,6 @@ def login(direct):
             )
     else:
         return (
-            redirect(direct),
+            redirect(safe_redirect),
             301,
         )

@@ -2,7 +2,9 @@
 This module contains all the general application settings.
 """
 
+import os
 import secrets
+from pathlib import Path
 
 
 class Settings:
@@ -53,9 +55,9 @@ class Settings:
     APP_NAME = "flaskBlog"
     APP_VERSION = "3.0.0dev"
     APP_ROOT_PATH = "."
-    APP_HOST = "localhost"
-    APP_PORT = 1283
-    DEBUG_MODE = True
+    APP_HOST = os.getenv("APP_HOST", "localhost")
+    APP_PORT = int(os.getenv("APP_PORT", "1283"))
+    DEBUG_MODE = os.getenv("DEBUG_MODE", "False").lower() == "true"
 
     # Feature Toggles
     LOG_IN = True
@@ -113,21 +115,35 @@ class Settings:
     BREAKER_TEXT = "\n"
 
     # Session Configuration
-    APP_SECRET_KEY = secrets.token_urlsafe(32)
+    # Load secret key from environment or generate and save once
+    _secret_key_file = Path(".secret_key")
+    if os.getenv("APP_SECRET_KEY"):
+        APP_SECRET_KEY = os.getenv("APP_SECRET_KEY")
+    elif _secret_key_file.exists():
+        APP_SECRET_KEY = _secret_key_file.read_text().strip()
+    else:
+        APP_SECRET_KEY = secrets.token_urlsafe(32)
+        _secret_key_file.write_text(APP_SECRET_KEY)
+        _secret_key_file.chmod(0o600)
+
     SESSION_PERMANENT = True
+    SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", "False").lower() == "true"
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = "Lax"
+    PERMANENT_SESSION_LIFETIME = 3600  # 1 hour in seconds
 
     # Database Configuration
-    DB_FOLDER_ROOT = "db/"
+    DB_FOLDER_ROOT = os.getenv("DB_FOLDER_ROOT", "db/")
     DB_USERS_ROOT = DB_FOLDER_ROOT + "users.db"
     DB_POSTS_ROOT = DB_FOLDER_ROOT + "posts.db"
     DB_COMMENTS_ROOT = DB_FOLDER_ROOT + "comments.db"
     DB_ANALYTICS_ROOT = DB_FOLDER_ROOT + "analytics.db"
 
     # SMTP Mail Configuration
-    SMTP_SERVER = "smtp.gmail.com"
-    SMTP_PORT = 587
-    SMTP_MAIL = "flaskblogdogukanurker@gmail.com"
-    SMTP_PASSWORD = "lsooxsmnsfnhnixy"
+    SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
+    SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+    SMTP_MAIL = os.getenv("SMTP_MAIL", "")
+    SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 
     # Default Admin Account Configuration
     DEFAULT_ADMIN = True
@@ -138,7 +154,18 @@ class Settings:
     DEFAULT_ADMIN_PROFILE_PICTURE = f"https://api.dicebear.com/7.x/identicon/svg?seed={DEFAULT_ADMIN_USERNAME}&radius=10"
 
     # reCAPTCHA Configuration
-    RECAPTCHA = False
-    RECAPTCHA_SITE_KEY = ""
-    RECAPTCHA_SECRET_KEY = ""
+    RECAPTCHA = os.getenv("RECAPTCHA", "False").lower() == "true"
+    RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY", "")
+    RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY", "")
     RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify"
+
+    # Upload Security Configuration
+    MAX_UPLOAD_SIZE = int(os.getenv("MAX_UPLOAD_SIZE", "5242880"))  # 5MB default
+    ALLOWED_UPLOAD_EXTENSIONS = set(
+        os.getenv("ALLOWED_UPLOAD_EXTENSIONS", "jpg,jpeg,png,webp").split(",")
+    )
+
+    # Security Configuration
+    RATE_LIMIT_ENABLED = os.getenv("RATE_LIMIT_ENABLED", "True").lower() == "true"
+    MAX_LOGIN_ATTEMPTS = int(os.getenv("MAX_LOGIN_ATTEMPTS", "5"))
+    LOCKOUT_DURATION = int(os.getenv("LOCKOUT_DURATION", "900"))  # 15 minutes
