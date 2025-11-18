@@ -16,6 +16,8 @@ services:
 
     # Environment variables for development
     environment:
+      - APP_HOST=0.0.0.0
+      - APP_PORT=1283
       - APP_SECRET_KEY=dev-secret-key-not-for-production
       - SMTP_PASSWORD=${SMTP_PASSWORD}
       - SMTP_MAIL=${SMTP_MAIL}

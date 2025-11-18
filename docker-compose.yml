@@ -15,6 +15,8 @@ services:
 
     # Environment variables
     environment:
+      - APP_HOST=0.0.0.0
+      - APP_PORT=1283
       - APP_SECRET_KEY=${APP_SECRET_KEY:-change-this-secret-key-in-production}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
       - SMTP_MAIL=${SMTP_MAIL}

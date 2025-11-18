@@ -32,7 +32,9 @@ FROM python:3.11-slim
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    APP_ENV=production
+    APP_ENV=production \
+    APP_HOST=0.0.0.0 \
+    APP_PORT=1283
 
 # Install runtime dependencies only
 RUN apt-get update && apt-get install -y \
