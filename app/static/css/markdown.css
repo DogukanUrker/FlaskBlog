@@ -2,7 +2,7 @@
 .markdown-content {
     font-family: system-ui, -apple-system, sans-serif;
     line-height: 1.7;
-    color: hsl(var(--bc));
+    color: hsl(var(--bc)) !important;
 }
 
 /* Headings */
@@ -55,13 +55,13 @@
 /* Paragraphs */
 .markdown-content p {
     margin: 1rem 0;
-    color: hsl(var(--bc));
+    color: hsl(var(--bc)) !important;
 }
 
 /* Text formatting */
 .markdown-content strong {
     font-weight: 700;
-    color: hsl(var(--bc));
+    color: hsl(var(--bc)) !important;
 }
 
 .markdown-content em {
@@ -78,19 +78,19 @@
 .markdown-content ul {
     margin: 1rem 0;
     padding-left: 1.5rem;
-    color: hsl(var(--bc));
+    color: hsl(var(--bc)) !important;
 }
 
 .markdown-content ol {
     margin: 1rem 0;
     padding-left: 1.5rem;
-    color: hsl(var(--bc));
+    color: hsl(var(--bc)) !important;
 }
 
 .markdown-content li {
     margin: 0.5rem 0;
     line-height: 1.6;
-    color: hsl(var(--bc));
+    color: hsl(var(--bc)) !important;
 }
 
 .markdown-content ul li::marker {
@@ -186,7 +186,7 @@
     padding: 0.75rem 1rem;
     border-bottom: 1px solid hsl(var(--b3));
     background: hsl(var(--b1));
-    color: hsl(var(--bc));
+    color: hsl(var(--bc)) !important;
 }
 
 .markdown-content tr:nth-child(even) td {
@@ -250,15 +250,20 @@
 
 /* Additional text elements */
 .markdown-content div {
-    color: hsl(var(--bc));
+    color: hsl(var(--bc)) !important;
 }
 
 .markdown-content span {
-    color: inherit;
+    color: inherit !important;
 }
 
 /* Ensure plain text nodes have proper color in all themes */
 .markdown-content,
-.markdown-content > * {
-    color: hsl(var(--bc));
+.markdown-content > *,
+.markdown-content p,
+.markdown-content div,
+.markdown-content li,
+.markdown-content td,
+.markdown-content span {
+    color: hsl(var(--bc)) !important;
 }
