@@ -2,6 +2,9 @@
 .markdown-content {
     font-family: system-ui, -apple-system, sans-serif;
     line-height: 1.7;
+    /* Fallback for browsers that don't support CSS variables */
+    color: #1f2937;
+    /* Theme-aware color using DaisyUI variables */
     color: hsl(var(--bc)) !important;
 }
 
@@ -258,12 +261,68 @@
 }
 
 /* Ensure plain text nodes have proper color in all themes */
+/* Force all text content to use base content color */
 .markdown-content,
-.markdown-content > *,
+.markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th) {
+    color: hsl(var(--bc)) !important;
+}
+
+/* Redundant selectors for maximum compatibility */
+.markdown-content > * {
+    color: hsl(var(--bc)) !important;
+}
+
 .markdown-content p,
 .markdown-content div,
 .markdown-content li,
 .markdown-content td,
-.markdown-content span {
+.markdown-content span,
+.markdown-content strong,
+.markdown-content em {
     color: hsl(var(--bc)) !important;
+}
+
+/* Additional ultra-specific selectors to override all possible conflicts */
+html[data-theme] .markdown-content,
+html[data-theme] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th) {
+    color: hsl(var(--bc)) !important;
+}
+
+/* Light theme specific fix */
+html[data-theme="light"] .markdown-content,
+html[data-theme="winter"] .markdown-content,
+html[data-theme="cupcake"] .markdown-content,
+html[data-theme="bumblebee"] .markdown-content,
+html[data-theme="emerald"] .markdown-content,
+html[data-theme="corporate"] .markdown-content,
+html[data-theme="retro"] .markdown-content,
+html[data-theme="garden"] .markdown-content,
+html[data-theme="lofi"] .markdown-content,
+html[data-theme="pastel"] .markdown-content,
+html[data-theme="fantasy"] .markdown-content,
+html[data-theme="wireframe"] .markdown-content,
+html[data-theme="cmyk"] .markdown-content,
+html[data-theme="autumn"] .markdown-content,
+html[data-theme="lemonade"] .markdown-content,
+html[data-theme="nord"] .markdown-content {
+    color: #1f2937 !important;
+}
+
+html[data-theme="light"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="winter"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="cupcake"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="bumblebee"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="emerald"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="corporate"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="retro"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="garden"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="lofi"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="pastel"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="fantasy"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="wireframe"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="cmyk"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="autumn"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="lemonade"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th),
+html[data-theme="nord"] .markdown-content *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(code):not(a):not(th) {
+    color: #1f2937 !important;
 }
