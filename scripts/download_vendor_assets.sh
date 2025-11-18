@@ -8,19 +8,9 @@ STATIC_DIR="/home/user/FlaskBlog/app/static/vendor"
 
 echo "Downloading vendor assets..."
 
-# Download Tailwind CSS (standalone CLI build)
-echo "Downloading Tailwind CSS..."
-curl -sL "https://unpkg.com/tailwindcss@3.4.1/dist/tailwind.min.css" \
-  -o "${STATIC_DIR}/tailwind/tailwind.min.css"
+# Note: Tailwind CSS is included in DaisyUI, no separate download needed
 
-# If the above fails, try alternative
-if [ ! -s "${STATIC_DIR}/tailwind/tailwind.min.css" ]; then
-    echo "Trying alternative Tailwind CSS source..."
-    curl -sL "https://cdn.tailwindcss.com/3.4.1/tailwind.min.css" \
-      -o "${STATIC_DIR}/tailwind/tailwind.min.css"
-fi
-
-# Download DaisyUI CSS
+# Download DaisyUI CSS (includes full Tailwind CSS utilities)
 echo "Downloading DaisyUI..."
 curl -sL "https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" \
   -o "${STATIC_DIR}/daisyui/daisyui.min.css"
