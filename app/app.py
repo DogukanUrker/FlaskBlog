@@ -27,6 +27,9 @@ from routes.adminPanelPosts import (
 from routes.adminPanelUsers import (
     adminPanelUsersBlueprint,
 )
+from routes.adminPanelSecurityAudit import (
+    adminPanelSecurityAuditBlueprint,
+)
 from routes.category import (
     categoryBlueprint,
 )
@@ -112,6 +115,7 @@ from utils.dbChecker import (
     commentsTable,
     dbFolder,
     postsTable,
+    securityAuditLogTable,
     usersTable,
 )
 from utils.errorHandlers.csrfErrorHandler import (
@@ -234,6 +238,7 @@ usersTable()
 postsTable()
 commentsTable()
 analyticsTable()
+securityAuditLogTable()
 
 
 @app.errorhandler(404)
@@ -308,6 +313,7 @@ app.register_blueprint(changePasswordBlueprint)
 app.register_blueprint(changeLanguageBlueprint)
 app.register_blueprint(adminPanelUsersBlueprint)
 app.register_blueprint(adminPanelPostsBlueprint)
+app.register_blueprint(adminPanelSecurityAuditBlueprint)
 app.register_blueprint(accountSettingsBlueprint)
 app.register_blueprint(returnPostBannerBlueprint)
 app.register_blueprint(adminPanelCommentsBlueprint)

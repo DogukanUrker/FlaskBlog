@@ -276,3 +276,53 @@ def analyticsTable():
         Log.success(
             f'Table: "postsAnalytics" created in "{Settings.DB_ANALYTICS_ROOT}"'
         )
+
+
+def securityAuditLogTable():
+    """
+    Checks if the security audit log table exists in the database, and creates it if it does not.
+
+    Returns:
+        None
+    """
+
+    Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
+
+    connection = sqlite3.connect(Settings.DB_USERS_ROOT)
+    connection.set_trace_callback(Log.database)
+    cursor = connection.cursor()
+    try:
+        cursor.execute("""select id from security_audit_log; """).fetchall()
+
+        Log.info(f'Table: "security_audit_log" found in "{Settings.DB_USERS_ROOT}"')
+
+        connection.close()
+    except Exception:
+        Log.error(
+            f'Table: "security_audit_log" not found in "{Settings.DB_USERS_ROOT}"'
+        )
+
+        securityAuditLogTable = """
+        create table if not exists security_audit_log(
+            "id"    integer not null,
+            "event_type"  text not null,
+            "userName"  text,
+            "ip_address" text,
+            "user_agent" text,
+            "path" text,
+            "method" text,
+            "status_code" integer,
+            "details" text,
+            "timeStamp" integer,
+            primary key("id" autoincrement)
+        );"""
+
+        cursor.execute(securityAuditLogTable)
+
+        connection.commit()
+
+        connection.close()
+
+        Log.success(
+            f'Table: "security_audit_log" created in "{Settings.DB_USERS_ROOT}"'
+        )
