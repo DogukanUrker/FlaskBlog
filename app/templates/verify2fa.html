@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title>{{ translations.twofa.verifyTitle }}</title>
+{% endblock head %}
+
+{% block body %}
+<div class="flex items-center justify-center min-h-screen">
+    <div class="card bg-base-100 shadow-xl w-full max-w-md">
+        <div class="card-body">
+            <h2 class="card-title text-3xl mb-4 justify-center">
+                <i class="ti ti-shield-lock"></i>
+                {{ translations.twofa.verifyTitle }}
+            </h2>
+
+            <p class="text-center mb-6">
+                {{ translations.twofa.verifyDescription }}
+                <span class="font-semibold">{{ userName }}</span>
+            </p>
+
+            <form method="POST" id="verify-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="use_backup" id="use_backup" value="false" />
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text" id="token-label">{{ translations.twofa.verificationCode }}</span>
+                    </label>
+                    <input
+                        type="text"
+                        name="token"
+                        id="token-input"
+                        placeholder="000000"
+                        pattern="[0-9]{6}"
+                        maxlength="6"
+                        required
+                        autofocus
+                        class="input input-bordered input-lg text-center text-2xl tracking-widest"
+                    />
+                    <label class="label">
+                        <span class="label-text-alt text-xs">{{ translations.twofa.codeFromApp }}</span>
+                    </label>
+                </div>
+
+                <div class="form-control mt-6">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="ti ti-login"></i>
+                        {{ translations.twofa.verify }}
+                    </button>
+                </div>
+
+                <div class="divider">{{ translations.twofa.or }}</div>
+
+                <div class="form-control">
+                    <button
+                        type="button"
+                        class="btn btn-outline btn-sm"
+                        onclick="toggleBackupMode()"
+                    >
+                        <i class="ti ti-key"></i>
+                        {{ translations.twofa.useBackupCode }}
+                    </button>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a href="/logout" class="link link-hover text-sm">
+                        {{ translations.twofa.cancel }}
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+let backupMode = false;
+
+function toggleBackupMode() {
+    backupMode = !backupMode;
+    const tokenInput = document.getElementById('token-input');
+    const tokenLabel = document.getElementById('token-label');
+    const useBackupInput = document.getElementById('use_backup');
+
+    if (backupMode) {
+        tokenInput.placeholder = '{{ translations.twofa.backupCodePlaceholder }}';
+        tokenInput.pattern = '[A-Z0-9]{4}-[A-Z0-9]{4}';
+        tokenInput.maxLength = 9;
+        tokenLabel.textContent = '{{ translations.twofa.backupCode }}';
+        useBackupInput.value = 'true';
+    } else {
+        tokenInput.placeholder = '000000';
+        tokenInput.pattern = '[0-9]{6}';
+        tokenInput.maxLength = 6;
+        tokenLabel.textContent = '{{ translations.twofa.verificationCode }}';
+        useBackupInput.value = 'false';
+    }
+
+    tokenInput.value = '';
+    tokenInput.focus();
+}
+</script>
+{% endblock body %}

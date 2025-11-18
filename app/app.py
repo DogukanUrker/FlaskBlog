@@ -48,6 +48,15 @@ from routes.changeUserName import (
 from routes.createPost import (
     createPostBlueprint,
 )
+from routes.setup2fa import (
+    setup2faBlueprint,
+)
+from routes.disable2fa import (
+    disable2faBlueprint,
+)
+from routes.verify2fa import (
+    verify2faBlueprint,
+)
 from routes.dashboard import (
     dashboardBlueprint,
 )
@@ -116,6 +125,7 @@ from utils.dbChecker import (
     dbFolder,
     postsTable,
     securityAuditLogTable,
+    twoFactorAuthFields,
     usersTable,
 )
 from utils.errorHandlers.csrfErrorHandler import (
@@ -239,6 +249,7 @@ postsTable()
 commentsTable()
 analyticsTable()
 securityAuditLogTable()
+twoFactorAuthFields()
 
 
 @app.errorhandler(404)
@@ -320,6 +331,9 @@ app.register_blueprint(adminPanelCommentsBlueprint)
 app.register_blueprint(changeProfilePictureBlueprint)
 app.register_blueprint(analyticsBlueprint)
 app.register_blueprint(returnPostAnalyticsDataBlueprint)
+app.register_blueprint(setup2faBlueprint)
+app.register_blueprint(disable2faBlueprint)
+app.register_blueprint(verify2faBlueprint)
 
 
 if __name__ == "__main__":

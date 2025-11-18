@@ -17,18 +17,22 @@ def accountSettings():
         connection.set_trace_callback(Log.database)
         cursor = connection.cursor()
         cursor.execute(
-            """select userName from users where userName = ? """,
+            """select userName, twofa_enabled from users where userName = ? """,
             [(session["userName"])],
         )
-        user = cursor.fetchall()
+        user_data = cursor.fetchone()
 
         if request.method == "POST":
-            Delete.user(user[0][0])
+            Delete.user(user_data[0])
             return redirect("/")
+
+        # Extract 2FA status (default to False if column doesn't exist)
+        twofa_enabled = user_data[1] if user_data and len(user_data) > 1 else "False"
 
         return render_template(
             "accountSettings.html",
-            user=user,
+            user=[[user_data[0]]] if user_data else [],
+            twofa_enabled=(twofa_enabled == "True"),
         )
     else:
         Log.error(

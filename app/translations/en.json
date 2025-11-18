@@ -373,5 +373,33 @@
       "method": "Method",
       "status": "Status Code"
     }
+  },
+  "twofa": {
+    "setupTitle": "Set Up Two-Factor Authentication",
+    "setupInstructions": "Follow these steps to enable two-factor authentication and secure your account.",
+    "step1Title": "Scan QR Code",
+    "step1Description": "Open your authenticator app (Google Authenticator, Authy, etc.) and scan this QR code.",
+    "step2Title": "Save Backup Codes",
+    "step2Description": "Save these backup codes in a secure location. You can use them to access your account if you lose your device.",
+    "step3Title": "Verify Setup",
+    "step3Description": "Enter the 6-digit code from your authenticator app to complete setup.",
+    "manualEntry": "Can't scan? Enter this code manually:",
+    "backupCodesWarning": "Save these codes now! They won't be shown again.",
+    "verificationCode": "Verification Code",
+    "enable": "Enable 2FA",
+    "cancel": "Cancel",
+    "codeFromApp": "Enter the 6-digit code from your authenticator app",
+    "verifyTitle": "Two-Factor Authentication",
+    "verifyDescription": "Enter your authentication code to complete login for",
+    "verify": "Verify and Login",
+    "or": "OR",
+    "useBackupCode": "Use Backup Code",
+    "backupCode": "Backup Code",
+    "backupCodePlaceholder": "XXXX-XXXX",
+    "enabled": "2FA Enabled",
+    "disable": "Disable 2FA",
+    "disableConfirm": "Are you sure you want to disable two-factor authentication? Your account will be less secure.",
+    "enterPassword": "Enter your password to confirm",
+    "setup": "Enable Two-Factor Authentication (2FA)"
   }
 }

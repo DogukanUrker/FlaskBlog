@@ -32,6 +32,38 @@
             <i class="ti ti-language mr-1 text-2xl"></i>
             {{translations.accountSettings.language}}
         </a>
+
+        <!-- Two-Factor Authentication -->
+        {% if twofa_enabled %}
+        <div class="my-4 p-4 bg-success/10 rounded-lg">
+            <div class="flex items-center justify-center mb-2">
+                <i class="ti ti-shield-check text-success mr-2 text-2xl"></i>
+                <span class="font-semibold">{{translations.twofa.enabled}}</span>
+            </div>
+            <form method="post" action="/disable-2fa" onsubmit="return confirm('{{translations.twofa.disableConfirm}}')">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="{{translations.twofa.enterPassword}}"
+                    required
+                    class="input input-bordered input-sm w-full mb-2"
+                />
+                <button type="submit" class="btn btn-error btn-sm w-full">
+                    <i class="ti ti-shield-off"></i>
+                    {{translations.twofa.disable}}
+                </button>
+            </form>
+        </div>
+        {% else %}
+        <a
+            href="/setup-2fa"
+            class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
+        >
+            <i class="ti ti-shield-lock mr-1 text-2xl"></i>
+            {{translations.twofa.setup}}
+        </a>
+        {% endif %}
     </div>
 
     <h2 class="my-4">
