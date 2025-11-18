@@ -22,6 +22,15 @@ from utils.securityAuditLogger import SecurityAuditLogger
 loginBlueprint = Blueprint("login", __name__)
 
 
+@loginBlueprint.route("/login", methods=["GET", "POST"])
+@loginBlueprint.route("/login/", methods=["GET", "POST"])
+def login_redirect():
+    """
+    Redirect /login to /login/redirect=& for compatibility.
+    """
+    return redirect("/login/redirect=&")
+
+
 @loginBlueprint.route("/login/redirect=<direct>", methods=["GET", "POST"])
 def login(direct):
     """
