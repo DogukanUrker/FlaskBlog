@@ -19,7 +19,8 @@ A modern, **security-hardened** blog application built with Flask, featuring a c
 
 - **User System** - Registration, login, profiles with custom avatars
 - **Rich Editor** - [Milkdown](https://milkdown.dev/) editor for creating beautiful posts
-- **Admin Panel** - Full control over users, posts, and comments
+- **Admin Panel** - Full control over users, posts, comments, and security audit logs
+- **Security Audit Log** - Track admin logins, user authentication, admin actions, and page access
 - **Dark/Light Themes** - Automatic theme switching
 - **Categories** - Organize posts by topics
 - **Search** - Find posts quickly
@@ -57,6 +58,16 @@ FlaskBlog includes comprehensive security protections:
   - Open redirect protection
   - Secure password hashing (SHA-512)
   - Environment-based configuration (no hardcoded secrets)
+
+- **Security Audit Logging**
+  - Comprehensive event tracking for security monitoring
+  - Admin login attempts (success and failure)
+  - User login attempts (success and failure)
+  - Admin panel actions (user deletion, role changes)
+  - Sensitive page access (admin panel, login, signup)
+  - IP address, user agent, and timestamp logging
+  - Filterable by event type (admin logins, user logins, admin actions, page access, rate limits)
+  - Admin-only access to security logs
 
 See [SECURITY.md](SECURITY.md) for complete security documentation.
 
@@ -115,6 +126,42 @@ Generate a secure secret key:
 python3 -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
 
+### Admin Panel Features
+
+The admin panel (accessible only to admin users) provides comprehensive management tools:
+
+**User Management** (`/admin/users`)
+- View all registered users
+- Delete user accounts
+- Change user roles (admin ↔ user)
+- View user statistics (points, join date, verification status)
+
+**Post Management** (`/admin/posts`)
+- View all blog posts
+- Delete posts
+- View post statistics (views, comments, categories)
+
+**Comment Management** (`/admin/comments`)
+- View all comments
+- Delete comments
+- Track comment authors and timestamps
+
+**Security Audit Log** (`/admin/security-audit`) ✨ *New*
+- Monitor all security-related events in real-time
+- Filter by event type:
+  - **Admin Logins** - Track admin authentication attempts
+  - **User Logins** - Monitor user login activity
+  - **Admin Actions** - Review user/post/comment modifications
+  - **Page Access** - View sensitive page visits
+  - **Rate Limits** - Track rate limiting events
+- View detailed information for each event:
+  - Username, IP address, user agent
+  - Request path, HTTP method, status code
+  - Timestamp (date and time)
+- Pagination support for large log files
+
+To access the admin panel, login with admin credentials and navigate to `/admin`.
+
 ## 🛠️ Tech Stack
 
 **Backend:** Flask, SQLite3, WTForms, Passlib
@@ -152,6 +199,9 @@ curl -X POST http://localhost:1283/createpost \
 - [ ] Session expires after 1 hour
 - [ ] Admin panel requires admin role
 - [ ] Users can only delete their own posts/comments
+- [ ] Security audit log records admin login events
+- [ ] Security audit log records admin actions (delete user, change role)
+- [ ] Security audit log is accessible only to admins
 
 ## 🔧 Troubleshooting
 
