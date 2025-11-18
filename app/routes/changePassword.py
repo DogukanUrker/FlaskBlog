@@ -37,6 +37,9 @@ def changePassword():
             password = request.form["password"]
             passwordConfirm = request.form["passwordConfirm"]
 
+            # Store language before potential session clear
+            user_language = session.get("language", "en")
+
             Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
 
             connection = sqlite3.connect(Settings.DB_USERS_ROOT)
@@ -56,7 +59,7 @@ def changePassword():
                         page="changePassword",
                         message="old",
                         category="error",
-                        language=session["language"],
+                        language=user_language,
                     )
                     return render_template("changePassword.html", form=form)
 
@@ -69,7 +72,7 @@ def changePassword():
                         page="changePassword",
                         message="old",
                         category="error",
-                        language=session["language"],
+                        language=user_language,
                     )
                     return render_template("changePassword.html", form=form)
 
@@ -79,7 +82,7 @@ def changePassword():
                         page="changePassword",
                         message="same",
                         category="error",
-                        language=session["language"],
+                        language=user_language,
                     )
                     return render_template("changePassword.html", form=form)
 
@@ -89,7 +92,7 @@ def changePassword():
                         page="changePassword",
                         message="match",
                         category="error",
-                        language=session["language"],
+                        language=user_language,
                     )
                     return render_template("changePassword.html", form=form)
 
@@ -111,7 +114,7 @@ def changePassword():
                     page="changePassword",
                     message="success",
                     category="success",
-                    language=session["language"],
+                    language=user_language,  # Use stored language after session.clear()
                 )
 
                 return redirect("/login/redirect=&")
@@ -132,7 +135,7 @@ def changePassword():
             page="changePassword",
             message="login",
             category="error",
-            language=session["language"],
+            language=session.get("language", "en"),
         )
 
         return redirect("/login/redirect=changepassword")
