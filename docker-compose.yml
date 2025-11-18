@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  flaskblog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: flaskblog:latest
+    container_name: flaskblog
+    restart: unless-stopped
+
+    # Port mapping
+    ports:
+      - "1283:1283"
+
+    # Environment variables
+    environment:
+      - APP_SECRET_KEY=${APP_SECRET_KEY:-change-this-secret-key-in-production}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_MAIL=${SMTP_MAIL}
+      - DEBUG_MODE=${DEBUG_MODE:-False}
+      - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE:-True}
+      - MAX_LOGIN_ATTEMPTS=${MAX_LOGIN_ATTEMPTS:-5}
+      - LOCKOUT_DURATION=${LOCKOUT_DURATION:-900}
+      - PERMANENT_SESSION_LIFETIME=${PERMANENT_SESSION_LIFETIME:-3600}
+      - MAX_UPLOAD_SIZE=${MAX_UPLOAD_SIZE:-5242880}
+      - RECAPTCHA=${RECAPTCHA:-False}
+      - RECAPTCHA_SITE_KEY=${RECAPTCHA_SITE_KEY}
+      - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}
+
+    # Environment file (optional)
+    env_file:
+      - .env
+
+    # Volumes for persistent data
+    volumes:
+      - flaskblog_db:/app/db
+      - flaskblog_logs:/app/log
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import socket; sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM); sock.settimeout(2); result = sock.connect_ex(('localhost', 1283)); sock.close(); exit(result)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+# Named volumes
+volumes:
+  flaskblog_db:
+    driver: local
+  flaskblog_logs:
+    driver: local
+
+# Network (optional)
+networks:
+  default:
+    name: flaskblog_network

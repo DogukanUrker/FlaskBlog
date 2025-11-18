@@ -99,6 +99,90 @@ uv run app.py
 
 Visit `http://localhost:1283` in your browser.
 
+### 🐳 Docker Installation (Recommended)
+
+Docker provides an isolated, consistent environment for running FlaskBlog.
+
+**Prerequisites:**
+- Docker 20.10+
+- Docker Compose 2.0+
+
+**Quick Start with Docker:**
+
+```bash
+# Clone the repository
+git clone https://github.com/DogukanUrker/flaskBlog.git
+cd flaskBlog
+
+# Configure environment
+cp .env.example .env
+# Edit .env and add your SMTP credentials and secret key
+
+# Build and run with Docker Compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+**Production Deployment:**
+
+```bash
+# Build the image
+docker-compose build
+
+# Run in production mode
+docker-compose up -d
+
+# Check container status
+docker-compose ps
+
+# Stop the container
+docker-compose down
+```
+
+**Development Mode:**
+
+```bash
+# Run with hot-reload enabled
+docker-compose -f docker-compose.dev.yml up
+
+# The source code is mounted as a volume for live changes
+```
+
+**Useful Docker Commands:**
+
+```bash
+# View application logs
+docker-compose logs -f flaskblog
+
+# Access container shell
+docker exec -it flaskblog /bin/bash
+
+# Restart the container
+docker-compose restart
+
+# Remove containers and volumes (⚠️ deletes database)
+docker-compose down -v
+
+# Backup database
+docker cp flaskblog:/app/db ./db_backup
+
+# Restore database
+docker cp ./db_backup/users.db flaskblog:/app/db/
+```
+
+**Docker Features:**
+
+✅ **Isolated environment** - No dependency conflicts
+✅ **Security** - Runs as non-root user
+✅ **Persistent data** - Database and logs stored in volumes
+✅ **Health checks** - Automatic container monitoring
+✅ **Resource limits** - CPU and memory constraints
+✅ **Easy deployment** - Single command to start
+
+Visit `http://localhost:1283` in your browser.
+
 ### Default Admin Account
 - Username: `admin`
 - Password: `admin`
@@ -259,18 +343,76 @@ This application addresses:
 
 ## 🚢 Production Deployment
 
-Before deploying to production:
+### Recommended: Docker Deployment
+
+**Docker is the recommended deployment method** for production environments:
+
+```bash
+# 1. Configure environment
+cp .env.example .env
+# Edit .env with production values
+
+# 2. Build and deploy
+docker-compose build
+docker-compose up -d
+
+# 3. Verify deployment
+docker-compose ps
+docker-compose logs -f
+```
+
+**Production Checklist:**
 
 1. ✅ Set `DEBUG_MODE=False` in `.env`
 2. ✅ Generate and set a strong `APP_SECRET_KEY`
 3. ✅ Configure SMTP credentials for email functionality
 4. ✅ Set `SESSION_COOKIE_SECURE=True` (requires HTTPS)
-5. ✅ Run `./scripts/fix_permissions.sh` to secure file permissions
-6. ✅ Configure HTTPS/TLS on your web server
-7. ✅ Enable reCAPTCHA (recommended for additional protection)
-8. ✅ Set up regular database backups
-9. ✅ Configure log rotation
-10. ✅ Change default admin password
+5. ✅ Configure HTTPS/TLS with a reverse proxy (nginx/traefik)
+6. ✅ Enable reCAPTCHA (recommended for additional protection)
+7. ✅ Set up regular database backups (see Docker backup commands above)
+8. ✅ Configure log rotation
+9. ✅ Change default admin password
+10. ✅ Set resource limits in docker-compose.yml
+
+**Reverse Proxy Setup (nginx example):**
+
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name yourdomain.com;
+
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+
+    location / {
+        proxy_pass http://localhost:1283;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+### Alternative: Manual Deployment
+
+If not using Docker:
+
+```bash
+# Install dependencies
+cd app
+uv sync
+
+# Run with production server (gunicorn)
+uv pip install gunicorn
+gunicorn -w 4 -b 0.0.0.0:1283 app:app
+```
 
 See [SECURITY.md](SECURITY.md) for the complete deployment checklist.
 
