@@ -157,15 +157,23 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('/preview/post', {
             method: 'POST',
             headers: {
-                'X-CSRFToken': csrfToken
+                'X-CSRFToken': csrfToken,
+                'X-Requested-With': 'XMLHttpRequest'
             },
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
                 // Open preview in new window
                 window.open('/preview/post', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+            } else {
+                throw new Error('Preview request failed');
             }
         })
         .catch(error => {
