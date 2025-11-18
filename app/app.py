@@ -66,6 +66,9 @@ from routes.editPost import (
 from routes.index import (
     indexBlueprint,
 )
+from routes.markdownPreview import (
+    markdownPreviewBlueprint,
+)
 from routes.login import (
     loginBlueprint,
 )
@@ -334,6 +337,7 @@ app.register_blueprint(returnPostAnalyticsDataBlueprint)
 app.register_blueprint(setup2faBlueprint)
 app.register_blueprint(disable2faBlueprint)
 app.register_blueprint(verify2faBlueprint)
+app.register_blueprint(markdownPreviewBlueprint)
 
 
 if __name__ == "__main__":

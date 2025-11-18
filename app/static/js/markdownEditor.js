@@ -1,12 +1,24 @@
-// Markdown Editor with Toolbar
+// Markdown Editor with Toolbar and Preview
 document.addEventListener('DOMContentLoaded', function() {
     const textarea = document.getElementById('markdown-editor');
     if (!textarea) return;
-    
+
     // Create editor container
     const container = document.createElement('div');
     container.className = 'markdown-editor-container';
-    
+
+    // Create tab navigation
+    const tabNav = document.createElement('div');
+    tabNav.className = 'editor-tabs';
+    tabNav.innerHTML = `
+        <button type="button" class="tab-btn active" data-tab="write">
+            <i class="ti ti-pencil"></i> Write
+        </button>
+        <button type="button" class="tab-btn" data-tab="preview">
+            <i class="ti ti-eye"></i> Preview
+        </button>
+    `;
+
     // Create toolbar
     const toolbar = document.createElement('div');
     toolbar.className = 'editor-toolbar';
@@ -58,17 +70,91 @@ document.addEventListener('DOMContentLoaded', function() {
             ───
         </button>
     `;
+
+    // Create preview container
+    const previewContainer = document.createElement('div');
+    previewContainer.className = 'editor-preview markdown-content';
+    previewContainer.style.display = 'none';
+    previewContainer.innerHTML = '<div class="preview-placeholder">Nothing to preview. Start writing to see the preview.</div>';
     
     // Create status bar
     const statusBar = document.createElement('div');
     statusBar.className = 'editor-status';
     statusBar.innerHTML = '<span id="char-count">0 characters</span><span>Markdown supported</span>';
-    
+
     // Insert toolbar before textarea
     textarea.parentNode.insertBefore(container, textarea);
+    container.appendChild(tabNav);
     container.appendChild(toolbar);
     container.appendChild(textarea);
+    container.appendChild(previewContainer);
     container.appendChild(statusBar);
+
+    // Tab switching functionality
+    const tabButtons = tabNav.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tab = this.getAttribute('data-tab');
+
+            // Update active tab button
+            tabButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            if (tab === 'write') {
+                // Show write mode
+                toolbar.style.display = 'flex';
+                textarea.style.display = 'block';
+                previewContainer.style.display = 'none';
+            } else if (tab === 'preview') {
+                // Show preview mode
+                toolbar.style.display = 'none';
+                textarea.style.display = 'none';
+                previewContainer.style.display = 'block';
+
+                // Render preview
+                updatePreview();
+            }
+        });
+    });
+
+    // Function to update preview
+    function updatePreview() {
+        const content = textarea.value;
+
+        if (!content.trim()) {
+            previewContainer.innerHTML = '<div class="preview-placeholder">Nothing to preview. Start writing to see the preview.</div>';
+            return;
+        }
+
+        // Get CSRF token
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
+                         document.querySelector('input[name="csrf_token"]')?.value;
+
+        // Show loading state
+        previewContainer.innerHTML = '<div class="preview-loading">Rendering preview...</div>';
+
+        // Fetch rendered markdown from API
+        fetch('/api/v1/markdown/preview', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ content: content })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.html) {
+                previewContainer.innerHTML = data.html;
+            } else if (data.error) {
+                previewContainer.innerHTML = '<div class="preview-error">Error rendering preview: ' + data.error + '</div>';
+            }
+        })
+        .catch(error => {
+            previewContainer.innerHTML = '<div class="preview-error">Failed to load preview. Please check your connection.</div>';
+            console.error('Preview error:', error);
+        });
+    }
     
     // Add placeholder
     textarea.placeholder = `Write your amazing blog post here... 📝
