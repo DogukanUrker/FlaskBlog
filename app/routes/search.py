@@ -39,14 +39,18 @@ def search(query):
     postConnection.set_trace_callback(Log.database)
     postCursor = postConnection.cursor()
 
-    # Search posts by tags, title, or author (consolidated query)
+    # Search posts by tags, title, author, or content (consolidated query)
     queryPosts = postCursor.execute(
         """SELECT * FROM posts
            WHERE tags LIKE ? OR tags LIKE ?
               OR title LIKE ? OR title LIKE ?
               OR author LIKE ? OR author LIKE ?
+              OR content LIKE ? OR content LIKE ?
+              OR abstract LIKE ? OR abstract LIKE ?
            ORDER BY timeStamp DESC""",
         (
+            "%" + query + "%", "%" + queryNoWhiteSpace + "%",
+            "%" + query + "%", "%" + queryNoWhiteSpace + "%",
             "%" + query + "%", "%" + queryNoWhiteSpace + "%",
             "%" + query + "%", "%" + queryNoWhiteSpace + "%",
             "%" + query + "%", "%" + queryNoWhiteSpace + "%"
