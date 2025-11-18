@@ -252,7 +252,8 @@
     "login": {
       "success": "Zalogowano pomyślnie.",
       "password": "Niepoprawne hasło",
-      "notFound": "Użytkownik nie został znaleziony"
+      "notFound": "Użytkownik nie został znaleziony",
+      "invalid": "Nieprawidłowa nazwa użytkownika lub hasło."
     },
     "logout": {
       "success": "Wylogowano pomyślnie."

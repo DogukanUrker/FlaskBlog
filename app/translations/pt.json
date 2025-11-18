@@ -252,7 +252,8 @@
     "login": {
       "success": "Você fez login com sucesso.",
       "password": "Senha errada",
-      "notFound": "Usuário não encontrado"
+      "notFound": "Usuário não encontrado",
+      "invalid": "Nome de usuário ou senha inválidos."
     },
     "logout": {
       "success": "Você saiu com sucesso."

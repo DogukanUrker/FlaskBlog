@@ -253,7 +253,8 @@
     "login": {
       "success": "You have successfully logged in.",
       "password": "Wrong password",
-      "notFound": "User not found"
+      "notFound": "User not found",
+      "invalid": "Invalid username or password."
     },
     "logout": {
       "success": "You have successfully logged out."

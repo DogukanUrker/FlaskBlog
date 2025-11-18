@@ -251,7 +251,8 @@
     "login": {
       "success": "您已成功登录。",
       "password": "密码错误",
-      "notFound": "用户未找到"
+      "notFound": "用户未找到",
+      "invalid": "用户名或密码无效。"
     },
     "logout": {
       "success": "您已成功登出。"

@@ -252,7 +252,8 @@
     "login": {
       "success": "Vous vous êtes connecté avec succès.",
       "password": "Mot de passe incorrect",
-      "notFound": "Utilisateur non trouvé"
+      "notFound": "Utilisateur non trouvé",
+      "invalid": "Nom d'utilisateur ou mot de passe invalide."
     },
     "logout": {
       "success": "Vous vous êtes déconnecté avec succès."

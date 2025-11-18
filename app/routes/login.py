@@ -61,7 +61,7 @@ def login(direct):
                         page="login",
                         message=rate_limit_msg,
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                     return render_template(
                         "login.html",
@@ -112,9 +112,9 @@ def login(direct):
 
                     flashMessage(
                         page="login",
-                        message="Invalid username or password",
+                        message="invalid",
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                 else:
                     # Password is correct
@@ -152,7 +152,7 @@ def login(direct):
                                 page="login",
                                 message="2faRequired",
                                 category="info",
-                                language=session["language"],
+                                language=session.get("language", "en"),
                             )
 
                             return redirect(f"/verify-2fa/redirect={direct}")
@@ -183,7 +183,7 @@ def login(direct):
                             page="login",
                             message="success",
                             category="success",
-                            language=session["language"],
+                            language=session.get("language", "en"),
                         )
 
                         return (

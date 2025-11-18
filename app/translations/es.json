@@ -252,7 +252,8 @@
     "login": {
       "success": "Has iniciado sesión con éxito.",
       "password": "Contraseña incorrecta",
-      "notFound": "Usuario no encontrado"
+      "notFound": "Usuario no encontrado",
+      "invalid": "Nombre de usuario o contraseña inválidos."
     },
     "logout": {
       "success": "Has cerrado sesión con éxito."

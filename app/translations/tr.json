@@ -252,7 +252,8 @@
     "login": {
       "success": "Başarıyla giriş yaptınız.",
       "password": "Yanlış şifre",
-      "notFound": "Kullanıcı bulunamadı"
+      "notFound": "Kullanıcı bulunamadı",
+      "invalid": "Geçersiz kullanıcı adı veya şifre."
     },
     "logout": {
       "success": "Başarıyla çıkış yaptınız."
