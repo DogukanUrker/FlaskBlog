@@ -55,6 +55,7 @@
 /* Paragraphs */
 .markdown-content p {
     margin: 1rem 0;
+    color: hsl(var(--bc));
 }
 
 /* Text formatting */
@@ -77,16 +78,19 @@
 .markdown-content ul {
     margin: 1rem 0;
     padding-left: 1.5rem;
+    color: hsl(var(--bc));
 }
 
 .markdown-content ol {
     margin: 1rem 0;
     padding-left: 1.5rem;
+    color: hsl(var(--bc));
 }
 
 .markdown-content li {
     margin: 0.5rem 0;
     line-height: 1.6;
+    color: hsl(var(--bc));
 }
 
 .markdown-content ul li::marker {
@@ -182,6 +186,7 @@
     padding: 0.75rem 1rem;
     border-bottom: 1px solid hsl(var(--b3));
     background: hsl(var(--b1));
+    color: hsl(var(--bc));
 }
 
 .markdown-content tr:nth-child(even) td {
@@ -241,4 +246,19 @@
 .markdown-content.compact h3 { font-size: 1.125rem; margin: 0.5rem 0 0.25rem 0; }
 .markdown-content.compact p { margin: 0.5rem 0; }
 .markdown-content.compact pre { margin: 1rem 0; padding: 1rem; }
-.markdown-content.compact blockquote { margin: 0.75rem 0; padding: 0.5rem 1rem; } 
+.markdown-content.compact blockquote { margin: 0.75rem 0; padding: 0.5rem 1rem; }
+
+/* Additional text elements */
+.markdown-content div {
+    color: hsl(var(--bc));
+}
+
+.markdown-content span {
+    color: inherit;
+}
+
+/* Ensure plain text nodes have proper color in all themes */
+.markdown-content,
+.markdown-content > * {
+    color: hsl(var(--bc));
+}
