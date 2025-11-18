@@ -23,7 +23,7 @@ COPY app/pyproject.toml ./
 
 # Extract dependencies from pyproject.toml and install with pip
 RUN pip install --upgrade pip && \
-    pip install flask flask-wtf wtforms passlib requests user-agents geoip2 tamga markdown2 bleach aiohttp pyotp qrcode
+    pip install flask flask-wtf wtforms passlib requests user-agents geoip2 tamga markdown2 bleach aiohttp pyotp qrcode pillow
 
 
 # Production stage
