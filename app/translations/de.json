@@ -343,5 +343,33 @@
     "topCountries": "Top Länder",
     "visitor": "Besucher",
     "viewAll": "Alle Anzeigen"
+  },
+  "twofa": {
+    "setupTitle": "Zwei-Faktor-Authentifizierung Einrichten",
+    "setupInstructions": "Folgen Sie diesen Schritten, um die Zwei-Faktor-Authentifizierung zu aktivieren und Ihr Konto zu schützen.",
+    "step1Title": "QR-Code Scannen",
+    "step1Description": "Öffnen Sie Ihre Authenticator-App (Google Authenticator, Authy usw.) und scannen Sie diesen QR-Code.",
+    "step2Title": "Backup-Codes Speichern",
+    "step2Description": "Speichern Sie diese Backup-Codes an einem sicheren Ort. Sie können sie verwenden, um auf Ihr Konto zuzugreifen, wenn Sie Ihr Gerät verlieren.",
+    "step3Title": "Einrichtung Verifizieren",
+    "step3Description": "Geben Sie den 6-stelligen Code aus Ihrer Authenticator-App ein, um die Einrichtung abzuschließen.",
+    "manualEntry": "Scannen nicht möglich? Geben Sie diesen Code manuell ein:",
+    "backupCodesWarning": "Speichern Sie diese Codes jetzt! Sie werden nicht mehr angezeigt.",
+    "verificationCode": "Bestätigungscode",
+    "enable": "2FA Aktivieren",
+    "cancel": "Abbrechen",
+    "codeFromApp": "Geben Sie den 6-stelligen Code aus Ihrer Authenticator-App ein",
+    "verifyTitle": "Zwei-Faktor-Authentifizierung",
+    "verifyDescription": "Geben Sie Ihren Authentifizierungscode ein, um die Anmeldung abzuschließen für",
+    "verify": "Verifizieren und Anmelden",
+    "or": "ODER",
+    "useBackupCode": "Backup-Code Verwenden",
+    "backupCode": "Backup-Code",
+    "backupCodePlaceholder": "XXXX-XXXX",
+    "enabled": "2FA Aktiviert",
+    "disable": "2FA Deaktivieren",
+    "disableConfirm": "Sind Sie sicher, dass Sie die Zwei-Faktor-Authentifizierung deaktivieren möchten? Ihr Konto wird weniger sicher sein.",
+    "enterPassword": "Geben Sie Ihr Passwort zur Bestätigung ein",
+    "setup": "Zwei-Faktor-Authentifizierung (2FA) Aktivieren"
   }
 }

@@ -343,5 +343,33 @@
     "topCountries": "Países Principales",
     "visitor": "Visitante",
     "viewAll": "Ver Todo"
+  },
+  "twofa": {
+    "setupTitle": "Configurar Autenticación de Dos Factores",
+    "setupInstructions": "Siga estos pasos para habilitar la autenticación de dos factores y proteger su cuenta.",
+    "step1Title": "Escanear Código QR",
+    "step1Description": "Abra su aplicación de autenticación (Google Authenticator, Authy, etc.) y escanee este código QR.",
+    "step2Title": "Guardar Códigos de Respaldo",
+    "step2Description": "Guarde estos códigos de respaldo en un lugar seguro. Puede usarlos para acceder a su cuenta si pierde su dispositivo.",
+    "step3Title": "Verificar Configuración",
+    "step3Description": "Ingrese el código de 6 dígitos de su aplicación de autenticación para completar la configuración.",
+    "manualEntry": "¿No puede escanear? Ingrese este código manualmente:",
+    "backupCodesWarning": "¡Guarde estos códigos ahora! No se mostrarán nuevamente.",
+    "verificationCode": "Código de Verificación",
+    "enable": "Habilitar 2FA",
+    "cancel": "Cancelar",
+    "codeFromApp": "Ingrese el código de 6 dígitos de su aplicación de autenticación",
+    "verifyTitle": "Autenticación de Dos Factores",
+    "verifyDescription": "Ingrese su código de autenticación para completar el inicio de sesión para",
+    "verify": "Verificar e Iniciar Sesión",
+    "or": "O",
+    "useBackupCode": "Usar Código de Respaldo",
+    "backupCode": "Código de Respaldo",
+    "backupCodePlaceholder": "XXXX-XXXX",
+    "enabled": "2FA Habilitado",
+    "disable": "Deshabilitar 2FA",
+    "disableConfirm": "¿Está seguro de que desea deshabilitar la autenticación de dos factores? Su cuenta será menos segura.",
+    "enterPassword": "Ingrese su contraseña para confirmar",
+    "setup": "Habilitar Autenticación de Dos Factores (2FA)"
   }
 }
