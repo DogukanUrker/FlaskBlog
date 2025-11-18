@@ -77,22 +77,33 @@ def editPost(urlID):
                             page="editPost",
                             message="empty",
                             category="error",
-                            language=session["language"],
+                            language=session.get("language", "en"),
                         )
                         Log.error(
                             f'User: "{session["userName"]}" tried to edit a post with empty content',
                         )
                     else:
                         # Validate file upload if a new file is provided
-                        is_valid, error_msg, postBanner = FileUploadValidator.validate_file(
+                        is_valid, error_code, postBanner = FileUploadValidator.validate_file(
                             postBannerFile
                         )
                         if not is_valid:
+                            # Map error codes to translation keys
+                            error_key_mapping = {
+                                FileUploadValidator.ERROR_FILE_SIZE_EXCEEDED: "fileSizeExceeded",
+                                FileUploadValidator.ERROR_INVALID_FILE_TYPE: "invalidFileType",
+                                FileUploadValidator.ERROR_INVALID_IMAGE_FILE: "invalidImageFile",
+                                FileUploadValidator.ERROR_FILE_TYPE_MISMATCH: "fileTypeMismatch",
+                                FileUploadValidator.ERROR_SVG_NOT_SUPPORTED: "svgNotSupported",
+                            }
+
+                            error_key = error_key_mapping.get(error_code, "invalidImageFile")
+
                             flashMessage(
-                                page="editPost",
-                                message=error_msg or "Invalid file upload",
+                                page="fileUpload",
+                                message=error_key,
                                 category="error",
-                                language=session["language"],
+                                language=session.get("language", "en"),
                             )
                             return render_template(
                                 "/editPost.html",
@@ -141,7 +152,7 @@ def editPost(urlID):
                             page="editPost",
                             message="success",
                             category="success",
-                            language=session["language"],
+                            language=session.get("language", "en"),
                         )
                         return redirect(f"/post/{post[10]}")
 
@@ -158,7 +169,7 @@ def editPost(urlID):
                     page="editPost",
                     message="author",
                     category="error",
-                    language=session["language"],
+                    language=session.get("language", "en"),
                 )
                 Log.error(
                     f'User: "{session["userName"]}" tried to edit another authors post',
@@ -173,6 +184,6 @@ def editPost(urlID):
             page="editPost",
             message="login",
             category="error",
-            language=session["language"],
+            language=session.get("language", "en"),
         )
         return redirect(f"/login/redirect=&editpost&{urlID}")

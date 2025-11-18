@@ -295,6 +295,13 @@
     },
     "error": {
       "wrongCall": "You made a wrong flash message call on server side."
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "File size exceeds the maximum allowed limit. Please upload a smaller file.",
+      "invalidFileType": "Invalid file type. Only JPG, PNG, and WebP images are allowed.",
+      "invalidImageFile": "Invalid image file. The file could not be recognized as a valid image.",
+      "fileTypeMismatch": "File extension does not match the actual file content. Please ensure your file has the correct extension.",
+      "svgNotSupported": "SVG files are not supported for security reasons."
     }
   },
   "roles": {

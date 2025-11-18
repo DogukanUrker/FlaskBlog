@@ -294,6 +294,13 @@
     },
     "error": {
       "wrongCall": "Dokonano błędnego wywołania komunikatu flash po stronie serwera."
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "Rozmiar pliku przekracza maksymalny dozwolony limit. Prześlij mniejszy plik.",
+      "invalidFileType": "Nieprawidłowy typ pliku. Dozwolone są tylko obrazy JPG, PNG i WebP.",
+      "invalidImageFile": "Nieprawidłowy plik obrazu. Plik nie mógł zostać rozpoznany jako prawidłowy obraz.",
+      "fileTypeMismatch": "Rozszerzenie pliku nie odpowiada rzeczywistej zawartości pliku. Upewnij się, że plik ma właściwe rozszerzenie.",
+      "svgNotSupported": "Pliki SVG nie są obsługiwane ze względów bezpieczeństwa."
     }
   },
   "roles": {

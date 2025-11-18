@@ -293,6 +293,13 @@
     },
     "error": {
       "wrongCall": "您在服务器端发出了错误的闪存消息调用。"
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "文件大小超过最大允许限制。请上传较小的文件。",
+      "invalidFileType": "无效的文件类型。仅允许 JPG、PNG 和 WebP 图像。",
+      "invalidImageFile": "无效的图像文件。该文件无法被识别为有效图像。",
+      "fileTypeMismatch": "文件扩展名与实际文件内容不匹配。请确保您的文件具有正确的扩展名。",
+      "svgNotSupported": "出于安全原因，不支持 SVG 文件。"
     }
   },
   "roles": {

@@ -294,6 +294,13 @@
     },
     "error": {
       "wrongCall": "Sie haben einen falschen Flash-Nachrichtenaufruf auf der Serverseite gemacht."
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "Die Dateigröße überschreitet das maximal zulässige Limit. Bitte laden Sie eine kleinere Datei hoch.",
+      "invalidFileType": "Ungültiger Dateityp. Nur JPG-, PNG- und WebP-Bilder sind erlaubt.",
+      "invalidImageFile": "Ungültige Bilddatei. Die Datei konnte nicht als gültiges Bild erkannt werden.",
+      "fileTypeMismatch": "Die Dateierweiterung stimmt nicht mit dem tatsächlichen Dateiinhalt überein. Bitte stellen Sie sicher, dass Ihre Datei die richtige Erweiterung hat.",
+      "svgNotSupported": "SVG-Dateien werden aus Sicherheitsgründen nicht unterstützt."
     }
   },
   "roles": {

@@ -294,6 +294,13 @@
     },
     "error": {
       "wrongCall": "Sunucu tarafında yanlış bir flash mesaj çağrısı yaptınız."
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "Dosya boyutu izin verilen maksimum sınırı aşıyor. Lütfen daha küçük bir dosya yükleyin.",
+      "invalidFileType": "Geçersiz dosya türü. Yalnızca JPG, PNG ve WebP görselleri kabul edilir.",
+      "invalidImageFile": "Geçersiz görsel dosyası. Dosya geçerli bir görsel olarak tanınmadı.",
+      "fileTypeMismatch": "Dosya uzantısı gerçek dosya içeriğiyle eşleşmiyor. Lütfen dosyanızın doğru uzantıya sahip olduğundan emin olun.",
+      "svgNotSupported": "SVG dosyaları güvenlik nedeniyle desteklenmiyor."
     }
   },
   "roles": {
