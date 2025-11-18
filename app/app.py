@@ -260,13 +260,13 @@ def csrfError(e):
 def afterRequest(response):
     response = afterRequestLogger(response)
 
-    # Content Security Policy
+    # Content Security Policy (using local assets only, no CDN)
     response.headers["Content-Security-Policy"] = (
         "default-src 'self'; "
-        "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://code.jquery.com https://cdn.tailwindcss.com https://www.google.com https://www.gstatic.com; "
-        "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.tailwindcss.com; "
+        "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; "
+        "style-src 'self' 'unsafe-inline'; "
         "img-src 'self' data: https: blob:; "
-        "font-src 'self' https://cdn.jsdelivr.net; "
+        "font-src 'self'; "
         "connect-src 'self'; "
         "frame-ancestors 'none'; "
         "base-uri 'self'; "

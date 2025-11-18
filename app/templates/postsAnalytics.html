@@ -1,7 +1,8 @@
 {% extends 'layout.html' %} {% block head %}
 <title>{{ translations.analytics.title}} : {{ post[1] }}</title>
 
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- ApexCharts (local) -->
+<script src="{{ url_for('static', filename='vendor/apexcharts/apexcharts.min.js') }}"></script>
 
 {% endblock head %} {% block body %}
 
