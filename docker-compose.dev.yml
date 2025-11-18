@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  flaskblog-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder  # Use builder stage for development
+    image: flaskblog:dev
+    container_name: flaskblog-dev
+    restart: unless-stopped
+
+    # Port mapping
+    ports:
+      - "1283:1283"
+
+    # Environment variables for development
+    environment:
+      - APP_HOST=0.0.0.0
+      - APP_PORT=1283
+      - APP_SECRET_KEY=dev-secret-key-not-for-production
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_MAIL=${SMTP_MAIL}
+      - DEBUG_MODE=True
+      - SESSION_COOKIE_SECURE=False
+      - MAX_LOGIN_ATTEMPTS=10
+      - LOCKOUT_DURATION=300
+      - PERMANENT_SESSION_LIFETIME=7200
+      - WERKZEUG_DEBUG=True
+      - FLASK_ENV=development
+
+    # Environment file (optional)
+    env_file:
+      - .env
+
+    # Mount source code for hot reload
+    volumes:
+      - ./app:/app
+      - flaskblog_dev_db:/app/db
+      - flaskblog_dev_logs:/app/log
+
+    # Override command for development mode
+    command: python3 app.py
+
+    # No resource limits in development
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+
+# Named volumes for development
+volumes:
+  flaskblog_dev_db:
+    driver: local
+  flaskblog_dev_logs:
+    driver: local
+
+# Network for development
+networks:
+  default:
+    name: flaskblog_dev_network

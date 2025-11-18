@@ -343,5 +343,33 @@
     "topCountries": "En Çok Ziyaretçi Ülkeler",
     "visitor": "Ziyaretçi",
     "viewAll": "Hepsini Gör"
+  },
+  "twofa": {
+    "setupTitle": "İki Faktörlü Kimlik Doğrulamayı Ayarlama",
+    "setupInstructions": "Hesabınızı güvence altına almak için iki faktörlü kimlik doğrulamayı etkinleştirmek üzere bu adımları izleyin.",
+    "step1Title": "QR Kodunu Tarayın",
+    "step1Description": "Kimlik doğrulayıcı uygulamanızı (Google Authenticator, Authy, vb.) açın ve bu QR kodunu tarayın.",
+    "step2Title": "Yedek Kodları Kaydedin",
+    "step2Description": "Bu yedek kodları güvenli bir yerde saklayın. Cihazınızı kaybederseniz hesabınıza erişmek için bunları kullanabilirsiniz.",
+    "step3Title": "Kurulumu Doğrulayın",
+    "step3Description": "Kurulumu tamamlamak için kimlik doğrulayıcı uygulamanızdaki 6 haneli kodu girin.",
+    "manualEntry": "Tarayamıyor musunuz? Bu kodu manuel olarak girin:",
+    "backupCodesWarning": "Bu kodları şimdi kaydedin! Bir daha gösterilmeyecekler.",
+    "verificationCode": "Doğrulama Kodu",
+    "enable": "İKD'yi Etkinleştir",
+    "cancel": "İptal",
+    "codeFromApp": "Kimlik doğrulayıcı uygulamanızdaki 6 haneli kodu girin",
+    "verifyTitle": "İki Faktörlü Kimlik Doğrulama",
+    "verifyDescription": "Oturum açmayı tamamlamak için kimlik doğrulama kodunuzu girin",
+    "verify": "Doğrula ve Giriş Yap",
+    "or": "VEYA",
+    "useBackupCode": "Yedek Kod Kullan",
+    "backupCode": "Yedek Kod",
+    "backupCodePlaceholder": "XXXX-XXXX",
+    "enabled": "İKD Etkinleştirildi",
+    "disable": "İKD'yi Devre Dışı Bırak",
+    "disableConfirm": "İki faktörlü kimlik doğrulamayı devre dışı bırakmak istediğinizden emin misiniz? Hesabınız daha az güvenli olacak.",
+    "enterPassword": "Onaylamak için şifrenizi girin",
+    "setup": "İki Faktörlü Kimlik Doğrulamayı (İKD) Etkinleştir"
   }
 }

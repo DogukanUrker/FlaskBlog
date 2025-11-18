@@ -140,6 +140,24 @@ def login(direct):
                         # Record successful login
                         RateLimiter.record_attempt(userName, success=True)
 
+                        # Check if 2FA is enabled (index 10 in user tuple)
+                        twofa_enabled = user[10] if len(user) > 10 else "False"
+
+                        if twofa_enabled == "True":
+                            # User has 2FA enabled - redirect to verification
+                            session["pending_2fa_userName"] = user[1]
+                            Log.info(f'User: "{user[1]}" requires 2FA verification')
+
+                            flashMessage(
+                                page="login",
+                                message="2faRequired",
+                                category="info",
+                                language=session["language"],
+                            )
+
+                            return redirect(f"/verify-2fa/redirect={direct}")
+
+                        # No 2FA - complete login normally
                         session["userName"] = user[1]
                         session["userRole"] = user[5]
                         addPoints(1, session["userName"])

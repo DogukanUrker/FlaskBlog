@@ -19,7 +19,8 @@ A modern, **security-hardened** blog application built with Flask, featuring a c
 
 - **User System** - Registration, login, profiles with custom avatars
 - **Rich Editor** - [Milkdown](https://milkdown.dev/) editor for creating beautiful posts
-- **Admin Panel** - Full control over users, posts, and comments
+- **Admin Panel** - Full control over users, posts, comments, and security audit logs
+- **Security Audit Log** - Track admin logins, user authentication, admin actions, and page access
 - **Dark/Light Themes** - Automatic theme switching
 - **Categories** - Organize posts by topics
 - **Search** - Find posts quickly
@@ -58,6 +59,16 @@ FlaskBlog includes comprehensive security protections:
   - Secure password hashing (SHA-512)
   - Environment-based configuration (no hardcoded secrets)
 
+- **Security Audit Logging**
+  - Comprehensive event tracking for security monitoring
+  - Admin login attempts (success and failure)
+  - User login attempts (success and failure)
+  - Admin panel actions (user deletion, role changes)
+  - Sensitive page access (admin panel, login, signup)
+  - IP address, user agent, and timestamp logging
+  - Filterable by event type (admin logins, user logins, admin actions, page access, rate limits)
+  - Admin-only access to security logs
+
 See [SECURITY.md](SECURITY.md) for complete security documentation.
 
 ## 🚀 Quick Start
@@ -88,6 +99,90 @@ uv run app.py
 
 Visit `http://localhost:1283` in your browser.
 
+### 🐳 Docker Installation (Recommended)
+
+Docker provides an isolated, consistent environment for running FlaskBlog.
+
+**Prerequisites:**
+- Docker 20.10+
+- Docker Compose 2.0+
+
+**Quick Start with Docker:**
+
+```bash
+# Clone the repository
+git clone https://github.com/DogukanUrker/flaskBlog.git
+cd flaskBlog
+
+# Configure environment
+cp .env.example .env
+# Edit .env and add your SMTP credentials and secret key
+
+# Build and run with Docker Compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+**Production Deployment:**
+
+```bash
+# Build the image
+docker-compose build
+
+# Run in production mode
+docker-compose up -d
+
+# Check container status
+docker-compose ps
+
+# Stop the container
+docker-compose down
+```
+
+**Development Mode:**
+
+```bash
+# Run with hot-reload enabled
+docker-compose -f docker-compose.dev.yml up
+
+# The source code is mounted as a volume for live changes
+```
+
+**Useful Docker Commands:**
+
+```bash
+# View application logs
+docker-compose logs -f flaskblog
+
+# Access container shell
+docker exec -it flaskblog /bin/bash
+
+# Restart the container
+docker-compose restart
+
+# Remove containers and volumes (⚠️ deletes database)
+docker-compose down -v
+
+# Backup database
+docker cp flaskblog:/app/db ./db_backup
+
+# Restore database
+docker cp ./db_backup/users.db flaskblog:/app/db/
+```
+
+**Docker Features:**
+
+✅ **Isolated environment** - No dependency conflicts
+✅ **Security** - Runs as non-root user
+✅ **Persistent data** - Database and logs stored in volumes
+✅ **Health checks** - Automatic container monitoring
+✅ **Resource limits** - CPU and memory constraints
+✅ **Easy deployment** - Single command to start
+
+Visit `http://localhost:1283` in your browser.
+
 ### Default Admin Account
 - Username: `admin`
 - Password: `admin`
@@ -114,6 +209,42 @@ Generate a secure secret key:
 ```bash
 python3 -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
+
+### Admin Panel Features
+
+The admin panel (accessible only to admin users) provides comprehensive management tools:
+
+**User Management** (`/admin/users`)
+- View all registered users
+- Delete user accounts
+- Change user roles (admin ↔ user)
+- View user statistics (points, join date, verification status)
+
+**Post Management** (`/admin/posts`)
+- View all blog posts
+- Delete posts
+- View post statistics (views, comments, categories)
+
+**Comment Management** (`/admin/comments`)
+- View all comments
+- Delete comments
+- Track comment authors and timestamps
+
+**Security Audit Log** (`/admin/security-audit`) ✨ *New*
+- Monitor all security-related events in real-time
+- Filter by event type:
+  - **Admin Logins** - Track admin authentication attempts
+  - **User Logins** - Monitor user login activity
+  - **Admin Actions** - Review user/post/comment modifications
+  - **Page Access** - View sensitive page visits
+  - **Rate Limits** - Track rate limiting events
+- View detailed information for each event:
+  - Username, IP address, user agent
+  - Request path, HTTP method, status code
+  - Timestamp (date and time)
+- Pagination support for large log files
+
+To access the admin panel, login with admin credentials and navigate to `/admin`.
 
 ## 🛠️ Tech Stack
 
@@ -152,6 +283,9 @@ curl -X POST http://localhost:1283/createpost \
 - [ ] Session expires after 1 hour
 - [ ] Admin panel requires admin role
 - [ ] Users can only delete their own posts/comments
+- [ ] Security audit log records admin login events
+- [ ] Security audit log records admin actions (delete user, change role)
+- [ ] Security audit log is accessible only to admins
 
 ## 🔧 Troubleshooting
 
@@ -209,18 +343,76 @@ This application addresses:
 
 ## 🚢 Production Deployment
 
-Before deploying to production:
+### Recommended: Docker Deployment
+
+**Docker is the recommended deployment method** for production environments:
+
+```bash
+# 1. Configure environment
+cp .env.example .env
+# Edit .env with production values
+
+# 2. Build and deploy
+docker-compose build
+docker-compose up -d
+
+# 3. Verify deployment
+docker-compose ps
+docker-compose logs -f
+```
+
+**Production Checklist:**
 
 1. ✅ Set `DEBUG_MODE=False` in `.env`
 2. ✅ Generate and set a strong `APP_SECRET_KEY`
 3. ✅ Configure SMTP credentials for email functionality
 4. ✅ Set `SESSION_COOKIE_SECURE=True` (requires HTTPS)
-5. ✅ Run `./scripts/fix_permissions.sh` to secure file permissions
-6. ✅ Configure HTTPS/TLS on your web server
-7. ✅ Enable reCAPTCHA (recommended for additional protection)
-8. ✅ Set up regular database backups
-9. ✅ Configure log rotation
-10. ✅ Change default admin password
+5. ✅ Configure HTTPS/TLS with a reverse proxy (nginx/traefik)
+6. ✅ Enable reCAPTCHA (recommended for additional protection)
+7. ✅ Set up regular database backups (see Docker backup commands above)
+8. ✅ Configure log rotation
+9. ✅ Change default admin password
+10. ✅ Set resource limits in docker-compose.yml
+
+**Reverse Proxy Setup (nginx example):**
+
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name yourdomain.com;
+
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+
+    location / {
+        proxy_pass http://localhost:1283;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+### Alternative: Manual Deployment
+
+If not using Docker:
+
+```bash
+# Install dependencies
+cd app
+uv sync
+
+# Run with production server (gunicorn)
+uv pip install gunicorn
+gunicorn -w 4 -b 0.0.0.0:1283 app:app
+```
 
 See [SECURITY.md](SECURITY.md) for the complete deployment checklist.
 

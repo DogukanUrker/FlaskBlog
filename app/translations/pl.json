@@ -343,5 +343,33 @@
     "topCountries": "Najlepsze Kraje",
     "visitor": "Gość",
     "viewAll": "Zobacz Wszystko"
+  },
+  "twofa": {
+    "setupTitle": "Konfiguracja uwierzytelniania dwuskładnikowego",
+    "setupInstructions": "Wykonaj poniższe kroki, aby włączyć uwierzytelnianie dwuskładnikowe i zabezpieczyć swoje konto.",
+    "step1Title": "Zeskanuj kod QR",
+    "step1Description": "Otwórz aplikację uwierzytelniającą (Google Authenticator, Authy itp.) i zeskanuj ten kod QR.",
+    "step2Title": "Zapisz kody zapasowe",
+    "step2Description": "Zapisz te kody zapasowe w bezpiecznym miejscu. Możesz ich użyć do uzyskania dostępu do konta, jeśli zgubisz urządzenie.",
+    "step3Title": "Zweryfikuj konfigurację",
+    "step3Description": "Wprowadź 6-cyfrowy kod z aplikacji uwierzytelniającej, aby zakończyć konfigurację.",
+    "manualEntry": "Nie możesz zeskanować? Wprowadź ten kod ręcznie:",
+    "backupCodesWarning": "Zapisz te kody teraz! Nie będą ponownie wyświetlane.",
+    "verificationCode": "Kod weryfikacyjny",
+    "enable": "Włącz 2FA",
+    "cancel": "Anuluj",
+    "codeFromApp": "Wprowadź 6-cyfrowy kod z aplikacji uwierzytelniającej",
+    "verifyTitle": "Uwierzytelnianie dwuskładnikowe",
+    "verifyDescription": "Wprowadź kod uwierzytelniający, aby zakończyć logowanie dla",
+    "verify": "Zweryfikuj i zaloguj się",
+    "or": "LUB",
+    "useBackupCode": "Użyj kodu zapasowego",
+    "backupCode": "Kod zapasowy",
+    "backupCodePlaceholder": "XXXX-XXXX",
+    "enabled": "2FA włączone",
+    "disable": "Wyłącz 2FA",
+    "disableConfirm": "Czy na pewno chcesz wyłączyć uwierzytelnianie dwuskładnikowe? Twoje konto będzie mniej bezpieczne.",
+    "enterPassword": "Wprowadź hasło, aby potwierdzić",
+    "setup": "Włącz uwierzytelnianie dwuskładnikowe (2FA)"
   }
 }

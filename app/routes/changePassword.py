@@ -32,22 +32,48 @@ def changePassword():
     if "userName" in session:
         form = ChangePasswordForm(request.form)
 
-        if request.method == "POST":
+        if request.method == "POST" and form.validate():
             oldPassword = request.form["oldPassword"]
             password = request.form["password"]
             passwordConfirm = request.form["passwordConfirm"]
+
             Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
 
             connection = sqlite3.connect(Settings.DB_USERS_ROOT)
             connection.set_trace_callback(Log.database)
             cursor = connection.cursor()
 
-            cursor.execute(
-                """select password from users where userName = ? """,
-                [(session["userName"])],
-            )
+            try:
+                cursor.execute(
+                    """select password from users where userName = ? """,
+                    (session["userName"],),
+                )
 
-            if encryption.verify(oldPassword, cursor.fetchone()[0]):
+                user_password_row = cursor.fetchone()
+                if not user_password_row:
+                    Log.error(f'User: "{session["userName"]}" not found in database')
+                    flashMessage(
+                        page="changePassword",
+                        message="old",
+                        category="error",
+                        language=session["language"],
+                    )
+                    return render_template("changePassword.html", form=form)
+
+                stored_password_hash = user_password_row[0]
+
+                # Verify old password is correct
+                if not encryption.verify(oldPassword, stored_password_hash):
+                    Log.error(f'User: "{session["userName"]}" entered incorrect old password')
+                    flashMessage(
+                        page="changePassword",
+                        message="old",
+                        category="error",
+                        language=session["language"],
+                    )
+                    return render_template("changePassword.html", form=form)
+
+                # Check if new password is same as old password
                 if oldPassword == password:
                     flashMessage(
                         page="changePassword",
@@ -55,7 +81,9 @@ def changePassword():
                         category="error",
                         language=session["language"],
                     )
+                    return render_template("changePassword.html", form=form)
 
+                # Check if new passwords match
                 if password != passwordConfirm:
                     flashMessage(
                         page="changePassword",
@@ -63,41 +91,34 @@ def changePassword():
                         category="error",
                         language=session["language"],
                     )
+                    return render_template("changePassword.html", form=form)
 
-                if oldPassword != password and password == passwordConfirm:
-                    newPassword = encryption.hash(password)
-                    Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
+                # All validations passed - update password
+                newPassword = encryption.hash(password)
+                cursor.execute(
+                    """update users set password = ? where userName = ? """,
+                    (newPassword, session["userName"]),
+                )
 
-                    connection = sqlite3.connect(Settings.DB_USERS_ROOT)
-                    connection.set_trace_callback(Log.database)
-                    cursor = connection.cursor()
-                    cursor.execute(
-                        """update users set password = ? where userName = ? """,
-                        [(newPassword), (session["userName"])],
-                    )
+                connection.commit()
 
-                    connection.commit()
+                Log.success(
+                    f'User: "{session["userName"]}" changed their password',
+                )
 
-                    Log.success(
-                        f'User: "{session["userName"]}" changed his password',
-                    )
-
-                    session.clear()
-                    flashMessage(
-                        page="changePassword",
-                        message="success",
-                        category="success",
-                        language=session["language"],
-                    )
-
-                    return redirect("/login/redirect=&")
-            else:
+                session.clear()
                 flashMessage(
                     page="changePassword",
-                    message="old",
-                    category="error",
+                    message="success",
+                    category="success",
                     language=session["language"],
                 )
+
+                return redirect("/login/redirect=&")
+
+            finally:
+                # Always close database connection
+                connection.close()
 
         return render_template(
             "changePassword.html",

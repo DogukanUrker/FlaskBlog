@@ -55,7 +55,7 @@ class Settings:
     APP_NAME = "flaskBlog"
     APP_VERSION = "3.0.0dev"
     APP_ROOT_PATH = "."
-    APP_HOST = os.getenv("APP_HOST", "localhost")
+    APP_HOST = os.getenv("APP_HOST", "0.0.0.0")
     APP_PORT = int(os.getenv("APP_PORT", "1283"))
     DEBUG_MODE = os.getenv("DEBUG_MODE", "False").lower() == "true"
 

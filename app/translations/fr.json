@@ -343,5 +343,33 @@
     "topCountries": "Pays Principaux",
     "visitor": "Visiteur",
     "viewAll": "Voir Tout"
+  },
+  "twofa": {
+    "setupTitle": "Configurer l'Authentification à Deux Facteurs",
+    "setupInstructions": "Suivez ces étapes pour activer l'authentification à deux facteurs et sécuriser votre compte.",
+    "step1Title": "Scanner le Code QR",
+    "step1Description": "Ouvrez votre application d'authentification (Google Authenticator, Authy, etc.) et scannez ce code QR.",
+    "step2Title": "Sauvegarder les Codes de Secours",
+    "step2Description": "Enregistrez ces codes de secours dans un endroit sûr. Vous pouvez les utiliser pour accéder à votre compte si vous perdez votre appareil.",
+    "step3Title": "Vérifier la Configuration",
+    "step3Description": "Entrez le code à 6 chiffres de votre application d'authentification pour terminer la configuration.",
+    "manualEntry": "Impossible de scanner? Entrez ce code manuellement:",
+    "backupCodesWarning": "Enregistrez ces codes maintenant! Ils ne seront plus affichés.",
+    "verificationCode": "Code de Vérification",
+    "enable": "Activer l'A2F",
+    "cancel": "Annuler",
+    "codeFromApp": "Entrez le code à 6 chiffres de votre application d'authentification",
+    "verifyTitle": "Authentification à Deux Facteurs",
+    "verifyDescription": "Entrez votre code d'authentification pour terminer la connexion pour",
+    "verify": "Vérifier et Se Connecter",
+    "or": "OU",
+    "useBackupCode": "Utiliser un Code de Secours",
+    "backupCode": "Code de Secours",
+    "backupCodePlaceholder": "XXXX-XXXX",
+    "enabled": "A2F Activée",
+    "disable": "Désactiver l'A2F",
+    "disableConfirm": "Êtes-vous sûr de vouloir désactiver l'authentification à deux facteurs? Votre compte sera moins sécurisé.",
+    "enterPassword": "Entrez votre mot de passe pour confirmer",
+    "setup": "Activer l'Authentification à Deux Facteurs (A2F)"
   }
 }

@@ -343,5 +343,33 @@
     "topCountries": "トップの国々",
     "visitor": "訪問者",
     "viewAll": "すべて表示"
+  },
+  "twofa": {
+    "setupTitle": "二要素認証の設定",
+    "setupInstructions": "以下の手順に従って二要素認証を有効にし、アカウントを保護してください。",
+    "step1Title": "QRコードをスキャン",
+    "step1Description": "認証アプリ（Google Authenticator、Authyなど）を開き、このQRコードをスキャンしてください。",
+    "step2Title": "バックアップコードを保存",
+    "step2Description": "これらのバックアップコードを安全な場所に保存してください。デバイスを紛失した場合、これらを使用してアカウントにアクセスできます。",
+    "step3Title": "設定を確認",
+    "step3Description": "認証アプリから6桁のコードを入力して設定を完了してください。",
+    "manualEntry": "スキャンできませんか？このコードを手動で入力してください：",
+    "backupCodesWarning": "今すぐこれらのコードを保存してください！再度表示されません。",
+    "verificationCode": "確認コード",
+    "enable": "二要素認証を有効にする",
+    "cancel": "キャンセル",
+    "codeFromApp": "認証アプリから6桁のコードを入力してください",
+    "verifyTitle": "二要素認証",
+    "verifyDescription": "ログインを完了するには認証コードを入力してください",
+    "verify": "確認してログイン",
+    "or": "または",
+    "useBackupCode": "バックアップコードを使用",
+    "backupCode": "バックアップコード",
+    "backupCodePlaceholder": "XXXX-XXXX",
+    "enabled": "二要素認証が有効",
+    "disable": "二要素認証を無効にする",
+    "disableConfirm": "二要素認証を無効にしてもよろしいですか？アカウントの安全性が低下します。",
+    "enterPassword": "確認のためパスワードを入力してください",
+    "setup": "二要素認証（2FA）を有効にする"
   }
 }

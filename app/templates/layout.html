@@ -16,23 +16,29 @@
             href="{{ url_for('static', filename='css/general.css') }}"
         />
 
+        <!-- DaisyUI CSS (includes Tailwind CSS utilities) -->
         <link
-            href="https://cdn.jsdelivr.net/npm/daisyui@5"
+            href="{{ url_for('static', filename='vendor/daisyui/daisyui.min.css') }}"
             rel="stylesheet"
             type="text/css"
         />
 
+        <!-- DaisyUI Themes -->
         <link
-            href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+            href="{{ url_for('static', filename='vendor/daisyui/themes.min.css') }}"
             rel="stylesheet"
             type="text/css"
         />
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+        <!-- Tailwind CSS (local - provides responsive utilities) -->
+        <script src="{{ url_for('static', filename='vendor/tailwindcss/tailwind.min.js') }}"></script>
+
+        <!-- Tabler Icons (local) -->
         <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.46.0/tabler-icons.min.css"
+            href="{{ url_for('static', filename='vendor/tabler-icons/tabler-icons.min.css') }}"
         />
+
         <link
             rel="stylesheet"
             href="{{ url_for('static', filename='css/markdown.css') }}"
@@ -69,11 +75,8 @@
         'components/navbar.html'%} {% from "components/flash.html" import flash
         %} {{ flash() }} {% block body %} {% endblock body %}
 
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"
-        ></script>
+        <!-- jQuery (local) -->
+        <script src="{{ url_for('static', filename='vendor/jquery/jquery-3.4.1.slim.min.js') }}"></script>
         
         <script src="{{ url_for('static', filename='js/timeStamp.js') }}"></script>
         <link

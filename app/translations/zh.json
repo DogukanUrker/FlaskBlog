@@ -342,5 +342,33 @@
     "topCountries": "热门国家",
     "visitor": "访客",
     "viewAll": "查看全部"
+  },
+  "twofa": {
+    "setupTitle": "设置双因素认证",
+    "setupInstructions": "按照以下步骤启用双因素认证并保护您的账户。",
+    "step1Title": "扫描二维码",
+    "step1Description": "打开您的身份验证器应用（Google Authenticator、Authy等）并扫描此二维码。",
+    "step2Title": "保存备用代码",
+    "step2Description": "将这些备用代码保存在安全的地方。如果您丢失设备，可以使用它们访问您的账户。",
+    "step3Title": "验证设置",
+    "step3Description": "输入身份验证器应用中的6位数字代码以完成设置。",
+    "manualEntry": "无法扫描？请手动输入此代码：",
+    "backupCodesWarning": "立即保存这些代码！它们不会再次显示。",
+    "verificationCode": "验证码",
+    "enable": "启用双因素认证",
+    "cancel": "取消",
+    "codeFromApp": "输入身份验证器应用中的6位数字代码",
+    "verifyTitle": "双因素认证",
+    "verifyDescription": "输入您的身份验证代码以完成登录",
+    "verify": "验证并登录",
+    "or": "或",
+    "useBackupCode": "使用备用代码",
+    "backupCode": "备用代码",
+    "backupCodePlaceholder": "XXXX-XXXX",
+    "enabled": "已启用双因素认证",
+    "disable": "禁用双因素认证",
+    "disableConfirm": "您确定要禁用双因素认证吗？您的账户安全性将降低。",
+    "enterPassword": "输入您的密码以确认",
+    "setup": "启用双因素认证（2FA）"
   }
 }

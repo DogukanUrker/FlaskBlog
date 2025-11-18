@@ -16,4 +16,6 @@ dependencies = [
     "markdown2",
     "bleach",
     "html2text",
+    "pyotp>=2.9.0",
+    "qrcode>=7.4.2",
 ]

@@ -326,3 +326,55 @@ def securityAuditLogTable():
         Log.success(
             f'Table: "security_audit_log" created in "{Settings.DB_USERS_ROOT}"'
         )
+
+
+def twoFactorAuthFields():
+    """
+    Checks if the 2FA fields exist in the Users table, and adds them if they do not.
+
+    Fields added:
+    - twofa_secret: TOTP secret key for generating 2FA codes
+    - twofa_enabled: Boolean flag indicating if 2FA is enabled for the user
+    - backup_codes: JSON string of backup recovery codes
+
+    Returns:
+        None
+    """
+
+    Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
+
+    connection = sqlite3.connect(Settings.DB_USERS_ROOT)
+    connection.set_trace_callback(Log.database)
+    cursor = connection.cursor()
+
+    try:
+        # Check if twofa_secret column exists
+        cursor.execute("PRAGMA table_info(Users)")
+        columns = [column[1] for column in cursor.fetchall()]
+
+        if "twofa_secret" not in columns:
+            Log.error('Column: "twofa_secret" not found in Users table')
+            cursor.execute("ALTER TABLE Users ADD COLUMN twofa_secret TEXT DEFAULT NULL")
+            connection.commit()
+            Log.success('Column: "twofa_secret" added to Users table')
+        else:
+            Log.info('Column: "twofa_secret" found in Users table')
+
+        if "twofa_enabled" not in columns:
+            Log.error('Column: "twofa_enabled" not found in Users table')
+            cursor.execute("ALTER TABLE Users ADD COLUMN twofa_enabled TEXT DEFAULT 'False'")
+            connection.commit()
+            Log.success('Column: "twofa_enabled" added to Users table')
+        else:
+            Log.info('Column: "twofa_enabled" found in Users table')
+
+        if "backup_codes" not in columns:
+            Log.error('Column: "backup_codes" not found in Users table')
+            cursor.execute("ALTER TABLE Users ADD COLUMN backup_codes TEXT DEFAULT NULL")
+            connection.commit()
+            Log.success('Column: "backup_codes" added to Users table')
+        else:
+            Log.info('Column: "backup_codes" found in Users table')
+
+    finally:
+        connection.close()
