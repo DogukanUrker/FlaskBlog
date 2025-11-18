@@ -3,6 +3,7 @@ from io import BytesIO
 
 from flask import Blueprint, request, send_file
 from settings import Settings
+from utils.defaultBanner import DefaultBanner
 from utils.log import Log
 
 returnPostBannerBlueprint = Blueprint("returnPostBanner", __name__)
@@ -32,8 +33,15 @@ def returnPostBanner(postID):
         [(postID)],
     )
 
-    image = BytesIO(cursor.fetchone()[0])
+    banner_data = cursor.fetchone()[0]
 
-    Log.info(f"Post: {postID} | Image: {request.base_url} loaded")
+    # Use default banner if the post has no banner or empty banner
+    if not banner_data or banner_data == b"":
+        banner_data = DefaultBanner.get_cached_default_banner()
+        Log.info(f"Post: {postID} | Using default banner")
+    else:
+        Log.info(f"Post: {postID} | Custom banner loaded")
+
+    image = BytesIO(banner_data)
 
     return send_file(image, mimetype="image/png")

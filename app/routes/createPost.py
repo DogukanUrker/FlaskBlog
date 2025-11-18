@@ -9,6 +9,7 @@ from flask import (
 )
 from settings import Settings
 from utils.addPoints import addPoints
+from utils.defaultBanner import DefaultBanner
 from utils.flashMessage import flashMessage
 from utils.fileUploadValidator import FileUploadValidator
 from utils.forms.CreatePostForm import CreatePostForm
@@ -82,6 +83,12 @@ def createPost():
                         "createPost.html",
                         form=form,
                     )
+
+                # Use default banner if no file was uploaded
+                if postBanner == b"":
+                    postBanner = DefaultBanner.get_cached_default_banner()
+                    Log.info("Using default banner for post")
+
                 Log.database(f"Connecting to '{Settings.DB_POSTS_ROOT}' database")
                 connection = sqlite3.connect(Settings.DB_POSTS_ROOT)
                 connection.set_trace_callback(Log.database)
