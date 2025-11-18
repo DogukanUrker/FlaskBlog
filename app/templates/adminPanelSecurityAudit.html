@@ -1,0 +1,213 @@
+{% extends 'layout.html' %} {% block head %}
+<title>{{translations.adminPanelSecurityAudit.title}}</title>
+{% endblock head %} {% block body %}
+<div class="text-center">
+    <h1 class="my-4 text-4xl font-medium select-none">
+        {{translations.adminPanelSecurityAudit.title}}
+    </h1>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 my-6">
+        <a
+            href="/admin/security-audit?filter=all"
+            class="btn btn-sm {% if current_filter == 'all' %}btn-primary{% else %}btn-outline{% endif %}"
+        >
+            <i class="ti ti-list"></i>
+            {{translations.adminPanelSecurityAudit.filters.all}}
+        </a>
+        <a
+            href="/admin/security-audit?filter=admin_logins"
+            class="btn btn-sm {% if current_filter == 'admin_logins' %}btn-primary{% else %}btn-outline{% endif %}"
+        >
+            <i class="ti ti-shield-lock"></i>
+            {{translations.adminPanelSecurityAudit.filters.adminLogins}}
+        </a>
+        <a
+            href="/admin/security-audit?filter=user_logins"
+            class="btn btn-sm {% if current_filter == 'user_logins' %}btn-primary{% else %}btn-outline{% endif %}"
+        >
+            <i class="ti ti-login"></i>
+            {{translations.adminPanelSecurityAudit.filters.userLogins}}
+        </a>
+        <a
+            href="/admin/security-audit?filter=admin_actions"
+            class="btn btn-sm {% if current_filter == 'admin_actions' %}btn-primary{% else %}btn-outline{% endif %}"
+        >
+            <i class="ti ti-gavel"></i>
+            {{translations.adminPanelSecurityAudit.filters.adminActions}}
+        </a>
+        <a
+            href="/admin/security-audit?filter=page_access"
+            class="btn btn-sm {% if current_filter == 'page_access' %}btn-primary{% else %}btn-outline{% endif %}"
+        >
+            <i class="ti ti-world"></i>
+            {{translations.adminPanelSecurityAudit.filters.pageAccess}}
+        </a>
+        <a
+            href="/admin/security-audit?filter=rate_limits"
+            class="btn btn-sm {% if current_filter == 'rate_limits' %}btn-primary{% else %}btn-outline{% endif %}"
+        >
+            <i class="ti ti-alert-triangle"></i>
+            {{translations.adminPanelSecurityAudit.filters.rateLimits}}
+        </a>
+    </div>
+
+    <!-- Audit Log Entries -->
+    {% if audit_logs %}
+    {% for log in audit_logs %}
+    <div
+        class="w-12/12 md:w-10/12 lg:w-8/12 xl:w-6/12 h-fit mx-px md:mx-auto py-3 px-4 my-4 border-2 rounded-md shadow-md border-gray-500/25 text-left"
+    >
+        <!-- Event Type Badge -->
+        <div class="flex justify-between items-center mb-3">
+            <div class="flex items-center gap-2">
+                {% if 'admin_login_success' in log[1] %}
+                <span class="badge badge-success gap-1">
+                    <i class="ti ti-shield-check"></i>
+                    {{translations.adminPanelSecurityAudit.eventTypes.adminLoginSuccess}}
+                </span>
+                {% elif 'admin_login_failure' in log[1] %}
+                <span class="badge badge-error gap-1">
+                    <i class="ti ti-shield-x"></i>
+                    {{translations.adminPanelSecurityAudit.eventTypes.adminLoginFailure}}
+                </span>
+                {% elif 'user_login_success' in log[1] %}
+                <span class="badge badge-info gap-1">
+                    <i class="ti ti-user-check"></i>
+                    {{translations.adminPanelSecurityAudit.eventTypes.userLoginSuccess}}
+                </span>
+                {% elif 'user_login_failure' in log[1] %}
+                <span class="badge badge-warning gap-1">
+                    <i class="ti ti-user-x"></i>
+                    {{translations.adminPanelSecurityAudit.eventTypes.userLoginFailure}}
+                </span>
+                {% elif log[1] == 'admin_action' %}
+                <span class="badge badge-primary gap-1">
+                    <i class="ti ti-gavel"></i>
+                    {{translations.adminPanelSecurityAudit.eventTypes.adminAction}}
+                </span>
+                {% elif log[1] == 'page_access' %}
+                <span class="badge badge-neutral gap-1">
+                    <i class="ti ti-world"></i>
+                    {{translations.adminPanelSecurityAudit.eventTypes.pageAccess}}
+                </span>
+                {% elif log[1] == 'rate_limit_triggered' %}
+                <span class="badge badge-error gap-1">
+                    <i class="ti ti-alert-triangle"></i>
+                    {{translations.adminPanelSecurityAudit.eventTypes.rateLimit}}
+                </span>
+                {% else %}
+                <span class="badge badge-ghost gap-1">
+                    <i class="ti ti-info-circle"></i>
+                    {{ log[1] }}
+                </span>
+                {% endif %}
+            </div>
+            <div class="text-xs text-gray-500">
+                <i class="ti ti-hash"></i> {{ log[0] }}
+            </div>
+        </div>
+
+        <!-- User and IP Information -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+            {% if log[2] %}
+            <div class="flex items-center gap-2">
+                <i class="ti ti-user text-lg"></i>
+                <span class="text-sm">
+                    <span class="text-gray-500">{{translations.adminPanelSecurityAudit.fields.user}}:</span>
+                    <span class="font-medium">{{ log[2] }}</span>
+                </span>
+            </div>
+            {% endif %}
+
+            {% if log[3] %}
+            <div class="flex items-center gap-2">
+                <i class="ti ti-world text-lg"></i>
+                <span class="text-sm">
+                    <span class="text-gray-500">{{translations.adminPanelSecurityAudit.fields.ip}}:</span>
+                    <span class="font-medium font-mono">{{ log[3] }}</span>
+                </span>
+            </div>
+            {% endif %}
+
+            {% if log[5] %}
+            <div class="flex items-center gap-2">
+                <i class="ti ti-route text-lg"></i>
+                <span class="text-sm">
+                    <span class="text-gray-500">{{translations.adminPanelSecurityAudit.fields.path}}:</span>
+                    <span class="font-medium font-mono">{{ log[5] }}</span>
+                </span>
+            </div>
+            {% endif %}
+
+            {% if log[6] %}
+            <div class="flex items-center gap-2">
+                <i class="ti ti-code text-lg"></i>
+                <span class="text-sm">
+                    <span class="text-gray-500">{{translations.adminPanelSecurityAudit.fields.method}}:</span>
+                    <span class="font-medium">{{ log[6] }}</span>
+                </span>
+            </div>
+            {% endif %}
+
+            {% if log[7] %}
+            <div class="flex items-center gap-2">
+                <i class="ti ti-number text-lg"></i>
+                <span class="text-sm">
+                    <span class="text-gray-500">{{translations.adminPanelSecurityAudit.fields.status}}:</span>
+                    <span class="font-medium">{{ log[7] }}</span>
+                </span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- User Agent (collapsible) -->
+        {% if log[4] %}
+        <div class="collapse collapse-arrow bg-base-200 mb-3">
+            <input type="checkbox" />
+            <div class="collapse-title text-sm font-medium">
+                <i class="ti ti-device-desktop"></i>
+                {{translations.adminPanelSecurityAudit.fields.userAgent}}
+            </div>
+            <div class="collapse-content">
+                <p class="text-xs font-mono break-all">{{ log[4] }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Details -->
+        {% if log[8] %}
+        <div class="alert alert-info py-2">
+            <div class="flex items-start gap-2">
+                <i class="ti ti-info-circle text-lg"></i>
+                <span class="text-sm">{{ log[8] }}</span>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Timestamp -->
+        <div class="flex justify-end items-center gap-2 mt-3 text-xs text-gray-500">
+            <i class="ti ti-calendar"></i>
+            <span class="date">{{ log[9] }}</span>
+            <i class="ti ti-clock ml-2"></i>
+            <span class="time">{{ log[9] }}</span>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-warning w-12/12 md:w-8/12 lg:w-6/12 mx-auto my-8">
+        <i class="ti ti-info-circle"></i>
+        <span>{{translations.adminPanelSecurityAudit.noLogs}}</span>
+    </div>
+    {% endif %}
+</div>
+
+{% from "components/pagination.html" import pagination %} {{ pagination(page,
+total_pages, request.path) }}
+
+<a href="/admin" class="hidden md:block fixed bottom-0 left-1">
+    <i
+        class="ti ti-arrow-back mr-1 text-xl hover:text-rose-500 duration-150"
+    ></i>
+</a>
+{% endblock body %}

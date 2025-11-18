@@ -19,7 +19,8 @@
     "title": "Admin Panel",
     "users": "Users",
     "posts": "Posts",
-    "comments": "Comments"
+    "comments": "Comments",
+    "securityAudit": "Security Audit"
   },
   "adminPanelComments": {
     "title": "Admin Panel - Comments",
@@ -343,5 +344,34 @@
     "topCountries": "Top Countries",
     "visitor": "Visitor",
     "viewAll": "View All"
+  },
+  "adminPanelSecurityAudit": {
+    "title": "Security Audit Log",
+    "noLogs": "No security events found for the selected filter.",
+    "filters": {
+      "all": "All Events",
+      "adminLogins": "Admin Logins",
+      "userLogins": "User Logins",
+      "adminActions": "Admin Actions",
+      "pageAccess": "Page Access",
+      "rateLimits": "Rate Limits"
+    },
+    "eventTypes": {
+      "adminLoginSuccess": "Admin Login Success",
+      "adminLoginFailure": "Admin Login Failure",
+      "userLoginSuccess": "User Login Success",
+      "userLoginFailure": "User Login Failure",
+      "adminAction": "Admin Action",
+      "pageAccess": "Page Access",
+      "rateLimit": "Rate Limit"
+    },
+    "fields": {
+      "user": "User",
+      "ip": "IP Address",
+      "userAgent": "User Agent",
+      "path": "Path",
+      "method": "Method",
+      "status": "Status Code"
+    }
   }
 }

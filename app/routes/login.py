@@ -17,6 +17,7 @@ from utils.forms.LoginForm import LoginForm
 from utils.log import Log
 from utils.rateLimiter import RateLimiter
 from utils.redirectValidator import RedirectValidator
+from utils.securityAuditLogger import SecurityAuditLogger
 
 loginBlueprint = Blueprint("login", __name__)
 
@@ -92,6 +93,23 @@ def login(direct):
                 if login_failed:
                     # Record failed attempt
                     RateLimiter.record_attempt(userName, success=False)
+
+                    # Log failed login attempt to security audit
+                    if user and user[5] == "admin":
+                        SecurityAuditLogger.log_admin_login(
+                            userName=userName,
+                            ip_address=request.remote_addr,
+                            user_agent=request.headers.get('User-Agent', ''),
+                            success=False
+                        )
+                    else:
+                        SecurityAuditLogger.log_user_login(
+                            userName=userName,
+                            ip_address=request.remote_addr,
+                            user_agent=request.headers.get('User-Agent', ''),
+                            success=False
+                        )
+
                     flashMessage(
                         page="login",
                         message="Invalid username or password",
@@ -126,6 +144,23 @@ def login(direct):
                         session["userRole"] = user[5]
                         addPoints(1, session["userName"])
                         Log.success(f'User: "{user[1]}" logged in')
+
+                        # Log successful login to security audit
+                        if user[5] == "admin":
+                            SecurityAuditLogger.log_admin_login(
+                                userName=user[1],
+                                ip_address=request.remote_addr,
+                                user_agent=request.headers.get('User-Agent', ''),
+                                success=True
+                            )
+                        else:
+                            SecurityAuditLogger.log_user_login(
+                                userName=user[1],
+                                ip_address=request.remote_addr,
+                                user_agent=request.headers.get('User-Agent', ''),
+                                success=True
+                            )
+
                         flashMessage(
                             page="login",
                             message="success",

@@ -12,6 +12,7 @@ from utils.changeUserRole import changeUserRole
 from utils.delete import Delete
 from utils.log import Log
 from utils.paginate import paginate_query
+from utils.securityAuditLogger import SecurityAuditLogger
 
 adminPanelUsersBlueprint = Blueprint("adminPanelUsers", __name__)
 
@@ -38,11 +39,27 @@ def adminPanelUsers():
                     f"Admin: {session['userName']} deleted user: {request.form['userName']}"
                 )
 
+                # Log admin action to security audit
+                SecurityAuditLogger.log_admin_action(
+                    userName=session['userName'],
+                    ip_address=request.remote_addr,
+                    action="Deleted user",
+                    target=request.form['userName']
+                )
+
                 Delete.user(request.form["userName"])
 
             if "userRoleChangeButton" in request.form:
                 Log.info(
                     f"Admin: {session['userName']} changed {request.form['userName']}'s role"
+                )
+
+                # Log admin action to security audit
+                SecurityAuditLogger.log_admin_action(
+                    userName=session['userName'],
+                    ip_address=request.remote_addr,
+                    action="Changed user role",
+                    target=request.form['userName']
                 )
 
                 changeUserRole(request.form["userName"])
