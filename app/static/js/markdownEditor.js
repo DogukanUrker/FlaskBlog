@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
         <button type="button" class="tab-btn" data-tab="preview">
             <i class="ti ti-eye"></i> Preview
         </button>
+        <button type="button" class="tab-btn tab-btn-action" data-tab="full-preview" title="Open preview in new window">
+            <i class="ti ti-external-link"></i> Open Preview
+        </button>
     `;
 
     // Create toolbar
@@ -96,6 +99,12 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function() {
             const tab = this.getAttribute('data-tab');
 
+            if (tab === 'full-preview') {
+                // Open preview in new window
+                openFullPreview();
+                return;
+            }
+
             // Update active tab button
             tabButtons.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
@@ -116,6 +125,54 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Function to open full preview in new window
+    function openFullPreview() {
+        // Collect all form fields
+        const titleInput = document.getElementById('postTitle') || document.querySelector('input[name="postTitle"]');
+        const tagsInput = document.getElementById('postTags') || document.querySelector('input[name="postTags"]');
+        const abstractInput = document.getElementById('postAbstract') || document.querySelector('textarea[name="postAbstract"]');
+        const categoryInput = document.getElementById('postCategory') || document.querySelector('select[name="postCategory"]');
+
+        const title = titleInput ? titleInput.value : '';
+        const tags = tagsInput ? tagsInput.value : '';
+        const abstract = abstractInput ? abstractInput.value : '';
+        const category = categoryInput ? categoryInput.value : '';
+        const content = textarea.value;
+
+        // Get CSRF token
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
+                         document.querySelector('input[name="csrf_token"]')?.value;
+
+        // Create form data
+        const formData = new FormData();
+        formData.append('postTitle', title);
+        formData.append('postTags', tags);
+        formData.append('postAbstract', abstract);
+        formData.append('postContent', content);
+        formData.append('postCategory', category);
+        formData.append('csrf_token', csrfToken);
+
+        // Send to preview endpoint
+        fetch('/preview/post', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Open preview in new window
+                window.open('/preview/post', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+            }
+        })
+        .catch(error => {
+            console.error('Error opening preview:', error);
+            alert('Failed to open preview. Please try again.');
+        });
+    }
 
     // Function to update preview
     function updatePreview() {

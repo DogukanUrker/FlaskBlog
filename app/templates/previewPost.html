@@ -1,0 +1,112 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title>{% if title %}{{ title }} - Preview{% else %}Post Preview{% endif %}</title>
+<meta name="robots" content="noindex, nofollow">
+{% endblock head %}
+
+{% block body %}
+<div class="w-11/12 md:w-5/6 lg:w-7/12 xl:w-5/12 mx-auto mt-6 md:mt-10 break-words">
+    {% if empty %}
+    <div class="text-center py-20">
+        <i class="ti ti-file-off text-6xl text-rose-500 opacity-50"></i>
+        <h1 class="text-2xl mt-4 opacity-75">No Preview Data</h1>
+        <p class="mt-2 opacity-50">Please create or edit a post to see the preview.</p>
+        <a href="/createpost" class="btn btn-primary mt-6">
+            <i class="ti ti-pencil mr-2"></i>
+            Create Post
+        </a>
+    </div>
+    {% else %}
+    <!-- Preview Badge -->
+    <div class="alert alert-info mb-6">
+        <i class="ti ti-eye"></i>
+        <span>This is a preview. Your post has not been published yet.</span>
+    </div>
+
+    <!-- Post Banner Placeholder -->
+    <div class="w-full h-64 bg-gradient-to-r from-rose-500 to-pink-500 rounded-md shadow-md select-none flex items-center justify-center mb-4">
+        <div class="text-white text-center">
+            <i class="ti ti-photo text-6xl opacity-75"></i>
+            <p class="mt-2 opacity-75">Banner Preview</p>
+        </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-2xl md:text-3xl mt-3 text-rose-500 w-full text-center font-bold">
+        {{ title if title else 'Untitled Post' }}
+    </h1>
+
+    <!-- Reading Time Placeholder -->
+    <div class="flex items-center justify-center gap-2 my-4 select-none opacity-75">
+        <p class="text-sm font-medium">
+            <i class="ti ti-book mr-1"></i>
+            Preview Mode
+        </p>
+    </div>
+
+    <!-- Abstract -->
+    <div class="text-center font-sm max-w-full">
+        {{ abstract if abstract else 'No abstract provided' }}
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Content -->
+    <div class="markdown-content">
+        {% if rendered_content %}
+            {{ rendered_content | safe }}
+        {% else %}
+            <div class="text-center py-10 opacity-50">
+                <i class="ti ti-file-text text-4xl"></i>
+                <p class="mt-2">No content yet. Start writing to see the preview.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Post Metadata -->
+    <div class="select-none mt-8">
+        <div class="flex w-full justify-between my-1">
+            <div class="flex items-center">
+                <i class="ti ti-tags mr-1 text-2xl"></i>
+                {{ tags.replace(",", ", ") if tags else "No tags" }}
+            </div>
+        </div>
+
+        {% if category %}
+        <div class="flex w-full justify-between my-1">
+            <div class="flex items-center">
+                <i class="ti ti-folder mr-1 text-2xl"></i>
+                {{ category }}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="flex w-full justify-between my-1">
+            <a href="#" class="hover:text-rose-500 duration-150">
+                <h5 class="m-1 flex">
+                    <img
+                        class="w-7 mr-2 select-none"
+                        src="{{ getProfilePicture(session.get('userName', 'guest')) }}"
+                        alt="{{ session.get('userName', 'Guest') }}"
+                    />
+                    {{ session.get('userName', 'Guest Author') }}
+                </h5>
+            </a>
+            <h5 class="opacity-75">Preview</h5>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex justify-center gap-4 mt-8 mb-4">
+        <button onclick="window.close()" class="btn btn-outline">
+            <i class="ti ti-x mr-2"></i>
+            Close Preview
+        </button>
+        <a href="javascript:history.back()" class="btn btn-primary">
+            <i class="ti ti-arrow-left mr-2"></i>
+            Back to Editor
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock body %}
