@@ -153,6 +153,63 @@
     margin: 20px;
 }
 
+/* Post Preview Styling */
+.post-preview-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.preview-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f43f5e;
+    text-align: center;
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+}
+
+.preview-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+    color: hsl(var(--bc) / 0.8);
+    font-size: 0.95rem;
+}
+
+.preview-tags i {
+    font-size: 1.2rem;
+    color: #f43f5e;
+}
+
+.preview-abstract {
+    text-align: center;
+    font-size: 1rem;
+    margin: 1rem 0;
+    padding: 0.75rem;
+    background: hsl(var(--b2));
+    border-radius: 8px;
+    line-height: 1.6;
+    color: hsl(var(--bc));
+}
+
+.preview-empty {
+    color: hsl(var(--bc) / 0.4);
+    font-style: italic;
+}
+
+.post-preview-container .divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #f43f5e, transparent);
+    margin: 1.5rem 0;
+    border: none;
+}
+
+.post-preview-container .markdown-content {
+    margin-top: 1.5rem;
+}
+
 /* Dark mode adjustments */
 html[data-theme="dark"] .editor-preview,
 html[data-theme="black"] .editor-preview,

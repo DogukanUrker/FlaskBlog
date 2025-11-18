@@ -119,12 +119,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to update preview
     function updatePreview() {
-        const content = textarea.value;
+        // Collect all form fields
+        const titleInput = document.getElementById('postTitle') || document.querySelector('input[name="postTitle"]');
+        const tagsInput = document.getElementById('postTags') || document.querySelector('input[name="postTags"]');
+        const abstractInput = document.getElementById('postAbstract') || document.querySelector('textarea[name="postAbstract"]');
 
-        if (!content.trim()) {
-            previewContainer.innerHTML = '<div class="preview-placeholder">Nothing to preview. Start writing to see the preview.</div>';
-            return;
-        }
+        const title = titleInput ? titleInput.value : '';
+        const tags = tagsInput ? tagsInput.value : '';
+        const abstract = abstractInput ? abstractInput.value : '';
+        const content = textarea.value;
 
         // Get CSRF token
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
@@ -140,7 +143,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken
             },
-            body: JSON.stringify({ content: content })
+            body: JSON.stringify({
+                title: title,
+                tags: tags,
+                abstract: abstract,
+                content: content
+            })
         })
         .then(response => response.json())
         .then(data => {
