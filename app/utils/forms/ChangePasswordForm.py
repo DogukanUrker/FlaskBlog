@@ -17,7 +17,6 @@ class ChangePasswordForm(Form):
     oldPassword = PasswordField(
         "oldPassword",
         [
-            validators.Length(min=8),
             validators.InputRequired(),
         ],
     )
@@ -25,7 +24,7 @@ class ChangePasswordForm(Form):
     password = PasswordField(
         "password",
         [
-            validators.Length(min=8),
+            validators.Length(min=8, message="Password must be at least 8 characters long"),
             validators.InputRequired(),
         ],
     )
@@ -33,7 +32,7 @@ class ChangePasswordForm(Form):
     passwordConfirm = PasswordField(
         "passwordConfirm",
         [
-            validators.Length(min=8),
+            validators.Length(min=8, message="Password must be at least 8 characters long"),
             validators.InputRequired(),
         ],
     )
