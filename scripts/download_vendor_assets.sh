@@ -8,9 +8,7 @@ STATIC_DIR="/home/user/FlaskBlog/app/static/vendor"
 
 echo "Downloading vendor assets..."
 
-# Note: Tailwind CSS is included in DaisyUI, no separate download needed
-
-# Download DaisyUI CSS (includes full Tailwind CSS utilities)
+# Download DaisyUI CSS (component styles only)
 echo "Downloading DaisyUI..."
 curl -sL "https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" \
   -o "${STATIC_DIR}/daisyui/daisyui.min.css"
@@ -18,6 +16,12 @@ curl -sL "https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" \
 # Download DaisyUI themes
 curl -sL "https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/themes.min.css" \
   -o "${STATIC_DIR}/daisyui/themes.min.css"
+
+# Download Tailwind CSS Play CDN (provides responsive utilities)
+echo "Downloading Tailwind CSS..."
+mkdir -p "${STATIC_DIR}/tailwindcss"
+curl -sL "https://cdn.tailwindcss.com/3.4.1" \
+  -o "${STATIC_DIR}/tailwindcss/tailwind.min.js"
 
 # Download Tabler Icons CSS
 echo "Downloading Tabler Icons..."
