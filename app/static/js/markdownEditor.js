@@ -11,12 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabNav = document.createElement('div');
     tabNav.className = 'editor-tabs';
     tabNav.innerHTML = `
-        <button type="button" class="tab-btn active" data-tab="write">
-            <i class="ti ti-pencil"></i> Write
-        </button>
-        <button type="button" class="tab-btn" data-tab="preview">
-            <i class="ti ti-eye"></i> Preview
-        </button>
         <button type="button" class="tab-btn tab-btn-action" data-tab="full-preview" title="Open preview in new window">
             <i class="ti ti-external-link"></i> Open Preview
         </button>
@@ -74,12 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </button>
     `;
 
-    // Create preview container
-    const previewContainer = document.createElement('div');
-    previewContainer.className = 'editor-preview markdown-content';
-    previewContainer.style.display = 'none';
-    previewContainer.innerHTML = '<div class="preview-placeholder">Nothing to preview. Start writing to see the preview.</div>';
-    
     // Create status bar
     const statusBar = document.createElement('div');
     statusBar.className = 'editor-status';
@@ -90,41 +78,15 @@ document.addEventListener('DOMContentLoaded', function() {
     container.appendChild(tabNav);
     container.appendChild(toolbar);
     container.appendChild(textarea);
-    container.appendChild(previewContainer);
     container.appendChild(statusBar);
 
-    // Tab switching functionality
-    const tabButtons = tabNav.querySelectorAll('.tab-btn');
-    tabButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tab = this.getAttribute('data-tab');
-
-            if (tab === 'full-preview') {
-                // Open preview in new window
-                openFullPreview();
-                return;
-            }
-
-            // Update active tab button
-            tabButtons.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-
-            if (tab === 'write') {
-                // Show write mode
-                toolbar.style.display = 'flex';
-                textarea.style.display = 'block';
-                previewContainer.style.display = 'none';
-            } else if (tab === 'preview') {
-                // Show preview mode
-                toolbar.style.display = 'none';
-                textarea.style.display = 'none';
-                previewContainer.style.display = 'block';
-
-                // Render preview
-                updatePreview();
-            }
+    // Open preview button functionality
+    const previewButton = tabNav.querySelector('.tab-btn');
+    if (previewButton) {
+        previewButton.addEventListener('click', function() {
+            openFullPreview();
         });
-    });
+    }
 
     // Function to open full preview in new window
     function openFullPreview() {
@@ -182,53 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Function to update preview
-    function updatePreview() {
-        // Collect all form fields
-        const titleInput = document.getElementById('postTitle') || document.querySelector('input[name="postTitle"]');
-        const tagsInput = document.getElementById('postTags') || document.querySelector('input[name="postTags"]');
-        const abstractInput = document.getElementById('postAbstract') || document.querySelector('textarea[name="postAbstract"]');
-
-        const title = titleInput ? titleInput.value : '';
-        const tags = tagsInput ? tagsInput.value : '';
-        const abstract = abstractInput ? abstractInput.value : '';
-        const content = textarea.value;
-
-        // Get CSRF token
-        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
-                         document.querySelector('input[name="csrf_token"]')?.value;
-
-        // Show loading state
-        previewContainer.innerHTML = '<div class="preview-loading">Rendering preview...</div>';
-
-        // Fetch rendered markdown from API
-        fetch('/api/v1/markdown/preview', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken
-            },
-            body: JSON.stringify({
-                title: title,
-                tags: tags,
-                abstract: abstract,
-                content: content
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.html) {
-                previewContainer.innerHTML = data.html;
-            } else if (data.error) {
-                previewContainer.innerHTML = '<div class="preview-error">Error rendering preview: ' + data.error + '</div>';
-            }
-        })
-        .catch(error => {
-            previewContainer.innerHTML = '<div class="preview-error">Failed to load preview. Please check your connection.</div>';
-            console.error('Preview error:', error);
-        });
-    }
-    
     // Add placeholder
     textarea.placeholder = `Write your amazing blog post here... 📝
 
