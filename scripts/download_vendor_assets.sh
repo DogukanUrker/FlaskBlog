@@ -52,6 +52,12 @@ curl -skL "https://cdn.jsdelivr.net/npm/apexcharts@3.45.2/dist/apexcharts.min.js
 sed -i 's|https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.46.0/fonts/|fonts/|g' \
   "${STATIC_DIR}/tabler-icons/tabler-icons.min.css"
 
+# Remove source map references from all CSS files (not needed for production)
+echo "Removing source map references..."
+sed -i 's|/\*# sourceMappingURL=.*\.map \*/||g' "${STATIC_DIR}/daisyui/daisyui.min.css"
+sed -i 's|/\*# sourceMappingURL=.*\.map \*/||g' "${STATIC_DIR}/daisyui/themes.min.css"
+sed -i 's|/\*# sourceMappingURL=.*\.map \*/||g' "${STATIC_DIR}/tabler-icons/tabler-icons.min.css"
+
 echo "✓ All vendor assets downloaded successfully!"
 echo ""
 echo "File sizes:"
