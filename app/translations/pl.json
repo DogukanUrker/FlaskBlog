@@ -161,7 +161,8 @@
   "post": {
     "minRead": "minut czytania",
     "placeholder": "Co myślisz?",
-    "viewPerformance": "Zobacz Wydajność"
+    "viewPerformance": "Zobacz Wydajność",
+    "memberSince": "Członek od"
   },
   "sortMenu": {
     "asc": "Rosnąco",

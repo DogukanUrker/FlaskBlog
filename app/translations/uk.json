@@ -161,7 +161,8 @@
   "post": {
     "minRead": "хвилин на читання",
     "placeholder": "Що ви думаєте?",
-    "viewPerformance": "Переглянути продуктивність"
+    "viewPerformance": "Переглянути продуктивність",
+    "memberSince": "Учасник з"
   },
   "sortMenu": {
     "asc": "По зростанню",

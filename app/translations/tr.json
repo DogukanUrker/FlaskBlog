@@ -161,7 +161,8 @@
   "post": {
     "minRead": "dakika okuma",
     "placeholder": "Düşünceleriniz nedir?",
-    "viewPerformance": "Performansı Görüntüle"
+    "viewPerformance": "Performansı Görüntüle",
+    "memberSince": "Üyelik tarihi"
   },
   "sortMenu": {
     "asc": "Artan",

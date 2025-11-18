@@ -108,6 +108,16 @@
             </a>
             <h5 class="date">{{ timeStamp }}</h5>
         </div>
+
+        {% if authorJoinDate %}
+        <div class="flex w-full justify-between my-1 text-sm opacity-75">
+            <h5 class="m-1 flex items-center">
+                <i class="ti ti-calendar mr-1 text-lg"></i>
+                {{ translations.post.memberSince if translations.post and translations.post.memberSince else "Member since" }}
+            </h5>
+            <h5 class="date">{{ authorJoinDate }}</h5>
+        </div>
+        {% endif %}
     </div>
 
     {% if author == session["userName"] %}

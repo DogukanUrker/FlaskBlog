@@ -161,7 +161,8 @@
   "post": {
     "minRead": "min de lecture",
     "placeholder": "Quelles sont vos pensées ?",
-    "viewPerformance": "Voir la Performance"
+    "viewPerformance": "Voir la Performance",
+    "memberSince": "Membre depuis"
   },
   "sortMenu": {
     "asc": "Croissant",

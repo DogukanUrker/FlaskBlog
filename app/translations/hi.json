@@ -161,7 +161,8 @@
   "post": {
     "minRead": "मिनट में पढ़ें",
     "placeholder": "आपके विचार क्या हैं?",
-    "viewPerformance": "प्रदर्शन देखें"
+    "viewPerformance": "प्रदर्शन देखें",
+    "memberSince": "सदस्य बने"
   },
   "sortMenu": {
     "asc": "आरोही क्रम",

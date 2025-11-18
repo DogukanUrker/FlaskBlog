@@ -161,7 +161,8 @@
   "post": {
     "minRead": "Minuten Lesezeit",
     "placeholder": "Was sind Ihre Gedanken?",
-    "viewPerformance": "Leistung Anzeigen"
+    "viewPerformance": "Leistung Anzeigen",
+    "memberSince": "Mitglied seit"
   },
   "sortMenu": {
     "asc": "Aufsteigend",

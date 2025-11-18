@@ -161,7 +161,8 @@
   "post": {
     "minRead": "分で読む",
     "placeholder": "あなたの考えは何ですか？",
-    "viewPerformance": "パフォーマンスを表示"
+    "viewPerformance": "パフォーマンスを表示",
+    "memberSince": "メンバー登録日"
   },
   "sortMenu": {
     "asc": "昇順",

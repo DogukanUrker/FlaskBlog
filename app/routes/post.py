@@ -155,6 +155,19 @@ def post(urlID=None, slug=None):
         else:
             idForRandomVisitor = None
 
+        # Fetch author's join date
+        Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
+        userConnection = sqlite3.connect(Settings.DB_USERS_ROOT)
+        userConnection.set_trace_callback(Log.database)
+        userCursor = userConnection.cursor()
+        userCursor.execute(
+            "SELECT timeStamp FROM Users WHERE userName = ?",
+            (post[5],)
+        )
+        authorData = userCursor.fetchone()
+        authorJoinDate = authorData[0] if authorData else None
+        userConnection.close()
+
         return render_template(
             "post.html",
             id=post[0],
@@ -173,6 +186,7 @@ def post(urlID=None, slug=None):
             blogPostUrl=request.root_url,
             readingTime=calculateReadTime(post[3]),
             idForRandomVisitor=idForRandomVisitor,
+            authorJoinDate=authorJoinDate,
         )
 
     else:

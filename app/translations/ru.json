@@ -161,7 +161,8 @@
   "post": {
     "minRead": "минут на чтение",
     "placeholder": "Что вы думаете?",
-    "viewPerformance": "Просмотр Производительности"
+    "viewPerformance": "Просмотр Производительности",
+    "memberSince": "Участник с"
   },
   "sortMenu": {
     "asc": "По возрастанию",

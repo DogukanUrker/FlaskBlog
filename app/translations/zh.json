@@ -160,7 +160,8 @@
   "post": {
     "minRead": "分钟阅读",
     "placeholder": "你有什么想法？",
-    "viewPerformance": "查看性能"
+    "viewPerformance": "查看性能",
+    "memberSince": "加入时间"
   },
   "sortMenu": {
     "asc": "升序",

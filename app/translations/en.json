@@ -162,7 +162,8 @@
   "post": {
     "minRead": "min read",
     "placeholder": "What are your thoughts?",
-    "viewPerformance": "View Performance"
+    "viewPerformance": "View Performance",
+    "memberSince": "Member since"
   },
   "sortMenu": {
     "asc": "Ascending",
