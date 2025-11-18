@@ -38,6 +38,12 @@ echo "Downloading ApexCharts..."
 curl -skL "https://cdn.jsdelivr.net/npm/apexcharts@3.45.2/dist/apexcharts.min.js" \
   -o "${STATIC_DIR}/apexcharts/apexcharts.min.js"
 
+# Download jQuery
+echo "Downloading jQuery..."
+mkdir -p "${STATIC_DIR}/jquery"
+curl -sL "https://code.jquery.com/jquery-3.4.1.slim.min.js" \
+  -o "${STATIC_DIR}/jquery/jquery-3.4.1.slim.min.js"
+
 # Update Tabler Icons CSS to use local fonts
 sed -i 's|https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.46.0/fonts/|fonts/|g' \
   "${STATIC_DIR}/tabler-icons/tabler-icons.min.css"
