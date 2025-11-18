@@ -12,22 +12,18 @@ ENV PYTHONUNBUFFERED=1 \
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    curl \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
-
-# Install uv package manager
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.cargo/bin:$PATH"
 
 # Set working directory
 WORKDIR /app
 
-# Copy dependency files
-COPY app/pyproject.toml app/uv.lock* ./
+# Copy dependency file
+COPY app/pyproject.toml ./
 
-# Install dependencies using uv
-RUN uv pip install --system -r pyproject.toml
+# Extract dependencies from pyproject.toml and install with pip
+RUN pip install --upgrade pip && \
+    pip install flask flask-wtf wtforms passlib requests user-agents geoip2 tamga markdown2 bleach aiohttp
 
 
 # Production stage
