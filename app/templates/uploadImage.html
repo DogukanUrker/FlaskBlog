@@ -2,8 +2,18 @@
 
 {% block title %}{{ translations.imageGallery.uploadTitle }}{% endblock %}
 
-{% block content %}
+{% block body %}
 <div class="container mx-auto px-4 py-8 max-w-2xl">
+    <!-- Breadcrumb -->
+    <div class="text-sm breadcrumbs mb-4">
+        <ul>
+            <li><a href="/" class="hover:text-rose-500">Home</a></li>
+            <li><a href="/galleries" class="hover:text-rose-500">{{ translations.imageGallery.galleriesListTitle }}</a></li>
+            <li><a href="/gallery/{{ session.userName }}" class="hover:text-rose-500">{{ translations.imageGallery.yourGallery }}</a></li>
+            <li>{{ translations.imageGallery.uploadTitle }}</li>
+        </ul>
+    </div>
+
     <!-- Page Header -->
     <div class="text-center mb-8">
         <h1 class="text-4xl font-bold mb-2">
@@ -85,9 +95,9 @@
 
                 <!-- Submit Button -->
                 <div class="form-control mt-6">
-                    <button type="submit" class="btn btn-primary btn-lg w-full">
-                        <i class="ti ti-upload mr-2"></i>
-                        {{ translations.imageGallery.uploadButton }}
+                    <button type="submit" class="btn btn-primary btn-lg w-full gap-2">
+                        <i class="ti ti-upload text-xl"></i>
+                        <span class="text-lg">{{ translations.imageGallery.uploadButton }}</span>
                     </button>
                 </div>
             </form>
@@ -116,4 +126,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock body %}

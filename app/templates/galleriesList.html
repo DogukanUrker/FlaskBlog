@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ translations.imageGallery.galleriesListTitle }}{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Page Header -->
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">
+            <i class="ti ti-photo-gallery mr-2"></i>
+            {{ translations.imageGallery.galleriesListTitle }}
+        </h1>
+        <p class="text-base-content/70">
+            {{ translations.imageGallery.galleriesListDescription }}
+        </p>
+    </div>
+
+    <!-- Flash Messages -->
+    {% include 'components/flash.html' %}
+
+    <!-- Galleries List -->
+    {% if galleries %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for gallery in galleries %}
+        <a href="/gallery/{{ gallery.userName }}" class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+            <div class="card-body">
+                <div class="flex items-center mb-4">
+                    <div class="avatar placeholder mr-4">
+                        <div class="bg-primary text-primary-content rounded-full w-16">
+                            <span class="text-2xl">{{ gallery.userName[0].upper() }}</span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h2 class="card-title text-xl">
+                            {{ gallery.userName }}
+                        </h2>
+                        <p class="text-sm text-base-content/60">
+                            <i class="ti ti-photo mr-1"></i>
+                            {{ gallery.image_count }}
+                            {% if gallery.image_count == 1 %}
+                                {{ translations.imageGallery.imagesSingular }}
+                            {% else %}
+                                {{ translations.imageGallery.imagesPlural }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="divider my-2"></div>
+
+                <div class="text-xs text-base-content/50">
+                    <i class="ti ti-clock mr-1"></i>
+                    {{ translations.imageGallery.lastUpdated }}:
+                    <span class="date">{{ gallery.latest_upload }}</span>
+                </div>
+
+                <div class="card-actions justify-end mt-4">
+                    <button class="btn btn-primary btn-sm">
+                        {{ translations.imageGallery.viewGallery }}
+                        <i class="ti ti-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- Empty State -->
+    <div class="text-center py-16">
+        <div class="mb-6">
+            <i class="ti ti-photo-off text-9xl text-base-content/20"></i>
+        </div>
+        <h2 class="text-2xl font-bold mb-2">
+            {{ translations.imageGallery.noGalleries }}
+        </h2>
+        <p class="text-base-content/70 mb-6">
+            {{ translations.imageGallery.beFirstToUpload }}
+        </p>
+        {% if session.userName %}
+        <a href="/gallery/upload" class="btn btn-primary btn-lg">
+            <i class="ti ti-upload mr-2"></i>
+            {{ translations.imageGallery.uploadNewImage }}
+        </a>
+        {% else %}
+        <a href="/login" class="btn btn-primary btn-lg">
+            <i class="ti ti-login mr-2"></i>
+            {{ translations.login.title }}
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Upload Button for Logged In Users -->
+    {% if session.userName and galleries %}
+    <div class="text-center mt-8">
+        <a href="/gallery/upload" class="btn btn-primary btn-lg">
+            <i class="ti ti-upload mr-2"></i>
+            {{ translations.imageGallery.uploadNewImage }}
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock body %}

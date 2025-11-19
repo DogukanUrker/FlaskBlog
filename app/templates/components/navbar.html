@@ -27,6 +27,10 @@
             <a href="/searchbar"><i class="ti ti-search text-2xl"></i></a>
         </div>
 
+        <a href="/galleries" title="Image Galleries" class="hover:text-rose-500 duration-150">
+            <i class="ti ti-photo text-2xl"></i>
+        </a>
+
         {% if session["userName"] %}
         <a href="/user/{{ session['userName'].lower() }}">
             <div>

@@ -2,8 +2,17 @@
 
 {% block title %}{{ userName }}'s {{ translations.imageGallery.galleryTitle }}{% endblock %}
 
-{% block content %}
+{% block body %}
 <div class="container mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <div class="text-sm breadcrumbs mb-4">
+        <ul>
+            <li><a href="/" class="hover:text-rose-500">Home</a></li>
+            <li><a href="/galleries" class="hover:text-rose-500">{{ translations.imageGallery.galleriesListTitle }}</a></li>
+            <li>{{ userName }}'s {{ translations.imageGallery.galleryTitle }}</li>
+        </ul>
+    </div>
+
     <!-- Page Header -->
     <div class="text-center mb-8">
         <h1 class="text-4xl font-bold mb-2">
@@ -149,4 +158,4 @@ function confirmDelete(imageId) {
 }
 </script>
 {% endif %}
-{% endblock %}
+{% endblock body %}

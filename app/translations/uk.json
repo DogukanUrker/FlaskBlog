@@ -302,6 +302,18 @@
       "invalidImageFile": "Недійсний файл зображення. Файл не було розпізнано як дійсне зображення.",
       "fileTypeMismatch": "Розширення файлу не відповідає фактичному вмісту файлу. Переконайтеся, що ваш файл має правильне розширення.",
       "svgNotSupported": "Файли SVG не підтримуються з міркувань безпеки."
+    },
+    "imageGallery": {
+      "userNotFound": "User not found.",
+      "loginRequired": "You need to login to upload images.",
+      "noFileProvided": "No file provided.",
+      "noFileSelected": "No file selected.",
+      "invalidFile": "Invalid file. Please upload a valid image.",
+      "uploadSuccess": "Image uploaded successfully!",
+      "uploadError": "Failed to upload image. Please try again.",
+      "imageNotFound": "Image not found.",
+      "unauthorized": "You are not authorized to delete this image.",
+      "deleteSuccess": "Image deleted successfully."
     }
   },
   "roles": {
@@ -380,5 +392,38 @@
     "disableConfirm": "Ви впевнені, що хочете вимкнути двофакторну автентифікацію? Ваш обліковий запис буде менш захищеним.",
     "enterPassword": "Введіть пароль для підтвердження",
     "setup": "Увімкнути двофакторну автентифікацію (2FA)"
+  },
+  "imageGallery": {
+    "galleryTitle": "Gallery",
+    "uploadTitle": "Upload Image",
+    "uploadDescription": "Upload images to your personal gallery",
+    "selectImage": "Select Image",
+    "allowedFormats": "Allowed: JPG, PNG, WEBP (max 5MB)",
+    "imageTitle": "Image Title",
+    "titlePlaceholder": "Enter image title (optional)",
+    "imageDescription": "Image Description",
+    "descriptionPlaceholder": "Enter image description (optional)",
+    "uploadButton": "Upload Image",
+    "backToGallery": "Back to Gallery",
+    "tipsTitle": "Tips",
+    "tip1": "Supported formats: JPG, PNG, WEBP",
+    "tip2": "Maximum file size: 5MB",
+    "tip3": "Add a title and description to make your images more discoverable",
+    "yourGalleryDescription": "Manage your personal image gallery",
+    "viewingGallery": "Viewing public image gallery",
+    "uploadNewImage": "Upload New Image",
+    "noImages": "No Images Yet",
+    "uploadFirstImage": "Upload your first image to get started!",
+    "userHasNoImages": "This user hasn't uploaded any images yet.",
+    "confirmDelete": "Are you sure you want to delete this image? This action cannot be undone.",
+    "galleriesListTitle": "Image Galleries",
+    "galleriesListDescription": "Browse image galleries from our community",
+    "imagesSingular": "image",
+    "imagesPlural": "images",
+    "lastUpdated": "Last updated",
+    "viewGallery": "View Gallery",
+    "noGalleries": "No Galleries Yet",
+    "beFirstToUpload": "Be the first to create a gallery and share your images!",
+    "yourGallery": "Your Gallery"
   }
 }
