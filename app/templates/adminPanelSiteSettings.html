@@ -53,6 +53,7 @@
 
             <form method="POST" enctype="multipart/form-data" class="space-y-6">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="upload_type" value="site_logo" />
 
                 <div class="form-control">
                     <label class="label">
@@ -105,6 +106,192 @@
                 <p>• Used for social media sharing (Open Graph & Twitter Cards)</p>
                 <p>• Changes will be reflected site-wide immediately</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Default Profile Picture Section -->
+    <div class="divider my-8"></div>
+
+    <!-- Current Default Profile Picture Display -->
+    <div class="card bg-base-200 shadow-xl mb-6">
+        <div class="card-body">
+            <h2 class="card-title text-xl mb-4">
+                <i class="ti ti-user-circle mr-2"></i>
+                Default Profile Picture
+            </h2>
+
+            {% if currentDefaultProfile %}
+            <div class="flex justify-center items-center p-8 bg-base-100 rounded-lg">
+                <img
+                    src="{{ currentDefaultProfile }}"
+                    alt="Current Default Profile Picture"
+                    class="max-w-xs max-h-48 object-contain rounded-full shadow-lg"
+                />
+            </div>
+
+            <div class="mt-4 text-center">
+                <p class="text-sm opacity-75">
+                    <i class="ti ti-info-circle mr-1"></i>
+                    Path: <code class="bg-base-300 px-2 py-1 rounded">{{ currentDefaultProfile }}</code>
+                </p>
+            </div>
+            {% else %}
+            <div class="alert alert-warning">
+                <i class="ti ti-alert-circle"></i>
+                <span>No default profile picture set. Using DiceBear avatars as fallback.</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Upload Default Profile Picture Form -->
+    <div class="card bg-base-200 shadow-xl mb-6">
+        <div class="card-body">
+            <h2 class="card-title text-xl mb-4">
+                <i class="ti ti-upload mr-2"></i>
+                Upload Default Profile Picture
+            </h2>
+
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="upload_type" value="default_profile_picture" />
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">Select Profile Picture File</span>
+                    </label>
+                    <input
+                        type="file"
+                        name="default_profile_picture"
+                        accept="image/jpeg,image/jpg,image/png,image/webp"
+                        class="file-input file-input-bordered file-input-primary w-full"
+                        required
+                    />
+                    <label class="label">
+                        <span class="label-text-alt">
+                            <i class="ti ti-info-circle mr-1"></i>
+                            Allowed formats: .jpg, .jpeg, .png, .webp
+                        </span>
+                    </label>
+                    <label class="label">
+                        <span class="label-text-alt">
+                            <i class="ti ti-alert-triangle mr-1 text-warning"></i>
+                            Recommended size: 200x200 pixels (square)
+                        </span>
+                    </label>
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="ti ti-info-circle"></i>
+                    <div>
+                        <p class="font-semibold">This will be used for:</p>
+                        <div class="text-sm mt-1">
+                            <p>• New users who haven't uploaded a profile picture</p>
+                            <p>• Users who delete their custom profile picture</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-actions justify-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-upload mr-2"></i>
+                        Upload Default Profile Picture
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Default Banner Section -->
+    <div class="divider my-8"></div>
+
+    <!-- Current Default Banner Display -->
+    <div class="card bg-base-200 shadow-xl mb-6">
+        <div class="card-body">
+            <h2 class="card-title text-xl mb-4">
+                <i class="ti ti-photo mr-2"></i>
+                Default Profile Banner
+            </h2>
+
+            {% if currentDefaultBanner %}
+            <div class="flex justify-center items-center p-8 bg-base-100 rounded-lg">
+                <img
+                    src="{{ currentDefaultBanner }}"
+                    alt="Current Default Banner"
+                    class="w-full max-w-2xl object-contain rounded shadow-lg"
+                />
+            </div>
+
+            <div class="mt-4 text-center">
+                <p class="text-sm opacity-75">
+                    <i class="ti ti-info-circle mr-1"></i>
+                    Path: <code class="bg-base-300 px-2 py-1 rounded">{{ currentDefaultBanner }}</code>
+                </p>
+            </div>
+            {% else %}
+            <div class="alert alert-warning">
+                <i class="ti ti-alert-circle"></i>
+                <span>No default banner set. Users without banners will have no banner displayed.</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Upload Default Banner Form -->
+    <div class="card bg-base-200 shadow-xl mb-6">
+        <div class="card-body">
+            <h2 class="card-title text-xl mb-4">
+                <i class="ti ti-upload mr-2"></i>
+                Upload Default Profile Banner
+            </h2>
+
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="upload_type" value="default_banner" />
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">Select Banner File</span>
+                    </label>
+                    <input
+                        type="file"
+                        name="default_banner"
+                        accept="image/jpeg,image/jpg,image/png,image/webp"
+                        class="file-input file-input-bordered file-input-primary w-full"
+                        required
+                    />
+                    <label class="label">
+                        <span class="label-text-alt">
+                            <i class="ti ti-info-circle mr-1"></i>
+                            Allowed formats: .jpg, .jpeg, .png, .webp
+                        </span>
+                    </label>
+                    <label class="label">
+                        <span class="label-text-alt">
+                            <i class="ti ti-alert-triangle mr-1 text-warning"></i>
+                            Recommended size: 1500x500 pixels (3:1 ratio)
+                        </span>
+                    </label>
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="ti ti-info-circle"></i>
+                    <div>
+                        <p class="font-semibold">This will be used for:</p>
+                        <div class="text-sm mt-1">
+                            <p>• Users who haven't uploaded a profile banner</p>
+                            <p>• Users who delete their custom banner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-actions justify-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-upload mr-2"></i>
+                        Upload Default Banner
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
