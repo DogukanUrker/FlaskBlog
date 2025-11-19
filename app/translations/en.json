@@ -14,7 +14,8 @@
     "delete": "delete account",
     "language": "change language",
     "profilePicture": "change profile picture",
-    "banner": "change profile banner"
+    "banner": "change profile banner",
+    "imageGallery": "image gallery"
   },
   "adminPanel": {
     "title": "Admin Panel",
