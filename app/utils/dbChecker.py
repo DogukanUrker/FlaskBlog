@@ -455,3 +455,45 @@ def addBannerColumn():
             Log.info('Column "banner" already exists in Users table')
     finally:
         connection.close()
+
+
+def userImagesTable():
+    """
+    Checks if the user_images table exists in the database, and creates it if it does not.
+    This table stores user-uploaded images for their personal galleries.
+
+    Returns:
+        None
+    """
+    Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database to check user_images table")
+
+    connection = sqlite3.connect(Settings.DB_USERS_ROOT)
+    connection.set_trace_callback(Log.database)
+    cursor = connection.cursor()
+
+    try:
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='user_images'")
+
+        if cursor.fetchone():
+            Log.info('Table: "user_images" found in users database')
+        else:
+            Log.error('Table: "user_images" not found in users database')
+
+            userImagesTableSQL = """
+            CREATE TABLE IF NOT EXISTS user_images(
+                "image_id"      INTEGER NOT NULL UNIQUE,
+                "userName"      TEXT NOT NULL,
+                "title"         TEXT,
+                "description"   TEXT,
+                "file_path"     TEXT NOT NULL,
+                "timeStamp"     INTEGER NOT NULL,
+                PRIMARY KEY("image_id" AUTOINCREMENT)
+            );"""
+
+            cursor.execute(userImagesTableSQL)
+            connection.commit()
+            Log.success('Table: "user_images" created in users database')
+    except Exception as e:
+        Log.error(f'Error checking/creating user_images table: {e}')
+    finally:
+        connection.close()

@@ -72,6 +72,9 @@ from routes.editPost import (
 from routes.index import (
     indexBlueprint,
 )
+from routes.imageGallery import (
+    imageGalleryBlueprint,
+)
 from routes.markdownPreview import (
     markdownPreviewBlueprint,
 )
@@ -139,6 +142,7 @@ from utils.dbChecker import (
     securityAuditLogTable,
     siteSettingsTable,
     twoFactorAuthFields,
+    userImagesTable,
     usersTable,
 )
 from utils.errorHandlers.csrfErrorHandler import (
@@ -267,6 +271,7 @@ securityAuditLogTable()
 twoFactorAuthFields()
 siteSettingsTable()
 addBannerColumn()
+userImagesTable()
 
 
 @app.errorhandler(404)
@@ -320,6 +325,7 @@ def afterRequest(response):
 app.register_blueprint(postBlueprint)
 app.register_blueprint(userBlueprint)
 app.register_blueprint(indexBlueprint)
+app.register_blueprint(imageGalleryBlueprint)
 app.register_blueprint(aboutBlueprint)
 app.register_blueprint(loginBlueprint)
 app.register_blueprint(signUpBlueprint)

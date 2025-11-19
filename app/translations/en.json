@@ -258,6 +258,40 @@
       "bannerNoSelection": "No file selected.",
       "bannerInvalid": "Invalid file."
     },
+    "imageGallery": {
+      "galleryTitle": "Gallery",
+      "uploadTitle": "Upload Image",
+      "uploadDescription": "Upload images to your personal gallery",
+      "selectImage": "Select Image",
+      "allowedFormats": "Allowed: JPG, PNG, WEBP (max 5MB)",
+      "imageTitle": "Image Title",
+      "titlePlaceholder": "Enter image title (optional)",
+      "imageDescription": "Image Description",
+      "descriptionPlaceholder": "Enter image description (optional)",
+      "uploadButton": "Upload Image",
+      "backToGallery": "Back to Gallery",
+      "tipsTitle": "Tips",
+      "tip1": "Supported formats: JPG, PNG, WEBP",
+      "tip2": "Maximum file size: 5MB",
+      "tip3": "Add a title and description to make your images more discoverable",
+      "yourGalleryDescription": "Manage your personal image gallery",
+      "viewingGallery": "Viewing public image gallery",
+      "uploadNewImage": "Upload New Image",
+      "noImages": "No Images Yet",
+      "uploadFirstImage": "Upload your first image to get started!",
+      "userHasNoImages": "This user hasn't uploaded any images yet.",
+      "confirmDelete": "Are you sure you want to delete this image? This action cannot be undone.",
+      "userNotFound": "User not found.",
+      "loginRequired": "You need to login to upload images.",
+      "noFileProvided": "No file provided.",
+      "noFileSelected": "No file selected.",
+      "invalidFile": "Invalid file. Please upload a valid image.",
+      "uploadSuccess": "Image uploaded successfully!",
+      "uploadError": "Failed to upload image. Please try again.",
+      "imageNotFound": "Image not found.",
+      "unauthorized": "You are not authorized to delete this image.",
+      "deleteSuccess": "Image deleted successfully."
+    },
     "changeUserName": {
       "same": "This is already your username.",
       "success": "Username has been changed.",
@@ -437,5 +471,7 @@
     "disableConfirm": "Are you sure you want to disable two-factor authentication? Your account will be less secure.",
     "enterPassword": "Enter your password to confirm",
     "setup": "Enable Two-Factor Authentication (2FA)"
-  }
+  },
+  "optional": "Optional",
+  "delete": "Delete"
 }
