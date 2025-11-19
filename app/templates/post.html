@@ -70,16 +70,15 @@
                 <i class="ti ti-tags mr-1 text-2xl"></i>
                 {{ tags.replace(",", ", ") }}
             </div>
+            {% if shareEnabled %}
             <a
                 target="_blank"
-                href="https://x.com/intent/tweet?text={{ title }} by {{ author }} on {{
-          appName
-        }} {{ request.base_url }}"
+                href="{{ shareUrl }}{{ title }} by {{ author }} on {{ appName }} {{ request.base_url }}"
+                title="Share this post"
             >
-                <i
-                    class="hover:text-rose-500 duration-150 ti ti-brand-x text-2xl"
-                ></i>
+                <i class="hover:text-rose-500 duration-150 ti {{ shareIcon }} text-2xl"></i>
             </a>
+            {% endif %}
         </div>
 
         <div class="flex w-full justify-between my-1">

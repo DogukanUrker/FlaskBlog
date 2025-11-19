@@ -120,6 +120,7 @@ from utils.contextProcessor.isRegistration import isRegistration
 from utils.contextProcessor.returnPostUrlID import returnPostUrlID
 from utils.contextProcessor.returnPostUrlSlug import returnPostUrlSlug
 from utils.contextProcessor.returnUserProfilePicture import returnUserProfilePicture
+from utils.contextProcessor.socialSharing import socialSharing
 from utils.contextProcessor.translations import injectTranslations
 from utils.contextProcessor.markdown import markdown_processor
 from utils.dbChecker import (
@@ -181,6 +182,7 @@ app.context_processor(isRegistration)
 app.context_processor(returnUserProfilePicture)
 app.context_processor(returnPostUrlID)
 app.context_processor(returnPostUrlSlug)
+app.context_processor(socialSharing)
 app.context_processor(injectTranslations)
 app.context_processor(markdown_processor)
 app.before_request(browserLanguage)
