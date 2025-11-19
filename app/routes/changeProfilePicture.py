@@ -32,7 +32,9 @@ def changeProfilePicture():
 
                 if file and file.filename != "":
                     # Validate file
-                    if not FileUploadValidator.validateFile(file, ["jpg", "jpeg", "png", "webp"]):
+                    is_valid, error_code, file_data = FileUploadValidator.validate_file(file)
+                    if not is_valid:
+                        Log.error(f"Profile picture upload failed: {error_code}")
                         flashMessage(
                             page="changeProfilePicture",
                             message="error",

@@ -56,9 +56,20 @@ def adminPanelSiteSettings():
             connection.close()
             return redirect("/admin/site-settings")
 
-        # Validate file
-        if not FileUploadValidator.validateFile(file, ["ico", "png", "jpg", "jpeg", "svg", "webp"]):
-            flashMessage("error", "Invalid file type. Allowed: .ico, .png, .jpg, .jpeg, .svg, .webp")
+        # Validate file extension (manually for logo since we support .ico)
+        allowed_extensions = {"ico", "png", "jpg", "jpeg", "webp"}
+        file_ext = os.path.splitext(secure_filename(file.filename))[1].lower().lstrip(".")
+
+        if file_ext not in allowed_extensions:
+            flashMessage("error", "Invalid file type. Allowed: .ico, .png, .jpg, .jpeg, .webp")
+            connection.close()
+            return redirect("/admin/site-settings")
+
+        # Validate file size
+        file_data = file.read()
+        file.seek(0)
+        if len(file_data) > Settings.MAX_UPLOAD_SIZE:
+            flashMessage("error", f"File too large. Maximum size: {Settings.MAX_UPLOAD_SIZE / (1024*1024):.1f}MB")
             connection.close()
             return redirect("/admin/site-settings")
 
