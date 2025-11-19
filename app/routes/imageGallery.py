@@ -104,7 +104,7 @@ def uploadImage():
             category="error",
             language=session.get("language", "en")
         )
-        return redirect("/login?redirect=/gallery/upload")
+        return redirect("/login/redirect=&gallery&upload")
 
     form = ImageUploadForm(request.form)
 
