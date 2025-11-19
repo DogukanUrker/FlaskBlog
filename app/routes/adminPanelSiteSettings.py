@@ -49,14 +49,24 @@ def adminPanelSiteSettings():
         # Handle site logo upload
         if upload_type == "site_logo":
             if "site_logo" not in request.files:
-                flashMessage("error", "No logo file provided")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="logoNoFile",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
             file = request.files["site_logo"]
 
             if file.filename == "":
-                flashMessage("error", "No file selected")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="logoNoSelection",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
@@ -65,7 +75,12 @@ def adminPanelSiteSettings():
             file_ext = os.path.splitext(secure_filename(file.filename))[1].lower().lstrip(".")
 
             if file_ext not in allowed_extensions:
-                flashMessage("error", "Invalid file type. Allowed: .ico, .png, .jpg, .jpeg, .webp")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="logoInvalidType",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
@@ -73,7 +88,12 @@ def adminPanelSiteSettings():
             file_data = file.read()
             file.seek(0)
             if len(file_data) > Settings.MAX_UPLOAD_SIZE:
-                flashMessage("error", f"File too large. Maximum size: {Settings.MAX_UPLOAD_SIZE / (1024*1024):.1f}MB")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="logoTooLarge",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
@@ -100,11 +120,21 @@ def adminPanelSiteSettings():
                 )
                 connection.commit()
 
-                flashMessage("success", "Site logo updated successfully")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="logoSuccess",
+                    category="success",
+                    language=session.get("language", "en")
+                )
                 Log.success(f"Admin {session['userName']} updated site logo")
 
             except Exception as e:
-                flashMessage("error", f"Failed to upload logo: {str(e)}")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="logoError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 Log.error(f"Logo upload failed: {e}")
 
             connection.close()
@@ -113,14 +143,24 @@ def adminPanelSiteSettings():
         # Handle default profile picture upload
         elif upload_type == "default_profile_picture":
             if "default_profile_picture" not in request.files:
-                flashMessage("error", "No profile picture file provided")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="profileNoFile",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
             file = request.files["default_profile_picture"]
 
             if file.filename == "":
-                flashMessage("error", "No file selected")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="profileNoSelection",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
@@ -128,7 +168,12 @@ def adminPanelSiteSettings():
             is_valid, error_code, file_data = FileUploadValidator.validate_file(file)
             if not is_valid:
                 Log.error(f"Default profile picture upload failed: {error_code}")
-                flashMessage("error", f"Invalid file. Error: {error_code}")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="profileInvalid",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
@@ -169,11 +214,21 @@ def adminPanelSiteSettings():
                     )
                 connection.commit()
 
-                flashMessage("success", "Default profile picture updated successfully")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="profileSuccess",
+                    category="success",
+                    language=session.get("language", "en")
+                )
                 Log.success(f"Admin {session['userName']} updated default profile picture")
 
             except Exception as e:
-                flashMessage("error", f"Failed to upload default profile picture: {str(e)}")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="profileError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 Log.error(f"Default profile picture upload failed: {e}")
 
             connection.close()
@@ -182,14 +237,24 @@ def adminPanelSiteSettings():
         # Handle default banner upload
         elif upload_type == "default_banner":
             if "default_banner" not in request.files:
-                flashMessage("error", "No banner file provided")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="bannerNoFile",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
             file = request.files["default_banner"]
 
             if file.filename == "":
-                flashMessage("error", "No file selected")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="bannerNoSelection",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
@@ -197,7 +262,12 @@ def adminPanelSiteSettings():
             is_valid, error_code, file_data = FileUploadValidator.validate_file(file)
             if not is_valid:
                 Log.error(f"Default banner upload failed: {error_code}")
-                flashMessage("error", f"Invalid file. Error: {error_code}")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="bannerInvalid",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 connection.close()
                 return redirect("/admin/site-settings")
 
@@ -238,11 +308,21 @@ def adminPanelSiteSettings():
                     )
                 connection.commit()
 
-                flashMessage("success", "Default banner updated successfully")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="bannerSuccess",
+                    category="success",
+                    language=session.get("language", "en")
+                )
                 Log.success(f"Admin {session['userName']} updated default banner")
 
             except Exception as e:
-                flashMessage("error", f"Failed to upload default banner: {str(e)}")
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="bannerError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
                 Log.error(f"Default banner upload failed: {e}")
 
             connection.close()

@@ -240,6 +240,24 @@
       "success": "Banner has been changed.",
       "error": "Failed to upload banner. Please check the file format and size."
     },
+    "adminSiteSettings": {
+      "logoSuccess": "Site logo updated successfully.",
+      "logoError": "Failed to upload logo. Please check the file format and size.",
+      "logoNoFile": "No logo file provided.",
+      "logoNoSelection": "No file selected.",
+      "logoInvalidType": "Invalid file type. Allowed: .ico, .png, .jpg, .jpeg, .webp",
+      "logoTooLarge": "File too large.",
+      "profileSuccess": "Default profile picture updated successfully.",
+      "profileError": "Failed to upload default profile picture.",
+      "profileNoFile": "No profile picture file provided.",
+      "profileNoSelection": "No file selected.",
+      "profileInvalid": "Invalid file.",
+      "bannerSuccess": "Default banner updated successfully.",
+      "bannerError": "Failed to upload default banner.",
+      "bannerNoFile": "No banner file provided.",
+      "bannerNoSelection": "No file selected.",
+      "bannerInvalid": "Invalid file."
+    },
     "changeUserName": {
       "same": "This is already your username.",
       "success": "Username has been changed.",
