@@ -16,6 +16,54 @@ from utils.time import currentTimeStamp
 imageGalleryBlueprint = Blueprint("imageGallery", __name__)
 
 
+@imageGalleryBlueprint.route("/galleries", methods=["GET"])
+def galleriesList():
+    """
+    Display a list of all users who have image galleries.
+    Public - anyone can view.
+
+    Returns:
+        Rendered template with list of users and their gallery info
+    """
+    Log.info("Loading galleries list")
+
+    # Connect to database
+    connection = sqlite3.connect(Settings.DB_USERS_ROOT)
+    connection.set_trace_callback(Log.database)
+    cursor = connection.cursor()
+
+    # Get all users who have uploaded images with their image counts
+    cursor.execute("""
+        SELECT
+            ui.userName,
+            COUNT(ui.image_id) as image_count,
+            MAX(ui.timeStamp) as latest_upload
+        FROM user_images ui
+        GROUP BY ui.userName
+        ORDER BY latest_upload DESC
+    """)
+
+    galleries = cursor.fetchall()
+    connection.close()
+
+    # Convert to list of dicts
+    galleries_list = [
+        {
+            "userName": gallery[0],
+            "image_count": gallery[1],
+            "latest_upload": gallery[2]
+        }
+        for gallery in galleries
+    ]
+
+    Log.success(f"Loaded {len(galleries_list)} galleries")
+
+    return render_template(
+        "galleriesList.html",
+        galleries=galleries_list
+    )
+
+
 @imageGalleryBlueprint.route("/gallery/<userName>", methods=["GET"])
 def userGallery(userName):
     """
