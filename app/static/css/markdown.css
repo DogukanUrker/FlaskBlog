@@ -12,25 +12,25 @@
 .markdown-content h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: hsl(var(--p));
+    color: #f43f5e;
     margin: 2rem 0 1rem 0;
-    border-bottom: 3px solid hsl(var(--p));
+    border-bottom: 3px solid #f43f5e;
     padding-bottom: 0.5rem;
 }
 
 .markdown-content h2 {
     font-size: 2rem;
     font-weight: 600;
-    color: hsl(var(--s));
+    color: #fb7185;
     margin: 1.5rem 0 0.75rem 0;
-    border-bottom: 2px solid hsl(var(--p) / 0.3);
+    border-bottom: 2px solid rgba(244, 63, 94, 0.3);
     padding-bottom: 0.25rem;
 }
 
 .markdown-content h3 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: hsl(var(--a));
+    color: #fda4af;
     margin: 1.25rem 0 0.5rem 0;
 }
 
@@ -97,11 +97,11 @@
 }
 
 .markdown-content ul li::marker {
-    color: hsl(var(--p));
+    color: #f43f5e;
 }
 
 .markdown-content ol li::marker {
-    color: hsl(var(--p));
+    color: #f43f5e;
     font-weight: 600;
 }
 
@@ -181,7 +181,7 @@ html[data-theme="nord"] .markdown-content pre code {
 
 /* Blockquotes */
 .markdown-content blockquote {
-    border-left: 4px solid hsl(var(--p));
+    border-left: 4px solid #f43f5e;
     background: hsl(var(--b2));
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
@@ -194,7 +194,7 @@ html[data-theme="nord"] .markdown-content pre code {
 .markdown-content blockquote::before {
     content: '"';
     font-size: 4rem;
-    color: hsl(var(--p) / 0.3);
+    color: rgba(244, 63, 94, 0.3);
     position: absolute;
     top: -0.5rem;
     left: 0.5rem;
@@ -245,16 +245,16 @@ html[data-theme="nord"] .markdown-content pre code {
 
 /* Links */
 .markdown-content a {
-    color: hsl(var(--p));
+    color: #f43f5e;
     text-decoration: underline;
-    text-decoration-color: hsl(var(--p) / 0.3);
+    text-decoration-color: rgba(244, 63, 94, 0.3);
     text-underline-offset: 0.25rem;
     transition: all 0.2s ease;
 }
 
 .markdown-content a:hover {
-    color: hsl(var(--s));
-    text-decoration-color: hsl(var(--p));
+    color: #fb7185;
+    text-decoration-color: #f43f5e;
     filter: brightness(1.1);
 }
 
@@ -262,10 +262,10 @@ html[data-theme="nord"] .markdown-content pre code {
 .markdown-content hr {
     border: none;
     height: 3px;
-    background: hsl(var(--p));
+    background: linear-gradient(90deg, transparent, #f43f5e, transparent);
     margin: 2rem 0;
     border-radius: 1.5px;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 /* Images */
