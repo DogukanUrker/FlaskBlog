@@ -13,7 +13,8 @@
     "password": "change password",
     "delete": "delete account",
     "language": "change language",
-    "profilePicture": "change profile picture"
+    "profilePicture": "change profile picture",
+    "banner": "change profile banner"
   },
   "adminPanel": {
     "title": "Admin Panel",
@@ -83,6 +84,9 @@
     "info": "click for more information about profile picture seeds",
     "set": "Set Profile Picture",
     "placeholder": "Enter seed for profile picture"
+  },
+  "changeBanner": {
+    "title": "Change Profile Banner"
   },
   "changeUserName": {
     "title": "Change Username",
@@ -229,7 +233,12 @@
       "login": "You need to login to change your password."
     },
     "changeProfilePicture": {
-      "success": "Profile picture has been changed."
+      "success": "Profile picture has been changed.",
+      "error": "Failed to upload profile picture. Please check the file format and size."
+    },
+    "changeBanner": {
+      "success": "Banner has been changed.",
+      "error": "Failed to upload banner. Please check the file format and size."
     },
     "changeUserName": {
       "same": "This is already your username.",

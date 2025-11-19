@@ -424,3 +424,34 @@ def siteSettingsTable():
         Log.success('Table: "site_settings" created and default logo set')
     finally:
         connection.close()
+
+
+def addBannerColumn():
+    """
+    Adds banner column to Users table if it doesn't exist.
+    This function handles migration for existing databases.
+
+    Returns:
+        None
+    """
+    Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database to check for banner column")
+
+    connection = sqlite3.connect(Settings.DB_USERS_ROOT)
+    connection.set_trace_callback(Log.database)
+    cursor = connection.cursor()
+
+    try:
+        # Check if banner column exists
+        cursor.execute("PRAGMA table_info(Users);")
+        columns = cursor.fetchall()
+        column_names = [column[1] for column in columns]
+
+        if "banner" not in column_names:
+            Log.info('Column "banner" not found in Users table, adding it...')
+            cursor.execute("ALTER TABLE Users ADD COLUMN banner TEXT DEFAULT NULL;")
+            connection.commit()
+            Log.success('Column "banner" added to Users table')
+        else:
+            Log.info('Column "banner" already exists in Users table')
+    finally:
+        connection.close()

@@ -183,6 +183,9 @@ app/static/uploads/*
 !app/static/uploads/profile_pictures/
 app/static/uploads/profile_pictures/*
 !app/static/uploads/profile_pictures/.gitkeep
+!app/static/uploads/profile_banners/
+app/static/uploads/profile_banners/*
+!app/static/uploads/profile_banners/.gitkeep
 
 # Backup files
 *.backup

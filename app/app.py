@@ -42,6 +42,9 @@ from routes.changeLanguage import (
 from routes.changePassword import (
     changePasswordBlueprint,
 )
+from routes.changeBanner import (
+    changeBannerBlueprint,
+)
 from routes.changeProfilePicture import (
     changeProfilePictureBlueprint,
 )
@@ -128,6 +131,7 @@ from utils.contextProcessor.socialSharing import socialSharing
 from utils.contextProcessor.translations import injectTranslations
 from utils.contextProcessor.markdown import markdown_processor
 from utils.dbChecker import (
+    addBannerColumn,
     analyticsTable,
     commentsTable,
     dbFolder,
@@ -262,6 +266,7 @@ analyticsTable()
 securityAuditLogTable()
 twoFactorAuthFields()
 siteSettingsTable()
+addBannerColumn()
 
 
 @app.errorhandler(404)
@@ -342,6 +347,7 @@ app.register_blueprint(accountSettingsBlueprint)
 app.register_blueprint(returnPostBannerBlueprint)
 app.register_blueprint(adminPanelCommentsBlueprint)
 app.register_blueprint(changeProfilePictureBlueprint)
+app.register_blueprint(changeBannerBlueprint)
 app.register_blueprint(analyticsBlueprint)
 app.register_blueprint(returnPostAnalyticsDataBlueprint)
 app.register_blueprint(setup2faBlueprint)
