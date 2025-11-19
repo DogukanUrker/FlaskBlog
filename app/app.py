@@ -42,9 +42,6 @@ from routes.changeLanguage import (
 from routes.changePassword import (
     changePasswordBlueprint,
 )
-from routes.changeBanner import (
-    changeBannerBlueprint,
-)
 from routes.changeProfilePicture import (
     changeProfilePictureBlueprint,
 )
@@ -353,7 +350,6 @@ app.register_blueprint(accountSettingsBlueprint)
 app.register_blueprint(returnPostBannerBlueprint)
 app.register_blueprint(adminPanelCommentsBlueprint)
 app.register_blueprint(changeProfilePictureBlueprint)
-app.register_blueprint(changeBannerBlueprint)
 app.register_blueprint(analyticsBlueprint)
 app.register_blueprint(returnPostAnalyticsDataBlueprint)
 app.register_blueprint(setup2faBlueprint)
