@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>Site Settings - Admin Panel</title>
+{% endblock head %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Page Header -->
+    <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold text-rose-500">
+            <i class="ti ti-settings mr-2"></i>
+            Site Settings
+        </h1>
+        <a href="/admin" class="btn btn-ghost">
+            <i class="ti ti-arrow-left mr-2"></i>
+            Back to Admin Panel
+        </a>
+    </div>
+
+    <!-- Current Logo Display -->
+    <div class="card bg-base-200 shadow-xl mb-6">
+        <div class="card-body">
+            <h2 class="card-title text-xl mb-4">
+                <i class="ti ti-photo mr-2"></i>
+                Current Site Logo
+            </h2>
+
+            <div class="flex justify-center items-center p-8 bg-base-100 rounded-lg">
+                <img
+                    src="{{ currentLogo }}"
+                    alt="Current Site Logo"
+                    class="max-w-xs max-h-48 object-contain rounded shadow-lg"
+                />
+            </div>
+
+            <div class="mt-4 text-center">
+                <p class="text-sm opacity-75">
+                    <i class="ti ti-info-circle mr-1"></i>
+                    Path: <code class="bg-base-300 px-2 py-1 rounded">{{ currentLogo }}</code>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload New Logo Form -->
+    <div class="card bg-base-200 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title text-xl mb-4">
+                <i class="ti ti-upload mr-2"></i>
+                Upload New Logo
+            </h2>
+
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">Select Logo File</span>
+                    </label>
+                    <input
+                        type="file"
+                        name="site_logo"
+                        accept=".ico,.png,.jpg,.jpeg,.svg,.webp"
+                        class="file-input file-input-bordered file-input-primary w-full"
+                        required
+                    />
+                    <label class="label">
+                        <span class="label-text-alt">
+                            <i class="ti ti-info-circle mr-1"></i>
+                            Allowed formats: .ico, .png, .jpg, .jpeg, .svg, .webp
+                        </span>
+                    </label>
+                    <label class="label">
+                        <span class="label-text-alt">
+                            <i class="ti ti-alert-triangle mr-1 text-warning"></i>
+                            Recommended size: 180x180 pixels for best results
+                        </span>
+                    </label>
+                </div>
+
+                <div class="alert alert-warning">
+                    <i class="ti ti-alert-triangle"></i>
+                    <span>Uploading a new logo will replace the current one. This action cannot be undone.</span>
+                </div>
+
+                <div class="card-actions justify-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-upload mr-2"></i>
+                        Upload Logo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="alert alert-info mt-6">
+        <i class="ti ti-info-circle"></i>
+        <div>
+            <h3 class="font-bold">Logo Usage</h3>
+            <div class="text-sm mt-2 space-y-1">
+                <p>• Used as favicon in browser tabs</p>
+                <p>• Displayed in navigation bar</p>
+                <p>• Used for social media sharing (Open Graph & Twitter Cards)</p>
+                <p>• Changes will be reflected site-wide immediately</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'components/flash.html' %}
+{% endblock body %}

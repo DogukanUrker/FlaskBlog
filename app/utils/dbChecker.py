@@ -378,3 +378,49 @@ def twoFactorAuthFields():
 
     finally:
         connection.close()
+
+
+def siteSettingsTable():
+    """
+    Checks if the site_settings table exists in the users database, and creates it if it does not.
+    This table stores global site configuration like logo path.
+
+    Returns:
+        None
+    """
+    Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database for site settings")
+
+    connection = sqlite3.connect(Settings.DB_USERS_ROOT)
+    connection.set_trace_callback(Log.database)
+    cursor = connection.cursor()
+
+    try:
+        cursor.execute("SELECT setting_key FROM site_settings LIMIT 1;").fetchall()
+        Log.info('Table: "site_settings" found in users database')
+    except Exception:
+        Log.error('Table: "site_settings" not found in users database')
+
+        siteSettingsTableSQL = """
+        CREATE TABLE IF NOT EXISTS site_settings(
+            "setting_id"    INTEGER NOT NULL UNIQUE,
+            "setting_key"   TEXT UNIQUE NOT NULL,
+            "setting_value" TEXT,
+            "updated_at"    INTEGER,
+            PRIMARY KEY("setting_id" AUTOINCREMENT)
+        );"""
+
+        cursor.execute(siteSettingsTableSQL)
+
+        # Insert default logo path
+        cursor.execute(
+            """
+            INSERT INTO site_settings(setting_key, setting_value, updated_at)
+            VALUES(?, ?, ?)
+            """,
+            ("site_logo", "/static/uploads/site_logo.ico", currentTimeStamp())
+        )
+
+        connection.commit()
+        Log.success('Table: "site_settings" created and default logo set')
+    finally:
+        connection.close()
