@@ -3,6 +3,7 @@ This file contains class that are used to create ChangeProfilePictureForm for th
 """
 
 from wtforms import (
+    FileField,
     Form,
     StringField,
     validators,
@@ -16,5 +17,9 @@ class ChangeProfilePictureForm(Form):
 
     newProfilePictureSeed = StringField(
         "ProfilePictureSeed",
-        [validators.InputRequired()],
+        [validators.Optional()],
+    )
+
+    profilePictureFile = FileField(
+        "Profile Picture File"
     )

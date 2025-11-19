@@ -177,5 +177,12 @@ cython_debug/
 # Application database files
 app/db/*.db
 
+# Uploaded files (user-generated content)
+app/static/uploads/*
+!app/static/uploads/.gitkeep
+!app/static/uploads/profile_pictures/
+app/static/uploads/profile_pictures/*
+!app/static/uploads/profile_pictures/.gitkeep
+
 # Backup files
 *.backup
