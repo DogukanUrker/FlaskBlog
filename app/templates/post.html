@@ -72,11 +72,14 @@
             </div>
             {% if shareEnabled %}
             <a
+                id="share-button"
                 target="_blank"
                 href="{{ shareUrl }}{{ title }} by {{ author }} on {{ appName }} {{ request.base_url }}"
                 title="Share this post"
+                data-default-url="{{ shareUrl }}"
+                data-default-icon="{{ shareIcon }}"
             >
-                <i class="hover:text-rose-500 duration-150 ti {{ shareIcon }} text-2xl"></i>
+                <i id="share-icon" class="hover:text-rose-500 duration-150 ti {{ shareIcon }} text-2xl"></i>
             </a>
             {% endif %}
         </div>
@@ -205,6 +208,42 @@
     </form>
     {% endif %}
 </div>
+
+<script>
+// Apply localStorage share settings if available
+document.addEventListener('DOMContentLoaded', function() {
+    const shareButton = document.getElementById('share-button');
+    const shareIconElement = document.getElementById('share-icon');
+
+    if (shareButton && shareIconElement) {
+        // Check if user has custom settings
+        const shareEnabled = localStorage.getItem('shareEnabled');
+        const customShareUrl = localStorage.getItem('shareUrl');
+        const customShareIcon = localStorage.getItem('shareIcon');
+
+        // Hide button if disabled
+        if (shareEnabled === 'false') {
+            shareButton.style.display = 'none';
+            return;
+        }
+
+        // Apply custom URL if available
+        if (customShareUrl) {
+            const defaultUrl = shareButton.getAttribute('data-default-url');
+            const currentHref = shareButton.getAttribute('href');
+            const shareText = currentHref.replace(defaultUrl, '');
+            shareButton.setAttribute('href', customShareUrl + shareText);
+        }
+
+        // Apply custom icon if available
+        if (customShareIcon) {
+            const defaultIcon = shareButton.getAttribute('data-default-icon');
+            shareIconElement.classList.remove(defaultIcon);
+            shareIconElement.classList.add(customShareIcon);
+        }
+    }
+});
+</script>
 
 <script src="{{ url_for('static', filename='js/post.js') }}"></script>
 {% endblock body %}

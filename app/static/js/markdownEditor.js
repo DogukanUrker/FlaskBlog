@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabNav = document.createElement('div');
     tabNav.className = 'editor-tabs';
     tabNav.innerHTML = `
+        <button type="button" class="tab-btn tab-btn-action" id="share-settings-btn" title="Configure social sharing">
+            <i class="ti ti-share"></i> Share Settings
+        </button>
         <button type="button" class="tab-btn tab-btn-action" data-tab="full-preview" title="Open preview in new window">
             <i class="ti ti-external-link"></i> Open Preview
         </button>
@@ -80,8 +83,16 @@ document.addEventListener('DOMContentLoaded', function() {
     container.appendChild(textarea);
     container.appendChild(statusBar);
 
+    // Share settings button functionality
+    const shareSettingsBtn = document.getElementById('share-settings-btn');
+    if (shareSettingsBtn) {
+        shareSettingsBtn.addEventListener('click', function() {
+            openShareSettingsModal();
+        });
+    }
+
     // Open preview button functionality
-    const previewButton = tabNav.querySelector('.tab-btn');
+    const previewButton = tabNav.querySelector('[data-tab="full-preview"]');
     if (previewButton) {
         previewButton.addEventListener('click', function() {
             openFullPreview();
@@ -143,6 +154,93 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Failed to open preview. Please try again.');
         });
     }
+
+    // Function to open share settings modal
+    function openShareSettingsModal() {
+        // Get current settings from localStorage or defaults
+        const shareEnabled = localStorage.getItem('shareEnabled') !== 'false';
+        const shareUrl = localStorage.getItem('shareUrl') || 'https://x.com/intent/tweet?text=';
+        const shareIcon = localStorage.getItem('shareIcon') || 'ti-brand-x';
+
+        // Create modal HTML
+        const modalHTML = `
+            <div id="share-settings-modal" class="modal modal-open">
+                <div class="modal-box">
+                    <h3 class="font-bold text-lg mb-4">
+                        <i class="ti ti-share mr-2"></i>
+                        Social Sharing Settings
+                    </h3>
+
+                    <div class="form-control mb-4">
+                        <label class="label cursor-pointer">
+                            <span class="label-text">Enable sharing button</span>
+                            <input type="checkbox" id="share-enabled" class="checkbox checkbox-primary" ${shareEnabled ? 'checked' : ''} />
+                        </label>
+                    </div>
+
+                    <div class="form-control mb-4">
+                        <label class="label">
+                            <span class="label-text">Share URL</span>
+                        </label>
+                        <input type="text" id="share-url" value="${shareUrl}" class="input input-bordered w-full" placeholder="https://x.com/intent/tweet?text=" />
+                        <label class="label">
+                            <span class="label-text-alt">Examples:</span>
+                        </label>
+                        <div class="text-xs space-y-1">
+                            <button type="button" class="btn btn-xs btn-ghost" onclick="document.getElementById('share-url').value='https://x.com/intent/tweet?text='; document.getElementById('share-icon').value='ti-brand-x';">X/Twitter</button>
+                            <button type="button" class="btn btn-xs btn-ghost" onclick="document.getElementById('share-url').value='https://www.facebook.com/sharer/sharer.php?u='; document.getElementById('share-icon').value='ti-brand-facebook';">Facebook</button>
+                            <button type="button" class="btn btn-xs btn-ghost" onclick="document.getElementById('share-url').value='https://www.linkedin.com/sharing/share-offsite/?url='; document.getElementById('share-icon').value='ti-brand-linkedin';">LinkedIn</button>
+                        </div>
+                    </div>
+
+                    <div class="form-control mb-4">
+                        <label class="label">
+                            <span class="label-text">Icon class (Tabler Icons)</span>
+                        </label>
+                        <input type="text" id="share-icon" value="${shareIcon}" class="input input-bordered w-full" placeholder="ti-brand-x" />
+                        <label class="label">
+                            <span class="label-text-alt">Browse icons at <a href="https://tabler-icons.io/" target="_blank" class="link">tabler-icons.io</a></span>
+                        </label>
+                    </div>
+
+                    <div class="modal-action">
+                        <button type="button" class="btn" onclick="closeShareSettingsModal()">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveShareSettings()">Save</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Remove existing modal if any
+        const existingModal = document.getElementById('share-settings-modal');
+        if (existingModal) existingModal.remove();
+
+        // Add modal to page
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
+
+    // Global functions for modal
+    window.closeShareSettingsModal = function() {
+        const modal = document.getElementById('share-settings-modal');
+        if (modal) modal.remove();
+    };
+
+    window.saveShareSettings = function() {
+        const shareEnabled = document.getElementById('share-enabled').checked;
+        const shareUrl = document.getElementById('share-url').value;
+        const shareIcon = document.getElementById('share-icon').value;
+
+        // Save to localStorage
+        localStorage.setItem('shareEnabled', shareEnabled);
+        localStorage.setItem('shareUrl', shareUrl);
+        localStorage.setItem('shareIcon', shareIcon);
+
+        // Close modal
+        closeShareSettingsModal();
+
+        // Show success message
+        alert('Share settings saved! These settings will apply to your browser.');
+    };
 
     // Add placeholder
     textarea.placeholder = `Write your amazing blog post here... 📝
