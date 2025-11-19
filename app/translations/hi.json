@@ -302,6 +302,18 @@
       "invalidImageFile": "अमान्य छवि फ़ाइल। फ़ाइल को एक मान्य छवि के रूप में पहचाना नहीं जा सका।",
       "fileTypeMismatch": "फ़ाइल एक्सटेंशन वास्तविक फ़ाइल सामग्री से मेल नहीं खाता। कृपया सुनिश्चित करें कि आपकी फ़ाइल में सही एक्सटेंशन है।",
       "svgNotSupported": "सुरक्षा कारणों से SVG फ़ाइलें समर्थित नहीं हैं।"
+    },
+    "imageGallery": {
+      "userNotFound": "User not found.",
+      "loginRequired": "You need to login to upload images.",
+      "noFileProvided": "No file provided.",
+      "noFileSelected": "No file selected.",
+      "invalidFile": "Invalid file. Please upload a valid image.",
+      "uploadSuccess": "Image uploaded successfully!",
+      "uploadError": "Failed to upload image. Please try again.",
+      "imageNotFound": "Image not found.",
+      "unauthorized": "You are not authorized to delete this image.",
+      "deleteSuccess": "Image deleted successfully."
     }
   },
   "roles": {
@@ -380,5 +392,38 @@
     "disableConfirm": "क्या आप वाकई दो-कारक प्रमाणीकरण अक्षम करना चाहते हैं? आपका खाता कम सुरक्षित होगा।",
     "enterPassword": "पुष्टि करने के लिए अपना पासवर्ड दर्ज करें",
     "setup": "दो-कारक प्रमाणीकरण (2FA) सक्षम करें"
+  },
+  "imageGallery": {
+    "galleryTitle": "Gallery",
+    "uploadTitle": "Upload Image",
+    "uploadDescription": "Upload images to your personal gallery",
+    "selectImage": "Select Image",
+    "allowedFormats": "Allowed: JPG, PNG, WEBP (max 5MB)",
+    "imageTitle": "Image Title",
+    "titlePlaceholder": "Enter image title (optional)",
+    "imageDescription": "Image Description",
+    "descriptionPlaceholder": "Enter image description (optional)",
+    "uploadButton": "Upload Image",
+    "backToGallery": "Back to Gallery",
+    "tipsTitle": "Tips",
+    "tip1": "Supported formats: JPG, PNG, WEBP",
+    "tip2": "Maximum file size: 5MB",
+    "tip3": "Add a title and description to make your images more discoverable",
+    "yourGalleryDescription": "Manage your personal image gallery",
+    "viewingGallery": "Viewing public image gallery",
+    "uploadNewImage": "Upload New Image",
+    "noImages": "No Images Yet",
+    "uploadFirstImage": "Upload your first image to get started!",
+    "userHasNoImages": "This user hasn't uploaded any images yet.",
+    "confirmDelete": "Are you sure you want to delete this image? This action cannot be undone.",
+    "galleriesListTitle": "Image Galleries",
+    "galleriesListDescription": "Browse image galleries from our community",
+    "imagesSingular": "image",
+    "imagesPlural": "images",
+    "lastUpdated": "Last updated",
+    "viewGallery": "View Gallery",
+    "noGalleries": "No Galleries Yet",
+    "beFirstToUpload": "Be the first to create a gallery and share your images!",
+    "yourGallery": "Your Gallery"
   }
 }
