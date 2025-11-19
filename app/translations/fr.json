@@ -161,7 +161,8 @@
   "post": {
     "minRead": "min de lecture",
     "placeholder": "Quelles sont vos pensées ?",
-    "viewPerformance": "Voir la Performance"
+    "viewPerformance": "Voir la Performance",
+    "memberSince": "Membre depuis"
   },
   "sortMenu": {
     "asc": "Croissant",
@@ -252,7 +253,8 @@
     "login": {
       "success": "Vous vous êtes connecté avec succès.",
       "password": "Mot de passe incorrect",
-      "notFound": "Utilisateur non trouvé"
+      "notFound": "Utilisateur non trouvé",
+      "invalid": "Nom d'utilisateur ou mot de passe invalide."
     },
     "logout": {
       "success": "Vous vous êtes déconnecté avec succès."
@@ -293,6 +295,13 @@
     },
     "error": {
       "wrongCall": "Vous avez effectué un appel de message flash incorrect côté serveur."
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "La taille du fichier dépasse la limite maximale autorisée. Veuillez télécharger un fichier plus petit.",
+      "invalidFileType": "Type de fichier invalide. Seules les images JPG, PNG et WebP sont autorisées.",
+      "invalidImageFile": "Fichier image invalide. Le fichier n'a pas pu être reconnu comme une image valide.",
+      "fileTypeMismatch": "L'extension du fichier ne correspond pas au contenu réel du fichier. Veuillez vous assurer que votre fichier a l'extension correcte.",
+      "svgNotSupported": "Les fichiers SVG ne sont pas pris en charge pour des raisons de sécurité."
     }
   },
   "roles": {

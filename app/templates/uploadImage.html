@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ translations.imageGallery.uploadTitle }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-2xl">
+    <!-- Page Header -->
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">
+            <i class="ti ti-photo-up mr-2"></i>
+            {{ translations.imageGallery.uploadTitle }}
+        </h1>
+        <p class="text-base-content/70">
+            {{ translations.imageGallery.uploadDescription }}
+        </p>
+    </div>
+
+    <!-- Flash Messages -->
+    {% include 'components/flash.html' %}
+
+    <!-- Upload Form Card -->
+    <div class="card bg-base-200 shadow-xl">
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                <!-- CSRF Token -->
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+                <!-- Image File Upload -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text text-lg font-semibold">
+                            <i class="ti ti-photo mr-1"></i>
+                            {{ translations.imageGallery.selectImage }}
+                        </span>
+                    </label>
+                    <input
+                        type="file"
+                        name="imageFile"
+                        accept="image/jpeg,image/jpg,image/png,image/webp"
+                        class="file-input file-input-bordered file-input-primary w-full"
+                        required
+                    />
+                    <label class="label">
+                        <span class="label-text-alt text-base-content/60">
+                            {{ translations.imageGallery.allowedFormats }}
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Image Title (Optional) -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text text-lg font-semibold">
+                            <i class="ti ti-text mr-1"></i>
+                            {{ translations.imageGallery.imageTitle }}
+                        </span>
+                        <span class="label-text-alt text-base-content/60">
+                            {{ translations.optional }}
+                        </span>
+                    </label>
+                    {{ form.title(
+                        class="input input-bordered w-full",
+                        placeholder=translations.imageGallery.titlePlaceholder
+                    ) }}
+                </div>
+
+                <!-- Image Description (Optional) -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text text-lg font-semibold">
+                            <i class="ti ti-file-description mr-1"></i>
+                            {{ translations.imageGallery.imageDescription }}
+                        </span>
+                        <span class="label-text-alt text-base-content/60">
+                            {{ translations.optional }}
+                        </span>
+                    </label>
+                    <textarea
+                        name="description"
+                        class="textarea textarea-bordered w-full h-24"
+                        placeholder="{{ translations.imageGallery.descriptionPlaceholder }}"
+                        maxlength="500"
+                    >{{ form.description.data or '' }}</textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-control mt-6">
+                    <button type="submit" class="btn btn-primary btn-lg w-full">
+                        <i class="ti ti-upload mr-2"></i>
+                        {{ translations.imageGallery.uploadButton }}
+                    </button>
+                </div>
+            </form>
+
+            <!-- Back to Gallery Link -->
+            <div class="divider"></div>
+            <div class="text-center">
+                <a href="/gallery/{{ session.userName }}" class="btn btn-ghost btn-sm">
+                    <i class="ti ti-arrow-left mr-1"></i>
+                    {{ translations.imageGallery.backToGallery }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Usage Tips -->
+    <div class="alert alert-info mt-6">
+        <i class="ti ti-info-circle"></i>
+        <div>
+            <h3 class="font-bold">{{ translations.imageGallery.tipsTitle }}</h3>
+            <ul class="list-disc list-inside text-sm mt-2">
+                <li>{{ translations.imageGallery.tip1 }}</li>
+                <li>{{ translations.imageGallery.tip2 }}</li>
+                <li>{{ translations.imageGallery.tip3 }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

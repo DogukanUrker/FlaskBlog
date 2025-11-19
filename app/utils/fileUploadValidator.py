@@ -13,6 +13,13 @@ class FileUploadValidator:
     Validates file uploads for security purposes.
     """
 
+    # Error code constants
+    ERROR_FILE_SIZE_EXCEEDED = "FILE_SIZE_EXCEEDED"
+    ERROR_INVALID_FILE_TYPE = "INVALID_FILE_TYPE"
+    ERROR_INVALID_IMAGE_FILE = "INVALID_IMAGE_FILE"
+    ERROR_FILE_TYPE_MISMATCH = "FILE_TYPE_MISMATCH"
+    ERROR_SVG_NOT_SUPPORTED = "SVG_NOT_SUPPORTED"
+
     @staticmethod
     def validate_file(file, file_data=None):
         """
@@ -23,7 +30,8 @@ class FileUploadValidator:
             file_data: Optional bytes data if file already read
 
         Returns:
-            tuple: (is_valid: bool, error_message: str or None, file_data: bytes)
+            tuple: (is_valid: bool, error_code: str or None, file_data: bytes)
+                   error_code will be one of the ERROR_* constants if validation fails
 
         Raises:
             None - returns validation status instead
@@ -43,7 +51,7 @@ class FileUploadValidator:
             Log.error(
                 f"File upload rejected: size {len(file_data)} bytes exceeds limit of {Settings.MAX_UPLOAD_SIZE} bytes ({max_size_mb:.1f}MB)"
             )
-            return False, f"File size exceeds maximum allowed size of {max_size_mb:.1f}MB", None
+            return False, FileUploadValidator.ERROR_FILE_SIZE_EXCEEDED, None
 
         # Check file extension
         filename = file.filename.lower()
@@ -55,7 +63,7 @@ class FileUploadValidator:
             )
             return (
                 False,
-                f"File type '.{file_ext}' not allowed. Allowed types: {', '.join(Settings.ALLOWED_UPLOAD_EXTENSIONS)}",
+                FileUploadValidator.ERROR_INVALID_FILE_TYPE,
                 None,
             )
 
@@ -65,7 +73,7 @@ class FileUploadValidator:
             Log.error(
                 f"File upload rejected: could not determine image type for '{filename}'"
             )
-            return False, "Invalid image file", None
+            return False, FileUploadValidator.ERROR_INVALID_IMAGE_FILE, None
 
         # Map detected types to extensions
         type_mapping = {
@@ -86,7 +94,7 @@ class FileUploadValidator:
             )
             return (
                 False,
-                f"File content does not match extension. Detected: {detected_type}",
+                FileUploadValidator.ERROR_FILE_TYPE_MISMATCH,
                 None,
             )
 
@@ -94,7 +102,7 @@ class FileUploadValidator:
         if file_ext == "svg":
             # SVG files need special sanitization as they can contain JavaScript
             Log.warning("SVG upload attempted - currently not supported for security")
-            return False, "SVG files are not supported", None
+            return False, FileUploadValidator.ERROR_SVG_NOT_SUPPORTED, None
 
         Log.success(
             f"File upload validated: '{filename}' ({len(file_data)} bytes, type: {detected_type})"

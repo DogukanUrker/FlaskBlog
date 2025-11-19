@@ -13,7 +13,8 @@
     "password": "change password",
     "delete": "delete account",
     "language": "change language",
-    "profilePicture": "change profile picture"
+    "profilePicture": "change profile picture",
+    "banner": "change profile banner"
   },
   "adminPanel": {
     "title": "Admin Panel",
@@ -83,6 +84,9 @@
     "info": "click for more information about profile picture seeds",
     "set": "Set Profile Picture",
     "placeholder": "Enter seed for profile picture"
+  },
+  "changeBanner": {
+    "title": "Change Profile Banner"
   },
   "changeUserName": {
     "title": "Change Username",
@@ -162,7 +166,8 @@
   "post": {
     "minRead": "min read",
     "placeholder": "What are your thoughts?",
-    "viewPerformance": "View Performance"
+    "viewPerformance": "View Performance",
+    "memberSince": "Member since"
   },
   "sortMenu": {
     "asc": "Ascending",
@@ -228,7 +233,64 @@
       "login": "You need to login to change your password."
     },
     "changeProfilePicture": {
-      "success": "Profile picture has been changed."
+      "success": "Profile picture has been changed.",
+      "error": "Failed to upload profile picture. Please check the file format and size."
+    },
+    "changeBanner": {
+      "success": "Banner has been changed.",
+      "error": "Failed to upload banner. Please check the file format and size."
+    },
+    "adminSiteSettings": {
+      "logoSuccess": "Site logo updated successfully.",
+      "logoError": "Failed to upload logo. Please check the file format and size.",
+      "logoNoFile": "No logo file provided.",
+      "logoNoSelection": "No file selected.",
+      "logoInvalidType": "Invalid file type. Allowed: .ico, .png, .jpg, .jpeg, .webp",
+      "logoTooLarge": "File too large.",
+      "profileSuccess": "Default profile picture updated successfully.",
+      "profileError": "Failed to upload default profile picture.",
+      "profileNoFile": "No profile picture file provided.",
+      "profileNoSelection": "No file selected.",
+      "profileInvalid": "Invalid file.",
+      "bannerSuccess": "Default banner updated successfully.",
+      "bannerError": "Failed to upload default banner.",
+      "bannerNoFile": "No banner file provided.",
+      "bannerNoSelection": "No file selected.",
+      "bannerInvalid": "Invalid file."
+    },
+    "imageGallery": {
+      "galleryTitle": "Gallery",
+      "uploadTitle": "Upload Image",
+      "uploadDescription": "Upload images to your personal gallery",
+      "selectImage": "Select Image",
+      "allowedFormats": "Allowed: JPG, PNG, WEBP (max 5MB)",
+      "imageTitle": "Image Title",
+      "titlePlaceholder": "Enter image title (optional)",
+      "imageDescription": "Image Description",
+      "descriptionPlaceholder": "Enter image description (optional)",
+      "uploadButton": "Upload Image",
+      "backToGallery": "Back to Gallery",
+      "tipsTitle": "Tips",
+      "tip1": "Supported formats: JPG, PNG, WEBP",
+      "tip2": "Maximum file size: 5MB",
+      "tip3": "Add a title and description to make your images more discoverable",
+      "yourGalleryDescription": "Manage your personal image gallery",
+      "viewingGallery": "Viewing public image gallery",
+      "uploadNewImage": "Upload New Image",
+      "noImages": "No Images Yet",
+      "uploadFirstImage": "Upload your first image to get started!",
+      "userHasNoImages": "This user hasn't uploaded any images yet.",
+      "confirmDelete": "Are you sure you want to delete this image? This action cannot be undone.",
+      "userNotFound": "User not found.",
+      "loginRequired": "You need to login to upload images.",
+      "noFileProvided": "No file provided.",
+      "noFileSelected": "No file selected.",
+      "invalidFile": "Invalid file. Please upload a valid image.",
+      "uploadSuccess": "Image uploaded successfully!",
+      "uploadError": "Failed to upload image. Please try again.",
+      "imageNotFound": "Image not found.",
+      "unauthorized": "You are not authorized to delete this image.",
+      "deleteSuccess": "Image deleted successfully."
     },
     "changeUserName": {
       "same": "This is already your username.",
@@ -253,7 +315,8 @@
     "login": {
       "success": "You have successfully logged in.",
       "password": "Wrong password",
-      "notFound": "User not found"
+      "notFound": "User not found",
+      "invalid": "Invalid username or password."
     },
     "logout": {
       "success": "You have successfully logged out."
@@ -294,6 +357,13 @@
     },
     "error": {
       "wrongCall": "You made a wrong flash message call on server side."
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "File size exceeds the maximum allowed limit. Please upload a smaller file.",
+      "invalidFileType": "Invalid file type. Only JPG, PNG, and WebP images are allowed.",
+      "invalidImageFile": "Invalid image file. The file could not be recognized as a valid image.",
+      "fileTypeMismatch": "File extension does not match the actual file content. Please ensure your file has the correct extension.",
+      "svgNotSupported": "SVG files are not supported for security reasons."
     }
   },
   "roles": {
@@ -401,5 +471,7 @@
     "disableConfirm": "Are you sure you want to disable two-factor authentication? Your account will be less secure.",
     "enterPassword": "Enter your password to confirm",
     "setup": "Enable Two-Factor Authentication (2FA)"
-  }
+  },
+  "optional": "Optional",
+  "delete": "Delete"
 }

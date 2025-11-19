@@ -5,7 +5,7 @@
 <meta property="og:title" content="flaskBlog" />
 <meta
     property="og:image"
-    content="https://raw.githubusercontent.com/DogukanUrker/flaskBlog/main/images/Icon180.ico"
+    content="{{ request.url_root[:-1] }}{{ siteLogo }}"
 />
 <meta property="og:url" content="{{ request.base_url }}" />
 <meta
@@ -21,7 +21,7 @@
 />
 <meta
     name="twitter:image"
-    content="https://raw.githubusercontent.com/DogukanUrker/flaskBlog/main/images/Icon180.ico"
+    content="{{ request.url_root[:-1] }}{{ siteLogo }}"
 />
 {% endblock head %} {% block body %}
 

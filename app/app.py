@@ -30,6 +30,9 @@ from routes.adminPanelUsers import (
 from routes.adminPanelSecurityAudit import (
     adminPanelSecurityAuditBlueprint,
 )
+from routes.adminPanelSiteSettings import (
+    adminPanelSiteSettingsBlueprint,
+)
 from routes.category import (
     categoryBlueprint,
 )
@@ -38,6 +41,9 @@ from routes.changeLanguage import (
 )
 from routes.changePassword import (
     changePasswordBlueprint,
+)
+from routes.changeBanner import (
+    changeBannerBlueprint,
 )
 from routes.changeProfilePicture import (
     changeProfilePictureBlueprint,
@@ -65,6 +71,12 @@ from routes.editPost import (
 )
 from routes.index import (
     indexBlueprint,
+)
+from routes.imageGallery import (
+    imageGalleryBlueprint,
+)
+from routes.markdownPreview import (
+    markdownPreviewBlueprint,
 )
 from routes.login import (
     loginBlueprint,
@@ -117,15 +129,20 @@ from utils.contextProcessor.isRegistration import isRegistration
 from utils.contextProcessor.returnPostUrlID import returnPostUrlID
 from utils.contextProcessor.returnPostUrlSlug import returnPostUrlSlug
 from utils.contextProcessor.returnUserProfilePicture import returnUserProfilePicture
+from utils.contextProcessor.siteLogo import siteLogo
+from utils.contextProcessor.socialSharing import socialSharing
 from utils.contextProcessor.translations import injectTranslations
 from utils.contextProcessor.markdown import markdown_processor
 from utils.dbChecker import (
+    addBannerColumn,
     analyticsTable,
     commentsTable,
     dbFolder,
     postsTable,
     securityAuditLogTable,
+    siteSettingsTable,
     twoFactorAuthFields,
+    userImagesTable,
     usersTable,
 )
 from utils.errorHandlers.csrfErrorHandler import (
@@ -178,6 +195,8 @@ app.context_processor(isRegistration)
 app.context_processor(returnUserProfilePicture)
 app.context_processor(returnPostUrlID)
 app.context_processor(returnPostUrlSlug)
+app.context_processor(siteLogo)
+app.context_processor(socialSharing)
 app.context_processor(injectTranslations)
 app.context_processor(markdown_processor)
 app.before_request(browserLanguage)
@@ -250,6 +269,9 @@ commentsTable()
 analyticsTable()
 securityAuditLogTable()
 twoFactorAuthFields()
+siteSettingsTable()
+addBannerColumn()
+userImagesTable()
 
 
 @app.errorhandler(404)
@@ -303,6 +325,7 @@ def afterRequest(response):
 app.register_blueprint(postBlueprint)
 app.register_blueprint(userBlueprint)
 app.register_blueprint(indexBlueprint)
+app.register_blueprint(imageGalleryBlueprint)
 app.register_blueprint(aboutBlueprint)
 app.register_blueprint(loginBlueprint)
 app.register_blueprint(signUpBlueprint)
@@ -325,15 +348,18 @@ app.register_blueprint(changeLanguageBlueprint)
 app.register_blueprint(adminPanelUsersBlueprint)
 app.register_blueprint(adminPanelPostsBlueprint)
 app.register_blueprint(adminPanelSecurityAuditBlueprint)
+app.register_blueprint(adminPanelSiteSettingsBlueprint)
 app.register_blueprint(accountSettingsBlueprint)
 app.register_blueprint(returnPostBannerBlueprint)
 app.register_blueprint(adminPanelCommentsBlueprint)
 app.register_blueprint(changeProfilePictureBlueprint)
+app.register_blueprint(changeBannerBlueprint)
 app.register_blueprint(analyticsBlueprint)
 app.register_blueprint(returnPostAnalyticsDataBlueprint)
 app.register_blueprint(setup2faBlueprint)
 app.register_blueprint(disable2faBlueprint)
 app.register_blueprint(verify2faBlueprint)
+app.register_blueprint(markdownPreviewBlueprint)
 
 
 if __name__ == "__main__":

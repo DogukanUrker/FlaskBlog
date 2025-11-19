@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ userName }}'s {{ translations.imageGallery.galleryTitle }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Page Header -->
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">
+            <i class="ti ti-photo mr-2"></i>
+            {{ userName }}'s {{ translations.imageGallery.galleryTitle }}
+        </h1>
+        {% if isOwner %}
+        <p class="text-base-content/70 mb-4">
+            {{ translations.imageGallery.yourGalleryDescription }}
+        </p>
+        <a href="/gallery/upload" class="btn btn-primary btn-lg">
+            <i class="ti ti-upload mr-2"></i>
+            {{ translations.imageGallery.uploadNewImage }}
+        </a>
+        {% else %}
+        <p class="text-base-content/70">
+            {{ translations.imageGallery.viewingGallery }}
+        </p>
+        {% endif %}
+    </div>
+
+    <!-- Flash Messages -->
+    {% include 'components/flash.html' %}
+
+    <!-- Images Gallery -->
+    {% if images %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {% for image in images %}
+        <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+            <!-- Image -->
+            <figure class="relative aspect-square bg-base-300">
+                <img
+                    src="{{ image.file_path }}"
+                    alt="{{ image.title }}"
+                    class="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+                    onclick="document.getElementById('modal_{{ image.image_id }}').showModal()"
+                    loading="lazy"
+                />
+            </figure>
+
+            <!-- Card Content -->
+            <div class="card-body">
+                <h2 class="card-title text-lg">
+                    {{ image.title }}
+                </h2>
+                {% if image.description %}
+                <p class="text-sm text-base-content/70 line-clamp-2">
+                    {{ image.description }}
+                </p>
+                {% endif %}
+                <div class="text-xs text-base-content/50 mt-2">
+                    <i class="ti ti-calendar mr-1"></i>
+                    <span class="date">{{ image.timeStamp }}</span>
+                </div>
+
+                <!-- Actions (Only for owner) -->
+                {% if isOwner %}
+                <div class="card-actions justify-end mt-4">
+                    <button
+                        onclick="confirmDelete({{ image.image_id }})"
+                        class="btn btn-error btn-sm"
+                    >
+                        <i class="ti ti-trash mr-1"></i>
+                        {{ translations.delete }}
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Image Modal for Fullscreen View -->
+        <dialog id="modal_{{ image.image_id }}" class="modal">
+            <div class="modal-box max-w-4xl w-full">
+                <form method="dialog">
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
+                <h3 class="font-bold text-xl mb-4">{{ image.title }}</h3>
+                <img
+                    src="{{ image.file_path }}"
+                    alt="{{ image.title }}"
+                    class="w-full h-auto rounded-lg"
+                />
+                {% if image.description %}
+                <p class="py-4 text-base-content/80">{{ image.description }}</p>
+                {% endif %}
+                <div class="text-sm text-base-content/60">
+                    <i class="ti ti-calendar mr-1"></i>
+                    <span class="date">{{ image.timeStamp }}</span>
+                </div>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- Empty State -->
+    <div class="text-center py-16">
+        <div class="mb-6">
+            <i class="ti ti-photo-off text-9xl text-base-content/20"></i>
+        </div>
+        <h2 class="text-2xl font-bold mb-2">
+            {{ translations.imageGallery.noImages }}
+        </h2>
+        {% if isOwner %}
+        <p class="text-base-content/70 mb-6">
+            {{ translations.imageGallery.uploadFirstImage }}
+        </p>
+        <a href="/gallery/upload" class="btn btn-primary btn-lg">
+            <i class="ti ti-upload mr-2"></i>
+            {{ translations.imageGallery.uploadNewImage }}
+        </a>
+        {% else %}
+        <p class="text-base-content/70">
+            {{ translations.imageGallery.userHasNoImages }}
+        </p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Delete Confirmation Script -->
+{% if isOwner %}
+<script>
+function confirmDelete(imageId) {
+    if (confirm("{{ translations.imageGallery.confirmDelete }}")) {
+        // Create form and submit
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/gallery/delete/' + imageId;
+
+        // Add CSRF token
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrf_token';
+        csrfInput.value = '{{ csrf_token() }}';
+        form.appendChild(csrfInput);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+</script>
+{% endif %}
+{% endblock %}

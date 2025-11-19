@@ -160,7 +160,8 @@
   "post": {
     "minRead": "分钟阅读",
     "placeholder": "你有什么想法？",
-    "viewPerformance": "查看性能"
+    "viewPerformance": "查看性能",
+    "memberSince": "加入时间"
   },
   "sortMenu": {
     "asc": "升序",
@@ -251,7 +252,8 @@
     "login": {
       "success": "您已成功登录。",
       "password": "密码错误",
-      "notFound": "用户未找到"
+      "notFound": "用户未找到",
+      "invalid": "用户名或密码无效。"
     },
     "logout": {
       "success": "您已成功登出。"
@@ -292,6 +294,13 @@
     },
     "error": {
       "wrongCall": "您在服务器端发出了错误的闪存消息调用。"
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "文件大小超过最大允许限制。请上传较小的文件。",
+      "invalidFileType": "无效的文件类型。仅允许 JPG、PNG 和 WebP 图像。",
+      "invalidImageFile": "无效的图像文件。该文件无法被识别为有效图像。",
+      "fileTypeMismatch": "文件扩展名与实际文件内容不匹配。请确保您的文件具有正确的扩展名。",
+      "svgNotSupported": "出于安全原因，不支持 SVG 文件。"
     }
   },
   "roles": {

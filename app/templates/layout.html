@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ session.get('language', 'en') }}" data-theme="{{ session.get('theme', 'winter') }}">
+<html lang="{{ session.get('language', 'en') }}" data-theme="{{ session.get('theme', 'dark') }}">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,7 +8,7 @@
 
         <link
             rel="icon"
-            href="https://raw.githubusercontent.com/DogukanUrker/flaskBlog/main/images/Icon180.ico"
+            href="{{ siteLogo }}"
         />
 
         <link
@@ -48,7 +48,7 @@
         <meta property="og:title" content="flaskBlog" />
         <meta
             property="og:image"
-            content="https://raw.githubusercontent.com/DogukanUrker/flaskBlog/main/images/Icon180.ico"
+            content="{{ request.url_root[:-1] }}{{ siteLogo }}"
         />
         <meta property="og:url" content="{{ request.base_url }}" />
         <meta
@@ -64,7 +64,7 @@
         />
         <meta
             name="twitter:image"
-            content="https://raw.githubusercontent.com/DogukanUrker/flaskBlog/main/images/Icon180.ico"
+            content="{{ request.url_root[:-1] }}{{ siteLogo }}"
         />
 
         {% block head %} {% endblock head %}

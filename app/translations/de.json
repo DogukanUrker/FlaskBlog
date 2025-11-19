@@ -161,7 +161,8 @@
   "post": {
     "minRead": "Minuten Lesezeit",
     "placeholder": "Was sind Ihre Gedanken?",
-    "viewPerformance": "Leistung Anzeigen"
+    "viewPerformance": "Leistung Anzeigen",
+    "memberSince": "Mitglied seit"
   },
   "sortMenu": {
     "asc": "Aufsteigend",
@@ -252,7 +253,8 @@
     "login": {
       "success": "Sie haben sich erfolgreich eingeloggt.",
       "password": "Falsches Passwort",
-      "notFound": "Benutzer nicht gefunden"
+      "notFound": "Benutzer nicht gefunden",
+      "invalid": "Ungültiger Benutzername oder Passwort."
     },
     "logout": {
       "success": "Sie haben sich erfolgreich ausgeloggt."
@@ -293,6 +295,13 @@
     },
     "error": {
       "wrongCall": "Sie haben einen falschen Flash-Nachrichtenaufruf auf der Serverseite gemacht."
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "Die Dateigröße überschreitet das maximal zulässige Limit. Bitte laden Sie eine kleinere Datei hoch.",
+      "invalidFileType": "Ungültiger Dateityp. Nur JPG-, PNG- und WebP-Bilder sind erlaubt.",
+      "invalidImageFile": "Ungültige Bilddatei. Die Datei konnte nicht als gültiges Bild erkannt werden.",
+      "fileTypeMismatch": "Die Dateierweiterung stimmt nicht mit dem tatsächlichen Dateiinhalt überein. Bitte stellen Sie sicher, dass Ihre Datei die richtige Erweiterung hat.",
+      "svgNotSupported": "SVG-Dateien werden aus Sicherheitsgründen nicht unterstützt."
     }
   },
   "roles": {

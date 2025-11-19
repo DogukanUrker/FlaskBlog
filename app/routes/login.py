@@ -22,6 +22,15 @@ from utils.securityAuditLogger import SecurityAuditLogger
 loginBlueprint = Blueprint("login", __name__)
 
 
+@loginBlueprint.route("/login", methods=["GET", "POST"])
+@loginBlueprint.route("/login/", methods=["GET", "POST"])
+def login_redirect():
+    """
+    Redirect /login to /login/redirect=& for compatibility.
+    """
+    return redirect("/login/redirect=&")
+
+
 @loginBlueprint.route("/login/redirect=<direct>", methods=["GET", "POST"])
 def login(direct):
     """
@@ -61,7 +70,7 @@ def login(direct):
                         page="login",
                         message=rate_limit_msg,
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                     return render_template(
                         "login.html",
@@ -112,9 +121,9 @@ def login(direct):
 
                     flashMessage(
                         page="login",
-                        message="Invalid username or password",
+                        message="invalid",
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                 else:
                     # Password is correct
@@ -152,7 +161,7 @@ def login(direct):
                                 page="login",
                                 message="2faRequired",
                                 category="info",
-                                language=session["language"],
+                                language=session.get("language", "en"),
                             )
 
                             return redirect(f"/verify-2fa/redirect={direct}")
@@ -183,7 +192,7 @@ def login(direct):
                             page="login",
                             message="success",
                             category="success",
-                            language=session["language"],
+                            language=session.get("language", "en"),
                         )
 
                         return (

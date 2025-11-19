@@ -49,6 +49,9 @@ class Settings:
         RECAPTCHA_SITE_KEY (str): reCAPTCHA site key.
         RECAPTCHA_SECRET_KEY (str): reCAPTCHA secret key.
         RECAPTCHA_VERIFY_URL (str): reCAPTCHA verify URL.
+        SHARE_ENABLED (bool): Toggle social sharing button on posts.
+        SHARE_URL (str): Base URL for social sharing (default: X/Twitter).
+        SHARE_ICON (str): Tabler icon class for sharing button.
     """
 
     # Application Configuration
@@ -164,6 +167,11 @@ class Settings:
     ALLOWED_UPLOAD_EXTENSIONS = set(
         os.getenv("ALLOWED_UPLOAD_EXTENSIONS", "jpg,jpeg,png,webp").split(",")
     )
+
+    # Social Sharing Configuration
+    SHARE_ENABLED = os.getenv("SHARE_ENABLED", "True").lower() == "true"
+    SHARE_URL = os.getenv("SHARE_URL", "https://x.com/intent/tweet?text=")
+    SHARE_ICON = os.getenv("SHARE_ICON", "ti-brand-x")  # Tabler icon class
 
     # Security Configuration
     RATE_LIMIT_ENABLED = os.getenv("RATE_LIMIT_ENABLED", "True").lower() == "true"
