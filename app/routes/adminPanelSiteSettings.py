@@ -9,7 +9,6 @@ from werkzeug.utils import secure_filename
 from settings import Settings
 from utils.log import Log
 from utils.flashMessage import flashMessage
-from utils.translations import Translations
 from utils.fileUploadValidator import FileUploadValidator
 from utils.time import currentTimeStamp
 
@@ -42,9 +41,6 @@ def adminPanelSiteSettings():
         connection.close()
         Log.error(f"{request.remote_addr} ({session['userName']}) tried to reach admin site settings without admin role")
         return redirect("/")
-
-    # Get translations
-    translations = Translations.getTranslations(session.get("language", "en"))
 
     # Handle POST request (logo upload)
     if request.method == "POST":
@@ -114,6 +110,5 @@ def adminPanelSiteSettings():
 
     return render_template(
         "adminPanelSiteSettings.html",
-        currentLogo=current_logo,
-        translations=translations
+        currentLogo=current_logo
     )
