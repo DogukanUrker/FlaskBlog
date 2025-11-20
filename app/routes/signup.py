@@ -2,6 +2,7 @@ import smtplib
 import sqlite3
 import ssl
 from email.message import EmailMessage
+from random import randint
 
 from flask import (
     Blueprint,
@@ -19,6 +20,7 @@ from utils.flashMessage import flashMessage
 from utils.forms.SignUpForm import SignUpForm
 from utils.log import Log
 from utils.time import currentTimeStamp
+from utils.smtpSettings import SMTPSettings
 
 signUpBlueprint = Blueprint("signup", __name__)
 
@@ -119,50 +121,77 @@ def signup():
                                 language=session["language"],
                             )
 
-                            # Send welcome email
-                            context = ssl.create_default_context()
-                            server = smtplib.SMTP(
-                                Settings.SMTP_SERVER, Settings.SMTP_PORT
-                            )
-                            server.ehlo()
-                            server.starttls(context=context)
-                            server.ehlo()
-                            server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
+                            # Generate verification code
+                            verificationCode = str(randint(1000, 9999))
 
-                            mail = EmailMessage()
-                            mail.set_content(
-                                f"Hi {userName}👋,\n Welcome to {Settings.APP_NAME}"
-                            )
-                            mail.add_alternative(
-                                f"""\
-                            <html>
-                            <body>
-                                <div
-                                style="font-family: Arial, sans-serif;  max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius:0.5rem;"
-                                >
-                                <div style="text-align: center;">
-                                    <h1 style="color: #F43F5E;">
-                                    Hi {userName}, <br />
-                                    Welcome to {Settings.APP_NAME}!
-                                    </h1>
-                                    <p style="font-size: 16px;">
-                                    We are glad you joined us.
-                                    </p>
-                                </div>
-                                </div>
-                            </body>
-                            </html>
-                            """,
-                                subtype="html",
-                            )
-                            mail["Subject"] = f"Welcome to {Settings.APP_NAME}"
-                            mail["From"] = Settings.SMTP_MAIL
-                            mail["To"] = email
+                            # Store verification code in session for verification
+                            session["verificationCode"] = verificationCode
 
-                            server.send_message(mail)
-                            server.quit()
+                            # Get SMTP settings from database
+                            smtp_settings = SMTPSettings.get_settings()
 
-                            return redirect("/verifyUser/codesent=false")
+                            # Send verification email
+                            try:
+                                context = ssl.create_default_context()
+                                server = smtplib.SMTP(
+                                    smtp_settings["smtp_server"], smtp_settings["smtp_port"]
+                                )
+                                server.ehlo()
+                                server.starttls(context=context)
+                                server.ehlo()
+                                server.login(smtp_settings["smtp_mail"], smtp_settings["smtp_password"])
+
+                                mail = EmailMessage()
+                                mail.set_content(
+                                    f"Hi {userName},\n\nWelcome to {Settings.APP_NAME}!\n\nPlease verify your email address using this code: {verificationCode}\n\nThis code is valid for a limited time."
+                                )
+                                mail.add_alternative(
+                                    f"""\
+                                <html>
+                                <body>
+                                    <div
+                                    style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius:0.5rem;"
+                                    >
+                                    <div style="text-align: center;">
+                                        <h1 style="color: #F43F5E;">
+                                        Welcome to {Settings.APP_NAME}!
+                                        </h1>
+                                        <p style="font-size: 16px;">
+                                        Hi {userName}, thank you for creating an account.
+                                        </p>
+                                        <p style="font-size: 16px;">
+                                        Please verify your email address using the code below:
+                                        </p>
+                                        <div
+                                        style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin: 20px 0;"
+                                        >
+                                        <p style="font-size: 24px; font-weight: bold; margin: 0;">
+                                            {verificationCode}
+                                        </p>
+                                        </div>
+                                        <p style="font-size: 14px; color: #888888;">
+                                        This verification code is valid for a limited time. Please do not share this code with anyone.
+                                        </p>
+                                    </div>
+                                    </div>
+                                </body>
+                                </html>
+                                """,
+                                    subtype="html",
+                                )
+                                mail["Subject"] = f"Verify your {Settings.APP_NAME} account"
+                                mail["From"] = smtp_settings["smtp_mail"]
+                                mail["To"] = email
+
+                                server.send_message(mail)
+                                server.quit()
+
+                                Log.success(f'Verification email sent to "{email}" for user: "{userName}"')
+
+                            except Exception as e:
+                                Log.error(f'Failed to send verification email: {e}')
+
+                            return redirect("/verifyUser/codesent=true")
                         else:
                             Log.error(
                                 f'Username: "{userName}" do not fits to ascii characters',

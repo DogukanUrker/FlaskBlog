@@ -15,6 +15,7 @@ from settings import Settings
 from utils.flashMessage import flashMessage
 from utils.forms.VerifyUserForm import VerifyUserForm
 from utils.log import Log
+from utils.smtpSettings import SMTPSettings
 
 verifyUserBlueprint = Blueprint("verifyUser", __name__)
 
@@ -50,13 +51,14 @@ def verifyUser(codeSent):
         if isVerfied == "True":
             return redirect("/")
         elif isVerfied == "False":
-            global verificationCode
-
             form = VerifyUserForm(request.form)
 
             if codeSent == "true":
                 if request.method == "POST":
                     code = request.form["code"]
+
+                    # Get verification code from session
+                    verificationCode = session.get("verificationCode", "")
 
                     if code == verificationCode:
                         cursor.execute(
@@ -100,60 +102,77 @@ def verifyUser(codeSent):
                     email = cursor.fetchone()
 
                     if userNameDB:
-                        context = ssl.create_default_context()
-                        server = smtplib.SMTP(Settings.SMTP_SERVER, Settings.SMTP_PORT)
-                        server.ehlo()
-                        server.starttls(context=context)
-                        server.ehlo()
-                        server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
+                        # Get SMTP settings from database
+                        smtp_settings = SMTPSettings.get_settings()
 
-                        verificationCode = str(randint(1000, 9999))
+                        try:
+                            context = ssl.create_default_context()
+                            server = smtplib.SMTP(smtp_settings["smtp_server"], smtp_settings["smtp_port"])
+                            server.ehlo()
+                            server.starttls(context=context)
+                            server.ehlo()
+                            server.login(smtp_settings["smtp_mail"], smtp_settings["smtp_password"])
 
-                        message = EmailMessage()
-                        message.set_content(
-                            f"Hi {userName}👋,\nHere is your account verification code🔢:\n{verificationCode}"
-                        )
-                        message.add_alternative(
-                            f"""\
-                                <html>
-                                <body>
-                                    <div
-                                    style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius:0.5rem;"
-                                    >
-                                    <div style="text-align: center;">
-                                        <h1 style="color: #F43F5E;">Thank you for creating an account!</h1>
-                                        <p style="font-size: 16px;">
-                                        Hello, {userName}.
-                                        </p>
-                                        <p style="font-size: 16px;">
-                                        Please enter the verification code below to verify your account.
-                                        </p>
+                            verificationCode = str(randint(1000, 9999))
+
+                            # Store verification code in session
+                            session["verificationCode"] = verificationCode
+
+                            message = EmailMessage()
+                            message.set_content(
+                                f"Hi {userName},\n\nHere is your account verification code:\n{verificationCode}\n\nThis code is valid for a limited time."
+                            )
+                            message.add_alternative(
+                                f"""\
+                                    <html>
+                                    <body>
                                         <div
-                                        style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin: 20px 0;"
+                                        style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius:0.5rem;"
                                         >
-                                        <p style="font-size: 24px; font-weight: bold; margin: 0;">
-                                            {verificationCode}
-                                        </p>
+                                        <div style="text-align: center;">
+                                            <h1 style="color: #F43F5E;">Verify Your Account</h1>
+                                            <p style="font-size: 16px;">
+                                            Hello, {userName}.
+                                            </p>
+                                            <p style="font-size: 16px;">
+                                            Please enter the verification code below to verify your account.
+                                            </p>
+                                            <div
+                                            style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin: 20px 0;"
+                                            >
+                                            <p style="font-size: 24px; font-weight: bold; margin: 0;">
+                                                {verificationCode}
+                                            </p>
+                                            </div>
+                                            <p style="font-size: 14px; color: #888888;">
+                                            This verification code is valid for a limited time. Please do not share this code with anyone.
+                                            </p>
                                         </div>
-                                        <p style="font-size: 14px; color: #888888;">
-                                        This verification code is valid for a limited time. Please do not share this code with anyone.
-                                        </p>
-                                    </div>
-                                    </div>
-                                </body>
-                                </html>
-                            """,
-                            subtype="html",
-                        )
-                        message["Subject"] = f"Verify your {Settings.APP_NAME} account!"
-                        message["From"] = Settings.SMTP_MAIL
-                        message["To"] = email[0]
+                                        </div>
+                                    </body>
+                                    </html>
+                                """,
+                                subtype="html",
+                            )
+                            message["Subject"] = f"Verify your {Settings.APP_NAME} account"
+                            message["From"] = smtp_settings["smtp_mail"]
+                            message["To"] = email[0]
 
-                        server.send_message(message)
-                        server.quit()
-                        Log.success(
-                            f'Verification code sent to "{email[0]}" for user: "{userName}"'
-                        )
+                            server.send_message(message)
+                            server.quit()
+                            Log.success(
+                                f'Verification code sent to "{email[0]}" for user: "{userName}"'
+                            )
+
+                            flashMessage(
+                                page="verifyUser",
+                                message="code",
+                                category="success",
+                                language=session.get("language", "en"),
+                            )
+
+                        except Exception as e:
+                            Log.error(f'Failed to send verification email: {e}')
 
                         return redirect("/verifyUser/codesent=true")
 
