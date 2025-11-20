@@ -3,6 +3,7 @@ import sqlite3
 from flask import (
     Blueprint,
     abort,
+    flash,
     redirect,
     render_template,
     request,
@@ -66,12 +67,8 @@ def login(direct):
                     userName
                 )
                 if not is_allowed:
-                    flashMessage(
-                        page="login",
-                        message=rate_limit_msg,
-                        category="error",
-                        language=session.get("language", "en"),
-                    )
+                    # Use flash directly since rate_limit_msg contains dynamic content
+                    flash(rate_limit_msg, "error")
                     return render_template(
                         "login.html",
                         form=form,
