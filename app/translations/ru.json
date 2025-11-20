@@ -21,6 +21,22 @@
     "posts": "Посты",
     "comments": "Комментарии"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "Настройка SMTP",
+    "smtpDescription": "Настройте параметры электронной почты для сброса пароля и писем подтверждения.",
+    "smtpServer": "SMTP сервер",
+    "smtpPort": "SMTP порт",
+    "smtpEmail": "SMTP электронная почта",
+    "smtpPassword": "SMTP пароль",
+    "smtpPasswordPlaceholder": "Введите новый пароль (оставьте пустым, чтобы сохранить текущий)",
+    "smtpPasswordSet": "Пароль установлен",
+    "smtpWarning": "Для Gmail используйте пароль приложения вместо обычного пароля. Включите двухфакторную аутентификацию и сгенерируйте пароль приложения в настройках аккаунта Google.",
+    "smtpSave": "Сохранить настройки SMTP",
+    "smtpUsage": "Использование SMTP",
+    "smtpUsage1": "Письма для сброса пароля",
+    "smtpUsage2": "Письма подтверждения аккаунта",
+    "smtpUsage3": "Системные уведомления"
+  },
   "adminPanelComments": {
     "title": "Административная панель - Комментарии",
     "comments": "Комментарии",
@@ -340,6 +356,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "Настройки SMTP успешно сохранены.",
+      "smtpError": "Не удалось сохранить настройки SMTP.",
+      "smtpInvalidPort": "Недействительный номер порта. Должен быть от 1 до 65535."
     }
   },
   "roles": {

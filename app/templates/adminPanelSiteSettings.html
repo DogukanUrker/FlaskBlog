@@ -294,6 +294,123 @@
             </form>
         </div>
     </div>
+
+    <!-- SMTP Configuration Section -->
+    <div class="divider my-8"></div>
+
+    <div class="card bg-base-200 shadow-xl mb-6">
+        <div class="card-body">
+            <h2 class="card-title text-xl mb-4">
+                <i class="ti ti-mail-cog mr-2"></i>
+                {{ translations.adminSiteSettings.smtpTitle if translations.adminSiteSettings and translations.adminSiteSettings.smtpTitle else "SMTP Configuration" }}
+            </h2>
+
+            <p class="text-sm opacity-75 mb-4">
+                {{ translations.adminSiteSettings.smtpDescription if translations.adminSiteSettings and translations.adminSiteSettings.smtpDescription else "Configure email settings for password reset and verification emails." }}
+            </p>
+
+            <form method="POST" class="space-y-4">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="upload_type" value="smtp_config" />
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">
+                                {{ translations.adminSiteSettings.smtpServer if translations.adminSiteSettings and translations.adminSiteSettings.smtpServer else "SMTP Server" }}
+                            </span>
+                        </label>
+                        <input
+                            type="text"
+                            name="smtp_server"
+                            value="{{ smtpServer }}"
+                            placeholder="smtp.gmail.com"
+                            class="input input-bordered w-full"
+                        />
+                    </div>
+
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">
+                                {{ translations.adminSiteSettings.smtpPort if translations.adminSiteSettings and translations.adminSiteSettings.smtpPort else "SMTP Port" }}
+                            </span>
+                        </label>
+                        <input
+                            type="number"
+                            name="smtp_port"
+                            value="{{ smtpPort }}"
+                            placeholder="587"
+                            min="1"
+                            max="65535"
+                            class="input input-bordered w-full"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">
+                            {{ translations.adminSiteSettings.smtpEmail if translations.adminSiteSettings and translations.adminSiteSettings.smtpEmail else "SMTP Email" }}
+                        </span>
+                    </label>
+                    <input
+                        type="email"
+                        name="smtp_mail"
+                        value="{{ smtpMail }}"
+                        placeholder="your-email@gmail.com"
+                        class="input input-bordered w-full"
+                    />
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">
+                            {{ translations.adminSiteSettings.smtpPassword if translations.adminSiteSettings and translations.adminSiteSettings.smtpPassword else "SMTP Password" }}
+                        </span>
+                    </label>
+                    <input
+                        type="password"
+                        name="smtp_password"
+                        placeholder="{{ translations.adminSiteSettings.smtpPasswordPlaceholder if translations.adminSiteSettings and translations.adminSiteSettings.smtpPasswordPlaceholder else 'Enter new password (leave blank to keep current)' }}"
+                        class="input input-bordered w-full"
+                    />
+                    {% if smtpPasswordSet %}
+                    <label class="label">
+                        <span class="label-text-alt text-success">
+                            <i class="ti ti-check mr-1"></i>
+                            {{ translations.adminSiteSettings.smtpPasswordSet if translations.adminSiteSettings and translations.adminSiteSettings.smtpPasswordSet else "Password is set" }}
+                        </span>
+                    </label>
+                    {% endif %}
+                </div>
+
+                <div class="alert alert-warning">
+                    <i class="ti ti-alert-triangle"></i>
+                    <span>{{ translations.adminSiteSettings.smtpWarning if translations.adminSiteSettings and translations.adminSiteSettings.smtpWarning else "For Gmail, use an App Password instead of your regular password. Enable 2FA and generate an app password from your Google Account settings." }}</span>
+                </div>
+
+                <div class="card-actions justify-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-device-floppy mr-2"></i>
+                        {{ translations.adminSiteSettings.smtpSave if translations.adminSiteSettings and translations.adminSiteSettings.smtpSave else "Save SMTP Settings" }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SMTP Info -->
+    <div class="alert alert-info mb-6">
+        <i class="ti ti-info-circle"></i>
+        <div>
+            <h3 class="font-bold">{{ translations.adminSiteSettings.smtpUsage if translations.adminSiteSettings and translations.adminSiteSettings.smtpUsage else "SMTP Usage" }}</h3>
+            <div class="text-sm mt-2 space-y-1">
+                <p>• {{ translations.adminSiteSettings.smtpUsage1 if translations.adminSiteSettings and translations.adminSiteSettings.smtpUsage1 else "Password reset emails" }}</p>
+                <p>• {{ translations.adminSiteSettings.smtpUsage2 if translations.adminSiteSettings and translations.adminSiteSettings.smtpUsage2 else "Account verification emails" }}</p>
+                <p>• {{ translations.adminSiteSettings.smtpUsage3 if translations.adminSiteSettings and translations.adminSiteSettings.smtpUsage3 else "System notifications" }}</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% include 'components/flash.html' %}

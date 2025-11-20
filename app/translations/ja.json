@@ -21,6 +21,22 @@
     "posts": "投稿",
     "comments": "コメント"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP設定",
+    "smtpDescription": "パスワードリセットと確認メール用のメール設定を構成します。",
+    "smtpServer": "SMTPサーバー",
+    "smtpPort": "SMTPポート",
+    "smtpEmail": "SMTPメール",
+    "smtpPassword": "SMTPパスワード",
+    "smtpPasswordPlaceholder": "新しいパスワードを入力（現在のまま維持する場合は空白）",
+    "smtpPasswordSet": "パスワード設定済み",
+    "smtpWarning": "Gmailの場合、通常のパスワードの代わりにアプリパスワードを使用してください。2段階認証を有効にし、Googleアカウント設定からアプリパスワードを生成してください。",
+    "smtpSave": "SMTP設定を保存",
+    "smtpUsage": "SMTPの使用目的",
+    "smtpUsage1": "パスワードリセットメール",
+    "smtpUsage2": "アカウント確認メール",
+    "smtpUsage3": "システム通知"
+  },
   "adminPanelComments": {
     "title": "管理パネル - コメント",
     "comments": "コメント",
@@ -340,6 +356,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "SMTP設定が正常に保存されました。",
+      "smtpError": "SMTP設定の保存に失敗しました。",
+      "smtpInvalidPort": "無効なポート番号です。1から65535の間である必要があります。"
     }
   },
   "roles": {

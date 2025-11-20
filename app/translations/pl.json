@@ -21,6 +21,22 @@
     "posts": "Posty",
     "comments": "Komentarze"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "Konfiguracja SMTP",
+    "smtpDescription": "Skonfiguruj ustawienia e-mail dla resetowania hasła i e-maili weryfikacyjnych.",
+    "smtpServer": "Serwer SMTP",
+    "smtpPort": "Port SMTP",
+    "smtpEmail": "E-mail SMTP",
+    "smtpPassword": "Hasło SMTP",
+    "smtpPasswordPlaceholder": "Wprowadź nowe hasło (pozostaw puste, aby zachować obecne)",
+    "smtpPasswordSet": "Hasło ustawione",
+    "smtpWarning": "Dla Gmaila użyj Hasła aplikacji zamiast zwykłego hasła. Włącz weryfikację dwuetapową i wygeneruj hasło aplikacji w ustawieniach Konta Google.",
+    "smtpSave": "Zapisz ustawienia SMTP",
+    "smtpUsage": "Użycie SMTP",
+    "smtpUsage1": "E-maile resetowania hasła",
+    "smtpUsage2": "E-maile weryfikacji konta",
+    "smtpUsage3": "Powiadomienia systemowe"
+  },
   "adminPanelComments": {
     "title": "Panel administracyjny - Komentarze",
     "comments": "Komentarze",
@@ -340,6 +356,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "Konfiguracja SMTP została pomyślnie zapisana.",
+      "smtpError": "Nie udało się zapisać konfiguracji SMTP.",
+      "smtpInvalidPort": "Nieprawidłowy numer portu. Musi być między 1 a 65535."
     }
   },
   "roles": {

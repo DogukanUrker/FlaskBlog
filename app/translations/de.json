@@ -21,6 +21,22 @@
     "posts": "Beiträge",
     "comments": "Kommentare"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP-Konfiguration",
+    "smtpDescription": "E-Mail-Einstellungen für Passwort-Zurücksetzung und Verifizierungs-E-Mails konfigurieren.",
+    "smtpServer": "SMTP-Server",
+    "smtpPort": "SMTP-Port",
+    "smtpEmail": "SMTP-E-Mail",
+    "smtpPassword": "SMTP-Passwort",
+    "smtpPasswordPlaceholder": "Neues Passwort eingeben (leer lassen um aktuelles zu behalten)",
+    "smtpPasswordSet": "Passwort ist gesetzt",
+    "smtpWarning": "Für Gmail verwenden Sie ein App-Passwort anstelle Ihres normalen Passworts. Aktivieren Sie die 2-Faktor-Authentifizierung und generieren Sie ein App-Passwort in Ihren Google-Kontoeinstellungen.",
+    "smtpSave": "SMTP-Einstellungen speichern",
+    "smtpUsage": "SMTP-Verwendung",
+    "smtpUsage1": "Passwort-Zurücksetzungs-E-Mails",
+    "smtpUsage2": "Konto-Verifizierungs-E-Mails",
+    "smtpUsage3": "Systembenachrichtigungen"
+  },
   "adminPanelComments": {
     "title": "Admin-Bereich - Kommentare",
     "comments": "Kommentare",
@@ -340,6 +356,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "SMTP-Konfiguration erfolgreich gespeichert.",
+      "smtpError": "SMTP-Konfiguration konnte nicht gespeichert werden.",
+      "smtpInvalidPort": "Ungültige Portnummer. Muss zwischen 1 und 65535 liegen."
     }
   },
   "roles": {

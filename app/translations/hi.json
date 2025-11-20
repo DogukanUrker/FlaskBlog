@@ -21,6 +21,22 @@
     "posts": "पोस्ट्स",
     "comments": "टिप्पणियाँ"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP कॉन्फ़िगरेशन",
+    "smtpDescription": "पासवर्ड रीसेट और सत्यापन ईमेल के लिए ईमेल सेटिंग्स कॉन्फ़िगर करें।",
+    "smtpServer": "SMTP सर्वर",
+    "smtpPort": "SMTP पोर्ट",
+    "smtpEmail": "SMTP ईमेल",
+    "smtpPassword": "SMTP पासवर्ड",
+    "smtpPasswordPlaceholder": "नया पासवर्ड दर्ज करें (वर्तमान रखने के लिए खाली छोड़ें)",
+    "smtpPasswordSet": "पासवर्ड सेट है",
+    "smtpWarning": "Gmail के लिए, अपने नियमित पासवर्ड के बजाय ऐप पासवर्ड का उपयोग करें। 2FA सक्षम करें और अपने Google खाता सेटिंग्स से ऐप पासवर्ड जनरेट करें।",
+    "smtpSave": "SMTP सेटिंग्स सहेजें",
+    "smtpUsage": "SMTP उपयोग",
+    "smtpUsage1": "पासवर्ड रीसेट ईमेल",
+    "smtpUsage2": "खाता सत्यापन ईमेल",
+    "smtpUsage3": "सिस्टम सूचनाएं"
+  },
   "adminPanelComments": {
     "title": "एडमिन पैनल - टिप्पणियाँ",
     "comments": "टिप्पणियाँ",
@@ -340,6 +356,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "SMTP कॉन्फ़िगरेशन सफलतापूर्वक सहेजा गया।",
+      "smtpError": "SMTP कॉन्फ़िगरेशन सहेजने में विफल।",
+      "smtpInvalidPort": "अमान्य पोर्ट नंबर। 1 से 65535 के बीच होना चाहिए।"
     }
   },
   "roles": {

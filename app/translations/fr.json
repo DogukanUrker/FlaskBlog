@@ -21,6 +21,22 @@
     "posts": "Articles",
     "comments": "Commentaires"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "Configuration SMTP",
+    "smtpDescription": "Configurez les paramètres de messagerie pour la réinitialisation du mot de passe et les e-mails de vérification.",
+    "smtpServer": "Serveur SMTP",
+    "smtpPort": "Port SMTP",
+    "smtpEmail": "E-mail SMTP",
+    "smtpPassword": "Mot de passe SMTP",
+    "smtpPasswordPlaceholder": "Entrez le nouveau mot de passe (laissez vide pour conserver l'actuel)",
+    "smtpPasswordSet": "Mot de passe défini",
+    "smtpWarning": "Pour Gmail, utilisez un mot de passe d'application au lieu de votre mot de passe normal. Activez la validation en deux étapes et générez un mot de passe d'application dans les paramètres de votre compte Google.",
+    "smtpSave": "Enregistrer les paramètres SMTP",
+    "smtpUsage": "Utilisation SMTP",
+    "smtpUsage1": "E-mails de réinitialisation de mot de passe",
+    "smtpUsage2": "E-mails de vérification de compte",
+    "smtpUsage3": "Notifications système"
+  },
   "adminPanelComments": {
     "title": "Panneau d'administration - Commentaires",
     "comments": "Commentaires",
@@ -340,6 +356,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "Configuration SMTP enregistrée avec succès.",
+      "smtpError": "Échec de l'enregistrement de la configuration SMTP.",
+      "smtpInvalidPort": "Numéro de port invalide. Doit être entre 1 et 65535."
     }
   },
   "roles": {

@@ -234,6 +234,77 @@ def adminPanelSiteSettings():
             connection.close()
             return redirect("/admin/site-settings")
 
+        # Handle SMTP configuration
+        elif upload_type == "smtp_config":
+            smtp_server = request.form.get("smtp_server", "").strip()
+            smtp_port = request.form.get("smtp_port", "").strip()
+            smtp_mail = request.form.get("smtp_mail", "").strip()
+            smtp_password = request.form.get("smtp_password", "").strip()
+
+            try:
+                # Validate port
+                if smtp_port:
+                    smtp_port_int = int(smtp_port)
+                    if smtp_port_int < 1 or smtp_port_int > 65535:
+                        raise ValueError("Invalid port number")
+
+                # Save SMTP settings to database
+                smtp_settings = [
+                    ("smtp_server", smtp_server),
+                    ("smtp_port", smtp_port),
+                    ("smtp_mail", smtp_mail),
+                ]
+
+                # Only update password if provided (to allow keeping existing password)
+                if smtp_password:
+                    smtp_settings.append(("smtp_password", smtp_password))
+
+                for key, value in smtp_settings:
+                    cursor.execute(
+                        "SELECT setting_id FROM site_settings WHERE setting_key = ?",
+                        (key,)
+                    )
+                    if cursor.fetchone():
+                        cursor.execute(
+                            "UPDATE site_settings SET setting_value = ?, updated_at = ? WHERE setting_key = ?",
+                            (value, currentTimeStamp(), key)
+                        )
+                    else:
+                        cursor.execute(
+                            "INSERT INTO site_settings(setting_key, setting_value, updated_at) VALUES(?, ?, ?)",
+                            (key, value, currentTimeStamp())
+                        )
+
+                connection.commit()
+
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpSuccess",
+                    category="success",
+                    language=session.get("language", "en")
+                )
+                Log.success(f"Admin {session['userName']} updated SMTP configuration")
+
+            except ValueError as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpInvalidPort",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP configuration failed: {e}")
+            except Exception as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP configuration failed: {e}")
+
+            connection.close()
+            return redirect("/admin/site-settings")
+
         # Handle default banner upload
         elif upload_type == "default_banner":
             if "default_banner" not in request.files:
@@ -350,6 +421,27 @@ def adminPanelSiteSettings():
     banner_result = cursor.fetchone()
     current_default_banner = banner_result[0] if banner_result else None
 
+    # Get SMTP settings
+    smtp_settings = {}
+    for key in ["smtp_server", "smtp_port", "smtp_mail", "smtp_password"]:
+        cursor.execute(
+            "SELECT setting_value FROM site_settings WHERE setting_key = ?",
+            (key,)
+        )
+        result = cursor.fetchone()
+        if result:
+            smtp_settings[key] = result[0]
+        else:
+            # Fall back to Settings defaults
+            if key == "smtp_server":
+                smtp_settings[key] = Settings.SMTP_SERVER
+            elif key == "smtp_port":
+                smtp_settings[key] = str(Settings.SMTP_PORT)
+            elif key == "smtp_mail":
+                smtp_settings[key] = Settings.SMTP_MAIL
+            else:
+                smtp_settings[key] = ""
+
     connection.close()
 
     Log.info(f"Admin {session['userName']} viewing site settings page")
@@ -358,5 +450,9 @@ def adminPanelSiteSettings():
         "adminPanelSiteSettings.html",
         currentLogo=current_logo,
         currentDefaultProfile=current_default_profile,
-        currentDefaultBanner=current_default_banner
+        currentDefaultBanner=current_default_banner,
+        smtpServer=smtp_settings.get("smtp_server", ""),
+        smtpPort=smtp_settings.get("smtp_port", ""),
+        smtpMail=smtp_settings.get("smtp_mail", ""),
+        smtpPasswordSet=bool(smtp_settings.get("smtp_password", ""))
     )

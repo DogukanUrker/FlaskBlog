@@ -24,6 +24,22 @@
     "comments": "Comments",
     "securityAudit": "Security Audit"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP Configuration",
+    "smtpDescription": "Configure email settings for password reset and verification emails.",
+    "smtpServer": "SMTP Server",
+    "smtpPort": "SMTP Port",
+    "smtpEmail": "SMTP Email",
+    "smtpPassword": "SMTP Password",
+    "smtpPasswordPlaceholder": "Enter new password (leave blank to keep current)",
+    "smtpPasswordSet": "Password is set",
+    "smtpWarning": "For Gmail, use an App Password instead of your regular password. Enable 2FA and generate an app password from your Google Account settings.",
+    "smtpSave": "Save SMTP Settings",
+    "smtpUsage": "SMTP Usage",
+    "smtpUsage1": "Password reset emails",
+    "smtpUsage2": "Account verification emails",
+    "smtpUsage3": "System notifications"
+  },
   "adminPanelComments": {
     "title": "Admin Panel - Comments",
     "comments": "Comments",
@@ -273,7 +289,10 @@
       "bannerError": "Failed to upload default banner.",
       "bannerNoFile": "No banner file provided.",
       "bannerNoSelection": "No file selected.",
-      "bannerInvalid": "Invalid file."
+      "bannerInvalid": "Invalid file.",
+      "smtpSuccess": "SMTP configuration saved successfully.",
+      "smtpError": "Failed to save SMTP configuration.",
+      "smtpInvalidPort": "Invalid port number. Must be between 1 and 65535."
     },
     "changeUserName": {
       "same": "This is already your username.",

@@ -21,6 +21,22 @@
     "posts": "帖子",
     "comments": "评论"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP 配置",
+    "smtpDescription": "配置用于密码重置和验证邮件的电子邮件设置。",
+    "smtpServer": "SMTP 服务器",
+    "smtpPort": "SMTP 端口",
+    "smtpEmail": "SMTP 邮箱",
+    "smtpPassword": "SMTP 密码",
+    "smtpPasswordPlaceholder": "输入新密码（留空以保持当前密码）",
+    "smtpPasswordSet": "密码已设置",
+    "smtpWarning": "对于 Gmail，请使用应用专用密码而非常规密码。启用两步验证并从您的 Google 账户设置中生成应用专用密码。",
+    "smtpSave": "保存 SMTP 设置",
+    "smtpUsage": "SMTP 用途",
+    "smtpUsage1": "密码重置邮件",
+    "smtpUsage2": "账户验证邮件",
+    "smtpUsage3": "系统通知"
+  },
   "adminPanelComments": {
     "title": "管理面板 - 评论",
     "comments": "评论",
@@ -339,6 +355,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "SMTP 配置保存成功。",
+      "smtpError": "保存 SMTP 配置失败。",
+      "smtpInvalidPort": "端口号无效。必须在 1 到 65535 之间。"
     }
   },
   "roles": {

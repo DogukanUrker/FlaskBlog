@@ -21,6 +21,22 @@
     "posts": "Пости",
     "comments": "Коментарі"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "Налаштування SMTP",
+    "smtpDescription": "Налаштуйте параметри електронної пошти для скидання пароля та листів підтвердження.",
+    "smtpServer": "SMTP сервер",
+    "smtpPort": "SMTP порт",
+    "smtpEmail": "SMTP електронна пошта",
+    "smtpPassword": "SMTP пароль",
+    "smtpPasswordPlaceholder": "Введіть новий пароль (залиште порожнім, щоб зберегти поточний)",
+    "smtpPasswordSet": "Пароль встановлено",
+    "smtpWarning": "Для Gmail використовуйте пароль додатка замість звичайного пароля. Увімкніть двофакторну автентифікацію та згенеруйте пароль додатка в налаштуваннях облікового запису Google.",
+    "smtpSave": "Зберегти налаштування SMTP",
+    "smtpUsage": "Використання SMTP",
+    "smtpUsage1": "Листи для скидання пароля",
+    "smtpUsage2": "Листи підтвердження облікового запису",
+    "smtpUsage3": "Системні сповіщення"
+  },
   "adminPanelComments": {
     "title": "Адміністративна панель - Коментарі",
     "comments": "Коментарі",
@@ -340,6 +356,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "Налаштування SMTP успішно збережено.",
+      "smtpError": "Не вдалося зберегти налаштування SMTP.",
+      "smtpInvalidPort": "Недійсний номер порту. Має бути від 1 до 65535."
     }
   },
   "roles": {

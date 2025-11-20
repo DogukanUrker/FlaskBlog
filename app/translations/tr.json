@@ -21,6 +21,22 @@
     "posts": "Gönderiler",
     "comments": "Yorumlar"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP Yapılandırması",
+    "smtpDescription": "Şifre sıfırlama ve doğrulama e-postaları için e-posta ayarlarını yapılandırın.",
+    "smtpServer": "SMTP Sunucusu",
+    "smtpPort": "SMTP Portu",
+    "smtpEmail": "SMTP E-postası",
+    "smtpPassword": "SMTP Şifresi",
+    "smtpPasswordPlaceholder": "Yeni şifre girin (mevcut şifreyi korumak için boş bırakın)",
+    "smtpPasswordSet": "Şifre ayarlandı",
+    "smtpWarning": "Gmail için normal şifreniz yerine Uygulama Şifresi kullanın. İki faktörlü kimlik doğrulamayı etkinleştirin ve Google Hesabı ayarlarınızdan bir uygulama şifresi oluşturun.",
+    "smtpSave": "SMTP Ayarlarını Kaydet",
+    "smtpUsage": "SMTP Kullanımı",
+    "smtpUsage1": "Şifre sıfırlama e-postaları",
+    "smtpUsage2": "Hesap doğrulama e-postaları",
+    "smtpUsage3": "Sistem bildirimleri"
+  },
   "adminPanelComments": {
     "title": "Yönetici Paneli - Yorumlar",
     "comments": "Yorumlar",
@@ -340,6 +356,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "SMTP yapılandırması başarıyla kaydedildi.",
+      "smtpError": "SMTP yapılandırması kaydedilemedi.",
+      "smtpInvalidPort": "Geçersiz port numarası. 1 ile 65535 arasında olmalıdır."
     }
   },
   "roles": {

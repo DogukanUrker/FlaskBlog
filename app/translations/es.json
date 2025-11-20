@@ -21,6 +21,22 @@
     "posts": "Publicaciones",
     "comments": "Comentarios"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "Configuración SMTP",
+    "smtpDescription": "Configure los ajustes de correo electrónico para restablecimiento de contraseña y correos de verificación.",
+    "smtpServer": "Servidor SMTP",
+    "smtpPort": "Puerto SMTP",
+    "smtpEmail": "Correo SMTP",
+    "smtpPassword": "Contraseña SMTP",
+    "smtpPasswordPlaceholder": "Ingrese nueva contraseña (deje en blanco para mantener la actual)",
+    "smtpPasswordSet": "Contraseña configurada",
+    "smtpWarning": "Para Gmail, use una Contraseña de Aplicación en lugar de su contraseña normal. Habilite la verificación en dos pasos y genere una contraseña de aplicación desde la configuración de su cuenta de Google.",
+    "smtpSave": "Guardar Configuración SMTP",
+    "smtpUsage": "Uso de SMTP",
+    "smtpUsage1": "Correos de restablecimiento de contraseña",
+    "smtpUsage2": "Correos de verificación de cuenta",
+    "smtpUsage3": "Notificaciones del sistema"
+  },
   "adminPanelComments": {
     "title": "Panel de Administrador - Comentarios",
     "comments": "Comentarios",
@@ -340,6 +356,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "Configuración SMTP guardada correctamente.",
+      "smtpError": "Error al guardar la configuración SMTP.",
+      "smtpInvalidPort": "Número de puerto inválido. Debe estar entre 1 y 65535."
     }
   },
   "roles": {
