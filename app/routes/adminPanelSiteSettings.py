@@ -14,6 +14,7 @@ from utils.log import Log
 from utils.flashMessage import flashMessage
 from utils.fileUploadValidator import FileUploadValidator
 from utils.time import currentTimeStamp
+from utils.encryption import EncryptionUtil
 
 adminPanelSiteSettingsBlueprint = Blueprint("adminPanelSiteSettings", __name__)
 
@@ -259,8 +260,10 @@ def adminPanelSiteSettings():
                 ]
 
                 # Only update password if provided (to allow keeping existing password)
+                # Encrypt the password before storing
                 if smtp_password:
-                    smtp_settings.append(("smtp_password", smtp_password))
+                    encrypted_password = EncryptionUtil.encrypt(smtp_password)
+                    smtp_settings.append(("smtp_password", encrypted_password))
 
                 for key, value in smtp_settings:
                     cursor.execute(
@@ -343,6 +346,10 @@ def adminPanelSiteSettings():
                             smtp_config[key] = Settings.SMTP_MAIL
                         else:
                             smtp_config[key] = Settings.SMTP_PASSWORD
+
+                # Decrypt the password
+                if smtp_config.get("smtp_password"):
+                    smtp_config["smtp_password"] = EncryptionUtil.decrypt(smtp_config["smtp_password"])
 
                 # Check if SMTP is configured
                 if not smtp_config.get("smtp_mail") or not smtp_config.get("smtp_password"):

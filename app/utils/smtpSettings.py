@@ -8,6 +8,7 @@ with fallback to environment variables/Settings defaults.
 import sqlite3
 from settings import Settings
 from utils.log import Log
+from utils.encryption import EncryptionUtil
 
 
 class SMTPSettings:
@@ -47,6 +48,9 @@ class SMTPSettings:
                             settings[key] = int(result[0])
                         except ValueError:
                             pass  # Keep default if invalid
+                    elif key == "smtp_password":
+                        # Decrypt the password
+                        settings[key] = EncryptionUtil.decrypt(result[0])
                     else:
                         settings[key] = result[0]
 
