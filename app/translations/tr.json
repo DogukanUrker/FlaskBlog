@@ -76,6 +76,22 @@
     "confirmPassword": "Şifreyi Onayla",
     "change": "Şifreyi Değiştir"
   },
+  "forceChangePassword": {
+    "title": "Şifrenizi Değiştirin",
+    "warning": "Devam etmeden önce şifrenizi değiştirmeniz gerekmektedir.",
+    "description": "Güvenlik nedeniyle, yönetici hesapları ilk girişte güçlü bir şifre belirlemelidir.",
+    "requirements": "Şifre Gereksinimleri",
+    "reqMinLength": "En az 12 karakter",
+    "reqUppercase": "En az 1 büyük harf (A-Z)",
+    "reqLowercase": "En az 1 küçük harf (a-z)",
+    "reqDigit": "En az 1 rakam (0-9)",
+    "reqSpecial": "En az 1 özel karakter (!@#$%^&*...)",
+    "newPassword": "Yeni Şifre",
+    "newPasswordPlaceholder": "Yeni şifreyi girin",
+    "confirmPassword": "Şifreyi Onayla",
+    "confirmPasswordPlaceholder": "Yeni şifreyi onaylayın",
+    "submit": "Yeni Şifreyi Ayarla"
+  },
   "changeProfilePicture": {
     "title": "Profil Resmini Değiştir",
     "default": "varsayılan seed kullanıcı adınızdır",
@@ -254,7 +270,17 @@
       "success": "Başarıyla giriş yaptınız.",
       "password": "Yanlış şifre",
       "notFound": "Kullanıcı bulunamadı",
-      "invalid": "Geçersiz kullanıcı adı veya şifre."
+      "invalid": "Geçersiz kullanıcı adı veya şifre.",
+      "mustChangePassword": "Devam etmeden önce şifrenizi değiştirmeniz gerekmektedir."
+    },
+    "forceChangePassword": {
+      "success": "Şifre başarıyla değiştirildi. Artık siteye erişebilirsiniz.",
+      "match": "Şifreler uyuşmuyor.",
+      "minLength": "Şifre en az 12 karakter uzunluğunda olmalıdır.",
+      "uppercase": "Şifre en az 1 büyük harf içermelidir.",
+      "lowercase": "Şifre en az 1 küçük harf içermelidir.",
+      "digit": "Şifre en az 1 rakam içermelidir.",
+      "special": "Şifre en az 1 özel karakter içermelidir."
     },
     "logout": {
       "success": "Başarıyla çıkış yaptınız."

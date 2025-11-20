@@ -79,6 +79,22 @@
     "confirmPassword": "Confirm Password",
     "change": "Change Password"
   },
+  "forceChangePassword": {
+    "title": "Change Your Password",
+    "warning": "You must change your password before continuing.",
+    "description": "For security reasons, admin accounts must set a strong password on first login.",
+    "requirements": "Password Requirements",
+    "reqMinLength": "At least 12 characters",
+    "reqUppercase": "At least 1 uppercase letter (A-Z)",
+    "reqLowercase": "At least 1 lowercase letter (a-z)",
+    "reqDigit": "At least 1 digit (0-9)",
+    "reqSpecial": "At least 1 special character (!@#$%^&*...)",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm new password",
+    "submit": "Set New Password"
+  },
   "changeProfilePicture": {
     "title": "Change Profile Picture",
     "default": "default seed is your username",
@@ -283,7 +299,17 @@
       "success": "You have successfully logged in.",
       "password": "Wrong password",
       "notFound": "User not found",
-      "invalid": "Invalid username or password."
+      "invalid": "Invalid username or password.",
+      "mustChangePassword": "You must change your password before continuing."
+    },
+    "forceChangePassword": {
+      "success": "Password has been changed successfully. You can now access the site.",
+      "match": "Passwords do not match.",
+      "minLength": "Password must be at least 12 characters long.",
+      "uppercase": "Password must contain at least 1 uppercase letter.",
+      "lowercase": "Password must contain at least 1 lowercase letter.",
+      "digit": "Password must contain at least 1 digit.",
+      "special": "Password must contain at least 1 special character."
     },
     "logout": {
       "success": "You have successfully logged out."

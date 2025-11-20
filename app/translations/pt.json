@@ -76,6 +76,22 @@
     "confirmPassword": "Confirmar Senha",
     "change": "Mudar Senha"
   },
+  "forceChangePassword": {
+    "title": "Altere Sua Senha",
+    "warning": "Você deve alterar sua senha antes de continuar.",
+    "description": "Por razões de segurança, contas de administrador devem definir uma senha forte no primeiro login.",
+    "requirements": "Requisitos de Senha",
+    "reqMinLength": "Pelo menos 12 caracteres",
+    "reqUppercase": "Pelo menos 1 letra maiúscula (A-Z)",
+    "reqLowercase": "Pelo menos 1 letra minúscula (a-z)",
+    "reqDigit": "Pelo menos 1 dígito (0-9)",
+    "reqSpecial": "Pelo menos 1 caractere especial (!@#$%^&*...)",
+    "newPassword": "Nova Senha",
+    "newPasswordPlaceholder": "Digite a nova senha",
+    "confirmPassword": "Confirmar Senha",
+    "confirmPasswordPlaceholder": "Confirme a nova senha",
+    "submit": "Definir Nova Senha"
+  },
   "changeProfilePicture": {
     "title": "Mudar Foto de Perfil",
     "default": "A foto padrão é o seu nome de usuário",
@@ -254,7 +270,17 @@
       "success": "Você fez login com sucesso.",
       "password": "Senha errada",
       "notFound": "Usuário não encontrado",
-      "invalid": "Nome de usuário ou senha inválidos."
+      "invalid": "Nome de usuário ou senha inválidos.",
+      "mustChangePassword": "Você deve alterar sua senha antes de continuar."
+    },
+    "forceChangePassword": {
+      "success": "Senha alterada com sucesso. Agora você pode acessar o site.",
+      "match": "As senhas não correspondem.",
+      "minLength": "A senha deve ter pelo menos 12 caracteres.",
+      "uppercase": "A senha deve conter pelo menos 1 letra maiúscula.",
+      "lowercase": "A senha deve conter pelo menos 1 letra minúscula.",
+      "digit": "A senha deve conter pelo menos 1 dígito.",
+      "special": "A senha deve conter pelo menos 1 caractere especial."
     },
     "logout": {
       "success": "Você saiu com sucesso."

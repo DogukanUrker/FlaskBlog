@@ -188,6 +188,18 @@ def login(direct):
                                 success=True
                             )
 
+                        # Check if admin user must change password on first login
+                        must_change_password = user[13] if len(user) > 13 else "False"
+                        if user[5] == "admin" and must_change_password == "True":
+                            Log.info(f'Admin user: "{user[1]}" must change password on first login')
+                            flashMessage(
+                                page="login",
+                                message="mustChangePassword",
+                                category="warning",
+                                language=session.get("language", "en"),
+                            )
+                            return redirect("/force-change-password")
+
                         flashMessage(
                             page="login",
                             message="success",

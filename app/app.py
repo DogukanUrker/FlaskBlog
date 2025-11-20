@@ -42,6 +42,9 @@ from routes.changeLanguage import (
 from routes.changePassword import (
     changePasswordBlueprint,
 )
+from routes.forceChangePassword import (
+    forceChangePasswordBlueprint,
+)
 from routes.changeProfilePicture import (
     changeProfilePictureBlueprint,
 )
@@ -121,6 +124,7 @@ from utils.afterRequest import (
     afterRequestLogger,
 )
 from utils.beforeRequest.browserLanguage import browserLanguage
+from utils.beforeRequest.forcePasswordChange import forcePasswordChangeCheck
 from utils.contextProcessor.isLogin import isLogin
 from utils.contextProcessor.isRegistration import isRegistration
 from utils.contextProcessor.returnPostUrlID import returnPostUrlID
@@ -135,6 +139,7 @@ from utils.dbChecker import (
     analyticsTable,
     commentsTable,
     dbFolder,
+    mustChangePasswordField,
     postsTable,
     securityAuditLogTable,
     siteSettingsTable,
@@ -197,6 +202,7 @@ app.context_processor(socialSharing)
 app.context_processor(injectTranslations)
 app.context_processor(markdown_processor)
 app.before_request(browserLanguage)
+app.before_request(forcePasswordChangeCheck)
 app.jinja_env.globals.update(getSlugFromPostTitle=getSlugFromPostTitle)
 
 if Settings.WERKZEUG_LOGGER:
@@ -268,6 +274,7 @@ securityAuditLogTable()
 twoFactorAuthFields()
 siteSettingsTable()
 addBannerColumn()
+mustChangePasswordField()
 userImagesTable()
 
 
@@ -341,6 +348,7 @@ app.register_blueprint(privacyPolicyBlueprint)
 app.register_blueprint(passwordResetBlueprint)
 app.register_blueprint(changeUserNameBlueprint)
 app.register_blueprint(changePasswordBlueprint)
+app.register_blueprint(forceChangePasswordBlueprint)
 app.register_blueprint(changeLanguageBlueprint)
 app.register_blueprint(adminPanelUsersBlueprint)
 app.register_blueprint(adminPanelPostsBlueprint)

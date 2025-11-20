@@ -76,6 +76,22 @@
     "confirmPassword": "Potwierdź hasło",
     "change": "Zmień hasło"
   },
+  "forceChangePassword": {
+    "title": "Zmień swoje hasło",
+    "warning": "Musisz zmienić hasło przed kontynuowaniem.",
+    "description": "Ze względów bezpieczeństwa konta administratorów muszą ustawić silne hasło przy pierwszym logowaniu.",
+    "requirements": "Wymagania dotyczące hasła",
+    "reqMinLength": "Co najmniej 12 znaków",
+    "reqUppercase": "Co najmniej 1 wielka litera (A-Z)",
+    "reqLowercase": "Co najmniej 1 mała litera (a-z)",
+    "reqDigit": "Co najmniej 1 cyfra (0-9)",
+    "reqSpecial": "Co najmniej 1 znak specjalny (!@#$%^&*...)",
+    "newPassword": "Nowe hasło",
+    "newPasswordPlaceholder": "Wprowadź nowe hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "confirmPasswordPlaceholder": "Potwierdź nowe hasło",
+    "submit": "Ustaw nowe hasło"
+  },
   "changeProfilePicture": {
     "title": "Zmień zdjęcie profilowe",
     "default": "domyślny seed to Twoja nazwa użytkownika",
@@ -254,7 +270,17 @@
       "success": "Zalogowano pomyślnie.",
       "password": "Niepoprawne hasło",
       "notFound": "Użytkownik nie został znaleziony",
-      "invalid": "Nieprawidłowa nazwa użytkownika lub hasło."
+      "invalid": "Nieprawidłowa nazwa użytkownika lub hasło.",
+      "mustChangePassword": "Musisz zmienić hasło przed kontynuowaniem."
+    },
+    "forceChangePassword": {
+      "success": "Hasło zostało pomyślnie zmienione. Możesz teraz uzyskać dostęp do strony.",
+      "match": "Hasła nie pasują do siebie.",
+      "minLength": "Hasło musi mieć co najmniej 12 znaków.",
+      "uppercase": "Hasło musi zawierać co najmniej 1 wielką literę.",
+      "lowercase": "Hasło musi zawierać co najmniej 1 małą literę.",
+      "digit": "Hasło musi zawierać co najmniej 1 cyfrę.",
+      "special": "Hasło musi zawierać co najmniej 1 znak specjalny."
     },
     "logout": {
       "success": "Wylogowano pomyślnie."

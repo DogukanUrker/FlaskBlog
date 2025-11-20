@@ -76,6 +76,22 @@
     "confirmPassword": "Confirmar Contraseña",
     "change": "Cambiar Contraseña"
   },
+  "forceChangePassword": {
+    "title": "Cambie su contraseña",
+    "warning": "Debe cambiar su contraseña antes de continuar.",
+    "description": "Por razones de seguridad, las cuentas de administrador deben establecer una contraseña segura en el primer inicio de sesión.",
+    "requirements": "Requisitos de contraseña",
+    "reqMinLength": "Al menos 12 caracteres",
+    "reqUppercase": "Al menos 1 letra mayúscula (A-Z)",
+    "reqLowercase": "Al menos 1 letra minúscula (a-z)",
+    "reqDigit": "Al menos 1 dígito (0-9)",
+    "reqSpecial": "Al menos 1 carácter especial (!@#$%^&*...)",
+    "newPassword": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Ingrese la nueva contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "Confirme la nueva contraseña",
+    "submit": "Establecer Nueva Contraseña"
+  },
   "changeProfilePicture": {
     "title": "Cambiar Foto de Perfil",
     "default": "la semilla predeterminada es tu nombre de usuario",
@@ -254,7 +270,17 @@
       "success": "Has iniciado sesión con éxito.",
       "password": "Contraseña incorrecta",
       "notFound": "Usuario no encontrado",
-      "invalid": "Nombre de usuario o contraseña inválidos."
+      "invalid": "Nombre de usuario o contraseña inválidos.",
+      "mustChangePassword": "Debe cambiar su contraseña antes de continuar."
+    },
+    "forceChangePassword": {
+      "success": "La contraseña se ha cambiado correctamente. Ahora puede acceder al sitio.",
+      "match": "Las contraseñas no coinciden.",
+      "minLength": "La contraseña debe tener al menos 12 caracteres.",
+      "uppercase": "La contraseña debe contener al menos 1 letra mayúscula.",
+      "lowercase": "La contraseña debe contener al menos 1 letra minúscula.",
+      "digit": "La contraseña debe contener al menos 1 dígito.",
+      "special": "La contraseña debe contener al menos 1 carácter especial."
     },
     "logout": {
       "success": "Has cerrado sesión con éxito."

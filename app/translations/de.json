@@ -76,6 +76,22 @@
     "confirmPassword": "Passwort bestätigen",
     "change": "Passwort ändern"
   },
+  "forceChangePassword": {
+    "title": "Ändern Sie Ihr Passwort",
+    "warning": "Sie müssen Ihr Passwort ändern, bevor Sie fortfahren können.",
+    "description": "Aus Sicherheitsgründen müssen Administratorkonten bei der ersten Anmeldung ein starkes Passwort festlegen.",
+    "requirements": "Passwortanforderungen",
+    "reqMinLength": "Mindestens 12 Zeichen",
+    "reqUppercase": "Mindestens 1 Großbuchstabe (A-Z)",
+    "reqLowercase": "Mindestens 1 Kleinbuchstabe (a-z)",
+    "reqDigit": "Mindestens 1 Ziffer (0-9)",
+    "reqSpecial": "Mindestens 1 Sonderzeichen (!@#$%^&*...)",
+    "newPassword": "Neues Passwort",
+    "newPasswordPlaceholder": "Neues Passwort eingeben",
+    "confirmPassword": "Passwort bestätigen",
+    "confirmPasswordPlaceholder": "Neues Passwort bestätigen",
+    "submit": "Neues Passwort festlegen"
+  },
   "changeProfilePicture": {
     "title": "Profilbild ändern",
     "default": "Der Standard-Seed ist Ihr Benutzername",
@@ -254,7 +270,17 @@
       "success": "Sie haben sich erfolgreich eingeloggt.",
       "password": "Falsches Passwort",
       "notFound": "Benutzer nicht gefunden",
-      "invalid": "Ungültiger Benutzername oder Passwort."
+      "invalid": "Ungültiger Benutzername oder Passwort.",
+      "mustChangePassword": "Sie müssen Ihr Passwort ändern, bevor Sie fortfahren können."
+    },
+    "forceChangePassword": {
+      "success": "Passwort wurde erfolgreich geändert. Sie können jetzt auf die Seite zugreifen.",
+      "match": "Passwörter stimmen nicht überein.",
+      "minLength": "Passwort muss mindestens 12 Zeichen lang sein.",
+      "uppercase": "Passwort muss mindestens 1 Großbuchstaben enthalten.",
+      "lowercase": "Passwort muss mindestens 1 Kleinbuchstaben enthalten.",
+      "digit": "Passwort muss mindestens 1 Ziffer enthalten.",
+      "special": "Passwort muss mindestens 1 Sonderzeichen enthalten."
     },
     "logout": {
       "success": "Sie haben sich erfolgreich ausgeloggt."

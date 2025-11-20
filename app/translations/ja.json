@@ -76,6 +76,22 @@
     "confirmPassword": "パスワードの確認",
     "change": "パスワードを変更"
   },
+  "forceChangePassword": {
+    "title": "パスワードを変更してください",
+    "warning": "続行する前にパスワードを変更する必要があります。",
+    "description": "セキュリティ上の理由から、管理者アカウントは初回ログイン時に強力なパスワードを設定する必要があります。",
+    "requirements": "パスワード要件",
+    "reqMinLength": "12文字以上",
+    "reqUppercase": "大文字1文字以上 (A-Z)",
+    "reqLowercase": "小文字1文字以上 (a-z)",
+    "reqDigit": "数字1文字以上 (0-9)",
+    "reqSpecial": "特殊文字1文字以上 (!@#$%^&*...)",
+    "newPassword": "新しいパスワード",
+    "newPasswordPlaceholder": "新しいパスワードを入力",
+    "confirmPassword": "パスワードの確認",
+    "confirmPasswordPlaceholder": "新しいパスワードを確認",
+    "submit": "新しいパスワードを設定"
+  },
   "changeProfilePicture": {
     "title": "プロフィール写真の変更",
     "default": "デフォルトのシードはあなたのユーザー名です",
@@ -254,7 +270,17 @@
       "success": "ログインに成功しました。",
       "password": "パスワードが間違っています",
       "notFound": "ユーザーが見つかりません",
-      "invalid": "ユーザー名またはパスワードが無効です。"
+      "invalid": "ユーザー名またはパスワードが無効です。",
+      "mustChangePassword": "続行する前にパスワードを変更する必要があります。"
+    },
+    "forceChangePassword": {
+      "success": "パスワードが正常に変更されました。サイトにアクセスできるようになりました。",
+      "match": "パスワードが一致しません。",
+      "minLength": "パスワードは12文字以上である必要があります。",
+      "uppercase": "パスワードには大文字が1文字以上含まれている必要があります。",
+      "lowercase": "パスワードには小文字が1文字以上含まれている必要があります。",
+      "digit": "パスワードには数字が1文字以上含まれている必要があります。",
+      "special": "パスワードには特殊文字が1文字以上含まれている必要があります。"
     },
     "logout": {
       "success": "ログアウトに成功しました。"
