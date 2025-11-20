@@ -35,7 +35,12 @@
     "smtpUsage": "Uso de SMTP",
     "smtpUsage1": "Correos de restablecimiento de contraseña",
     "smtpUsage2": "Correos de verificación de cuenta",
-    "smtpUsage3": "Notificaciones del sistema"
+    "smtpUsage3": "Notificaciones del sistema",
+    "smtpTestTitle": "Probar Configuración SMTP",
+    "smtpTestDescription": "Envíe un correo de prueba para verificar que su configuración SMTP funciona correctamente.",
+    "smtpTestEmail": "Correo del Destinatario",
+    "smtpTestEmailPlaceholder": "Ingrese la dirección de correo para recibir la prueba",
+    "smtpTestSend": "Enviar Correo de Prueba"
   },
   "adminPanelComments": {
     "title": "Panel de Administrador - Comentarios",
@@ -360,7 +365,12 @@
     "adminSiteSettings": {
       "smtpSuccess": "Configuración SMTP guardada correctamente.",
       "smtpError": "Error al guardar la configuración SMTP.",
-      "smtpInvalidPort": "Número de puerto inválido. Debe estar entre 1 y 65535."
+      "smtpInvalidPort": "Número de puerto inválido. Debe estar entre 1 y 65535.",
+      "smtpTestSuccess": "¡Correo de prueba enviado con éxito! Revise su bandeja de entrada.",
+      "smtpTestError": "Error al enviar el correo de prueba. Por favor, verifique su configuración SMTP.",
+      "smtpTestAuthError": "Error de autenticación. Por favor, verifique su correo y contraseña.",
+      "smtpTestNoEmail": "Por favor, ingrese una dirección de correo del destinatario.",
+      "smtpTestNotConfigured": "SMTP no está configurado. Por favor, guarde primero su configuración SMTP."
     }
   },
   "roles": {

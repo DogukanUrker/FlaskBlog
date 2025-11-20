@@ -399,6 +399,47 @@
         </div>
     </div>
 
+    <!-- Test SMTP Section -->
+    <div class="card bg-base-200 shadow-xl mb-6">
+        <div class="card-body">
+            <h2 class="card-title text-xl mb-4">
+                <i class="ti ti-mail-check mr-2"></i>
+                {{ translations.adminSiteSettings.smtpTestTitle if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestTitle else "Test SMTP Configuration" }}
+            </h2>
+
+            <p class="text-sm opacity-75 mb-4">
+                {{ translations.adminSiteSettings.smtpTestDescription if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestDescription else "Send a test email to verify your SMTP configuration is working correctly." }}
+            </p>
+
+            <form method="POST" class="space-y-4">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="upload_type" value="smtp_test" />
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">
+                            {{ translations.adminSiteSettings.smtpTestEmail if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestEmail else "Recipient Email" }}
+                        </span>
+                    </label>
+                    <input
+                        type="email"
+                        name="test_email"
+                        placeholder="{{ translations.adminSiteSettings.smtpTestEmailPlaceholder if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestEmailPlaceholder else 'Enter email address to receive test' }}"
+                        class="input input-bordered w-full"
+                        required
+                    />
+                </div>
+
+                <div class="card-actions justify-end">
+                    <button type="submit" class="btn btn-secondary">
+                        <i class="ti ti-send mr-2"></i>
+                        {{ translations.adminSiteSettings.smtpTestSend if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestSend else "Send Test Email" }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- SMTP Info -->
     <div class="alert alert-info mb-6">
         <i class="ti ti-info-circle"></i>

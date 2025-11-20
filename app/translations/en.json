@@ -38,7 +38,12 @@
     "smtpUsage": "SMTP Usage",
     "smtpUsage1": "Password reset emails",
     "smtpUsage2": "Account verification emails",
-    "smtpUsage3": "System notifications"
+    "smtpUsage3": "System notifications",
+    "smtpTestTitle": "Test SMTP Configuration",
+    "smtpTestDescription": "Send a test email to verify your SMTP configuration is working correctly.",
+    "smtpTestEmail": "Recipient Email",
+    "smtpTestEmailPlaceholder": "Enter email address to receive test",
+    "smtpTestSend": "Send Test Email"
   },
   "adminPanelComments": {
     "title": "Admin Panel - Comments",
@@ -292,7 +297,12 @@
       "bannerInvalid": "Invalid file.",
       "smtpSuccess": "SMTP configuration saved successfully.",
       "smtpError": "Failed to save SMTP configuration.",
-      "smtpInvalidPort": "Invalid port number. Must be between 1 and 65535."
+      "smtpInvalidPort": "Invalid port number. Must be between 1 and 65535.",
+      "smtpTestSuccess": "Test email sent successfully! Check your inbox.",
+      "smtpTestError": "Failed to send test email. Please check your SMTP configuration.",
+      "smtpTestAuthError": "Authentication failed. Please check your email and password.",
+      "smtpTestNoEmail": "Please enter a recipient email address.",
+      "smtpTestNotConfigured": "SMTP is not configured. Please save your SMTP settings first."
     },
     "changeUserName": {
       "same": "This is already your username.",

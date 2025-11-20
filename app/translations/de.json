@@ -35,7 +35,12 @@
     "smtpUsage": "SMTP-Verwendung",
     "smtpUsage1": "Passwort-Zurücksetzungs-E-Mails",
     "smtpUsage2": "Konto-Verifizierungs-E-Mails",
-    "smtpUsage3": "Systembenachrichtigungen"
+    "smtpUsage3": "Systembenachrichtigungen",
+    "smtpTestTitle": "SMTP-Konfiguration testen",
+    "smtpTestDescription": "Senden Sie eine Test-E-Mail, um zu überprüfen, ob Ihre SMTP-Konfiguration korrekt funktioniert.",
+    "smtpTestEmail": "Empfänger-E-Mail",
+    "smtpTestEmailPlaceholder": "E-Mail-Adresse zum Empfangen des Tests eingeben",
+    "smtpTestSend": "Test-E-Mail senden"
   },
   "adminPanelComments": {
     "title": "Admin-Bereich - Kommentare",
@@ -360,7 +365,12 @@
     "adminSiteSettings": {
       "smtpSuccess": "SMTP-Konfiguration erfolgreich gespeichert.",
       "smtpError": "SMTP-Konfiguration konnte nicht gespeichert werden.",
-      "smtpInvalidPort": "Ungültige Portnummer. Muss zwischen 1 und 65535 liegen."
+      "smtpInvalidPort": "Ungültige Portnummer. Muss zwischen 1 und 65535 liegen.",
+      "smtpTestSuccess": "Test-E-Mail erfolgreich gesendet! Überprüfen Sie Ihren Posteingang.",
+      "smtpTestError": "Fehler beim Senden der Test-E-Mail. Bitte überprüfen Sie Ihre SMTP-Konfiguration.",
+      "smtpTestAuthError": "Authentifizierung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und Ihr Passwort.",
+      "smtpTestNoEmail": "Bitte geben Sie eine Empfänger-E-Mail-Adresse ein.",
+      "smtpTestNotConfigured": "SMTP ist nicht konfiguriert. Bitte speichern Sie zuerst Ihre SMTP-Einstellungen."
     }
   },
   "roles": {

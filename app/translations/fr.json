@@ -35,7 +35,12 @@
     "smtpUsage": "Utilisation SMTP",
     "smtpUsage1": "E-mails de réinitialisation de mot de passe",
     "smtpUsage2": "E-mails de vérification de compte",
-    "smtpUsage3": "Notifications système"
+    "smtpUsage3": "Notifications système",
+    "smtpTestTitle": "Tester la configuration SMTP",
+    "smtpTestDescription": "Envoyez un e-mail de test pour vérifier que votre configuration SMTP fonctionne correctement.",
+    "smtpTestEmail": "E-mail du destinataire",
+    "smtpTestEmailPlaceholder": "Entrez l'adresse e-mail pour recevoir le test",
+    "smtpTestSend": "Envoyer l'e-mail de test"
   },
   "adminPanelComments": {
     "title": "Panneau d'administration - Commentaires",
@@ -360,7 +365,12 @@
     "adminSiteSettings": {
       "smtpSuccess": "Configuration SMTP enregistrée avec succès.",
       "smtpError": "Échec de l'enregistrement de la configuration SMTP.",
-      "smtpInvalidPort": "Numéro de port invalide. Doit être entre 1 et 65535."
+      "smtpInvalidPort": "Numéro de port invalide. Doit être entre 1 et 65535.",
+      "smtpTestSuccess": "E-mail de test envoyé avec succès ! Vérifiez votre boîte de réception.",
+      "smtpTestError": "Échec de l'envoi de l'e-mail de test. Veuillez vérifier votre configuration SMTP.",
+      "smtpTestAuthError": "Échec de l'authentification. Veuillez vérifier votre e-mail et votre mot de passe.",
+      "smtpTestNoEmail": "Veuillez entrer une adresse e-mail de destinataire.",
+      "smtpTestNotConfigured": "SMTP n'est pas configuré. Veuillez d'abord enregistrer vos paramètres SMTP."
     }
   },
   "roles": {

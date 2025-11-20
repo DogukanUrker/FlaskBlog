@@ -35,7 +35,12 @@
     "smtpUsage": "Uso do SMTP",
     "smtpUsage1": "E-mails de redefinição de senha",
     "smtpUsage2": "E-mails de verificação de conta",
-    "smtpUsage3": "Notificações do sistema"
+    "smtpUsage3": "Notificações do sistema",
+    "smtpTestTitle": "Testar Configuração SMTP",
+    "smtpTestDescription": "Envie um e-mail de teste para verificar se sua configuração SMTP está funcionando corretamente.",
+    "smtpTestEmail": "E-mail do Destinatário",
+    "smtpTestEmailPlaceholder": "Digite o endereço de e-mail para receber o teste",
+    "smtpTestSend": "Enviar E-mail de Teste"
   },
   "adminPanelComments": {
     "title": "Painel de Administração - Comentários",
@@ -360,7 +365,12 @@
     "adminSiteSettings": {
       "smtpSuccess": "Configuração SMTP salva com sucesso.",
       "smtpError": "Falha ao salvar a configuração SMTP.",
-      "smtpInvalidPort": "Número de porta inválido. Deve estar entre 1 e 65535."
+      "smtpInvalidPort": "Número de porta inválido. Deve estar entre 1 e 65535.",
+      "smtpTestSuccess": "E-mail de teste enviado com sucesso! Verifique sua caixa de entrada.",
+      "smtpTestError": "Falha ao enviar e-mail de teste. Por favor, verifique sua configuração SMTP.",
+      "smtpTestAuthError": "Falha na autenticação. Por favor, verifique seu e-mail e senha.",
+      "smtpTestNoEmail": "Por favor, digite um endereço de e-mail do destinatário.",
+      "smtpTestNotConfigured": "SMTP não está configurado. Por favor, salve suas configurações SMTP primeiro."
     }
   },
   "roles": {

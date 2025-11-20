@@ -4,6 +4,9 @@ Admin panel route for site settings (logo upload, etc.)
 
 import sqlite3
 import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from flask import Blueprint, redirect, render_template, request, session
 from werkzeug.utils import secure_filename
 from settings import Settings
@@ -301,6 +304,122 @@ def adminPanelSiteSettings():
                     language=session.get("language", "en")
                 )
                 Log.error(f"SMTP configuration failed: {e}")
+
+            connection.close()
+            return redirect("/admin/site-settings")
+
+        # Handle SMTP test email
+        elif upload_type == "smtp_test":
+            test_email = request.form.get("test_email", "").strip()
+
+            if not test_email:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestNoEmail",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                connection.close()
+                return redirect("/admin/site-settings")
+
+            try:
+                # Get SMTP settings from database
+                smtp_config = {}
+                for key in ["smtp_server", "smtp_port", "smtp_mail", "smtp_password"]:
+                    cursor.execute(
+                        "SELECT setting_value FROM site_settings WHERE setting_key = ?",
+                        (key,)
+                    )
+                    result = cursor.fetchone()
+                    if result and result[0]:
+                        smtp_config[key] = result[0]
+                    else:
+                        # Fall back to Settings defaults
+                        if key == "smtp_server":
+                            smtp_config[key] = Settings.SMTP_SERVER
+                        elif key == "smtp_port":
+                            smtp_config[key] = str(Settings.SMTP_PORT)
+                        elif key == "smtp_mail":
+                            smtp_config[key] = Settings.SMTP_MAIL
+                        else:
+                            smtp_config[key] = Settings.SMTP_PASSWORD
+
+                # Check if SMTP is configured
+                if not smtp_config.get("smtp_mail") or not smtp_config.get("smtp_password"):
+                    flashMessage(
+                        page="adminSiteSettings",
+                        message="smtpTestNotConfigured",
+                        category="error",
+                        language=session.get("language", "en")
+                    )
+                    connection.close()
+                    return redirect("/admin/site-settings")
+
+                # Create test email
+                msg = MIMEMultipart()
+                msg['From'] = smtp_config['smtp_mail']
+                msg['To'] = test_email
+                msg['Subject'] = "FlaskBlog SMTP Test"
+
+                body = """
+This is a test email from FlaskBlog.
+
+If you received this email, your SMTP configuration is working correctly!
+
+Configuration:
+- Server: {server}
+- Port: {port}
+- Email: {email}
+
+Best regards,
+FlaskBlog Admin Panel
+                """.format(
+                    server=smtp_config['smtp_server'],
+                    port=smtp_config['smtp_port'],
+                    email=smtp_config['smtp_mail']
+                )
+
+                msg.attach(MIMEText(body, 'plain'))
+
+                # Send email
+                server = smtplib.SMTP(smtp_config['smtp_server'], int(smtp_config['smtp_port']))
+                server.starttls()
+                server.login(smtp_config['smtp_mail'], smtp_config['smtp_password'])
+                server.sendmail(smtp_config['smtp_mail'], test_email, msg.as_string())
+                server.quit()
+
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestSuccess",
+                    category="success",
+                    language=session.get("language", "en")
+                )
+                Log.success(f"Admin {session['userName']} sent test email to {test_email}")
+
+            except smtplib.SMTPAuthenticationError as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestAuthError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP test failed - authentication error: {e}")
+            except smtplib.SMTPException as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP test failed: {e}")
+            except Exception as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP test failed: {e}")
 
             connection.close()
             return redirect("/admin/site-settings")

@@ -35,7 +35,12 @@
     "smtpUsage": "Użycie SMTP",
     "smtpUsage1": "E-maile resetowania hasła",
     "smtpUsage2": "E-maile weryfikacji konta",
-    "smtpUsage3": "Powiadomienia systemowe"
+    "smtpUsage3": "Powiadomienia systemowe",
+    "smtpTestTitle": "Testuj konfigurację SMTP",
+    "smtpTestDescription": "Wyślij testowy e-mail, aby sprawdzić, czy konfiguracja SMTP działa poprawnie.",
+    "smtpTestEmail": "E-mail odbiorcy",
+    "smtpTestEmailPlaceholder": "Wprowadź adres e-mail do otrzymania testu",
+    "smtpTestSend": "Wyślij testowy e-mail"
   },
   "adminPanelComments": {
     "title": "Panel administracyjny - Komentarze",
@@ -360,7 +365,12 @@
     "adminSiteSettings": {
       "smtpSuccess": "Konfiguracja SMTP została pomyślnie zapisana.",
       "smtpError": "Nie udało się zapisać konfiguracji SMTP.",
-      "smtpInvalidPort": "Nieprawidłowy numer portu. Musi być między 1 a 65535."
+      "smtpInvalidPort": "Nieprawidłowy numer portu. Musi być między 1 a 65535.",
+      "smtpTestSuccess": "Testowy e-mail wysłany pomyślnie! Sprawdź swoją skrzynkę odbiorczą.",
+      "smtpTestError": "Nie udało się wysłać testowego e-maila. Sprawdź konfigurację SMTP.",
+      "smtpTestAuthError": "Uwierzytelnianie nie powiodło się. Sprawdź swój e-mail i hasło.",
+      "smtpTestNoEmail": "Wprowadź adres e-mail odbiorcy.",
+      "smtpTestNotConfigured": "SMTP nie jest skonfigurowany. Najpierw zapisz ustawienia SMTP."
     }
   },
   "roles": {

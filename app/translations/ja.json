@@ -35,7 +35,12 @@
     "smtpUsage": "SMTPの使用目的",
     "smtpUsage1": "パスワードリセットメール",
     "smtpUsage2": "アカウント確認メール",
-    "smtpUsage3": "システム通知"
+    "smtpUsage3": "システム通知",
+    "smtpTestTitle": "SMTP設定のテスト",
+    "smtpTestDescription": "SMTP設定が正しく機能しているか確認するためにテストメールを送信します。",
+    "smtpTestEmail": "受信者メールアドレス",
+    "smtpTestEmailPlaceholder": "テストを受信するメールアドレスを入力",
+    "smtpTestSend": "テストメールを送信"
   },
   "adminPanelComments": {
     "title": "管理パネル - コメント",
@@ -360,7 +365,12 @@
     "adminSiteSettings": {
       "smtpSuccess": "SMTP設定が正常に保存されました。",
       "smtpError": "SMTP設定の保存に失敗しました。",
-      "smtpInvalidPort": "無効なポート番号です。1から65535の間である必要があります。"
+      "smtpInvalidPort": "無効なポート番号です。1から65535の間である必要があります。",
+      "smtpTestSuccess": "テストメールが正常に送信されました！受信トレイを確認してください。",
+      "smtpTestError": "テストメールの送信に失敗しました。SMTP設定を確認してください。",
+      "smtpTestAuthError": "認証に失敗しました。メールアドレスとパスワードを確認してください。",
+      "smtpTestNoEmail": "受信者のメールアドレスを入力してください。",
+      "smtpTestNotConfigured": "SMTPが設定されていません。先にSMTP設定を保存してください。"
     }
   },
   "roles": {

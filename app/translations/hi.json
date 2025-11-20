@@ -35,7 +35,12 @@
     "smtpUsage": "SMTP उपयोग",
     "smtpUsage1": "पासवर्ड रीसेट ईमेल",
     "smtpUsage2": "खाता सत्यापन ईमेल",
-    "smtpUsage3": "सिस्टम सूचनाएं"
+    "smtpUsage3": "सिस्टम सूचनाएं",
+    "smtpTestTitle": "SMTP कॉन्फ़िगरेशन का परीक्षण करें",
+    "smtpTestDescription": "अपने SMTP कॉन्फ़िगरेशन की जांच के लिए एक परीक्षण ईमेल भेजें।",
+    "smtpTestEmail": "प्राप्तकर्ता ईमेल",
+    "smtpTestEmailPlaceholder": "परीक्षण प्राप्त करने के लिए ईमेल पता दर्ज करें",
+    "smtpTestSend": "परीक्षण ईमेल भेजें"
   },
   "adminPanelComments": {
     "title": "एडमिन पैनल - टिप्पणियाँ",
@@ -360,7 +365,12 @@
     "adminSiteSettings": {
       "smtpSuccess": "SMTP कॉन्फ़िगरेशन सफलतापूर्वक सहेजा गया।",
       "smtpError": "SMTP कॉन्फ़िगरेशन सहेजने में विफल।",
-      "smtpInvalidPort": "अमान्य पोर्ट नंबर। 1 से 65535 के बीच होना चाहिए।"
+      "smtpInvalidPort": "अमान्य पोर्ट नंबर। 1 से 65535 के बीच होना चाहिए।",
+      "smtpTestSuccess": "परीक्षण ईमेल सफलतापूर्वक भेजा गया! अपना इनबॉक्स जांचें।",
+      "smtpTestError": "परीक्षण ईमेल भेजने में विफल। कृपया अपनी SMTP कॉन्फ़िगरेशन जांचें।",
+      "smtpTestAuthError": "प्रमाणीकरण विफल। कृपया अपना ईमेल और पासवर्ड जांचें।",
+      "smtpTestNoEmail": "कृपया प्राप्तकर्ता ईमेल पता दर्ज करें।",
+      "smtpTestNotConfigured": "SMTP कॉन्फ़िगर नहीं है। कृपया पहले अपनी SMTP सेटिंग्स सहेजें।"
     }
   },
   "roles": {

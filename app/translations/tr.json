@@ -35,7 +35,12 @@
     "smtpUsage": "SMTP Kullanımı",
     "smtpUsage1": "Şifre sıfırlama e-postaları",
     "smtpUsage2": "Hesap doğrulama e-postaları",
-    "smtpUsage3": "Sistem bildirimleri"
+    "smtpUsage3": "Sistem bildirimleri",
+    "smtpTestTitle": "SMTP Yapılandırmasını Test Et",
+    "smtpTestDescription": "SMTP yapılandırmanızın doğru çalıştığını doğrulamak için bir test e-postası gönderin.",
+    "smtpTestEmail": "Alıcı E-postası",
+    "smtpTestEmailPlaceholder": "Testi almak için e-posta adresi girin",
+    "smtpTestSend": "Test E-postası Gönder"
   },
   "adminPanelComments": {
     "title": "Yönetici Paneli - Yorumlar",
@@ -360,7 +365,12 @@
     "adminSiteSettings": {
       "smtpSuccess": "SMTP yapılandırması başarıyla kaydedildi.",
       "smtpError": "SMTP yapılandırması kaydedilemedi.",
-      "smtpInvalidPort": "Geçersiz port numarası. 1 ile 65535 arasında olmalıdır."
+      "smtpInvalidPort": "Geçersiz port numarası. 1 ile 65535 arasında olmalıdır.",
+      "smtpTestSuccess": "Test e-postası başarıyla gönderildi! Gelen kutunuzu kontrol edin.",
+      "smtpTestError": "Test e-postası gönderilemedi. Lütfen SMTP yapılandırmanızı kontrol edin.",
+      "smtpTestAuthError": "Kimlik doğrulama başarısız. Lütfen e-posta ve şifrenizi kontrol edin.",
+      "smtpTestNoEmail": "Lütfen alıcı e-posta adresi girin.",
+      "smtpTestNotConfigured": "SMTP yapılandırılmamış. Lütfen önce SMTP ayarlarınızı kaydedin."
     }
   },
   "roles": {
