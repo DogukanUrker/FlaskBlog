@@ -61,7 +61,7 @@ def verify2fa(direct):
 
         try:
             cursor.execute(
-                "SELECT twofa_secret, backup_codes FROM Users WHERE userName = ?",
+                "SELECT twofa_secret, backup_codes, role FROM Users WHERE userName = ?",
                 (userName,),
             )
             user = cursor.fetchone()
@@ -71,7 +71,7 @@ def verify2fa(direct):
                 session.pop("pending_2fa_userName", None)
                 return redirect("/login/redirect=&")
 
-            twofa_secret, backup_codes = user
+            twofa_secret, backup_codes, userRole = user
 
             verified = False
 
@@ -103,6 +103,7 @@ def verify2fa(direct):
             if verified:
                 # Complete login
                 session["userName"] = userName
+                session["userRole"] = userRole
                 session.pop("pending_2fa_userName", None)
 
                 Log.success(f'User: "{userName}" logged in successfully with 2FA')
