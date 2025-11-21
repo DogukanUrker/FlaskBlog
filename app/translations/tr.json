@@ -21,6 +21,27 @@
     "posts": "Gönderiler",
     "comments": "Yorumlar"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP Yapılandırması",
+    "smtpDescription": "Şifre sıfırlama ve doğrulama e-postaları için e-posta ayarlarını yapılandırın.",
+    "smtpServer": "SMTP Sunucusu",
+    "smtpPort": "SMTP Portu",
+    "smtpEmail": "SMTP E-postası",
+    "smtpPassword": "SMTP Şifresi",
+    "smtpPasswordPlaceholder": "Yeni şifre girin (mevcut şifreyi korumak için boş bırakın)",
+    "smtpPasswordSet": "Şifre ayarlandı",
+    "smtpWarning": "Gmail için normal şifreniz yerine Uygulama Şifresi kullanın. İki faktörlü kimlik doğrulamayı etkinleştirin ve Google Hesabı ayarlarınızdan bir uygulama şifresi oluşturun.",
+    "smtpSave": "SMTP Ayarlarını Kaydet",
+    "smtpUsage": "SMTP Kullanımı",
+    "smtpUsage1": "Şifre sıfırlama e-postaları",
+    "smtpUsage2": "Hesap doğrulama e-postaları",
+    "smtpUsage3": "Sistem bildirimleri",
+    "smtpTestTitle": "SMTP Yapılandırmasını Test Et",
+    "smtpTestDescription": "SMTP yapılandırmanızın doğru çalıştığını doğrulamak için bir test e-postası gönderin.",
+    "smtpTestEmail": "Alıcı E-postası",
+    "smtpTestEmailPlaceholder": "Testi almak için e-posta adresi girin",
+    "smtpTestSend": "Test E-postası Gönder"
+  },
   "adminPanelComments": {
     "title": "Yönetici Paneli - Yorumlar",
     "comments": "Yorumlar",
@@ -75,6 +96,22 @@
     "newPassword": "Yeni Şifre",
     "confirmPassword": "Şifreyi Onayla",
     "change": "Şifreyi Değiştir"
+  },
+  "forceChangePassword": {
+    "title": "Şifrenizi Değiştirin",
+    "warning": "Devam etmeden önce şifrenizi değiştirmeniz gerekmektedir.",
+    "description": "Güvenlik nedeniyle, yönetici hesapları ilk girişte güçlü bir şifre belirlemelidir.",
+    "requirements": "Şifre Gereksinimleri",
+    "reqMinLength": "En az 12 karakter",
+    "reqUppercase": "En az 1 büyük harf (A-Z)",
+    "reqLowercase": "En az 1 küçük harf (a-z)",
+    "reqDigit": "En az 1 rakam (0-9)",
+    "reqSpecial": "En az 1 özel karakter (!@#$%^&*...)",
+    "newPassword": "Yeni Şifre",
+    "newPasswordPlaceholder": "Yeni şifreyi girin",
+    "confirmPassword": "Şifreyi Onayla",
+    "confirmPasswordPlaceholder": "Yeni şifreyi onaylayın",
+    "submit": "Yeni Şifreyi Ayarla"
   },
   "changeProfilePicture": {
     "title": "Profil Resmini Değiştir",
@@ -254,7 +291,17 @@
       "success": "Başarıyla giriş yaptınız.",
       "password": "Yanlış şifre",
       "notFound": "Kullanıcı bulunamadı",
-      "invalid": "Geçersiz kullanıcı adı veya şifre."
+      "invalid": "Geçersiz kullanıcı adı veya şifre.",
+      "mustChangePassword": "Devam etmeden önce şifrenizi değiştirmeniz gerekmektedir."
+    },
+    "forceChangePassword": {
+      "success": "Şifre başarıyla değiştirildi. Artık siteye erişebilirsiniz.",
+      "match": "Şifreler uyuşmuyor.",
+      "minLength": "Şifre en az 12 karakter uzunluğunda olmalıdır.",
+      "uppercase": "Şifre en az 1 büyük harf içermelidir.",
+      "lowercase": "Şifre en az 1 küçük harf içermelidir.",
+      "digit": "Şifre en az 1 rakam içermelidir.",
+      "special": "Şifre en az 1 özel karakter içermelidir."
     },
     "logout": {
       "success": "Başarıyla çıkış yaptınız."
@@ -314,6 +361,16 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "SMTP yapılandırması başarıyla kaydedildi.",
+      "smtpError": "SMTP yapılandırması kaydedilemedi.",
+      "smtpInvalidPort": "Geçersiz port numarası. 1 ile 65535 arasında olmalıdır.",
+      "smtpTestSuccess": "Test e-postası başarıyla gönderildi! Gelen kutunuzu kontrol edin.",
+      "smtpTestError": "Test e-postası gönderilemedi. Lütfen SMTP yapılandırmanızı kontrol edin.",
+      "smtpTestAuthError": "Kimlik doğrulama başarısız. Lütfen e-posta ve şifrenizi kontrol edin.",
+      "smtpTestNoEmail": "Lütfen alıcı e-posta adresi girin.",
+      "smtpTestNotConfigured": "SMTP yapılandırılmamış. Lütfen önce SMTP ayarlarınızı kaydedin."
     }
   },
   "roles": {

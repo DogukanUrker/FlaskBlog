@@ -21,6 +21,27 @@
     "posts": "Beiträge",
     "comments": "Kommentare"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP-Konfiguration",
+    "smtpDescription": "E-Mail-Einstellungen für Passwort-Zurücksetzung und Verifizierungs-E-Mails konfigurieren.",
+    "smtpServer": "SMTP-Server",
+    "smtpPort": "SMTP-Port",
+    "smtpEmail": "SMTP-E-Mail",
+    "smtpPassword": "SMTP-Passwort",
+    "smtpPasswordPlaceholder": "Neues Passwort eingeben (leer lassen um aktuelles zu behalten)",
+    "smtpPasswordSet": "Passwort ist gesetzt",
+    "smtpWarning": "Für Gmail verwenden Sie ein App-Passwort anstelle Ihres normalen Passworts. Aktivieren Sie die 2-Faktor-Authentifizierung und generieren Sie ein App-Passwort in Ihren Google-Kontoeinstellungen.",
+    "smtpSave": "SMTP-Einstellungen speichern",
+    "smtpUsage": "SMTP-Verwendung",
+    "smtpUsage1": "Passwort-Zurücksetzungs-E-Mails",
+    "smtpUsage2": "Konto-Verifizierungs-E-Mails",
+    "smtpUsage3": "Systembenachrichtigungen",
+    "smtpTestTitle": "SMTP-Konfiguration testen",
+    "smtpTestDescription": "Senden Sie eine Test-E-Mail, um zu überprüfen, ob Ihre SMTP-Konfiguration korrekt funktioniert.",
+    "smtpTestEmail": "Empfänger-E-Mail",
+    "smtpTestEmailPlaceholder": "E-Mail-Adresse zum Empfangen des Tests eingeben",
+    "smtpTestSend": "Test-E-Mail senden"
+  },
   "adminPanelComments": {
     "title": "Admin-Bereich - Kommentare",
     "comments": "Kommentare",
@@ -75,6 +96,22 @@
     "newPassword": "Neues Passwort",
     "confirmPassword": "Passwort bestätigen",
     "change": "Passwort ändern"
+  },
+  "forceChangePassword": {
+    "title": "Ändern Sie Ihr Passwort",
+    "warning": "Sie müssen Ihr Passwort ändern, bevor Sie fortfahren können.",
+    "description": "Aus Sicherheitsgründen müssen Administratorkonten bei der ersten Anmeldung ein starkes Passwort festlegen.",
+    "requirements": "Passwortanforderungen",
+    "reqMinLength": "Mindestens 12 Zeichen",
+    "reqUppercase": "Mindestens 1 Großbuchstabe (A-Z)",
+    "reqLowercase": "Mindestens 1 Kleinbuchstabe (a-z)",
+    "reqDigit": "Mindestens 1 Ziffer (0-9)",
+    "reqSpecial": "Mindestens 1 Sonderzeichen (!@#$%^&*...)",
+    "newPassword": "Neues Passwort",
+    "newPasswordPlaceholder": "Neues Passwort eingeben",
+    "confirmPassword": "Passwort bestätigen",
+    "confirmPasswordPlaceholder": "Neues Passwort bestätigen",
+    "submit": "Neues Passwort festlegen"
   },
   "changeProfilePicture": {
     "title": "Profilbild ändern",
@@ -254,7 +291,17 @@
       "success": "Sie haben sich erfolgreich eingeloggt.",
       "password": "Falsches Passwort",
       "notFound": "Benutzer nicht gefunden",
-      "invalid": "Ungültiger Benutzername oder Passwort."
+      "invalid": "Ungültiger Benutzername oder Passwort.",
+      "mustChangePassword": "Sie müssen Ihr Passwort ändern, bevor Sie fortfahren können."
+    },
+    "forceChangePassword": {
+      "success": "Passwort wurde erfolgreich geändert. Sie können jetzt auf die Seite zugreifen.",
+      "match": "Passwörter stimmen nicht überein.",
+      "minLength": "Passwort muss mindestens 12 Zeichen lang sein.",
+      "uppercase": "Passwort muss mindestens 1 Großbuchstaben enthalten.",
+      "lowercase": "Passwort muss mindestens 1 Kleinbuchstaben enthalten.",
+      "digit": "Passwort muss mindestens 1 Ziffer enthalten.",
+      "special": "Passwort muss mindestens 1 Sonderzeichen enthalten."
     },
     "logout": {
       "success": "Sie haben sich erfolgreich ausgeloggt."
@@ -314,6 +361,16 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "SMTP-Konfiguration erfolgreich gespeichert.",
+      "smtpError": "SMTP-Konfiguration konnte nicht gespeichert werden.",
+      "smtpInvalidPort": "Ungültige Portnummer. Muss zwischen 1 und 65535 liegen.",
+      "smtpTestSuccess": "Test-E-Mail erfolgreich gesendet! Überprüfen Sie Ihren Posteingang.",
+      "smtpTestError": "Fehler beim Senden der Test-E-Mail. Bitte überprüfen Sie Ihre SMTP-Konfiguration.",
+      "smtpTestAuthError": "Authentifizierung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und Ihr Passwort.",
+      "smtpTestNoEmail": "Bitte geben Sie eine Empfänger-E-Mail-Adresse ein.",
+      "smtpTestNotConfigured": "SMTP ist nicht konfiguriert. Bitte speichern Sie zuerst Ihre SMTP-Einstellungen."
     }
   },
   "roles": {

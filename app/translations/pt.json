@@ -21,6 +21,27 @@
     "posts": "Postagens",
     "comments": "Comentários"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "Configuração SMTP",
+    "smtpDescription": "Configure as configurações de e-mail para redefinição de senha e e-mails de verificação.",
+    "smtpServer": "Servidor SMTP",
+    "smtpPort": "Porta SMTP",
+    "smtpEmail": "E-mail SMTP",
+    "smtpPassword": "Senha SMTP",
+    "smtpPasswordPlaceholder": "Digite a nova senha (deixe em branco para manter a atual)",
+    "smtpPasswordSet": "Senha definida",
+    "smtpWarning": "Para Gmail, use uma Senha de App em vez da sua senha normal. Ative a verificação em duas etapas e gere uma senha de app nas configurações da sua Conta Google.",
+    "smtpSave": "Salvar Configurações SMTP",
+    "smtpUsage": "Uso do SMTP",
+    "smtpUsage1": "E-mails de redefinição de senha",
+    "smtpUsage2": "E-mails de verificação de conta",
+    "smtpUsage3": "Notificações do sistema",
+    "smtpTestTitle": "Testar Configuração SMTP",
+    "smtpTestDescription": "Envie um e-mail de teste para verificar se sua configuração SMTP está funcionando corretamente.",
+    "smtpTestEmail": "E-mail do Destinatário",
+    "smtpTestEmailPlaceholder": "Digite o endereço de e-mail para receber o teste",
+    "smtpTestSend": "Enviar E-mail de Teste"
+  },
   "adminPanelComments": {
     "title": "Painel de Administração - Comentários",
     "comments": "Comentários",
@@ -75,6 +96,22 @@
     "newPassword": "Nova Senha",
     "confirmPassword": "Confirmar Senha",
     "change": "Mudar Senha"
+  },
+  "forceChangePassword": {
+    "title": "Altere Sua Senha",
+    "warning": "Você deve alterar sua senha antes de continuar.",
+    "description": "Por razões de segurança, contas de administrador devem definir uma senha forte no primeiro login.",
+    "requirements": "Requisitos de Senha",
+    "reqMinLength": "Pelo menos 12 caracteres",
+    "reqUppercase": "Pelo menos 1 letra maiúscula (A-Z)",
+    "reqLowercase": "Pelo menos 1 letra minúscula (a-z)",
+    "reqDigit": "Pelo menos 1 dígito (0-9)",
+    "reqSpecial": "Pelo menos 1 caractere especial (!@#$%^&*...)",
+    "newPassword": "Nova Senha",
+    "newPasswordPlaceholder": "Digite a nova senha",
+    "confirmPassword": "Confirmar Senha",
+    "confirmPasswordPlaceholder": "Confirme a nova senha",
+    "submit": "Definir Nova Senha"
   },
   "changeProfilePicture": {
     "title": "Mudar Foto de Perfil",
@@ -254,7 +291,17 @@
       "success": "Você fez login com sucesso.",
       "password": "Senha errada",
       "notFound": "Usuário não encontrado",
-      "invalid": "Nome de usuário ou senha inválidos."
+      "invalid": "Nome de usuário ou senha inválidos.",
+      "mustChangePassword": "Você deve alterar sua senha antes de continuar."
+    },
+    "forceChangePassword": {
+      "success": "Senha alterada com sucesso. Agora você pode acessar o site.",
+      "match": "As senhas não correspondem.",
+      "minLength": "A senha deve ter pelo menos 12 caracteres.",
+      "uppercase": "A senha deve conter pelo menos 1 letra maiúscula.",
+      "lowercase": "A senha deve conter pelo menos 1 letra minúscula.",
+      "digit": "A senha deve conter pelo menos 1 dígito.",
+      "special": "A senha deve conter pelo menos 1 caractere especial."
     },
     "logout": {
       "success": "Você saiu com sucesso."
@@ -314,6 +361,16 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "Configuração SMTP salva com sucesso.",
+      "smtpError": "Falha ao salvar a configuração SMTP.",
+      "smtpInvalidPort": "Número de porta inválido. Deve estar entre 1 e 65535.",
+      "smtpTestSuccess": "E-mail de teste enviado com sucesso! Verifique sua caixa de entrada.",
+      "smtpTestError": "Falha ao enviar e-mail de teste. Por favor, verifique sua configuração SMTP.",
+      "smtpTestAuthError": "Falha na autenticação. Por favor, verifique seu e-mail e senha.",
+      "smtpTestNoEmail": "Por favor, digite um endereço de e-mail do destinatário.",
+      "smtpTestNotConfigured": "SMTP não está configurado. Por favor, salve suas configurações SMTP primeiro."
     }
   },
   "roles": {

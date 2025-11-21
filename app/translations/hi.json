@@ -21,6 +21,27 @@
     "posts": "पोस्ट्स",
     "comments": "टिप्पणियाँ"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP कॉन्फ़िगरेशन",
+    "smtpDescription": "पासवर्ड रीसेट और सत्यापन ईमेल के लिए ईमेल सेटिंग्स कॉन्फ़िगर करें।",
+    "smtpServer": "SMTP सर्वर",
+    "smtpPort": "SMTP पोर्ट",
+    "smtpEmail": "SMTP ईमेल",
+    "smtpPassword": "SMTP पासवर्ड",
+    "smtpPasswordPlaceholder": "नया पासवर्ड दर्ज करें (वर्तमान रखने के लिए खाली छोड़ें)",
+    "smtpPasswordSet": "पासवर्ड सेट है",
+    "smtpWarning": "Gmail के लिए, अपने नियमित पासवर्ड के बजाय ऐप पासवर्ड का उपयोग करें। 2FA सक्षम करें और अपने Google खाता सेटिंग्स से ऐप पासवर्ड जनरेट करें।",
+    "smtpSave": "SMTP सेटिंग्स सहेजें",
+    "smtpUsage": "SMTP उपयोग",
+    "smtpUsage1": "पासवर्ड रीसेट ईमेल",
+    "smtpUsage2": "खाता सत्यापन ईमेल",
+    "smtpUsage3": "सिस्टम सूचनाएं",
+    "smtpTestTitle": "SMTP कॉन्फ़िगरेशन का परीक्षण करें",
+    "smtpTestDescription": "अपने SMTP कॉन्फ़िगरेशन की जांच के लिए एक परीक्षण ईमेल भेजें।",
+    "smtpTestEmail": "प्राप्तकर्ता ईमेल",
+    "smtpTestEmailPlaceholder": "परीक्षण प्राप्त करने के लिए ईमेल पता दर्ज करें",
+    "smtpTestSend": "परीक्षण ईमेल भेजें"
+  },
   "adminPanelComments": {
     "title": "एडमिन पैनल - टिप्पणियाँ",
     "comments": "टिप्पणियाँ",
@@ -75,6 +96,22 @@
     "newPassword": "नया पासवर्ड",
     "confirmPassword": "पासवर्ड की पुष्टि करें",
     "change": "पासवर्ड बदलें"
+  },
+  "forceChangePassword": {
+    "title": "अपना पासवर्ड बदलें",
+    "warning": "जारी रखने से पहले आपको अपना पासवर्ड बदलना होगा।",
+    "description": "सुरक्षा कारणों से, व्यवस्थापक खातों को पहले लॉगिन पर एक मजबूत पासवर्ड सेट करना होगा।",
+    "requirements": "पासवर्ड आवश्यकताएं",
+    "reqMinLength": "कम से कम 12 अक्षर",
+    "reqUppercase": "कम से कम 1 बड़ा अक्षर (A-Z)",
+    "reqLowercase": "कम से कम 1 छोटा अक्षर (a-z)",
+    "reqDigit": "कम से कम 1 अंक (0-9)",
+    "reqSpecial": "कम से कम 1 विशेष अक्षर (!@#$%^&*...)",
+    "newPassword": "नया पासवर्ड",
+    "newPasswordPlaceholder": "नया पासवर्ड दर्ज करें",
+    "confirmPassword": "पासवर्ड की पुष्टि करें",
+    "confirmPasswordPlaceholder": "नए पासवर्ड की पुष्टि करें",
+    "submit": "नया पासवर्ड सेट करें"
   },
   "changeProfilePicture": {
     "title": "प्रोफ़ाइल चित्र बदलें",
@@ -254,7 +291,17 @@
       "success": "आप सफलतापूर्वक लॉगिन हो गए हैं।",
       "password": "गलत पासवर्ड।",
       "notFound": "उपयोगकर्ता नहीं मिला।",
-      "invalid": "अमान्य उपयोगकर्ता नाम या पासवर्ड।"
+      "invalid": "अमान्य उपयोगकर्ता नाम या पासवर्ड।",
+      "mustChangePassword": "जारी रखने से पहले आपको अपना पासवर्ड बदलना होगा।"
+    },
+    "forceChangePassword": {
+      "success": "पासवर्ड सफलतापूर्वक बदल दिया गया है। अब आप साइट तक पहुंच सकते हैं।",
+      "match": "पासवर्ड मेल नहीं खाते।",
+      "minLength": "पासवर्ड कम से कम 12 अक्षर लंबा होना चाहिए।",
+      "uppercase": "पासवर्ड में कम से कम 1 बड़ा अक्षर होना चाहिए।",
+      "lowercase": "पासवर्ड में कम से कम 1 छोटा अक्षर होना चाहिए।",
+      "digit": "पासवर्ड में कम से कम 1 अंक होना चाहिए।",
+      "special": "पासवर्ड में कम से कम 1 विशेष अक्षर होना चाहिए।"
     },
     "logout": {
       "success": "आप सफलतापूर्वक लॉगआउट हो गए हैं।"
@@ -314,6 +361,16 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "SMTP कॉन्फ़िगरेशन सफलतापूर्वक सहेजा गया।",
+      "smtpError": "SMTP कॉन्फ़िगरेशन सहेजने में विफल।",
+      "smtpInvalidPort": "अमान्य पोर्ट नंबर। 1 से 65535 के बीच होना चाहिए।",
+      "smtpTestSuccess": "परीक्षण ईमेल सफलतापूर्वक भेजा गया! अपना इनबॉक्स जांचें।",
+      "smtpTestError": "परीक्षण ईमेल भेजने में विफल। कृपया अपनी SMTP कॉन्फ़िगरेशन जांचें।",
+      "smtpTestAuthError": "प्रमाणीकरण विफल। कृपया अपना ईमेल और पासवर्ड जांचें।",
+      "smtpTestNoEmail": "कृपया प्राप्तकर्ता ईमेल पता दर्ज करें।",
+      "smtpTestNotConfigured": "SMTP कॉन्फ़िगर नहीं है। कृपया पहले अपनी SMTP सेटिंग्स सहेजें।"
     }
   },
   "roles": {

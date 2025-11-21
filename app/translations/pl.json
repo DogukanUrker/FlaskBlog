@@ -21,6 +21,27 @@
     "posts": "Posty",
     "comments": "Komentarze"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "Konfiguracja SMTP",
+    "smtpDescription": "Skonfiguruj ustawienia e-mail dla resetowania hasła i e-maili weryfikacyjnych.",
+    "smtpServer": "Serwer SMTP",
+    "smtpPort": "Port SMTP",
+    "smtpEmail": "E-mail SMTP",
+    "smtpPassword": "Hasło SMTP",
+    "smtpPasswordPlaceholder": "Wprowadź nowe hasło (pozostaw puste, aby zachować obecne)",
+    "smtpPasswordSet": "Hasło ustawione",
+    "smtpWarning": "Dla Gmaila użyj Hasła aplikacji zamiast zwykłego hasła. Włącz weryfikację dwuetapową i wygeneruj hasło aplikacji w ustawieniach Konta Google.",
+    "smtpSave": "Zapisz ustawienia SMTP",
+    "smtpUsage": "Użycie SMTP",
+    "smtpUsage1": "E-maile resetowania hasła",
+    "smtpUsage2": "E-maile weryfikacji konta",
+    "smtpUsage3": "Powiadomienia systemowe",
+    "smtpTestTitle": "Testuj konfigurację SMTP",
+    "smtpTestDescription": "Wyślij testowy e-mail, aby sprawdzić, czy konfiguracja SMTP działa poprawnie.",
+    "smtpTestEmail": "E-mail odbiorcy",
+    "smtpTestEmailPlaceholder": "Wprowadź adres e-mail do otrzymania testu",
+    "smtpTestSend": "Wyślij testowy e-mail"
+  },
   "adminPanelComments": {
     "title": "Panel administracyjny - Komentarze",
     "comments": "Komentarze",
@@ -75,6 +96,22 @@
     "newPassword": "Nowe hasło",
     "confirmPassword": "Potwierdź hasło",
     "change": "Zmień hasło"
+  },
+  "forceChangePassword": {
+    "title": "Zmień swoje hasło",
+    "warning": "Musisz zmienić hasło przed kontynuowaniem.",
+    "description": "Ze względów bezpieczeństwa konta administratorów muszą ustawić silne hasło przy pierwszym logowaniu.",
+    "requirements": "Wymagania dotyczące hasła",
+    "reqMinLength": "Co najmniej 12 znaków",
+    "reqUppercase": "Co najmniej 1 wielka litera (A-Z)",
+    "reqLowercase": "Co najmniej 1 mała litera (a-z)",
+    "reqDigit": "Co najmniej 1 cyfra (0-9)",
+    "reqSpecial": "Co najmniej 1 znak specjalny (!@#$%^&*...)",
+    "newPassword": "Nowe hasło",
+    "newPasswordPlaceholder": "Wprowadź nowe hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "confirmPasswordPlaceholder": "Potwierdź nowe hasło",
+    "submit": "Ustaw nowe hasło"
   },
   "changeProfilePicture": {
     "title": "Zmień zdjęcie profilowe",
@@ -254,7 +291,17 @@
       "success": "Zalogowano pomyślnie.",
       "password": "Niepoprawne hasło",
       "notFound": "Użytkownik nie został znaleziony",
-      "invalid": "Nieprawidłowa nazwa użytkownika lub hasło."
+      "invalid": "Nieprawidłowa nazwa użytkownika lub hasło.",
+      "mustChangePassword": "Musisz zmienić hasło przed kontynuowaniem."
+    },
+    "forceChangePassword": {
+      "success": "Hasło zostało pomyślnie zmienione. Możesz teraz uzyskać dostęp do strony.",
+      "match": "Hasła nie pasują do siebie.",
+      "minLength": "Hasło musi mieć co najmniej 12 znaków.",
+      "uppercase": "Hasło musi zawierać co najmniej 1 wielką literę.",
+      "lowercase": "Hasło musi zawierać co najmniej 1 małą literę.",
+      "digit": "Hasło musi zawierać co najmniej 1 cyfrę.",
+      "special": "Hasło musi zawierać co najmniej 1 znak specjalny."
     },
     "logout": {
       "success": "Wylogowano pomyślnie."
@@ -314,6 +361,16 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "Konfiguracja SMTP została pomyślnie zapisana.",
+      "smtpError": "Nie udało się zapisać konfiguracji SMTP.",
+      "smtpInvalidPort": "Nieprawidłowy numer portu. Musi być między 1 a 65535.",
+      "smtpTestSuccess": "Testowy e-mail wysłany pomyślnie! Sprawdź swoją skrzynkę odbiorczą.",
+      "smtpTestError": "Nie udało się wysłać testowego e-maila. Sprawdź konfigurację SMTP.",
+      "smtpTestAuthError": "Uwierzytelnianie nie powiodło się. Sprawdź swój e-mail i hasło.",
+      "smtpTestNoEmail": "Wprowadź adres e-mail odbiorcy.",
+      "smtpTestNotConfigured": "SMTP nie jest skonfigurowany. Najpierw zapisz ustawienia SMTP."
     }
   },
   "roles": {

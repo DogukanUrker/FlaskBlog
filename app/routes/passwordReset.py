@@ -16,6 +16,7 @@ from settings import Settings
 from utils.flashMessage import flashMessage
 from utils.forms.PasswordResetForm import PasswordResetForm
 from utils.log import Log
+from utils.smtpSettings import SMTPSettings
 
 passwordResetBlueprint = Blueprint("passwordReset", __name__)
 
@@ -119,12 +120,15 @@ def passwordReset(codeSent):
             )
             userDB = cursor.fetchone()
             if userDB:
+                # Get SMTP settings from database
+                smtp_settings = SMTPSettings.get_settings()
+
                 context = ssl.create_default_context()
-                server = smtplib.SMTP(Settings.SMTP_SERVER, Settings.SMTP_PORT)
+                server = smtplib.SMTP(smtp_settings["smtp_server"], smtp_settings["smtp_port"])
                 server.ehlo()
                 server.starttls(context=context)
                 server.ehlo()
-                server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
+                server.login(smtp_settings["smtp_mail"], smtp_settings["smtp_password"])
                 passwordResetCode = str(randint(1000, 9999))
                 passwordResetCodesStorage[userName] = passwordResetCode
                 message = EmailMessage()
@@ -152,7 +156,7 @@ def passwordReset(codeSent):
                     subtype="html",
                 )
                 message["Subject"] = "Forget Password?🔒"
-                message["From"] = Settings.SMTP_MAIL
+                message["From"] = smtp_settings["smtp_mail"]
                 message["To"] = email
                 server.send_message(message)
                 server.quit()

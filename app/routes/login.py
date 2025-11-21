@@ -3,6 +3,7 @@ import sqlite3
 from flask import (
     Blueprint,
     abort,
+    flash,
     redirect,
     render_template,
     request,
@@ -66,12 +67,8 @@ def login(direct):
                     userName
                 )
                 if not is_allowed:
-                    flashMessage(
-                        page="login",
-                        message=rate_limit_msg,
-                        category="error",
-                        language=session.get("language", "en"),
-                    )
+                    # Use flash directly since rate_limit_msg contains dynamic content
+                    flash(rate_limit_msg, "error")
                     return render_template(
                         "login.html",
                         form=form,
@@ -187,6 +184,18 @@ def login(direct):
                                 user_agent=request.headers.get('User-Agent', ''),
                                 success=True
                             )
+
+                        # Check if admin user must change password on first login
+                        must_change_password = user[13] if len(user) > 13 else "False"
+                        if user[5] == "admin" and must_change_password == "True":
+                            Log.info(f'Admin user: "{user[1]}" must change password on first login')
+                            flashMessage(
+                                page="login",
+                                message="mustChangePassword",
+                                category="warning",
+                                language=session.get("language", "en"),
+                            )
+                            return redirect("/force-change-password")
 
                         flashMessage(
                             page="login",

@@ -21,6 +21,27 @@
     "posts": "Publicaciones",
     "comments": "Comentarios"
   },
+  "adminSiteSettings": {
+    "smtpTitle": "Configuración SMTP",
+    "smtpDescription": "Configure los ajustes de correo electrónico para restablecimiento de contraseña y correos de verificación.",
+    "smtpServer": "Servidor SMTP",
+    "smtpPort": "Puerto SMTP",
+    "smtpEmail": "Correo SMTP",
+    "smtpPassword": "Contraseña SMTP",
+    "smtpPasswordPlaceholder": "Ingrese nueva contraseña (deje en blanco para mantener la actual)",
+    "smtpPasswordSet": "Contraseña configurada",
+    "smtpWarning": "Para Gmail, use una Contraseña de Aplicación en lugar de su contraseña normal. Habilite la verificación en dos pasos y genere una contraseña de aplicación desde la configuración de su cuenta de Google.",
+    "smtpSave": "Guardar Configuración SMTP",
+    "smtpUsage": "Uso de SMTP",
+    "smtpUsage1": "Correos de restablecimiento de contraseña",
+    "smtpUsage2": "Correos de verificación de cuenta",
+    "smtpUsage3": "Notificaciones del sistema",
+    "smtpTestTitle": "Probar Configuración SMTP",
+    "smtpTestDescription": "Envíe un correo de prueba para verificar que su configuración SMTP funciona correctamente.",
+    "smtpTestEmail": "Correo del Destinatario",
+    "smtpTestEmailPlaceholder": "Ingrese la dirección de correo para recibir la prueba",
+    "smtpTestSend": "Enviar Correo de Prueba"
+  },
   "adminPanelComments": {
     "title": "Panel de Administrador - Comentarios",
     "comments": "Comentarios",
@@ -75,6 +96,22 @@
     "newPassword": "Nueva Contraseña",
     "confirmPassword": "Confirmar Contraseña",
     "change": "Cambiar Contraseña"
+  },
+  "forceChangePassword": {
+    "title": "Cambie su contraseña",
+    "warning": "Debe cambiar su contraseña antes de continuar.",
+    "description": "Por razones de seguridad, las cuentas de administrador deben establecer una contraseña segura en el primer inicio de sesión.",
+    "requirements": "Requisitos de contraseña",
+    "reqMinLength": "Al menos 12 caracteres",
+    "reqUppercase": "Al menos 1 letra mayúscula (A-Z)",
+    "reqLowercase": "Al menos 1 letra minúscula (a-z)",
+    "reqDigit": "Al menos 1 dígito (0-9)",
+    "reqSpecial": "Al menos 1 carácter especial (!@#$%^&*...)",
+    "newPassword": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Ingrese la nueva contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "Confirme la nueva contraseña",
+    "submit": "Establecer Nueva Contraseña"
   },
   "changeProfilePicture": {
     "title": "Cambiar Foto de Perfil",
@@ -254,7 +291,17 @@
       "success": "Has iniciado sesión con éxito.",
       "password": "Contraseña incorrecta",
       "notFound": "Usuario no encontrado",
-      "invalid": "Nombre de usuario o contraseña inválidos."
+      "invalid": "Nombre de usuario o contraseña inválidos.",
+      "mustChangePassword": "Debe cambiar su contraseña antes de continuar."
+    },
+    "forceChangePassword": {
+      "success": "La contraseña se ha cambiado correctamente. Ahora puede acceder al sitio.",
+      "match": "Las contraseñas no coinciden.",
+      "minLength": "La contraseña debe tener al menos 12 caracteres.",
+      "uppercase": "La contraseña debe contener al menos 1 letra mayúscula.",
+      "lowercase": "La contraseña debe contener al menos 1 letra minúscula.",
+      "digit": "La contraseña debe contener al menos 1 dígito.",
+      "special": "La contraseña debe contener al menos 1 carácter especial."
     },
     "logout": {
       "success": "Has cerrado sesión con éxito."
@@ -314,6 +361,16 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "adminSiteSettings": {
+      "smtpSuccess": "Configuración SMTP guardada correctamente.",
+      "smtpError": "Error al guardar la configuración SMTP.",
+      "smtpInvalidPort": "Número de puerto inválido. Debe estar entre 1 y 65535.",
+      "smtpTestSuccess": "¡Correo de prueba enviado con éxito! Revise su bandeja de entrada.",
+      "smtpTestError": "Error al enviar el correo de prueba. Por favor, verifique su configuración SMTP.",
+      "smtpTestAuthError": "Error de autenticación. Por favor, verifique su correo y contraseña.",
+      "smtpTestNoEmail": "Por favor, ingrese una dirección de correo del destinatario.",
+      "smtpTestNotConfigured": "SMTP no está configurado. Por favor, guarde primero su configuración SMTP."
     }
   },
   "roles": {

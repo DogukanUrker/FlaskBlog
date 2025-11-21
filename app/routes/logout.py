@@ -30,8 +30,8 @@ def logout():
             category="success",
             language=session["language"],
         )
-        session.pop("userName")
-        session.pop("userRole")
+        session.pop("userName", None)
+        session.pop("userRole", None)
         return redirect("/")
     else:
         Log.error(f"{request.remote_addr} tried to logout without being logged in")

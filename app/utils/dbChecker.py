@@ -89,8 +89,8 @@ def usersTable():
 
             cursor.execute(
                 """
-                insert into Users(userName,email,password,profilePicture,role,points,timeStamp,isVerified) \
-                values(?,?,?,?,?,?,?,?)
+                insert into Users(userName,email,password,profilePicture,role,points,timeStamp,isVerified,must_change_password) \
+                values(?,?,?,?,?,?,?,?,?)
                 """,
                 (
                     Settings.DEFAULT_ADMIN_USERNAME,
@@ -100,6 +100,7 @@ def usersTable():
                     "admin",
                     Settings.DEFAULT_ADMIN_POINT,
                     currentTimeStamp(),
+                    "True",
                     "True",
                 ),
             )
@@ -453,6 +454,45 @@ def addBannerColumn():
             Log.success('Column "banner" added to Users table')
         else:
             Log.info('Column "banner" already exists in Users table')
+    finally:
+        connection.close()
+
+
+def mustChangePasswordField():
+    """
+    Adds must_change_password column to Users table if it doesn't exist.
+    This field tracks whether admin users need to change their password on first login.
+
+    For newly created admin accounts, this is set to 'True'.
+    After the admin changes their password, it's set to 'False'.
+
+    Returns:
+        None
+    """
+    Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database to check must_change_password column")
+
+    connection = sqlite3.connect(Settings.DB_USERS_ROOT)
+    connection.set_trace_callback(Log.database)
+    cursor = connection.cursor()
+
+    try:
+        # Check if must_change_password column exists
+        cursor.execute("PRAGMA table_info(Users);")
+        columns = cursor.fetchall()
+        column_names = [column[1] for column in columns]
+
+        if "must_change_password" not in column_names:
+            Log.info('Column "must_change_password" not found in Users table, adding it...')
+            cursor.execute("ALTER TABLE Users ADD COLUMN must_change_password TEXT DEFAULT 'False';")
+            connection.commit()
+
+            # Set must_change_password to 'True' for existing admin accounts
+            cursor.execute("UPDATE Users SET must_change_password = 'True' WHERE role = 'admin';")
+            connection.commit()
+
+            Log.success('Column "must_change_password" added to Users table')
+        else:
+            Log.info('Column "must_change_password" already exists in Users table')
     finally:
         connection.close()
 

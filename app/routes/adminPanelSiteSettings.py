@@ -4,6 +4,9 @@ Admin panel route for site settings (logo upload, etc.)
 
 import sqlite3
 import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from flask import Blueprint, redirect, render_template, request, session
 from werkzeug.utils import secure_filename
 from settings import Settings
@@ -11,6 +14,7 @@ from utils.log import Log
 from utils.flashMessage import flashMessage
 from utils.fileUploadValidator import FileUploadValidator
 from utils.time import currentTimeStamp
+from utils.encryption import EncryptionUtil
 
 adminPanelSiteSettingsBlueprint = Blueprint("adminPanelSiteSettings", __name__)
 
@@ -234,6 +238,199 @@ def adminPanelSiteSettings():
             connection.close()
             return redirect("/admin/site-settings")
 
+        # Handle SMTP configuration
+        elif upload_type == "smtp_config":
+            smtp_server = request.form.get("smtp_server", "").strip()
+            smtp_port = request.form.get("smtp_port", "").strip()
+            smtp_mail = request.form.get("smtp_mail", "").strip()
+            smtp_password = request.form.get("smtp_password", "").strip()
+
+            try:
+                # Validate port
+                if smtp_port:
+                    smtp_port_int = int(smtp_port)
+                    if smtp_port_int < 1 or smtp_port_int > 65535:
+                        raise ValueError("Invalid port number")
+
+                # Save SMTP settings to database
+                smtp_settings = [
+                    ("smtp_server", smtp_server),
+                    ("smtp_port", smtp_port),
+                    ("smtp_mail", smtp_mail),
+                ]
+
+                # Only update password if provided (to allow keeping existing password)
+                # Encrypt the password before storing
+                if smtp_password:
+                    encrypted_password = EncryptionUtil.encrypt(smtp_password)
+                    smtp_settings.append(("smtp_password", encrypted_password))
+
+                for key, value in smtp_settings:
+                    cursor.execute(
+                        "SELECT setting_id FROM site_settings WHERE setting_key = ?",
+                        (key,)
+                    )
+                    if cursor.fetchone():
+                        cursor.execute(
+                            "UPDATE site_settings SET setting_value = ?, updated_at = ? WHERE setting_key = ?",
+                            (value, currentTimeStamp(), key)
+                        )
+                    else:
+                        cursor.execute(
+                            "INSERT INTO site_settings(setting_key, setting_value, updated_at) VALUES(?, ?, ?)",
+                            (key, value, currentTimeStamp())
+                        )
+
+                connection.commit()
+
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpSuccess",
+                    category="success",
+                    language=session.get("language", "en")
+                )
+                Log.success(f"Admin {session['userName']} updated SMTP configuration")
+
+            except ValueError as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpInvalidPort",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP configuration failed: {e}")
+            except Exception as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP configuration failed: {e}")
+
+            connection.close()
+            return redirect("/admin/site-settings")
+
+        # Handle SMTP test email
+        elif upload_type == "smtp_test":
+            test_email = request.form.get("test_email", "").strip()
+
+            if not test_email:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestNoEmail",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                connection.close()
+                return redirect("/admin/site-settings")
+
+            try:
+                # Get SMTP settings from database
+                smtp_config = {}
+                for key in ["smtp_server", "smtp_port", "smtp_mail", "smtp_password"]:
+                    cursor.execute(
+                        "SELECT setting_value FROM site_settings WHERE setting_key = ?",
+                        (key,)
+                    )
+                    result = cursor.fetchone()
+                    if result and result[0]:
+                        smtp_config[key] = result[0]
+                    else:
+                        # Fall back to Settings defaults
+                        if key == "smtp_server":
+                            smtp_config[key] = Settings.SMTP_SERVER
+                        elif key == "smtp_port":
+                            smtp_config[key] = str(Settings.SMTP_PORT)
+                        elif key == "smtp_mail":
+                            smtp_config[key] = Settings.SMTP_MAIL
+                        else:
+                            smtp_config[key] = Settings.SMTP_PASSWORD
+
+                # Decrypt the password
+                if smtp_config.get("smtp_password"):
+                    smtp_config["smtp_password"] = EncryptionUtil.decrypt(smtp_config["smtp_password"])
+
+                # Check if SMTP is configured
+                if not smtp_config.get("smtp_mail") or not smtp_config.get("smtp_password"):
+                    flashMessage(
+                        page="adminSiteSettings",
+                        message="smtpTestNotConfigured",
+                        category="error",
+                        language=session.get("language", "en")
+                    )
+                    connection.close()
+                    return redirect("/admin/site-settings")
+
+                # Create test email
+                msg = MIMEMultipart()
+                msg['From'] = smtp_config['smtp_mail']
+                msg['To'] = test_email
+                msg['Subject'] = "FlaskBlog SMTP Test"
+
+                body = """
+This is a test email from FlaskBlog.
+
+If you received this email, your SMTP configuration is working correctly!
+
+Configuration:
+- Server: {server}
+- Port: {port}
+- Email: {email}
+
+Best regards,
+FlaskBlog Admin Panel
+                """.format(
+                    server=smtp_config['smtp_server'],
+                    port=smtp_config['smtp_port'],
+                    email=smtp_config['smtp_mail']
+                )
+
+                msg.attach(MIMEText(body, 'plain'))
+
+                # Send email
+                server = smtplib.SMTP(smtp_config['smtp_server'], int(smtp_config['smtp_port']))
+                server.starttls()
+                server.login(smtp_config['smtp_mail'], smtp_config['smtp_password'])
+                server.sendmail(smtp_config['smtp_mail'], test_email, msg.as_string())
+                server.quit()
+
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestSuccess",
+                    category="success",
+                    language=session.get("language", "en")
+                )
+                Log.success(f"Admin {session['userName']} sent test email to {test_email}")
+
+            except smtplib.SMTPAuthenticationError as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestAuthError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP test failed - authentication error: {e}")
+            except smtplib.SMTPException as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP test failed: {e}")
+            except Exception as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="smtpTestError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"SMTP test failed: {e}")
+
+            connection.close()
+            return redirect("/admin/site-settings")
+
         # Handle default banner upload
         elif upload_type == "default_banner":
             if "default_banner" not in request.files:
@@ -350,6 +547,27 @@ def adminPanelSiteSettings():
     banner_result = cursor.fetchone()
     current_default_banner = banner_result[0] if banner_result else None
 
+    # Get SMTP settings
+    smtp_settings = {}
+    for key in ["smtp_server", "smtp_port", "smtp_mail", "smtp_password"]:
+        cursor.execute(
+            "SELECT setting_value FROM site_settings WHERE setting_key = ?",
+            (key,)
+        )
+        result = cursor.fetchone()
+        if result:
+            smtp_settings[key] = result[0]
+        else:
+            # Fall back to Settings defaults
+            if key == "smtp_server":
+                smtp_settings[key] = Settings.SMTP_SERVER
+            elif key == "smtp_port":
+                smtp_settings[key] = str(Settings.SMTP_PORT)
+            elif key == "smtp_mail":
+                smtp_settings[key] = Settings.SMTP_MAIL
+            else:
+                smtp_settings[key] = ""
+
     connection.close()
 
     Log.info(f"Admin {session['userName']} viewing site settings page")
@@ -358,5 +576,9 @@ def adminPanelSiteSettings():
         "adminPanelSiteSettings.html",
         currentLogo=current_logo,
         currentDefaultProfile=current_default_profile,
-        currentDefaultBanner=current_default_banner
+        currentDefaultBanner=current_default_banner,
+        smtpServer=smtp_settings.get("smtp_server", ""),
+        smtpPort=smtp_settings.get("smtp_port", ""),
+        smtpMail=smtp_settings.get("smtp_mail", ""),
+        smtpPasswordSet=bool(smtp_settings.get("smtp_password", ""))
     )
