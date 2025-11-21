@@ -99,7 +99,9 @@
     "points": "Points",
     "delete": "delete user",
     "setUser": "set user role to user",
-    "setAdmin": "set user role to admin"
+    "setAdmin": "set user role to admin",
+    "reset2fa": "Reset 2FA",
+    "reset2faTitle": "Reset two-factor authentication for this user"
   },
   "categories": {
     "all": "All",

@@ -64,6 +64,28 @@ def adminPanelUsers():
 
                 changeUserRole(request.form["userName"])
 
+            if "reset2faButton" in request.form:
+                target_user = request.form["userName"]
+                Log.info(
+                    f"Admin: {session['userName']} reset 2FA for user: {target_user}"
+                )
+
+                # Log admin action to security audit
+                SecurityAuditLogger.log_admin_action(
+                    userName=session['userName'],
+                    ip_address=request.remote_addr,
+                    action="Reset 2FA",
+                    target=target_user
+                )
+
+                # Reset 2FA fields for the user
+                cursor.execute(
+                    """UPDATE users SET twofa_enabled = 'False', twofa_secret = NULL, backup_codes = NULL WHERE userName = ?""",
+                    (target_user,)
+                )
+                connection.commit()
+                Log.success(f"2FA reset for user: {target_user}")
+
         if role == "admin":
             users, page, total_pages = paginate_query(
                 Settings.DB_USERS_ROOT,
