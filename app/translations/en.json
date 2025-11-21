@@ -429,6 +429,11 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "setup2fa": {
+      "success": "Two-factor authentication has been enabled successfully.",
+      "error": "Failed to enable two-factor authentication.",
+      "invalidCode": "Invalid verification code. Please try again."
     }
   },
   "roles": {
