@@ -45,6 +45,9 @@ def adminPanelAbout():
         about_content = request.form.get("about_content", "").strip()
         about_show_version = "True" if request.form.get("about_show_version") else "False"
         about_show_github = "True" if request.form.get("about_show_github") else "False"
+        about_github_url = request.form.get("about_github_url", "").strip()
+        about_author_url = request.form.get("about_author_url", "").strip()
+        about_credits = request.form.get("about_credits", "").strip()
 
         try:
             # Save about page settings to database
@@ -53,6 +56,9 @@ def adminPanelAbout():
                 ("about_content", about_content),
                 ("about_show_version", about_show_version),
                 ("about_show_github", about_show_github),
+                ("about_github_url", about_github_url),
+                ("about_author_url", about_author_url),
+                ("about_credits", about_credits),
             ]
 
             for key, value in about_settings:
@@ -95,7 +101,11 @@ def adminPanelAbout():
 
     # GET request - retrieve current about page settings
     about_settings = {}
-    for key in ["about_title", "about_content", "about_show_version", "about_show_github"]:
+    setting_keys = [
+        "about_title", "about_content", "about_show_version", "about_show_github",
+        "about_github_url", "about_author_url", "about_credits"
+    ]
+    for key in setting_keys:
         cursor.execute(
             "SELECT setting_value FROM site_settings WHERE setting_key = ?",
             (key,)
@@ -105,11 +115,8 @@ def adminPanelAbout():
             about_settings[key] = result[0]
         else:
             # Set defaults
-            if key == "about_title":
-                about_settings[key] = ""
-            elif key == "about_content":
-                about_settings[key] = ""
-            elif key == "about_show_version":
+            about_settings[key] = ""
+            if key == "about_show_version":
                 about_settings[key] = "True"
             elif key == "about_show_github":
                 about_settings[key] = "True"
@@ -124,6 +131,9 @@ def adminPanelAbout():
         aboutContent=about_settings.get("about_content", ""),
         aboutShowVersion=about_settings.get("about_show_version", "True") == "True",
         aboutShowGithub=about_settings.get("about_show_github", "True") == "True",
+        aboutGithubUrl=about_settings.get("about_github_url", ""),
+        aboutAuthorUrl=about_settings.get("about_author_url", ""),
+        aboutCredits=about_settings.get("about_credits", ""),
         appName=Settings.APP_NAME,
         appVersion=Settings.APP_VERSION
     )

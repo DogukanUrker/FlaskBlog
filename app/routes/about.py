@@ -29,7 +29,11 @@ def about():
         connection.set_trace_callback(Log.database)
         cursor = connection.cursor()
 
-        for key in ["about_title", "about_content", "about_show_version", "about_show_github"]:
+        setting_keys = [
+            "about_title", "about_content", "about_show_version", "about_show_github",
+            "about_github_url", "about_author_url", "about_credits"
+        ]
+        for key in setting_keys:
             cursor.execute(
                 "SELECT setting_value FROM site_settings WHERE setting_key = ?",
                 (key,)
@@ -59,5 +63,8 @@ def about():
         customTitle=about_settings.get("about_title", ""),
         customContent=custom_content,
         showVersion=about_settings.get("about_show_version", "True") == "True",
-        showGithub=about_settings.get("about_show_github", "True") == "True"
+        showGithub=about_settings.get("about_show_github", "True") == "True",
+        githubUrl=about_settings.get("about_github_url", ""),
+        authorUrl=about_settings.get("about_author_url", ""),
+        customCredits=about_settings.get("about_credits", "")
     )

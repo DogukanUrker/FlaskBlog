@@ -147,6 +147,84 @@
             </div>
         </div>
 
+        <!-- GitHub Links Customization -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title text-xl mb-4">
+                    <i class="ti ti-brand-github mr-2"></i>
+                    {{ translations.adminAbout.githubLinks if translations.adminAbout and translations.adminAbout.githubLinks else "GitHub Links" }}
+                </h2>
+
+                <div class="space-y-4">
+                    <!-- GitHub Repository URL -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">
+                                {{ translations.adminAbout.githubUrlLabel if translations.adminAbout and translations.adminAbout.githubUrlLabel else "GitHub Repository URL" }}
+                            </span>
+                        </label>
+                        <input
+                            type="url"
+                            name="about_github_url"
+                            value="{{ aboutGithubUrl }}"
+                            placeholder="https://github.com/DogukanUrker/flaskBlog"
+                            class="input input-bordered w-full"
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">
+                                <i class="ti ti-info-circle mr-1"></i>
+                                {{ translations.adminAbout.githubUrlHint if translations.adminAbout and translations.adminAbout.githubUrlHint else "Leave empty for default repository" }}
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Author URL -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">
+                                {{ translations.adminAbout.authorUrlLabel if translations.adminAbout and translations.adminAbout.authorUrlLabel else "Author Website URL" }}
+                            </span>
+                        </label>
+                        <input
+                            type="url"
+                            name="about_author_url"
+                            value="{{ aboutAuthorUrl }}"
+                            placeholder="https://dogukanurker.com"
+                            class="input input-bordered w-full"
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">
+                                <i class="ti ti-info-circle mr-1"></i>
+                                {{ translations.adminAbout.authorUrlHint if translations.adminAbout and translations.adminAbout.authorUrlHint else "Leave empty for default author link" }}
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Custom Credits -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">
+                                {{ translations.adminAbout.creditsLabel if translations.adminAbout and translations.adminAbout.creditsLabel else "Credits Text" }}
+                            </span>
+                        </label>
+                        <input
+                            type="text"
+                            name="about_credits"
+                            value="{{ aboutCredits }}"
+                            placeholder="{{ translations.adminAbout.creditsPlaceholder if translations.adminAbout and translations.adminAbout.creditsPlaceholder else 'Made with love by Your Name' }}"
+                            class="input input-bordered w-full"
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">
+                                <i class="ti ti-info-circle mr-1"></i>
+                                {{ translations.adminAbout.creditsHint if translations.adminAbout and translations.adminAbout.creditsHint else "Supports basic HTML: <a>, <i>, <span>" }}
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Save Button -->
         <div class="card bg-base-200 shadow-xl">
             <div class="card-body">

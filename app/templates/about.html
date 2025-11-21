@@ -7,7 +7,7 @@
     {% if showGithub %}
     <a
         class="text-rose-500 text-4xl font-bold select-none"
-        href="https://dogukanurker.com/flaskblog"
+        href="{{ authorUrl if authorUrl else 'https://dogukanurker.com/flaskblog' }}"
         target="_blank"
     >
         {{ customTitle if customTitle else appName }}
@@ -34,7 +34,7 @@
 
     {% if showGithub %}
     <div class="mt-4 mx-auto">
-        <a href="https://github.com/DogukanUrker/flaskBlog" target="_blank">
+        <a href="{{ githubUrl if githubUrl else 'https://github.com/DogukanUrker/flaskBlog' }}" target="_blank">
             {{ translations.about.moreInfo }}
             <p class="text-rose-500 inline-block">{{ appName }}</p>
             <p class="inline-block"><i class="ti ti-brand-github"></i></p>
@@ -43,13 +43,17 @@
 
     <div class="mx-auto text-xs absolute bottom-2 left-0 right-0 select-none">
         <a
-            href="https://github.com/DogukanUrker/flaskBlog"
+            href="{{ githubUrl if githubUrl else 'https://github.com/DogukanUrker/flaskBlog' }}"
             target="_blank"
             class="text-rose-500 font-medium block"
         >
             {{ translations.about.sourceRepo }}</a
         >
-        {{ translations.about.credits | safe }}
+        {% if customCredits %}
+            {{ customCredits | safe }}
+        {% else %}
+            {{ translations.about.credits | safe }}
+        {% endif %}
     </div>
     {% endif %}
 </div>
