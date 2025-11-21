@@ -18,6 +18,7 @@ A modern, **security-hardened** blog application built with Flask, featuring a c
 ## ✨ Features
 
 - **User System** - Registration, login, profiles with custom avatars
+- **Two-Factor Authentication (2FA)** - TOTP-based 2FA with backup codes for enhanced account security
 - **Rich Editor** - [Milkdown](https://milkdown.dev/) editor for creating beautiful posts
 - **Admin Panel** - Full control over users, posts, comments, and security audit logs
 - **Security Audit Log** - Track admin logins, user authentication, admin actions, and page access
@@ -33,6 +34,9 @@ A modern, **security-hardened** blog application built with Flask, featuring a c
 FlaskBlog includes comprehensive security protections:
 
 - **Authentication & Authorization**
+  - Two-Factor Authentication (2FA) with TOTP
+  - Backup codes for 2FA recovery
+  - Email-based 2FA reset (admin-initiated, user-confirmed)
   - Rate limiting (5 attempts, 15-minute lockout)
   - Account lockout mechanism
   - Secure session management (HttpOnly, Secure, SameSite cookies)
@@ -218,6 +222,7 @@ The admin panel (accessible only to admin users) provides comprehensive manageme
 - View all registered users
 - Delete user accounts
 - Change user roles (admin ↔ user)
+- Reset user 2FA via email confirmation
 - View user statistics (points, join date, verification status)
 
 **Post Management** (`/admin/posts`)
@@ -243,6 +248,14 @@ The admin panel (accessible only to admin users) provides comprehensive manageme
   - Request path, HTTP method, status code
   - Timestamp (date and time)
 - Pagination support for large log files
+
+**About Page Settings** (`/admin/about`) ✨ *New*
+- Customize the about page content
+- Set custom title and markdown content
+- Toggle version and GitHub link visibility
+- Customize GitHub repository URL
+- Customize author website URL
+- Set custom credits text
 
 To access the admin panel, login with admin credentials and navigate to `/admin`.
 
@@ -286,6 +299,10 @@ curl -X POST http://localhost:1283/createpost \
 - [ ] Security audit log records admin login events
 - [ ] Security audit log records admin actions (delete user, change role)
 - [ ] Security audit log is accessible only to admins
+- [ ] 2FA setup works with authenticator apps
+- [ ] 2FA login flow requires TOTP verification
+- [ ] 2FA backup codes work for recovery
+- [ ] Admin 2FA reset sends email to user for confirmation
 
 ## 🔧 Troubleshooting
 
