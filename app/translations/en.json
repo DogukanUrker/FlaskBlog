@@ -465,6 +465,14 @@
       "alreadyEnabled": "Two-factor authentication is already enabled.",
       "loginRequired": "You need to login to set up two-factor authentication."
     },
+    "disable2fa": {
+      "loginRequired": "You need to login to disable two-factor authentication.",
+      "passwordRequired": "Password is required to disable two-factor authentication.",
+      "userNotFound": "User not found.",
+      "incorrectPassword": "Incorrect password. Please try again.",
+      "notEnabled": "Two-factor authentication is not enabled.",
+      "disabled": "Two-factor authentication has been disabled successfully."
+    },
     "adminPanelUsers": {
       "reset2faEmailSent": "2FA reset email has been sent to the user.",
       "reset2faEmailFailed": "Failed to send 2FA reset email. Please check SMTP settings.",
