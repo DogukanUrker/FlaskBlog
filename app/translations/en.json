@@ -22,7 +22,34 @@
     "users": "Users",
     "posts": "Posts",
     "comments": "Comments",
-    "securityAudit": "Security Audit"
+    "securityAudit": "Security Audit",
+    "siteSettings": "Site Settings",
+    "aboutPage": "About Page"
+  },
+  "adminAbout": {
+    "title": "About Page Settings",
+    "backToAdmin": "Back to Admin Panel",
+    "previewInfo": "Preview your changes on the",
+    "aboutPage": "About Page",
+    "customTitle": "Custom Title",
+    "titleLabel": "Page Title",
+    "titlePlaceholder": "Leave empty to use app name",
+    "titleHint": "Default:",
+    "customContent": "Custom Description",
+    "contentLabel": "Page Description",
+    "contentPlaceholder": "Enter custom description (supports Markdown). Leave empty to use default.",
+    "markdownSupport": "Markdown formatting is supported",
+    "displayOptions": "Display Options",
+    "showVersion": "Show Version Number",
+    "showVersionHint": "Display the application version",
+    "showGithub": "Show GitHub Links",
+    "showGithubHint": "Display links to the source repository and credits",
+    "preview": "Preview",
+    "save": "Save Changes",
+    "tips": "Tips",
+    "tip1": "Leave fields empty to use default values from translations",
+    "tip2": "Custom content supports basic Markdown: **bold**, *italic*, [links](url)",
+    "tip3": "Changes take effect immediately after saving"
   },
   "adminSiteSettings": {
     "smtpTitle": "SMTP Configuration",
@@ -303,6 +330,10 @@
       "smtpTestAuthError": "Authentication failed. Please check your email and password.",
       "smtpTestNoEmail": "Please enter a recipient email address.",
       "smtpTestNotConfigured": "SMTP is not configured. Please save your SMTP settings first."
+    },
+    "adminAbout": {
+      "saveSuccess": "About page settings saved successfully.",
+      "saveError": "Failed to save about page settings."
     },
     "changeUserName": {
       "same": "This is already your username.",

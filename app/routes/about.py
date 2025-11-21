@@ -2,9 +2,11 @@
 This module contains the about page blueprint.
 """
 
+import sqlite3
 from flask import Blueprint, render_template
 from settings import Settings
 from utils.log import Log
+from utils.markdown_renderer import render_markdown
 
 aboutBlueprint = Blueprint("about", __name__)
 
@@ -20,10 +22,41 @@ def about():
     :rtype: flask.Response
     """
 
+    # Fetch custom about page settings from database
+    about_settings = {}
+    try:
+        connection = sqlite3.connect(Settings.DB_USERS_ROOT)
+        connection.set_trace_callback(Log.database)
+        cursor = connection.cursor()
+
+        for key in ["about_title", "about_content", "about_show_version", "about_show_github"]:
+            cursor.execute(
+                "SELECT setting_value FROM site_settings WHERE setting_key = ?",
+                (key,)
+            )
+            result = cursor.fetchone()
+            if result:
+                about_settings[key] = result[0]
+
+        connection.close()
+    except Exception as e:
+        Log.error(f"Error fetching about page settings: {e}")
+
+    # Process custom content with markdown if provided
+    custom_content = about_settings.get("about_content", "")
+    if custom_content:
+        custom_content = render_markdown(custom_content)
+
     Log.info(
         f"Rendering about.html: params: appName={Settings.APP_NAME} and appVersion={Settings.APP_VERSION}"
     )
 
     return render_template(
-        "about.html", appName=Settings.APP_NAME, appVersion=Settings.APP_VERSION
+        "about.html",
+        appName=Settings.APP_NAME,
+        appVersion=Settings.APP_VERSION,
+        customTitle=about_settings.get("about_title", ""),
+        customContent=custom_content,
+        showVersion=about_settings.get("about_show_version", "True") == "True",
+        showGithub=about_settings.get("about_show_github", "True") == "True"
     )
