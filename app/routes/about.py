@@ -6,7 +6,7 @@ import sqlite3
 from flask import Blueprint, render_template
 from settings import Settings
 from utils.log import Log
-from utils.markdown_renderer import render_markdown
+from utils.markdown_renderer import SafeMarkdownRenderer
 
 aboutBlueprint = Blueprint("about", __name__)
 
@@ -45,7 +45,8 @@ def about():
     # Process custom content with markdown if provided
     custom_content = about_settings.get("about_content", "")
     if custom_content:
-        custom_content = render_markdown(custom_content)
+        renderer = SafeMarkdownRenderer()
+        custom_content = renderer.render(custom_content)
 
     Log.info(
         f"Rendering about.html: params: appName={Settings.APP_NAME} and appVersion={Settings.APP_VERSION}"
