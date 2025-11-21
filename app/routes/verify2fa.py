@@ -12,9 +12,11 @@ from flask import (
     session,
 )
 from settings import Settings
+from utils.addPoints import addPoints
 from utils.flashMessage import flashMessage
 from utils.log import Log
 from utils.redirectValidator import RedirectValidator
+from utils.securityAuditLogger import SecurityAuditLogger
 from utils.twoFactorAuth import TwoFactorAuth
 
 verify2faBlueprint = Blueprint("verify2fa", __name__)
@@ -105,6 +107,25 @@ def verify2fa(direct):
                 session["userName"] = userName
                 session["userRole"] = userRole
                 session.pop("pending_2fa_userName", None)
+
+                # Add login points
+                addPoints(1, userName)
+
+                # Log successful login to security audit
+                if userRole == "admin":
+                    SecurityAuditLogger.log_admin_login(
+                        userName=userName,
+                        ip_address=request.remote_addr,
+                        user_agent=request.headers.get('User-Agent', ''),
+                        success=True
+                    )
+                else:
+                    SecurityAuditLogger.log_user_login(
+                        userName=userName,
+                        ip_address=request.remote_addr,
+                        user_agent=request.headers.get('User-Agent', ''),
+                        success=True
+                    )
 
                 Log.success(f'User: "{userName}" logged in successfully with 2FA')
                 flashMessage(
