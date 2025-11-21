@@ -433,7 +433,9 @@
     "setup2fa": {
       "success": "Two-factor authentication has been enabled successfully.",
       "error": "Failed to enable two-factor authentication.",
-      "invalidCode": "Invalid verification code. Please try again."
+      "invalidCode": "Invalid verification code. Please try again.",
+      "alreadyEnabled": "Two-factor authentication is already enabled.",
+      "loginRequired": "You need to login to set up two-factor authentication."
     }
   },
   "roles": {
