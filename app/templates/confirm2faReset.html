@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>{{ translations.confirm2faReset.title if translations.confirm2faReset and translations.confirm2faReset.title else "Confirm 2FA Reset" }}</title>
+{% endblock head %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8 max-w-lg">
+    <div class="card bg-base-200 shadow-xl">
+        <div class="card-body text-center">
+            {% if not valid %}
+            <!-- Invalid or expired token -->
+            <div class="text-error mb-4">
+                <i class="ti ti-alert-circle text-6xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold text-error mb-4">
+                {{ translations.confirm2faReset.invalidToken if translations.confirm2faReset and translations.confirm2faReset.invalidToken else "Invalid or Expired Link" }}
+            </h1>
+            <p class="mb-6">
+                {{ error if error else (translations.confirm2faReset.tokenError if translations.confirm2faReset and translations.confirm2faReset.tokenError else "This reset link is invalid or has expired. Please contact an administrator to request a new 2FA reset.") }}
+            </p>
+            <a href="/login/redirect=&" class="btn btn-primary">
+                <i class="ti ti-login mr-2"></i>
+                {{ translations.confirm2faReset.backToLogin if translations.confirm2faReset and translations.confirm2faReset.backToLogin else "Back to Login" }}
+            </a>
+
+            {% elif confirmed %}
+            <!-- 2FA reset confirmed successfully -->
+            <div class="text-success mb-4">
+                <i class="ti ti-circle-check text-6xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold text-success mb-4">
+                {{ translations.confirm2faReset.resetSuccess if translations.confirm2faReset and translations.confirm2faReset.resetSuccess else "2FA Reset Successfully" }}
+            </h1>
+            <p class="mb-6">
+                {{ translations.confirm2faReset.resetSuccessMessage if translations.confirm2faReset and translations.confirm2faReset.resetSuccessMessage else "Two-factor authentication has been disabled for your account. You can now log in with just your username and password." }}
+            </p>
+            <p class="text-sm opacity-75 mb-6">
+                {{ translations.confirm2faReset.reEnableHint if translations.confirm2faReset and translations.confirm2faReset.reEnableHint else "You can re-enable 2FA from your account settings after logging in." }}
+            </p>
+            <a href="/login/redirect=&" class="btn btn-primary">
+                <i class="ti ti-login mr-2"></i>
+                {{ translations.confirm2faReset.loginNow if translations.confirm2faReset and translations.confirm2faReset.loginNow else "Login Now" }}
+            </a>
+
+            {% elif cancelled %}
+            <!-- User cancelled the reset -->
+            <div class="text-warning mb-4">
+                <i class="ti ti-x text-6xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold mb-4">
+                {{ translations.confirm2faReset.resetCancelled if translations.confirm2faReset and translations.confirm2faReset.resetCancelled else "Reset Cancelled" }}
+            </h1>
+            <p class="mb-6">
+                {{ translations.confirm2faReset.resetCancelledMessage if translations.confirm2faReset and translations.confirm2faReset.resetCancelledMessage else "The 2FA reset has been cancelled. Your two-factor authentication remains enabled." }}
+            </p>
+            <p class="text-sm opacity-75 mb-6">
+                {{ translations.confirm2faReset.contactAdmin if translations.confirm2faReset and translations.confirm2faReset.contactAdmin else "If you still need help accessing your account, please contact an administrator." }}
+            </p>
+            <a href="/login/redirect=&" class="btn btn-primary">
+                <i class="ti ti-login mr-2"></i>
+                {{ translations.confirm2faReset.backToLogin if translations.confirm2faReset and translations.confirm2faReset.backToLogin else "Back to Login" }}
+            </a>
+
+            {% else %}
+            <!-- Confirmation prompt -->
+            <div class="text-warning mb-4">
+                <i class="ti ti-auth-2fa text-6xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold mb-4">
+                {{ translations.confirm2faReset.confirmTitle if translations.confirm2faReset and translations.confirm2faReset.confirmTitle else "Confirm 2FA Reset" }}
+            </h1>
+            <p class="mb-4">
+                {{ translations.confirm2faReset.confirmMessage if translations.confirm2faReset and translations.confirm2faReset.confirmMessage else "An administrator has requested to reset two-factor authentication for your account." }}
+            </p>
+            <div class="alert alert-warning mb-6">
+                <i class="ti ti-alert-triangle"></i>
+                <span>
+                    {{ translations.confirm2faReset.warningMessage if translations.confirm2faReset and translations.confirm2faReset.warningMessage else "If you did not request this, click 'Cancel' and contact an administrator immediately." }}
+                </span>
+            </div>
+
+            <div class="flex gap-4 justify-center">
+                <form method="POST" class="inline">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <button type="submit" name="cancelReset" class="btn btn-ghost">
+                        <i class="ti ti-x mr-2"></i>
+                        {{ translations.confirm2faReset.cancel if translations.confirm2faReset and translations.confirm2faReset.cancel else "Cancel" }}
+                    </button>
+                </form>
+                <form method="POST" class="inline">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <button type="submit" name="confirmReset" class="btn btn-primary">
+                        <i class="ti ti-check mr-2"></i>
+                        {{ translations.confirm2faReset.confirm if translations.confirm2faReset and translations.confirm2faReset.confirm else "Confirm Reset" }}
+                    </button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

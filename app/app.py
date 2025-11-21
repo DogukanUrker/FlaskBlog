@@ -66,6 +66,9 @@ from routes.disable2fa import (
 from routes.verify2fa import (
     verify2faBlueprint,
 )
+from routes.confirm2faReset import (
+    confirm2faResetBlueprint,
+)
 from routes.dashboard import (
     dashboardBlueprint,
 )
@@ -367,6 +370,7 @@ app.register_blueprint(returnPostAnalyticsDataBlueprint)
 app.register_blueprint(setup2faBlueprint)
 app.register_blueprint(disable2faBlueprint)
 app.register_blueprint(verify2faBlueprint)
+app.register_blueprint(confirm2faResetBlueprint)
 app.register_blueprint(markdownPreviewBlueprint)
 
 

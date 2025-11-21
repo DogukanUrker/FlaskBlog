@@ -7,6 +7,24 @@
     "sourceRepo": "source code",
     "credits": "Made with <i class='ti ti-heart-filled text-rose-500'></i> by <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
   },
+  "confirm2faReset": {
+    "title": "Confirm 2FA Reset",
+    "invalidToken": "Invalid or Expired Link",
+    "tokenError": "This reset link is invalid or has expired. Please contact an administrator to request a new 2FA reset.",
+    "backToLogin": "Back to Login",
+    "resetSuccess": "2FA Reset Successfully",
+    "resetSuccessMessage": "Two-factor authentication has been disabled for your account. You can now log in with just your username and password.",
+    "reEnableHint": "You can re-enable 2FA from your account settings after logging in.",
+    "loginNow": "Login Now",
+    "resetCancelled": "Reset Cancelled",
+    "resetCancelledMessage": "The 2FA reset has been cancelled. Your two-factor authentication remains enabled.",
+    "contactAdmin": "If you still need help accessing your account, please contact an administrator.",
+    "confirmTitle": "Confirm 2FA Reset",
+    "confirmMessage": "An administrator has requested to reset two-factor authentication for your account.",
+    "warningMessage": "If you did not request this, click 'Cancel' and contact an administrator immediately.",
+    "cancel": "Cancel",
+    "confirm": "Confirm Reset"
+  },
   "accountSettings": {
     "title": "Account Settings",
     "username": "change username",
@@ -446,6 +464,11 @@
       "invalidCode": "Invalid verification code. Please try again.",
       "alreadyEnabled": "Two-factor authentication is already enabled.",
       "loginRequired": "You need to login to set up two-factor authentication."
+    },
+    "adminPanelUsers": {
+      "reset2faEmailSent": "2FA reset email has been sent to the user.",
+      "reset2faEmailFailed": "Failed to send 2FA reset email. Please check SMTP settings.",
+      "userNotFound": "User not found or has no email address."
     }
   },
   "roles": {
