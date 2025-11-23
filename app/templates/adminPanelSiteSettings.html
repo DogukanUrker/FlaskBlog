@@ -25,7 +25,7 @@
     </h2>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <!-- Current Logo Display -->
-        <div class="card bg-base-200 shadow-xl">
+        <div class="card bg-base-100 shadow-xl h-full">
             <div class="card-body">
                 <h3 class="card-title text-lg mb-4">
                     <i class="ti ti-eye mr-2"></i>
@@ -50,7 +50,7 @@
         </div>
 
         <!-- Upload New Logo Form -->
-        <div class="card bg-base-200 shadow-xl">
+        <div class="card bg-base-200 shadow-xl h-full">
             <div class="card-body">
                 <h3 class="card-title text-lg mb-4">
                     <i class="ti ti-upload mr-2"></i>
@@ -95,7 +95,7 @@
     </h2>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <!-- Current Default Profile Picture Display -->
-        <div class="card bg-base-200 shadow-xl">
+        <div class="card bg-base-100 shadow-xl h-full">
             <div class="card-body">
                 <h3 class="card-title text-lg mb-4">
                     <i class="ti ti-eye mr-2"></i>
@@ -127,7 +127,7 @@
         </div>
 
         <!-- Upload Default Profile Picture Form -->
-        <div class="card bg-base-200 shadow-xl">
+        <div class="card bg-base-200 shadow-xl h-full">
             <div class="card-body">
                 <h3 class="card-title text-lg mb-4">
                     <i class="ti ti-upload mr-2"></i>
@@ -171,8 +171,8 @@
         Default Profile Banner
     </h2>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <!-- Current Default Banner Display -->
-        <div class="card bg-base-200 shadow-xl">
+        <!-- Current Default Banner Display - Full width for better preview -->
+        <div class="card bg-base-100 shadow-xl lg:col-span-2">
             <div class="card-body">
                 <h3 class="card-title text-lg mb-4">
                     <i class="ti ti-eye mr-2"></i>
@@ -180,11 +180,11 @@
                 </h3>
 
                 {% if currentDefaultBanner %}
-                <div class="flex justify-center items-center p-6 bg-base-100 rounded-lg">
+                <div class="flex justify-center items-center p-6 bg-base-200 rounded-lg">
                     <img
                         src="{{ currentDefaultBanner }}"
                         alt="Current Default Banner"
-                        class="w-full object-contain rounded shadow-lg"
+                        class="w-full max-h-48 object-contain rounded shadow-lg"
                     />
                 </div>
 
@@ -203,8 +203,8 @@
             </div>
         </div>
 
-        <!-- Upload Default Banner Form -->
-        <div class="card bg-base-200 shadow-xl">
+        <!-- Upload Default Banner Form - Full width -->
+        <div class="card bg-base-200 shadow-xl lg:col-span-2">
             <div class="card-body">
                 <h3 class="card-title text-lg mb-4">
                     <i class="ti ti-upload mr-2"></i>
@@ -249,7 +249,7 @@
     </h2>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <!-- SMTP Settings Form -->
-        <div class="card bg-base-200 shadow-xl">
+        <div class="card bg-base-100 shadow-xl h-full">
             <div class="card-body">
                 <h3 class="card-title text-lg mb-4">
                     <i class="ti ti-settings mr-2"></i>
@@ -334,7 +334,7 @@
         </div>
 
         <!-- Test SMTP Section -->
-        <div class="card bg-base-200 shadow-xl">
+        <div class="card bg-base-200 shadow-xl h-full">
             <div class="card-body">
                 <h3 class="card-title text-lg mb-4">
                     <i class="ti ti-mail-check mr-2"></i>
