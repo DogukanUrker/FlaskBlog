@@ -5,7 +5,7 @@
 {% endblock head %}
 
 {% block body %}
-<div class="container mx-auto px-4 py-8 max-w-4xl">
+<div class="container mx-auto px-4 py-8 max-w-6xl">
     <!-- Page Header -->
     <div class="flex items-center justify-between mb-8">
         <h1 class="text-3xl font-bold text-rose-500">
@@ -18,437 +18,369 @@
         </a>
     </div>
 
-    <!-- Current Logo Display -->
-    <div class="card bg-base-200 shadow-xl mb-6">
-        <div class="card-body">
-            <h2 class="card-title text-xl mb-4">
-                <i class="ti ti-photo mr-2"></i>
-                Current Site Logo
-            </h2>
+    <!-- Site Logo Section -->
+    <h2 class="text-2xl font-bold mb-4">
+        <i class="ti ti-photo mr-2"></i>
+        Site Logo
+    </h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <!-- Current Logo Display -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title text-lg mb-4">
+                    <i class="ti ti-eye mr-2"></i>
+                    Current Logo
+                </h3>
 
-            <div class="flex justify-center items-center p-8 bg-base-100 rounded-lg">
-                <img
-                    src="{{ currentLogo }}"
-                    alt="Current Site Logo"
-                    class="max-w-xs max-h-48 object-contain rounded shadow-lg"
-                />
-            </div>
-
-            <div class="mt-4 text-center">
-                <p class="text-sm opacity-75">
-                    <i class="ti ti-info-circle mr-1"></i>
-                    Path: <code class="bg-base-300 px-2 py-1 rounded">{{ currentLogo }}</code>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Upload New Logo Form -->
-    <div class="card bg-base-200 shadow-xl">
-        <div class="card-body">
-            <h2 class="card-title text-xl mb-4">
-                <i class="ti ti-upload mr-2"></i>
-                Upload New Logo
-            </h2>
-
-            <form method="POST" enctype="multipart/form-data" class="space-y-6">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                <input type="hidden" name="upload_type" value="site_logo" />
-
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text font-semibold">Select Logo File</span>
-                    </label>
-                    <input
-                        type="file"
-                        name="site_logo"
-                        accept=".ico,.png,.jpg,.jpeg,.webp"
-                        class="file-input file-input-bordered file-input-primary w-full"
-                        required
+                <div class="flex justify-center items-center p-6 bg-base-100 rounded-lg">
+                    <img
+                        src="{{ currentLogo }}"
+                        alt="Current Site Logo"
+                        class="max-w-xs max-h-40 object-contain rounded shadow-lg"
                     />
-                    <label class="label">
-                        <span class="label-text-alt">
-                            <i class="ti ti-info-circle mr-1"></i>
-                            Allowed formats: .ico, .png, .jpg, .jpeg, .webp
-                        </span>
-                    </label>
-                    <label class="label">
-                        <span class="label-text-alt">
-                            <i class="ti ti-alert-triangle mr-1 text-warning"></i>
-                            Recommended size: 180x180 pixels for best results
-                        </span>
-                    </label>
                 </div>
 
-                <div class="alert alert-warning">
-                    <i class="ti ti-alert-triangle"></i>
-                    <span>Uploading a new logo will replace the current one. This action cannot be undone.</span>
+                <div class="mt-4 text-center">
+                    <p class="text-sm opacity-75">
+                        <i class="ti ti-info-circle mr-1"></i>
+                        Path: <code class="bg-base-300 px-2 py-1 rounded text-xs">{{ currentLogo }}</code>
+                    </p>
                 </div>
-
-                <div class="card-actions justify-end">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="ti ti-upload mr-2"></i>
-                        Upload Logo
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
 
-    <!-- Additional Info -->
-    <div class="alert alert-info mt-6">
-        <i class="ti ti-info-circle"></i>
-        <div>
-            <h3 class="font-bold">Logo Usage</h3>
-            <div class="text-sm mt-2 space-y-1">
-                <p>• Used as favicon in browser tabs</p>
-                <p>• Displayed in navigation bar</p>
-                <p>• Used for social media sharing (Open Graph & Twitter Cards)</p>
-                <p>• Changes will be reflected site-wide immediately</p>
+        <!-- Upload New Logo Form -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title text-lg mb-4">
+                    <i class="ti ti-upload mr-2"></i>
+                    Upload New Logo
+                </h3>
+
+                <form method="POST" enctype="multipart/form-data" class="space-y-4">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="upload_type" value="site_logo" />
+
+                    <div class="form-control">
+                        <input
+                            type="file"
+                            name="site_logo"
+                            accept=".ico,.png,.jpg,.jpeg,.webp"
+                            class="file-input file-input-bordered file-input-primary w-full"
+                            required
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">
+                                <i class="ti ti-info-circle mr-1"></i>
+                                .ico, .png, .jpg, .jpeg, .webp (180x180px)
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="card-actions justify-end">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="ti ti-upload mr-2"></i>
+                            Upload
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
     <!-- Default Profile Picture Section -->
-    <div class="divider my-8"></div>
+    <h2 class="text-2xl font-bold mb-4">
+        <i class="ti ti-user-circle mr-2"></i>
+        Default Profile Picture
+    </h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <!-- Current Default Profile Picture Display -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title text-lg mb-4">
+                    <i class="ti ti-eye mr-2"></i>
+                    Current Picture
+                </h3>
 
-    <!-- Current Default Profile Picture Display -->
-    <div class="card bg-base-200 shadow-xl mb-6">
-        <div class="card-body">
-            <h2 class="card-title text-xl mb-4">
-                <i class="ti ti-user-circle mr-2"></i>
-                Default Profile Picture
-            </h2>
-
-            {% if currentDefaultProfile %}
-            <div class="flex justify-center items-center p-8 bg-base-100 rounded-lg">
-                <img
-                    src="{{ currentDefaultProfile }}"
-                    alt="Current Default Profile Picture"
-                    class="max-w-xs max-h-48 object-contain rounded-full shadow-lg"
-                />
-            </div>
-
-            <div class="mt-4 text-center">
-                <p class="text-sm opacity-75">
-                    <i class="ti ti-info-circle mr-1"></i>
-                    Path: <code class="bg-base-300 px-2 py-1 rounded">{{ currentDefaultProfile }}</code>
-                </p>
-            </div>
-            {% else %}
-            <div class="alert alert-warning">
-                <i class="ti ti-alert-circle"></i>
-                <span>No default profile picture set. Using DiceBear avatars as fallback.</span>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-
-    <!-- Upload Default Profile Picture Form -->
-    <div class="card bg-base-200 shadow-xl mb-6">
-        <div class="card-body">
-            <h2 class="card-title text-xl mb-4">
-                <i class="ti ti-upload mr-2"></i>
-                Upload Default Profile Picture
-            </h2>
-
-            <form method="POST" enctype="multipart/form-data" class="space-y-6">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                <input type="hidden" name="upload_type" value="default_profile_picture" />
-
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text font-semibold">Select Profile Picture File</span>
-                    </label>
-                    <input
-                        type="file"
-                        name="default_profile_picture"
-                        accept="image/jpeg,image/jpg,image/png,image/webp"
-                        class="file-input file-input-bordered file-input-primary w-full"
-                        required
+                {% if currentDefaultProfile %}
+                <div class="flex justify-center items-center p-6 bg-base-100 rounded-lg">
+                    <img
+                        src="{{ currentDefaultProfile }}"
+                        alt="Current Default Profile Picture"
+                        class="max-w-xs max-h-40 object-contain rounded-full shadow-lg"
                     />
-                    <label class="label">
-                        <span class="label-text-alt">
-                            <i class="ti ti-info-circle mr-1"></i>
-                            Allowed formats: .jpg, .jpeg, .png, .webp
-                        </span>
-                    </label>
-                    <label class="label">
-                        <span class="label-text-alt">
-                            <i class="ti ti-alert-triangle mr-1 text-warning"></i>
-                            Recommended size: 200x200 pixels (square)
-                        </span>
-                    </label>
                 </div>
 
-                <div class="alert alert-info">
-                    <i class="ti ti-info-circle"></i>
-                    <div>
-                        <p class="font-semibold">This will be used for:</p>
-                        <div class="text-sm mt-1">
-                            <p>• New users who haven't uploaded a profile picture</p>
-                            <p>• Users who delete their custom profile picture</p>
-                        </div>
+                <div class="mt-4 text-center">
+                    <p class="text-sm opacity-75">
+                        <i class="ti ti-info-circle mr-1"></i>
+                        Path: <code class="bg-base-300 px-2 py-1 rounded text-xs">{{ currentDefaultProfile }}</code>
+                    </p>
+                </div>
+                {% else %}
+                <div class="alert alert-warning">
+                    <i class="ti ti-alert-circle"></i>
+                    <span class="text-sm">No default profile picture set. Using DiceBear avatars.</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Upload Default Profile Picture Form -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title text-lg mb-4">
+                    <i class="ti ti-upload mr-2"></i>
+                    Upload New Picture
+                </h3>
+
+                <form method="POST" enctype="multipart/form-data" class="space-y-4">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="upload_type" value="default_profile_picture" />
+
+                    <div class="form-control">
+                        <input
+                            type="file"
+                            name="default_profile_picture"
+                            accept="image/jpeg,image/jpg,image/png,image/webp"
+                            class="file-input file-input-bordered file-input-primary w-full"
+                            required
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">
+                                <i class="ti ti-info-circle mr-1"></i>
+                                .jpg, .jpeg, .png, .webp (200x200px square)
+                            </span>
+                        </label>
                     </div>
-                </div>
 
-                <div class="card-actions justify-end">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="ti ti-upload mr-2"></i>
-                        Upload Default Profile Picture
-                    </button>
-                </div>
-            </form>
+                    <div class="card-actions justify-end">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="ti ti-upload mr-2"></i>
+                            Upload
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- Default Banner Section -->
-    <div class="divider my-8"></div>
+    <h2 class="text-2xl font-bold mb-4">
+        <i class="ti ti-photo mr-2"></i>
+        Default Profile Banner
+    </h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <!-- Current Default Banner Display -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title text-lg mb-4">
+                    <i class="ti ti-eye mr-2"></i>
+                    Current Banner
+                </h3>
 
-    <!-- Current Default Banner Display -->
-    <div class="card bg-base-200 shadow-xl mb-6">
-        <div class="card-body">
-            <h2 class="card-title text-xl mb-4">
-                <i class="ti ti-photo mr-2"></i>
-                Default Profile Banner
-            </h2>
-
-            {% if currentDefaultBanner %}
-            <div class="flex justify-center items-center p-8 bg-base-100 rounded-lg">
-                <img
-                    src="{{ currentDefaultBanner }}"
-                    alt="Current Default Banner"
-                    class="w-full max-w-2xl object-contain rounded shadow-lg"
-                />
-            </div>
-
-            <div class="mt-4 text-center">
-                <p class="text-sm opacity-75">
-                    <i class="ti ti-info-circle mr-1"></i>
-                    Path: <code class="bg-base-300 px-2 py-1 rounded">{{ currentDefaultBanner }}</code>
-                </p>
-            </div>
-            {% else %}
-            <div class="alert alert-warning">
-                <i class="ti ti-alert-circle"></i>
-                <span>No default banner set. Users without banners will have no banner displayed.</span>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-
-    <!-- Upload Default Banner Form -->
-    <div class="card bg-base-200 shadow-xl mb-6">
-        <div class="card-body">
-            <h2 class="card-title text-xl mb-4">
-                <i class="ti ti-upload mr-2"></i>
-                Upload Default Profile Banner
-            </h2>
-
-            <form method="POST" enctype="multipart/form-data" class="space-y-6">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                <input type="hidden" name="upload_type" value="default_banner" />
-
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text font-semibold">Select Banner File</span>
-                    </label>
-                    <input
-                        type="file"
-                        name="default_banner"
-                        accept="image/jpeg,image/jpg,image/png,image/webp"
-                        class="file-input file-input-bordered file-input-primary w-full"
-                        required
+                {% if currentDefaultBanner %}
+                <div class="flex justify-center items-center p-6 bg-base-100 rounded-lg">
+                    <img
+                        src="{{ currentDefaultBanner }}"
+                        alt="Current Default Banner"
+                        class="w-full object-contain rounded shadow-lg"
                     />
-                    <label class="label">
-                        <span class="label-text-alt">
-                            <i class="ti ti-info-circle mr-1"></i>
-                            Allowed formats: .jpg, .jpeg, .png, .webp
-                        </span>
-                    </label>
-                    <label class="label">
-                        <span class="label-text-alt">
-                            <i class="ti ti-alert-triangle mr-1 text-warning"></i>
-                            Recommended size: 1500x500 pixels (3:1 ratio)
-                        </span>
-                    </label>
                 </div>
 
-                <div class="alert alert-info">
-                    <i class="ti ti-info-circle"></i>
-                    <div>
-                        <p class="font-semibold">This will be used for:</p>
-                        <div class="text-sm mt-1">
-                            <p>• Users who haven't uploaded a profile banner</p>
-                            <p>• Users who delete their custom banner</p>
-                        </div>
+                <div class="mt-4 text-center">
+                    <p class="text-sm opacity-75">
+                        <i class="ti ti-info-circle mr-1"></i>
+                        Path: <code class="bg-base-300 px-2 py-1 rounded text-xs">{{ currentDefaultBanner }}</code>
+                    </p>
+                </div>
+                {% else %}
+                <div class="alert alert-warning">
+                    <i class="ti ti-alert-circle"></i>
+                    <span class="text-sm">No default banner set.</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Upload Default Banner Form -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title text-lg mb-4">
+                    <i class="ti ti-upload mr-2"></i>
+                    Upload New Banner
+                </h3>
+
+                <form method="POST" enctype="multipart/form-data" class="space-y-4">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="upload_type" value="default_banner" />
+
+                    <div class="form-control">
+                        <input
+                            type="file"
+                            name="default_banner"
+                            accept="image/jpeg,image/jpg,image/png,image/webp"
+                            class="file-input file-input-bordered file-input-primary w-full"
+                            required
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">
+                                <i class="ti ti-info-circle mr-1"></i>
+                                .jpg, .jpeg, .png, .webp (1500x500px, 3:1 ratio)
+                            </span>
+                        </label>
                     </div>
-                </div>
 
-                <div class="card-actions justify-end">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="ti ti-upload mr-2"></i>
-                        Upload Default Banner
-                    </button>
-                </div>
-            </form>
+                    <div class="card-actions justify-end">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="ti ti-upload mr-2"></i>
+                            Upload
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- SMTP Configuration Section -->
-    <div class="divider my-8"></div>
+    <h2 class="text-2xl font-bold mb-4">
+        <i class="ti ti-mail-cog mr-2"></i>
+        SMTP Configuration
+    </h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <!-- SMTP Settings Form -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title text-lg mb-4">
+                    <i class="ti ti-settings mr-2"></i>
+                    Settings
+                </h3>
 
-    <div class="card bg-base-200 shadow-xl mb-6">
-        <div class="card-body">
-            <h2 class="card-title text-xl mb-4">
-                <i class="ti ti-mail-cog mr-2"></i>
-                {{ translations.adminSiteSettings.smtpTitle if translations.adminSiteSettings and translations.adminSiteSettings.smtpTitle else "SMTP Configuration" }}
-            </h2>
+                <form method="POST" class="space-y-4">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="upload_type" value="smtp_config" />
 
-            <p class="text-sm opacity-75 mb-4">
-                {{ translations.adminSiteSettings.smtpDescription if translations.adminSiteSettings and translations.adminSiteSettings.smtpDescription else "Configure email settings for password reset and verification emails." }}
-            </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text font-semibold text-sm">Server</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="smtp_server"
+                                value="{{ smtpServer }}"
+                                placeholder="smtp.gmail.com"
+                                class="input input-bordered input-sm w-full"
+                            />
+                        </div>
 
-            <form method="POST" class="space-y-4">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                <input type="hidden" name="upload_type" value="smtp_config" />
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text font-semibold text-sm">Port</span>
+                            </label>
+                            <input
+                                type="number"
+                                name="smtp_port"
+                                value="{{ smtpPort }}"
+                                placeholder="587"
+                                min="1"
+                                max="65535"
+                                class="input input-bordered input-sm w-full"
+                            />
+                        </div>
+                    </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text font-semibold">
-                                {{ translations.adminSiteSettings.smtpServer if translations.adminSiteSettings and translations.adminSiteSettings.smtpServer else "SMTP Server" }}
-                            </span>
+                            <span class="label-text font-semibold text-sm">Email</span>
                         </label>
                         <input
-                            type="text"
-                            name="smtp_server"
-                            value="{{ smtpServer }}"
-                            placeholder="smtp.gmail.com"
-                            class="input input-bordered w-full"
+                            type="email"
+                            name="smtp_mail"
+                            value="{{ smtpMail }}"
+                            placeholder="your-email@gmail.com"
+                            class="input input-bordered input-sm w-full"
                         />
                     </div>
 
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text font-semibold">
-                                {{ translations.adminSiteSettings.smtpPort if translations.adminSiteSettings and translations.adminSiteSettings.smtpPort else "SMTP Port" }}
-                            </span>
+                            <span class="label-text font-semibold text-sm">Password</span>
                         </label>
                         <input
-                            type="number"
-                            name="smtp_port"
-                            value="{{ smtpPort }}"
-                            placeholder="587"
-                            min="1"
-                            max="65535"
-                            class="input input-bordered w-full"
+                            type="password"
+                            name="smtp_password"
+                            placeholder="Enter new password"
+                            class="input input-bordered input-sm w-full"
+                        />
+                        {% if smtpPasswordSet %}
+                        <label class="label">
+                            <span class="label-text-alt text-success">
+                                <i class="ti ti-check mr-1"></i>
+                                Password is set
+                            </span>
+                        </label>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-actions justify-end">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="ti ti-device-floppy mr-2"></i>
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Test SMTP Section -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h3 class="card-title text-lg mb-4">
+                    <i class="ti ti-mail-check mr-2"></i>
+                    Test Configuration
+                </h3>
+
+                <form method="POST" class="space-y-4">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="upload_type" value="smtp_test" />
+
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold text-sm">Recipient Email</span>
+                        </label>
+                        <input
+                            type="email"
+                            name="test_email"
+                            placeholder="Enter email address"
+                            class="input input-bordered input-sm w-full"
+                            required
                         />
                     </div>
+
+                    <div class="alert alert-warning text-sm py-2">
+                        <i class="ti ti-alert-triangle"></i>
+                        <span>For Gmail, use an App Password instead of your regular password.</span>
+                    </div>
+
+                    <div class="card-actions justify-end">
+                        <button type="submit" class="btn btn-secondary btn-sm">
+                            <i class="ti ti-send mr-2"></i>
+                            Send Test
+                        </button>
+                    </div>
+                </form>
+
+                <div class="divider my-2"></div>
+
+                <div class="text-sm opacity-75">
+                    <p class="font-semibold mb-1">SMTP Usage:</p>
+                    <ul class="list-disc list-inside space-y-1 text-xs">
+                        <li>Password reset emails</li>
+                        <li>Account verification</li>
+                        <li>System notifications</li>
+                    </ul>
                 </div>
-
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text font-semibold">
-                            {{ translations.adminSiteSettings.smtpEmail if translations.adminSiteSettings and translations.adminSiteSettings.smtpEmail else "SMTP Email" }}
-                        </span>
-                    </label>
-                    <input
-                        type="email"
-                        name="smtp_mail"
-                        value="{{ smtpMail }}"
-                        placeholder="your-email@gmail.com"
-                        class="input input-bordered w-full"
-                    />
-                </div>
-
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text font-semibold">
-                            {{ translations.adminSiteSettings.smtpPassword if translations.adminSiteSettings and translations.adminSiteSettings.smtpPassword else "SMTP Password" }}
-                        </span>
-                    </label>
-                    <input
-                        type="password"
-                        name="smtp_password"
-                        placeholder="{{ translations.adminSiteSettings.smtpPasswordPlaceholder if translations.adminSiteSettings and translations.adminSiteSettings.smtpPasswordPlaceholder else 'Enter new password (leave blank to keep current)' }}"
-                        class="input input-bordered w-full"
-                    />
-                    {% if smtpPasswordSet %}
-                    <label class="label">
-                        <span class="label-text-alt text-success">
-                            <i class="ti ti-check mr-1"></i>
-                            {{ translations.adminSiteSettings.smtpPasswordSet if translations.adminSiteSettings and translations.adminSiteSettings.smtpPasswordSet else "Password is set" }}
-                        </span>
-                    </label>
-                    {% endif %}
-                </div>
-
-                <div class="alert alert-warning">
-                    <i class="ti ti-alert-triangle"></i>
-                    <span>{{ translations.adminSiteSettings.smtpWarning if translations.adminSiteSettings and translations.adminSiteSettings.smtpWarning else "For Gmail, use an App Password instead of your regular password. Enable 2FA and generate an app password from your Google Account settings." }}</span>
-                </div>
-
-                <div class="card-actions justify-end">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="ti ti-device-floppy mr-2"></i>
-                        {{ translations.adminSiteSettings.smtpSave if translations.adminSiteSettings and translations.adminSiteSettings.smtpSave else "Save SMTP Settings" }}
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Test SMTP Section -->
-    <div class="card bg-base-200 shadow-xl mb-6">
-        <div class="card-body">
-            <h2 class="card-title text-xl mb-4">
-                <i class="ti ti-mail-check mr-2"></i>
-                {{ translations.adminSiteSettings.smtpTestTitle if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestTitle else "Test SMTP Configuration" }}
-            </h2>
-
-            <p class="text-sm opacity-75 mb-4">
-                {{ translations.adminSiteSettings.smtpTestDescription if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestDescription else "Send a test email to verify your SMTP configuration is working correctly." }}
-            </p>
-
-            <form method="POST" class="space-y-4">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                <input type="hidden" name="upload_type" value="smtp_test" />
-
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text font-semibold">
-                            {{ translations.adminSiteSettings.smtpTestEmail if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestEmail else "Recipient Email" }}
-                        </span>
-                    </label>
-                    <input
-                        type="email"
-                        name="test_email"
-                        placeholder="{{ translations.adminSiteSettings.smtpTestEmailPlaceholder if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestEmailPlaceholder else 'Enter email address to receive test' }}"
-                        class="input input-bordered w-full"
-                        required
-                    />
-                </div>
-
-                <div class="card-actions justify-end">
-                    <button type="submit" class="btn btn-secondary">
-                        <i class="ti ti-send mr-2"></i>
-                        {{ translations.adminSiteSettings.smtpTestSend if translations.adminSiteSettings and translations.adminSiteSettings.smtpTestSend else "Send Test Email" }}
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- SMTP Info -->
-    <div class="alert alert-info mb-6">
-        <i class="ti ti-info-circle"></i>
-        <div>
-            <h3 class="font-bold">{{ translations.adminSiteSettings.smtpUsage if translations.adminSiteSettings and translations.adminSiteSettings.smtpUsage else "SMTP Usage" }}</h3>
-            <div class="text-sm mt-2 space-y-1">
-                <p>• {{ translations.adminSiteSettings.smtpUsage1 if translations.adminSiteSettings and translations.adminSiteSettings.smtpUsage1 else "Password reset emails" }}</p>
-                <p>• {{ translations.adminSiteSettings.smtpUsage2 if translations.adminSiteSettings and translations.adminSiteSettings.smtpUsage2 else "Account verification emails" }}</p>
-                <p>• {{ translations.adminSiteSettings.smtpUsage3 if translations.adminSiteSettings and translations.adminSiteSettings.smtpUsage3 else "System notifications" }}</p>
             </div>
         </div>
     </div>
