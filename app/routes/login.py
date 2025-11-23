@@ -146,8 +146,8 @@ def login(direct):
                         # Record successful login
                         RateLimiter.record_attempt(userName, success=True)
 
-                        # Check if 2FA is enabled (index 10 in user tuple)
-                        twofa_enabled = user[10] if len(user) > 10 else "False"
+                        # Check if 2FA is enabled (index 11 in user tuple)
+                        twofa_enabled = user[11] if len(user) > 11 else "False"
 
                         if twofa_enabled == "True":
                             # User has 2FA enabled - redirect to verification
