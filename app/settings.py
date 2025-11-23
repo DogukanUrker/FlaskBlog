@@ -68,7 +68,7 @@ class Settings:
     ANALYTICS = True
 
     # Internationalization
-    LANGUAGES = ["en", "tr", "es", "de", "zh", "fr", "uk", "ru", "pt", "ja", "pl", "hi"]
+    LANGUAGES = ["en", "zh"]
 
     # Theme Configuration
     THEMES = [
