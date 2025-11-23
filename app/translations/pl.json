@@ -372,6 +372,26 @@
       "smtpTestAuthError": "Uwierzytelnianie nie powiodło się. Sprawdź swój e-mail i hasło.",
       "smtpTestNoEmail": "Wprowadź adres e-mail odbiorcy.",
       "smtpTestNotConfigured": "SMTP nie jest skonfigurowany. Najpierw zapisz ustawienia SMTP."
+    },
+    "setup2fa": {
+      "success": "Uwierzytelnianie dwuskładnikowe zostało pomyślnie włączone.",
+      "error": "Nie udało się włączyć uwierzytelniania dwuskładnikowego.",
+      "invalidCode": "Nieprawidłowy kod weryfikacyjny. Spróbuj ponownie.",
+      "alreadyEnabled": "Uwierzytelnianie dwuskładnikowe jest już włączone.",
+      "loginRequired": "Musisz się zalogować, aby skonfigurować uwierzytelnianie dwuskładnikowe."
+    },
+    "disable2fa": {
+      "loginRequired": "Musisz się zalogować, aby wyłączyć uwierzytelnianie dwuskładnikowe.",
+      "passwordRequired": "Hasło jest wymagane do wyłączenia uwierzytelniania dwuskładnikowego.",
+      "userNotFound": "Użytkownik nie został znaleziony.",
+      "incorrectPassword": "Nieprawidłowe hasło. Spróbuj ponownie.",
+      "notEnabled": "Uwierzytelnianie dwuskładnikowe nie jest włączone.",
+      "disabled": "Uwierzytelnianie dwuskładnikowe zostało pomyślnie wyłączone."
+    },
+    "verify2fa": {
+      "tokenRequired": "Proszę wprowadzić kod weryfikacyjny.",
+      "success": "Uwierzytelnianie dwuskładnikowe zostało pomyślnie zweryfikowane.",
+      "invalidToken": "Nieprawidłowy kod weryfikacyjny. Spróbuj ponownie."
     }
   },
   "roles": {

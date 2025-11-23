@@ -372,6 +372,26 @@
       "smtpTestAuthError": "認証に失敗しました。メールアドレスとパスワードを確認してください。",
       "smtpTestNoEmail": "受信者のメールアドレスを入力してください。",
       "smtpTestNotConfigured": "SMTPが設定されていません。先にSMTP設定を保存してください。"
+    },
+    "setup2fa": {
+      "success": "二要素認証が正常に有効になりました。",
+      "error": "二要素認証の有効化に失敗しました。",
+      "invalidCode": "無効な確認コードです。もう一度お試しください。",
+      "alreadyEnabled": "二要素認証はすでに有効になっています。",
+      "loginRequired": "二要素認証を設定するにはログインが必要です。"
+    },
+    "disable2fa": {
+      "loginRequired": "二要素認証を無効にするにはログインが必要です。",
+      "passwordRequired": "二要素認証を無効にするにはパスワードが必要です。",
+      "userNotFound": "ユーザーが見つかりません。",
+      "incorrectPassword": "パスワードが正しくありません。もう一度お試しください。",
+      "notEnabled": "二要素認証は有効になっていません。",
+      "disabled": "二要素認証が正常に無効になりました。"
+    },
+    "verify2fa": {
+      "tokenRequired": "確認コードを入力してください。",
+      "success": "二要素認証が正常に確認されました。",
+      "invalidToken": "無効な確認コードです。もう一度お試しください。"
     }
   },
   "roles": {

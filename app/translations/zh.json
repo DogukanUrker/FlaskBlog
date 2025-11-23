@@ -371,6 +371,26 @@
       "smtpTestAuthError": "认证失败。请检查您的邮箱和密码。",
       "smtpTestNoEmail": "请输入收件人邮箱地址。",
       "smtpTestNotConfigured": "SMTP 未配置。请先保存您的 SMTP 设置。"
+    },
+    "setup2fa": {
+      "success": "两步验证已成功启用。",
+      "error": "启用两步验证失败。",
+      "invalidCode": "验证码无效。请重试。",
+      "alreadyEnabled": "两步验证已启用。",
+      "loginRequired": "您需要登录才能设置两步验证。"
+    },
+    "disable2fa": {
+      "loginRequired": "您需要登录才能禁用两步验证。",
+      "passwordRequired": "禁用两步验证需要密码。",
+      "userNotFound": "用户未找到。",
+      "incorrectPassword": "密码错误。请重试。",
+      "notEnabled": "两步验证未启用。",
+      "disabled": "两步验证已成功禁用。"
+    },
+    "verify2fa": {
+      "tokenRequired": "请输入您的验证码。",
+      "success": "两步验证成功。",
+      "invalidToken": "验证码无效。请重试。"
     }
   },
   "roles": {

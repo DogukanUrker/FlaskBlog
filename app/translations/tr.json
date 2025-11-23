@@ -372,6 +372,26 @@
       "smtpTestAuthError": "Kimlik doğrulama başarısız. Lütfen e-posta ve şifrenizi kontrol edin.",
       "smtpTestNoEmail": "Lütfen alıcı e-posta adresi girin.",
       "smtpTestNotConfigured": "SMTP yapılandırılmamış. Lütfen önce SMTP ayarlarınızı kaydedin."
+    },
+    "setup2fa": {
+      "success": "İki faktörlü doğrulama başarıyla etkinleştirildi.",
+      "error": "İki faktörlü doğrulama etkinleştirilemedi.",
+      "invalidCode": "Geçersiz doğrulama kodu. Lütfen tekrar deneyin.",
+      "alreadyEnabled": "İki faktörlü doğrulama zaten etkin.",
+      "loginRequired": "İki faktörlü doğrulamayı ayarlamak için giriş yapmalısınız."
+    },
+    "disable2fa": {
+      "loginRequired": "İki faktörlü doğrulamayı devre dışı bırakmak için giriş yapmalısınız.",
+      "passwordRequired": "İki faktörlü doğrulamayı devre dışı bırakmak için şifre gereklidir.",
+      "userNotFound": "Kullanıcı bulunamadı.",
+      "incorrectPassword": "Yanlış şifre. Lütfen tekrar deneyin.",
+      "notEnabled": "İki faktörlü doğrulama etkin değil.",
+      "disabled": "İki faktörlü doğrulama başarıyla devre dışı bırakıldı."
+    },
+    "verify2fa": {
+      "tokenRequired": "Lütfen doğrulama kodunuzu girin.",
+      "success": "İki faktörlü doğrulama başarıyla doğrulandı.",
+      "invalidToken": "Geçersiz doğrulama kodu. Lütfen tekrar deneyin."
     }
   },
   "roles": {

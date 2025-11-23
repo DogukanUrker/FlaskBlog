@@ -372,6 +372,26 @@
       "smtpTestAuthError": "Falha na autenticação. Por favor, verifique seu e-mail e senha.",
       "smtpTestNoEmail": "Por favor, digite um endereço de e-mail do destinatário.",
       "smtpTestNotConfigured": "SMTP não está configurado. Por favor, salve suas configurações SMTP primeiro."
+    },
+    "setup2fa": {
+      "success": "Autenticação de dois fatores ativada com sucesso.",
+      "error": "Falha ao ativar a autenticação de dois fatores.",
+      "invalidCode": "Código de verificação inválido. Por favor, tente novamente.",
+      "alreadyEnabled": "Autenticação de dois fatores já está ativada.",
+      "loginRequired": "Você precisa fazer login para configurar a autenticação de dois fatores."
+    },
+    "disable2fa": {
+      "loginRequired": "Você precisa fazer login para desativar a autenticação de dois fatores.",
+      "passwordRequired": "Senha é necessária para desativar a autenticação de dois fatores.",
+      "userNotFound": "Usuário não encontrado.",
+      "incorrectPassword": "Senha incorreta. Por favor, tente novamente.",
+      "notEnabled": "Autenticação de dois fatores não está ativada.",
+      "disabled": "Autenticação de dois fatores desativada com sucesso."
+    },
+    "verify2fa": {
+      "tokenRequired": "Por favor, insira seu código de verificação.",
+      "success": "Autenticação de dois fatores verificada com sucesso.",
+      "invalidToken": "Código de verificação inválido. Por favor, tente novamente."
     }
   },
   "roles": {

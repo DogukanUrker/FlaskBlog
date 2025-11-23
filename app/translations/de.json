@@ -372,6 +372,26 @@
       "smtpTestAuthError": "Authentifizierung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und Ihr Passwort.",
       "smtpTestNoEmail": "Bitte geben Sie eine Empfänger-E-Mail-Adresse ein.",
       "smtpTestNotConfigured": "SMTP ist nicht konfiguriert. Bitte speichern Sie zuerst Ihre SMTP-Einstellungen."
+    },
+    "setup2fa": {
+      "success": "Zwei-Faktor-Authentifizierung wurde erfolgreich aktiviert.",
+      "error": "Fehler beim Aktivieren der Zwei-Faktor-Authentifizierung.",
+      "invalidCode": "Ungültiger Verifizierungscode. Bitte versuchen Sie es erneut.",
+      "alreadyEnabled": "Zwei-Faktor-Authentifizierung ist bereits aktiviert.",
+      "loginRequired": "Sie müssen sich anmelden, um die Zwei-Faktor-Authentifizierung einzurichten."
+    },
+    "disable2fa": {
+      "loginRequired": "Sie müssen sich anmelden, um die Zwei-Faktor-Authentifizierung zu deaktivieren.",
+      "passwordRequired": "Passwort ist erforderlich, um die Zwei-Faktor-Authentifizierung zu deaktivieren.",
+      "userNotFound": "Benutzer nicht gefunden.",
+      "incorrectPassword": "Falsches Passwort. Bitte versuchen Sie es erneut.",
+      "notEnabled": "Zwei-Faktor-Authentifizierung ist nicht aktiviert.",
+      "disabled": "Zwei-Faktor-Authentifizierung wurde erfolgreich deaktiviert."
+    },
+    "verify2fa": {
+      "tokenRequired": "Bitte geben Sie Ihren Verifizierungscode ein.",
+      "success": "Zwei-Faktor-Authentifizierung erfolgreich verifiziert.",
+      "invalidToken": "Ungültiger Verifizierungscode. Bitte versuchen Sie es erneut."
     }
   },
   "roles": {
