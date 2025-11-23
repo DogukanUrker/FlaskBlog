@@ -388,7 +388,8 @@
       "password": "Wrong password",
       "notFound": "User not found",
       "invalid": "Invalid username or password.",
-      "mustChangePassword": "You must change your password before continuing."
+      "mustChangePassword": "You must change your password before continuing.",
+      "2faRequired": "Please enter your two-factor authentication code."
     },
     "forceChangePassword": {
       "success": "Password has been changed successfully. You can now access the site.",

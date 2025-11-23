@@ -292,7 +292,8 @@
       "password": "Niepoprawne hasło",
       "notFound": "Użytkownik nie został znaleziony",
       "invalid": "Nieprawidłowa nazwa użytkownika lub hasło.",
-      "mustChangePassword": "Musisz zmienić hasło przed kontynuowaniem."
+      "mustChangePassword": "Musisz zmienić hasło przed kontynuowaniem.",
+      "2faRequired": "Proszę wprowadzić kod uwierzytelniania dwuskładnikowego."
     },
     "forceChangePassword": {
       "success": "Hasło zostało pomyślnie zmienione. Możesz teraz uzyskać dostęp do strony.",

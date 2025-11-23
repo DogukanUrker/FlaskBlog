@@ -292,7 +292,8 @@
       "password": "Mot de passe incorrect",
       "notFound": "Utilisateur non trouvé",
       "invalid": "Nom d'utilisateur ou mot de passe invalide.",
-      "mustChangePassword": "Vous devez changer votre mot de passe avant de continuer."
+      "mustChangePassword": "Vous devez changer votre mot de passe avant de continuer.",
+      "2faRequired": "Veuillez entrer votre code d'authentification à deux facteurs."
     },
     "forceChangePassword": {
       "success": "Le mot de passe a été changé avec succès. Vous pouvez maintenant accéder au site.",

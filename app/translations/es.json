@@ -292,7 +292,8 @@
       "password": "Contraseña incorrecta",
       "notFound": "Usuario no encontrado",
       "invalid": "Nombre de usuario o contraseña inválidos.",
-      "mustChangePassword": "Debe cambiar su contraseña antes de continuar."
+      "mustChangePassword": "Debe cambiar su contraseña antes de continuar.",
+      "2faRequired": "Por favor, ingrese su código de autenticación de dos factores."
     },
     "forceChangePassword": {
       "success": "La contraseña se ha cambiado correctamente. Ahora puede acceder al sitio.",

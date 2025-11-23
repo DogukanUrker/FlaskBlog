@@ -292,7 +292,8 @@
       "password": "Yanlış şifre",
       "notFound": "Kullanıcı bulunamadı",
       "invalid": "Geçersiz kullanıcı adı veya şifre.",
-      "mustChangePassword": "Devam etmeden önce şifrenizi değiştirmeniz gerekmektedir."
+      "mustChangePassword": "Devam etmeden önce şifrenizi değiştirmeniz gerekmektedir.",
+      "2faRequired": "Lütfen iki faktörlü doğrulama kodunuzu girin."
     },
     "forceChangePassword": {
       "success": "Şifre başarıyla değiştirildi. Artık siteye erişebilirsiniz.",

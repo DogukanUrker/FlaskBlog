@@ -291,7 +291,8 @@
       "password": "密码错误",
       "notFound": "用户未找到",
       "invalid": "用户名或密码无效。",
-      "mustChangePassword": "您必须先更改密码才能继续。"
+      "mustChangePassword": "您必须先更改密码才能继续。",
+      "2faRequired": "请输入您的两步验证码。"
     },
     "forceChangePassword": {
       "success": "密码已成功更改。您现在可以访问网站。",

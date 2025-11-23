@@ -292,7 +292,8 @@
       "password": "パスワードが間違っています",
       "notFound": "ユーザーが見つかりません",
       "invalid": "ユーザー名またはパスワードが無効です。",
-      "mustChangePassword": "続行する前にパスワードを変更する必要があります。"
+      "mustChangePassword": "続行する前にパスワードを変更する必要があります。",
+      "2faRequired": "二要素認証コードを入力してください。"
     },
     "forceChangePassword": {
       "success": "パスワードが正常に変更されました。サイトにアクセスできるようになりました。",
