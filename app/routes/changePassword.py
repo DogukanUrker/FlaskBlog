@@ -138,4 +138,4 @@ def changePassword():
             language=session.get("language", "en"),
         )
 
-        return redirect("/login/redirect=changepassword")
+        return redirect("/login/redirect=&changepassword")

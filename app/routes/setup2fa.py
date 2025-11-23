@@ -39,7 +39,7 @@ def setup2fa():
             category="error",
             language=session.get("language", "en"),
         )
-        return redirect("/login/redirect=setup-2fa")
+        return redirect("/login/redirect=&setup-2fa")
 
     userName = session["userName"]
     Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")

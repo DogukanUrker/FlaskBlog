@@ -36,7 +36,7 @@ def disable2fa():
             category="error",
             language=session.get("language", "en"),
         )
-        return redirect("/login/redirect=accountsettings")
+        return redirect("/login/redirect=&accountsettings")
 
     userName = session["userName"]
     password = request.form.get("password", "")
