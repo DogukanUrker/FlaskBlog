@@ -48,7 +48,17 @@
             class="hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
         >
             <i class="ti ti-settings mr-1 text-2xl"></i>
-            Site Settings
+            {{ translations.adminPanel.siteSettings if translations.adminPanel and translations.adminPanel.siteSettings else "Site Settings" }}
+        </a>
+    </h1>
+
+    <h1 class="my-4">
+        <a
+            href="admin/about"
+            class="hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
+        >
+            <i class="ti ti-info-circle mr-1 text-2xl"></i>
+            {{ translations.adminPanel.aboutPage if translations.adminPanel and translations.adminPanel.aboutPage else "About Page" }}
         </a>
     </h1>
 </div>

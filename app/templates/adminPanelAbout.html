@@ -1,0 +1,260 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>{{ translations.adminAbout.title if translations.adminAbout and translations.adminAbout.title else "About Page Settings" }} - Admin Panel</title>
+{% endblock head %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Page Header -->
+    <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold text-rose-500">
+            <i class="ti ti-info-circle mr-2"></i>
+            {{ translations.adminAbout.title if translations.adminAbout and translations.adminAbout.title else "About Page Settings" }}
+        </h1>
+        <a href="/admin" class="btn btn-ghost">
+            <i class="ti ti-arrow-left mr-2"></i>
+            {{ translations.adminAbout.backToAdmin if translations.adminAbout and translations.adminAbout.backToAdmin else "Back to Admin Panel" }}
+        </a>
+    </div>
+
+    <!-- Preview Link -->
+    <div class="alert alert-info mb-6">
+        <i class="ti ti-eye"></i>
+        <div>
+            <span>{{ translations.adminAbout.previewInfo if translations.adminAbout and translations.adminAbout.previewInfo else "Preview your changes on the" }}</span>
+            <a href="/about" target="_blank" class="link link-primary font-semibold ml-1">
+                {{ translations.adminAbout.aboutPage if translations.adminAbout and translations.adminAbout.aboutPage else "About Page" }}
+                <i class="ti ti-external-link ml-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- About Page Content Form -->
+    <form method="POST" class="space-y-6">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+        <!-- Custom Title Section -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title text-xl mb-4">
+                    <i class="ti ti-heading mr-2"></i>
+                    {{ translations.adminAbout.customTitle if translations.adminAbout and translations.adminAbout.customTitle else "Custom Title" }}
+                </h2>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">
+                            {{ translations.adminAbout.titleLabel if translations.adminAbout and translations.adminAbout.titleLabel else "Page Title" }}
+                        </span>
+                    </label>
+                    <input
+                        type="text"
+                        name="about_title"
+                        value="{{ aboutTitle }}"
+                        placeholder="{{ translations.adminAbout.titlePlaceholder if translations.adminAbout and translations.adminAbout.titlePlaceholder else 'Leave empty to use app name' }}"
+                        class="input input-bordered w-full"
+                    />
+                    <label class="label">
+                        <span class="label-text-alt">
+                            <i class="ti ti-info-circle mr-1"></i>
+                            {{ translations.adminAbout.titleHint if translations.adminAbout and translations.adminAbout.titleHint else "Default:" }} {{ appName }}
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Content Section -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title text-xl mb-4">
+                    <i class="ti ti-file-text mr-2"></i>
+                    {{ translations.adminAbout.customContent if translations.adminAbout and translations.adminAbout.customContent else "Custom Description" }}
+                </h2>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold">
+                            {{ translations.adminAbout.contentLabel if translations.adminAbout and translations.adminAbout.contentLabel else "Page Description" }}
+                        </span>
+                    </label>
+                    <textarea
+                        name="about_content"
+                        rows="6"
+                        placeholder="{{ translations.adminAbout.contentPlaceholder if translations.adminAbout and translations.adminAbout.contentPlaceholder else 'Enter custom description (supports Markdown). Leave empty to use default.' }}"
+                        class="textarea textarea-bordered w-full"
+                    >{{ aboutContent }}</textarea>
+                    <label class="label">
+                        <span class="label-text-alt">
+                            <i class="ti ti-markdown mr-1"></i>
+                            {{ translations.adminAbout.markdownSupport if translations.adminAbout and translations.adminAbout.markdownSupport else "Markdown formatting is supported" }}
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display Options Section -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title text-xl mb-4">
+                    <i class="ti ti-adjustments mr-2"></i>
+                    {{ translations.adminAbout.displayOptions if translations.adminAbout and translations.adminAbout.displayOptions else "Display Options" }}
+                </h2>
+
+                <div class="space-y-4">
+                    <!-- Show Version Toggle -->
+                    <div class="form-control">
+                        <label class="label cursor-pointer justify-start gap-4">
+                            <input
+                                type="checkbox"
+                                name="about_show_version"
+                                class="checkbox checkbox-primary"
+                                {% if aboutShowVersion %}checked{% endif %}
+                            />
+                            <div>
+                                <span class="label-text font-semibold">
+                                    {{ translations.adminAbout.showVersion if translations.adminAbout and translations.adminAbout.showVersion else "Show Version Number" }}
+                                </span>
+                                <p class="text-sm opacity-75">
+                                    {{ translations.adminAbout.showVersionHint if translations.adminAbout and translations.adminAbout.showVersionHint else "Display the application version" }} ({{ appVersion }})
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Show GitHub Link Toggle -->
+                    <div class="form-control">
+                        <label class="label cursor-pointer justify-start gap-4">
+                            <input
+                                type="checkbox"
+                                name="about_show_github"
+                                class="checkbox checkbox-primary"
+                                {% if aboutShowGithub %}checked{% endif %}
+                            />
+                            <div>
+                                <span class="label-text font-semibold">
+                                    {{ translations.adminAbout.showGithub if translations.adminAbout and translations.adminAbout.showGithub else "Show GitHub Links" }}
+                                </span>
+                                <p class="text-sm opacity-75">
+                                    {{ translations.adminAbout.showGithubHint if translations.adminAbout and translations.adminAbout.showGithubHint else "Display links to the source repository and credits" }}
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub Links Customization -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title text-xl mb-4">
+                    <i class="ti ti-brand-github mr-2"></i>
+                    {{ translations.adminAbout.githubLinks if translations.adminAbout and translations.adminAbout.githubLinks else "GitHub Links" }}
+                </h2>
+
+                <div class="space-y-4">
+                    <!-- GitHub Repository URL -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">
+                                {{ translations.adminAbout.githubUrlLabel if translations.adminAbout and translations.adminAbout.githubUrlLabel else "GitHub Repository URL" }}
+                            </span>
+                        </label>
+                        <input
+                            type="url"
+                            name="about_github_url"
+                            value="{{ aboutGithubUrl }}"
+                            placeholder="https://github.com/DogukanUrker/flaskBlog"
+                            class="input input-bordered w-full"
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">
+                                <i class="ti ti-info-circle mr-1"></i>
+                                {{ translations.adminAbout.githubUrlHint if translations.adminAbout and translations.adminAbout.githubUrlHint else "Leave empty for default repository" }}
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Author URL -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">
+                                {{ translations.adminAbout.authorUrlLabel if translations.adminAbout and translations.adminAbout.authorUrlLabel else "Author Website URL" }}
+                            </span>
+                        </label>
+                        <input
+                            type="url"
+                            name="about_author_url"
+                            value="{{ aboutAuthorUrl }}"
+                            placeholder="https://dogukanurker.com"
+                            class="input input-bordered w-full"
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">
+                                <i class="ti ti-info-circle mr-1"></i>
+                                {{ translations.adminAbout.authorUrlHint if translations.adminAbout and translations.adminAbout.authorUrlHint else "Leave empty for default author link" }}
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Custom Credits -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">
+                                {{ translations.adminAbout.creditsLabel if translations.adminAbout and translations.adminAbout.creditsLabel else "Credits Text" }}
+                            </span>
+                        </label>
+                        <input
+                            type="text"
+                            name="about_credits"
+                            value="{{ aboutCredits }}"
+                            placeholder="{{ translations.adminAbout.creditsPlaceholder if translations.adminAbout and translations.adminAbout.creditsPlaceholder else 'Made with love by Your Name' }}"
+                            class="input input-bordered w-full"
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">
+                                <i class="ti ti-info-circle mr-1"></i>
+                                {{ translations.adminAbout.creditsHint if translations.adminAbout and translations.adminAbout.creditsHint else "Supports basic HTML: <a>, <i>, <span>" }}
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+                <div class="card-actions justify-end">
+                    <a href="/about" target="_blank" class="btn btn-ghost">
+                        <i class="ti ti-eye mr-2"></i>
+                        {{ translations.adminAbout.preview if translations.adminAbout and translations.adminAbout.preview else "Preview" }}
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-device-floppy mr-2"></i>
+                        {{ translations.adminAbout.save if translations.adminAbout and translations.adminAbout.save else "Save Changes" }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Help Info -->
+    <div class="alert alert-warning mt-6">
+        <i class="ti ti-bulb"></i>
+        <div>
+            <h3 class="font-bold">{{ translations.adminAbout.tips if translations.adminAbout and translations.adminAbout.tips else "Tips" }}</h3>
+            <div class="text-sm mt-2 space-y-1">
+                <p>{{ translations.adminAbout.tip1 if translations.adminAbout and translations.adminAbout.tip1 else "Leave fields empty to use default values from translations" }}</p>
+                <p>{{ translations.adminAbout.tip2 if translations.adminAbout and translations.adminAbout.tip2 else "Custom content supports basic Markdown: **bold**, *italic*, [links](url)" }}</p>
+                <p>{{ translations.adminAbout.tip3 if translations.adminAbout and translations.adminAbout.tip3 else "Changes take effect immediately after saving" }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'components/flash.html' %}
+{% endblock body %}

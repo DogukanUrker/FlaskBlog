@@ -100,6 +100,28 @@
                 </button>
             </form>
 
+            {% if user[10] == "True" %}
+            <form method="post">
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}"
+                />
+                <input type="hidden" name="userName" value="{{ user[1] }}" />
+                <button
+                    type="submit"
+                    name="reset2faButton"
+                    class="flex items-center hover:text-rose-500 duration-150 font-medium select-none"
+                    title="{{ translations.adminPanelUsers.reset2faTitle if translations.adminPanelUsers and translations.adminPanelUsers.reset2faTitle else 'Reset 2FA for this user' }}"
+                >
+                    <i class="ti ti-auth-2fa mr-1 text-xl"></i>
+                    <p class="hidden md:block">
+                        {{ translations.adminPanelUsers.reset2fa if translations.adminPanelUsers and translations.adminPanelUsers.reset2fa else "Reset 2FA" }}
+                    </p>
+                </button>
+            </form>
+            {% endif %}
+
             <form method="post">
                 <input
                     type="hidden"

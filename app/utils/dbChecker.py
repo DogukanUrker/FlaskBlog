@@ -79,6 +79,7 @@ def usersTable():
             "points"    integer,
             "timeStamp" integer,
             "isVerified"    text,
+            "must_change_password" text default 'False',
             primary key("userID" autoincrement)
         );"""
 

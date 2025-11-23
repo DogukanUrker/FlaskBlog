@@ -7,6 +7,24 @@
     "sourceRepo": "source code",
     "credits": "Made with <i class='ti ti-heart-filled text-rose-500'></i> by <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
   },
+  "confirm2faReset": {
+    "title": "Confirm 2FA Reset",
+    "invalidToken": "Invalid or Expired Link",
+    "tokenError": "This reset link is invalid or has expired. Please contact an administrator to request a new 2FA reset.",
+    "backToLogin": "Back to Login",
+    "resetSuccess": "2FA Reset Successfully",
+    "resetSuccessMessage": "Two-factor authentication has been disabled for your account. You can now log in with just your username and password.",
+    "reEnableHint": "You can re-enable 2FA from your account settings after logging in.",
+    "loginNow": "Login Now",
+    "resetCancelled": "Reset Cancelled",
+    "resetCancelledMessage": "The 2FA reset has been cancelled. Your two-factor authentication remains enabled.",
+    "contactAdmin": "If you still need help accessing your account, please contact an administrator.",
+    "confirmTitle": "Confirm 2FA Reset",
+    "confirmMessage": "An administrator has requested to reset two-factor authentication for your account.",
+    "warningMessage": "If you did not request this, click 'Cancel' and contact an administrator immediately.",
+    "cancel": "Cancel",
+    "confirm": "Confirm Reset"
+  },
   "accountSettings": {
     "title": "Account Settings",
     "username": "change username",
@@ -22,7 +40,42 @@
     "users": "Users",
     "posts": "Posts",
     "comments": "Comments",
-    "securityAudit": "Security Audit"
+    "securityAudit": "Security Audit",
+    "siteSettings": "Site Settings",
+    "aboutPage": "About Page"
+  },
+  "adminAbout": {
+    "title": "About Page Settings",
+    "backToAdmin": "Back to Admin Panel",
+    "previewInfo": "Preview your changes on the",
+    "aboutPage": "About Page",
+    "customTitle": "Custom Title",
+    "titleLabel": "Page Title",
+    "titlePlaceholder": "Leave empty to use app name",
+    "titleHint": "Default:",
+    "customContent": "Custom Description",
+    "contentLabel": "Page Description",
+    "contentPlaceholder": "Enter custom description (supports Markdown). Leave empty to use default.",
+    "markdownSupport": "Markdown formatting is supported",
+    "displayOptions": "Display Options",
+    "showVersion": "Show Version Number",
+    "showVersionHint": "Display the application version",
+    "showGithub": "Show GitHub Links",
+    "showGithubHint": "Display links to the source repository and credits",
+    "githubLinks": "GitHub Links",
+    "githubUrlLabel": "GitHub Repository URL",
+    "githubUrlHint": "Leave empty for default repository",
+    "authorUrlLabel": "Author Website URL",
+    "authorUrlHint": "Leave empty for default author link",
+    "creditsLabel": "Credits Text",
+    "creditsPlaceholder": "Made with love by Your Name",
+    "creditsHint": "Supports basic HTML: <a>, <i>, <span>",
+    "preview": "Preview",
+    "save": "Save Changes",
+    "tips": "Tips",
+    "tip1": "Leave fields empty to use default values from translations",
+    "tip2": "Custom content supports basic Markdown: **bold**, *italic*, [links](url)",
+    "tip3": "Changes take effect immediately after saving"
   },
   "adminSiteSettings": {
     "smtpTitle": "SMTP Configuration",
@@ -64,7 +117,9 @@
     "points": "Points",
     "delete": "delete user",
     "setUser": "set user role to user",
-    "setAdmin": "set user role to admin"
+    "setAdmin": "set user role to admin",
+    "reset2fa": "Reset 2FA",
+    "reset2faTitle": "Reset two-factor authentication for this user"
   },
   "categories": {
     "all": "All",
@@ -304,6 +359,10 @@
       "smtpTestNoEmail": "Please enter a recipient email address.",
       "smtpTestNotConfigured": "SMTP is not configured. Please save your SMTP settings first."
     },
+    "adminAbout": {
+      "saveSuccess": "About page settings saved successfully.",
+      "saveError": "Failed to save about page settings."
+    },
     "changeUserName": {
       "same": "This is already your username.",
       "success": "Username has been changed.",
@@ -398,6 +457,26 @@
       "imageNotFound": "Image not found.",
       "unauthorized": "You are not authorized to delete this image.",
       "deleteSuccess": "Image deleted successfully."
+    },
+    "setup2fa": {
+      "success": "Two-factor authentication has been enabled successfully.",
+      "error": "Failed to enable two-factor authentication.",
+      "invalidCode": "Invalid verification code. Please try again.",
+      "alreadyEnabled": "Two-factor authentication is already enabled.",
+      "loginRequired": "You need to login to set up two-factor authentication."
+    },
+    "disable2fa": {
+      "loginRequired": "You need to login to disable two-factor authentication.",
+      "passwordRequired": "Password is required to disable two-factor authentication.",
+      "userNotFound": "User not found.",
+      "incorrectPassword": "Incorrect password. Please try again.",
+      "notEnabled": "Two-factor authentication is not enabled.",
+      "disabled": "Two-factor authentication has been disabled successfully."
+    },
+    "adminPanelUsers": {
+      "reset2faEmailSent": "2FA reset email has been sent to the user.",
+      "reset2faEmailFailed": "Failed to send 2FA reset email. Please check SMTP settings.",
+      "userNotFound": "User not found or has no email address."
     }
   },
   "roles": {
