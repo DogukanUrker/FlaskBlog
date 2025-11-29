@@ -248,6 +248,25 @@ def analyticsTable():
 
         Log.info(f'Table: "postsAnalytics" found in "{Settings.DB_ANALYTICS_ROOT}"')
 
+        # Check if userHistory table exists, if not create it
+        try:
+            cursor.execute("""select id from userHistory; """)
+            Log.info(f'Table: "userHistory" found in "{Settings.DB_ANALYTICS_ROOT}"')
+        except Exception:
+            Log.error(f'Table: "userHistory" not found in "{Settings.DB_ANALYTICS_ROOT}"')
+            userHistoryTable = """
+            create table if not exists userHistory(
+                "id"    integer not null,
+                "userName"  text,
+                "postID" integer,
+                "timeStamp" integer,
+                primary key("id" autoincrement),
+                unique(userName, postID)
+            );"""
+            cursor.execute(userHistoryTable)
+            connection.commit()
+            Log.success(f'Table: "userHistory" created in "{Settings.DB_ANALYTICS_ROOT}"')
+
         connection.close()
     except Exception:
         Log.error(
@@ -269,6 +288,18 @@ def analyticsTable():
 
         cursor.execute(analyticsTable)
 
+        # Create userHistory table
+        userHistoryTable = """
+        create table if not exists userHistory(
+            "id"    integer not null,
+            "userName"  text,
+            "postID" integer,
+            "timeStamp" integer,
+            primary key("id" autoincrement),
+            unique(userName, postID)
+        );"""
+        cursor.execute(userHistoryTable)
+
         connection.commit()
 
         connection.close()
@@ -276,3 +307,4 @@ def analyticsTable():
         Log.success(
             f'Table: "postsAnalytics" created in "{Settings.DB_ANALYTICS_ROOT}"'
         )
+        Log.success(f'Table: "userHistory" created in "{Settings.DB_ANALYTICS_ROOT}"')

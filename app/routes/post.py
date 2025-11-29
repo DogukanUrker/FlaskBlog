@@ -62,6 +62,27 @@ def post(urlID=None, slug=None):
         )
         connection.commit()
 
+        # Record user history if user is logged in
+        if 'userName' in session:
+            try:
+                Log.database(f"Connecting to '{Settings.DB_ANALYTICS_ROOT}' database for user history")
+                history_conn = sqlite3.connect(Settings.DB_ANALYTICS_ROOT)
+                history_conn.set_trace_callback(Log.database)
+                history_cursor = history_conn.cursor()
+                
+                # Use upsert to update timestamp if record exists, otherwise insert
+                history_cursor.execute(
+                    """
+                    INSERT OR REPLACE INTO userHistory (userName, postID, timeStamp)
+                    VALUES (?, ?, ?)
+                    """,
+                    (session['userName'], post[0], currentTimeStamp())
+                )
+                history_conn.commit()
+                history_conn.close()
+            except Exception as e:
+                Log.error(f"Error recording user history: {str(e)}")
+
         if request.method == "POST":
             if "postDeleteButton" in request.form:
                 Delete.post(post[0])

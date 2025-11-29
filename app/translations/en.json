@@ -29,6 +29,15 @@
     "creationDate": "Creation Date",
     "author": "Author"
   },
+  "history": {
+    "title": "Browsing History",
+    "viewedAt": "Viewed at:",
+    "postedAt": "Posted at:",
+    "editedAt": "Edited at:",
+    "noHistoryTitle": "No browsing history yet",
+    "noHistoryMessage": "You haven't viewed any posts recently. Start exploring to build your history.",
+    "explorePosts": "Explore Posts"
+  },
   "adminPanelUsers": {
     "title": "Admin Panel - Users",
     "id": "ID",

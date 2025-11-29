@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block head %}
+    <title>{{ appName }} - {{ translations.history.title }}</title>
+{% endblock head %}
+{% block body %}
+    <div class="w-11/12 lg:w-10/12 xl:w-9/12 2xl:w-8/12 mx-auto mt-10">
+        <h1 class="text-4xl font-bold mb-8">{{ translations.history.title }}</h1>
+        
+        {% if posts %}
+            <div class="space-y-6">
+                {% for post in posts %}
+                    <div class="card hover:shadow-md transition-shadow duration-300">
+                        <div class="card-body">
+                            <div class="flex justify-between items-start mb-2">
+                                <a href="/post/{{ post.urlID }}" class="text-2xl font-bold hover:text-rose-500 transition-colors duration-300">
+                                    {{ post.title }}
+                                </a>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge bg-rose-500 hover:bg-rose-600 cursor-pointer">
+                                    <a href="/category/{{ post.category }}">{{ post.category }}</a>
+                                </span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">
+                                    {{ translations.history.viewedAt }} <span class="timestamp">{{ post.viewTimeStamp }}</span>
+                                </span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center text-sm text-gray-600 dark:text-gray-300">
+                                <div>
+                                    <a href="/user/{{ post.author.lower() }}" class="hover:text-rose-500 transition-colors duration-300">
+                                        {{ post.author }}
+                                    </a>
+                                </div>
+                                <div>
+                                    {{ translations.history.postedAt }} <span class="timestamp">{{ post.postTimeStamp }}</span>
+                                    {% if post.lastEditTimeStamp > post.postTimeStamp %}
+                                        <br>
+                                        {{ translations.history.editedAt }} <span class="timestamp">{{ post.lastEditTimeStamp }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-16 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <i class="ti ti-history text-6xl text-gray-400 mb-4"></i>
+                <h3 class="text-2xl font-semibold mb-2">{{ translations.history.noHistoryTitle }}</h3>
+                <p class="text-gray-500 dark:text-gray-400 mb-6">{{ translations.history.noHistoryMessage }}</p>
+                <a href="/" class="btn btn-primary hover:btn-secondary transition-colors duration-300">
+                    {{ translations.history.explorePosts }}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock body %}
