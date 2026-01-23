@@ -28,6 +28,43 @@
 <script>
     let visitorID = parseInt("{{ idForRandomVisitor | safe }}");
     const csrfToken = "{{ csrf_token() }}";
+
+    // Favorite button functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const favoriteButton = document.getElementById('favoriteButton');
+        if (favoriteButton) {
+            const postId = favoriteButton.getAttribute('data-post-id');
+            const favoriteIcon = document.getElementById('favoriteIcon');
+
+            // Check if already favorited
+            fetch(`/article/${postId}/is_favorited`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.is_favorited) {
+                        favoriteIcon.classList.add('text-rose-500');
+                    }
+                });
+
+            // Handle favorite button click
+            favoriteButton.addEventListener('click', function() {
+                fetch(`/article/${postId}/favorite`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'favorited') {
+                        favoriteIcon.classList.add('text-rose-500');
+                    } else if (data.status === 'unfavorited') {
+                        favoriteIcon.classList.remove('text-rose-500');
+                    }
+                });
+            });
+        }
+    });
 </script>
 <div
     class="w-11/12 md:w-5/6 lg:w-7/12 xl:w-5/12 mx-auto mt-6 md:mt-10 break-words"
@@ -70,16 +107,21 @@
                 <i class="ti ti-tags mr-1 text-2xl"></i>
                 {{ tags.replace(",", ", ") }}
             </div>
-            <a
-                target="_blank"
-                href="https://x.com/intent/tweet?text={{ title }} by {{ author }} on {{
-          appName
-        }} {{ request.base_url }}"
-            >
-                <i
-                    class="hover:text-rose-500 duration-150 ti ti-brand-x text-2xl"
-                ></i>
-            </a>
+            <div class="flex items-center gap-3">
+                {% if session["userName"] %}
+                    <button id="favoriteButton" data-post-id="{{ id }}" class="hover:text-rose-500 duration-150">
+                        <i id="favoriteIcon" class="ti ti-heart text-2xl"></i>
+                    </button>
+                {% endif %}
+                <a
+                    target="_blank"
+                    href="https://x.com/intent/tweet?text={{ title }} by {{ author }} on {{ appName }} {{ request.base_url }}"
+                >
+                    <i
+                        class="hover:text-rose-500 duration-150 ti ti-brand-x text-2xl"
+                    ></i>
+                </a>
+            </div>
         </div>
 
         <div class="flex w-full justify-between my-1">
@@ -106,7 +148,7 @@
                     {{ author }}
                 </h5>
             </a>
-            <h5 class="date">{{ timeStamp }}</h5>
+            <h5 class="date">{{ dateStamp }}</h5>
         </div>
     </div>
 

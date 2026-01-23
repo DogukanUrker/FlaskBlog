@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ _('My Favorites') }}{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">{{ _('My Favorite Articles') }}</h1>
+
+    {% if favorite_posts %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for post in favorite_posts %}
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+                    <div class="p-6">
+                        <h2 class="text-xl font-semibold mb-2">
+                            <a href="{{ url_for('post.post', urlID=post.id) }}" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                {{ post.title }}
+                            </a>
+                        </h2>
+                        <div class="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                            <time datetime="{{ post.timeStamp | timestamp_to_datetime }}">
+                                {{ _('Favorited on') }} {{ post.favorite_time | timestamp_to_datetime }}
+                            </time>
+                        </div>
+                        <div class="text-gray-700 dark:text-gray-300 mb-4">
+                            {{ post.content | striptags | truncate(150) }}
+                        </div>
+                        <a href="{{ url_for('post.post', urlID=post.id) }}" class="text-blue-600 dark:text-blue-400 hover:underline">
+                            {{ _('Read more') }}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 text-center">
+            <h2 class="text-xl font-semibold mb-2">{{ _('No favorite articles yet') }}</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                {{ _('You haven\'t favorited any articles yet. Start exploring and save your favorite posts!') }}
+            </p>
+            <a href="{{ url_for('index.index') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors duration-300">
+                {{ _('Browse Articles') }}
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
