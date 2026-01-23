@@ -213,6 +213,13 @@
     "views": "Views",
     "go": "go to post"
   },
+  "favorites": {
+    "myFavorites": "My Favorites",
+    "noFavorites": "No favorites yet",
+    "startExploring": "Start exploring and favorite articles you like",
+    "removeFromFavorites": "Remove from favorites",
+    "addToFavorites": "Add to favorites"
+  },
   "verifyUser": {
     "title": "Verify Account",
     "placeholder": "Enter the code you received",

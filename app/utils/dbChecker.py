@@ -276,3 +276,52 @@ def analyticsTable():
         Log.success(
             f'Table: "postsAnalytics" created in "{Settings.DB_ANALYTICS_ROOT}"'
         )
+
+
+def favoritesTable():
+    """
+    Checks if the favorites table exists in the database, and creates it if it does not.
+
+    Returns:
+        None
+    """
+
+    if exists(Settings.DB_USERS_ROOT):
+        Log.info(f'Favorites database: "{Settings.DB_USERS_ROOT}" found')
+    else:
+        Log.error(f'Favorites database: "{Settings.DB_USERS_ROOT}" not found')
+
+        open(Settings.DB_USERS_ROOT, "x")
+
+        Log.success(f'Favorites database: "{Settings.DB_USERS_ROOT}" created')
+    Log.database(f"Connecting to '{Settings.DB_USERS_ROOT}' database")
+
+    connection = sqlite3.connect(Settings.DB_USERS_ROOT)
+    connection.set_trace_callback(Log.database)
+    cursor = connection.cursor()
+    try:
+        cursor.execute("""select id from favorites; """).fetchall()
+
+        Log.info(f'Table: "favorites" found in "{Settings.DB_USERS_ROOT}"')
+
+        connection.close()
+    except Exception:
+        Log.error(f'Table: "favorites" not found in "{Settings.DB_USERS_ROOT}"')
+
+        favoritesTable = """
+        create table if not exists favorites(
+            "id"    integer not null,
+            "userID"  integer,
+            "postID"  integer,
+            "timeStamp" integer,
+            primary key("id" autoincrement),
+            unique(userID, postID)
+        );"""
+
+        cursor.execute(favoritesTable)
+
+        connection.commit()
+
+        connection.close()
+
+        Log.success(f'Table: "favorites" created in "{Settings.DB_USERS_ROOT}"')

@@ -27,6 +27,10 @@
         </div>
 
         {% if session["userName"] %}
+        <a href="/user/favorites" title="{{ translations.favorites.myFavorites }}" class="hover:text-rose-500 duration-150">
+            <i class="ti ti-heart text-2xl"></i>
+        </a>
+        
         <a href="/user/{{ session['userName'].lower() }}">
             <div>
                 <img

@@ -51,6 +51,9 @@ from routes.dashboard import (
 from routes.editPost import (
     editPostBlueprint,
 )
+from routes.favorite import (
+    favoriteBlueprint,
+)
 from routes.index import (
     indexBlueprint,
 )
@@ -111,6 +114,7 @@ from utils.dbChecker import (
     analyticsTable,
     commentsTable,
     dbFolder,
+    favoritesTable,
     postsTable,
     usersTable,
 )
@@ -229,6 +233,7 @@ usersTable()
 postsTable()
 commentsTable()
 analyticsTable()
+favoritesTable()
 
 
 @app.errorhandler(404)
@@ -269,6 +274,7 @@ app.register_blueprint(logoutBlueprint)
 app.register_blueprint(searchBlueprint)
 app.register_blueprint(categoryBlueprint)
 app.register_blueprint(editPostBlueprint)
+app.register_blueprint(favoriteBlueprint)
 app.register_blueprint(dashboardBlueprint)
 app.register_blueprint(searchBarBlueprint)
 app.register_blueprint(adminPanelBlueprint)

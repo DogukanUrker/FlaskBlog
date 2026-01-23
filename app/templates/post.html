@@ -28,6 +28,7 @@
 <script>
     let visitorID = parseInt("{{ idForRandomVisitor | safe }}");
     const csrfToken = "{{ csrf_token() }}";
+    const postId = {{ id }};
 </script>
 <div
     class="w-11/12 md:w-5/6 lg:w-7/12 xl:w-5/12 mx-auto mt-6 md:mt-10 break-words"
@@ -80,6 +81,16 @@
                     class="hover:text-rose-500 duration-150 ti ti-brand-x text-2xl"
                 ></i>
             </a>
+            {% if session["userName"] %}
+            <button
+                id="favorite-btn"
+                onclick="toggleFavorite()"
+                class="btn btn-ghost btn-sm btn-circle text-rose-500 hover:text-rose-600"
+                title="{{ translations.favorites.addToFavorites }}"
+            >
+                <i id="favorite-icon" class="ti ti-heart text-2xl"></i>
+            </button>
+            {% endif %}
         </div>
 
         <div class="flex w-full justify-between my-1">
