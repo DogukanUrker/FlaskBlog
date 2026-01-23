@@ -95,6 +95,7 @@ from routes.signup import (
     signUpBlueprint,
 )
 from routes.user import userBlueprint
+from routes.favorites import favoritesBlueprint
 from routes.verifyUser import (
     verifyUserBlueprint,
 )
@@ -295,6 +296,7 @@ app.register_blueprint(adminPanelCommentsBlueprint)
 app.register_blueprint(changeProfilePictureBlueprint)
 app.register_blueprint(analyticsBlueprint)
 app.register_blueprint(returnPostAnalyticsDataBlueprint)
+app.register_blueprint(favoritesBlueprint)
 
 
 if __name__ == "__main__":
