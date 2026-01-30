@@ -1,0 +1,60 @@
+{% extends 'layout.html' %} {% block head %}
+<title>My Bookmarks - flaskBlog</title>
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="My Bookmarks" />
+<meta
+    property="og:image"
+    content="https://raw.githubusercontent.com/DogukanUrker/flaskBlog/main/images/Icon180.ico"
+/>
+<meta property="og:url" content="{{ request.base_url }}" />
+<meta
+    property="og:description"
+    content="Your bookmarked posts"
+/>
+<meta property="og:site_name" content="flaskBlog" />
+<meta name="twitter:site" content="@dogukanurker" />
+<meta name="twitter:title" content="My Bookmarks" />
+<meta
+    name="twitter:description"
+    content="Your bookmarked posts"
+/>
+<meta
+    name="twitter:image"
+    content="https://raw.githubusercontent.com/DogukanUrker/flaskBlog/main/images/Icon180.ico"
+/>
+{% endblock head %} {% block body %}
+
+<div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-primary mb-8">
+            My Bookmarks
+        </h1>
+
+        {% if bookmarked_posts %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for post in bookmarked_posts %}
+                    {% from "components/post_card_macro.html" import post_card with context %}
+                    {{ post_card(post=post, author_profile_picture=get_profile_picture(post[5])) }}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-12">
+                <i class="ti ti-bookmark-off text-6xl text-base-content/30 mb-4"></i>
+                <h2 class="text-xl font-semibold text-base-content/60 mb-2">
+                    No bookmarks yet
+                </h2>
+                <p class="text-base-content/40">
+                    Start bookmarking posts to see them here
+                </p>
+                <a href="/" class="btn btn-primary mt-4">
+                    Browse Posts
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    {% from "components/footer.html" import footer %}
+    {{ footer(translations) }}
+</div>
+{% endblock body %}

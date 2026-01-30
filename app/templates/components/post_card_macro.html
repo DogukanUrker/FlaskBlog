@@ -9,12 +9,24 @@
     </figure>
     <div class="card-body">
         <span class="badge badge-secondary badge-sm">{{ post[9] }}</span>
-        <a
-            href="{{ url_for('post.post', slug=get_slug_from_post_title(post[1]), url_id=post[10]) }}"
-            class="card-title text-lg link link-hover line-clamp-2"
-        >
-            {{ post[1] }}
-        </a>
+        <div class="flex justify-between items-start gap-2">
+            <a
+                href="{{ url_for('post.post', slug=get_slug_from_post_title(post[1]), url_id=post[10]) }}"
+                class="card-title text-lg link link-hover line-clamp-2 flex-1"
+            >
+                {{ post[1] }}
+            </a>
+            {% if session['username'] %}
+                <button 
+                    class="btn btn-ghost btn-xs bookmark-btn" 
+                    data-post-id="{{ post[0] }}"
+                    onclick="toggleBookmark({{ post[0] }}, this)"
+                    title="Add bookmark"
+                >
+                    <i class="ti ti-bookmark text-lg"></i>
+                </button>
+            {% endif %}
+        </div>
         <p class="text-sm text-base-content/70 line-clamp-3">{{ post[11] }}</p>
         <div class="card-actions justify-between items-center mt-auto pt-2">
             <a href="/user/{{ post[5] }}" class="flex items-center gap-2">

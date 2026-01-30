@@ -72,3 +72,18 @@ class Comment(db.Model):
 
     def __repr__(self):
         return f"<Comment {self.id} on Post {self.post_id}>"
+
+
+class Bookmark(db.Model):
+    __tablename__ = "bookmarks"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"))
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id", ondelete="CASCADE"))
+    time_stamp = db.Column(db.Integer, default=current_time_stamp)
+
+    # 确保每个用户对每篇文章只能收藏一次
+    __table_args__ = (db.UniqueConstraint('user_id', 'post_id', name='_user_post_uc'),)
+
+    def __repr__(self):
+        return f"<Bookmark user_id={self.user_id} post_id={self.post_id}>"

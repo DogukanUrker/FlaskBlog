@@ -34,9 +34,21 @@
         />
     </figure>
 
-    <h1 class="text-3xl md:text-4xl font-bold text-primary text-center mb-4">
-        {{ title }}
-    </h1>
+    <div class="flex justify-between items-start gap-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-primary text-center mb-4 flex-1">
+            {{ title }}
+        </h1>
+        {% if session['username'] %}
+            <button 
+                class="btn btn-ghost bookmark-btn mt-2" 
+                data-post-id="{{ id }}"
+                onclick="toggleBookmark({{ id }}, this)"
+                title="Add bookmark"
+            >
+                <i class="ti ti-bookmark text-xl"></i>
+            </button>
+        {% endif %}
+    </div>
 
     <div class="flex justify-center items-center gap-4 text-base-content/60 text-sm mb-4">
         <span class="badge badge-ghost">{{ reading_time|string + " " + translations.post.min_read }}</span>

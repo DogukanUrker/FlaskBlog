@@ -91,6 +91,12 @@ from routes.user import user_blueprint
 from routes.verify_user import (
     verify_user_blueprint,
 )
+from routes.bookmark import (
+    bookmark_blueprint,
+)
+from routes.my_bookmarks import (
+    my_bookmarks_blueprint,
+)
 from settings import Settings
 from utils.after_request import after_request_logger
 from utils.before_request.browser_language import browser_language
@@ -256,6 +262,8 @@ app.register_blueprint(account_settings_blueprint)
 app.register_blueprint(return_post_banner_blueprint)
 app.register_blueprint(admin_panel_comments_blueprint)
 app.register_blueprint(change_profile_picture_blueprint)
+app.register_blueprint(bookmark_blueprint)
+app.register_blueprint(my_bookmarks_blueprint)
 
 
 if __name__ == "__main__":

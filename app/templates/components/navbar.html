@@ -30,6 +30,9 @@
         </a>
 
         {% if session["username"] %}
+            <a href="/my-bookmarks" title="My Bookmarks" class="btn btn-ghost btn-square">
+                <i class="ti ti-bookmarks text-2xl"></i>
+            </a>
             <a href="/user/{{ session['username'].lower() }}" class="btn btn-ghost btn-circle">
                 <div class="avatar">
                     <div class="w-8 rounded-full">
