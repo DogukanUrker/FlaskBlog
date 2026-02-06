@@ -68,6 +68,18 @@ class TestAdminPanelAccess:
 
         expect(page).to_have_url(f"{flask_server['base_url']}/", timeout=5000)
 
+    @pytest.mark.admin
+    def test_admin_comments_redirects_non_admin(self, page, flask_server, test_user):
+        """Non-admin user should be redirected away from /admin/comments to /."""
+        _login(page, flask_server, test_user.username, test_user.password)
+
+        page.goto(
+            f"{flask_server['base_url']}/admin/comments",
+            wait_until="domcontentloaded",
+        )
+
+        expect(page).to_have_url(f"{flask_server['base_url']}/", timeout=5000)
+
 
 class TestAdminUsers:
     """Tests for admin user management page."""
@@ -129,6 +141,46 @@ class TestAdminUsers:
         user = get_user_by_username(str(db_path), username)
         assert user is not None
         assert user["role"] == "admin"
+
+    @pytest.mark.admin
+    def test_admin_can_delete_user(self, page, flask_server, app_settings, db_path):
+        """Admin should be able to delete a regular user from /admin/users."""
+        seed = _suffix()
+        username = f"deltest{seed}"
+        create_test_user(
+            db_path=str(db_path),
+            username=username,
+            email=f"{username}@test.com",
+            password="TestPassword123!",
+            role="user",
+        )
+
+        _login(
+            page,
+            flask_server,
+            app_settings["default_admin"]["username"],
+            app_settings["default_admin"]["password"],
+        )
+
+        page.goto(
+            f"{flask_server['base_url']}/admin/users", wait_until="domcontentloaded"
+        )
+        csrf_token = page.locator('input[name="csrf_token"]').first.get_attribute(
+            "value"
+        )
+
+        response = page.request.post(
+            f"{flask_server['base_url']}/admin/users",
+            form={
+                "csrf_token": csrf_token,
+                "username": username,
+                "user_delete_button": "1",
+            },
+        )
+        assert response.ok
+
+        deleted_user = get_user_by_username(str(db_path), username)
+        assert deleted_user is None, "Deleted user should no longer exist in database"
 
 
 class TestAdminContent:

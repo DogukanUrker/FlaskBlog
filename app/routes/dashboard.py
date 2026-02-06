@@ -29,7 +29,22 @@ def dashboard(username):
     if session["username"].lower() == username.lower():
         if request.method == "POST":
             if "post_delete_button" in request.form:
-                delete_post(request.form["post_id"])
+                post_id = request.form["post_id"]
+                post_to_delete = Post.query.get(post_id)
+
+                if not post_to_delete:
+                    Log.error(
+                        f'User: "{session["username"]}" tried to delete unknown post "{post_id}" from dashboard',
+                    )
+                    return redirect(url_for("dashboard.dashboard", username=username))
+
+                if post_to_delete.author.lower() != session["username"].lower():
+                    Log.error(
+                        f'User: "{session["username"]}" tried to delete post "{post_id}" owned by "{post_to_delete.author}" from dashboard',
+                    )
+                    return redirect(url_for("dashboard.dashboard", username=username))
+
+                delete_post(post_to_delete.id)
 
                 return (
                     redirect(url_for("dashboard.dashboard", username=username)),
