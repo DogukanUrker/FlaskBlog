@@ -83,7 +83,7 @@
     "set": "Establecer Foto de Perfil",
     "placeholder": "Ingrese semilla para la foto de perfil"
   },
-  "change_user_name": {
+  "change_username": {
     "title": "Cambiar Nombre de Usuario",
     "placeholder": "Nuevo Nombre de Usuario",
     "change": "Cambiar Nombre de Usuario"
@@ -224,7 +224,7 @@
     "change_profile_picture": {
       "success": "La imagen de perfil ha sido cambiada."
     },
-    "change_user_name": {
+    "change_username": {
       "same": "Este ya es tu nombre de usuario.",
       "success": "El nombre de usuario ha sido cambiado.",
       "taken": "Este nombre de usuario ya está en uso.",

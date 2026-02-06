@@ -83,7 +83,7 @@
     "set": "Profil Resmini Ayarla",
     "placeholder": "Profil resmi için seed girin"
   },
-  "change_user_name": {
+  "change_username": {
     "title": "Kullanıcı Adını Değiştir",
     "placeholder": "Yeni Kullanıcı Adı",
     "change": "Kullanıcı Adını Değiştir"
@@ -224,7 +224,7 @@
     "change_profile_picture": {
       "success": "Profil resmi değiştirildi."
     },
-    "change_user_name": {
+    "change_username": {
       "same": "Bu zaten sizin kullanıcı adınız.",
       "success": "Kullanıcı adı değiştirildi.",
       "taken": "Bu kullanıcı adı zaten alınmış.",

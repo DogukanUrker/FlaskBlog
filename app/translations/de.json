@@ -83,7 +83,7 @@
     "set": "Profilbild festlegen",
     "placeholder": "Seed für Profilbild eingeben"
   },
-  "change_user_name": {
+  "change_username": {
     "title": "Benutzernamen ändern",
     "placeholder": "Neuer Benutzername",
     "change": "Benutzernamen ändern"
@@ -224,7 +224,7 @@
     "change_profile_picture": {
       "success": "Profilbild wurde geändert."
     },
-    "change_user_name": {
+    "change_username": {
       "same": "Das ist bereits Ihr Benutzername.",
       "success": "Benutzername wurde geändert.",
       "taken": "Dieser Benutzername ist bereits vergeben.",

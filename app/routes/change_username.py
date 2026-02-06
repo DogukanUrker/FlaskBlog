@@ -6,11 +6,11 @@ from flask import (
     session,
 )
 from sqlalchemy import func
+from utils.forms.change_username_form import ChangeUserNameForm
 
 from database import db
 from models import Comment, Post, User
 from utils.flash_message import flash_message
-from utils.forms.change_user_name_form import ChangeUserNameForm
 from utils.log import Log
 from utils.route_guards import login_required
 
@@ -21,7 +21,7 @@ change_username_blueprint = Blueprint("change_username", __name__)
 @login_required(
     "change username",
     redirect_to="/login/redirect=change-username",
-    flash_page="change_user_name",
+    flash_page="change_username",
 )
 def change_username():
     """
@@ -70,7 +70,7 @@ def change_username():
 
             session["username"] = new_username
             flash_message(
-                page="change_user_name",
+                page="change_username",
                 message="success",
                 category="success",
                 language=session["language"],
@@ -80,7 +80,7 @@ def change_username():
         else:
             Log.error(f'User: "{new_username}" already exists')
             flash_message(
-                page="change_user_name",
+                page="change_username",
                 message="taken",
                 category="error",
                 language=session["language"],
