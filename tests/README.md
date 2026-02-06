@@ -34,14 +34,14 @@ uv run pytest ../tests/e2e/post/test_post.py::TestPostComments::test_logged_in_u
 
 ## Current Suite Coverage
 
-Current local suite size: **99 tests** across **12 test files**.
+Current local suite size: **100 tests** across **12 test files**.
 
 | Suite | Files | Tests | Focus |
 | ----- | ----- | ----- | ----- |
 | `e2e/auth/` | 3 | 62 | Login, signup, logout, session handling |
 | `e2e/account/` | 4 | 11 | Account settings, password change flow, dashboard, static pages |
 | `e2e/post/` | 1 | 12 | Create/edit/delete post, comments, authorization |
-| `e2e/admin/` | 1 | 5 | Admin access, users, comments management |
+| `e2e/admin/` | 1 | 6 | Admin access control, users, comments management |
 | `e2e/search/` | 2 | 6 | Search results and category filtering |
 | `e2e/home/` | 1 | 3 | Home rendering and sorting routes |
 

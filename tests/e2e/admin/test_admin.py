@@ -57,6 +57,17 @@ class TestAdminPanelAccess:
 
         expect(page).to_have_url(f"{flask_server['base_url']}/", timeout=5000)
 
+    @pytest.mark.admin
+    def test_admin_posts_redirects_non_admin(self, page, flask_server, test_user):
+        """Non-admin user should be redirected away from /admin/posts to /."""
+        _login(page, flask_server, test_user.username, test_user.password)
+
+        page.goto(
+            f"{flask_server['base_url']}/admin/posts", wait_until="domcontentloaded"
+        )
+
+        expect(page).to_have_url(f"{flask_server['base_url']}/", timeout=5000)
+
 
 class TestAdminUsers:
     """Tests for admin user management page."""
