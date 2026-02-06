@@ -17,8 +17,10 @@ admin_panel_comments_blueprint = Blueprint("admin_panel_comments", __name__)
 def admin_panel_comments():
     if "username" in session:
         user = User.query.filter_by(username=session["username"]).first()
+        if not user:
+            return redirect("/")
 
-        if not user or user.role != "admin":
+        if user.role != "admin":
             Log.error(
                 f"{request.remote_addr} tried to reach comment admin panel without being admin"
             )
@@ -46,7 +48,7 @@ def admin_panel_comments():
         )
     else:
         Log.error(
-            f"{request.remote_addr} tried to reach comment admin panel being logged in"
+            f"{request.remote_addr} tried to reach comment admin panel without being logged in"
         )
 
         return redirect("/")
