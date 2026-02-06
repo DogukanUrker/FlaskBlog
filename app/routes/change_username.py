@@ -21,7 +21,7 @@ change_username_blueprint = Blueprint("change_username", __name__)
 @login_required(
     "change username",
     redirect_to="/login/redirect=change-username",
-    flash_page="change_username",
+    flash_page="change_user_name",
 )
 def change_username():
     """
@@ -70,7 +70,7 @@ def change_username():
 
             session["username"] = new_username
             flash_message(
-                page="change_username",
+                page="change_user_name",
                 message="success",
                 category="success",
                 language=session["language"],
@@ -80,8 +80,8 @@ def change_username():
         else:
             Log.error(f'User: "{new_username}" already exists')
             flash_message(
-                page="change_username",
-                message="exists",
+                page="change_user_name",
+                message="taken",
                 category="error",
                 language=session["language"],
             )
