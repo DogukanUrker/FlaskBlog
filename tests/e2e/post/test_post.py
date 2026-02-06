@@ -406,3 +406,100 @@ class TestPostAuthorizationEdgeCases:
         assert protected_comment is not None, (
             "Comment must remain when deleted by non-owner"
         )
+
+    @pytest.mark.auth
+    @pytest.mark.admin
+    def test_admin_can_delete_other_users_post_via_forged_request(
+        self, page, flask_server, test_user, app_settings, db_path
+    ):
+        """Admin should be able to delete another user's post via authorized POST."""
+        seed = _suffix()
+        post = create_test_post(
+            db_path=str(db_path),
+            title=f"Admin Deletable Post {seed}",
+            content=_valid_content(seed),
+            abstract=_valid_abstract(seed),
+            author=test_user.username,
+        )
+
+        _login(
+            page,
+            flask_server,
+            app_settings["default_admin"]["username"],
+            app_settings["default_admin"]["password"],
+        )
+
+        post_page = PostPage(page, flask_server["base_url"])
+        post_page.navigate(post["url_id"])
+        post_page.expect_page_loaded()
+
+        csrf_token = _get_csrf_token(page)
+        canonical_url = page.url
+
+        response = page.request.post(
+            canonical_url,
+            form={
+                "csrf_token": csrf_token,
+                "post_delete_button": "1",
+            },
+        )
+        assert response.ok
+
+        deleted_post = get_post_by_url_id(str(db_path), post["url_id"])
+        assert deleted_post is None, (
+            "Admin should be able to remove another user's post"
+        )
+
+    @pytest.mark.auth
+    @pytest.mark.admin
+    def test_admin_can_delete_other_users_comment_via_forged_request(
+        self, page, flask_server, test_user, app_settings, db_path
+    ):
+        """Admin should be able to delete another user's comment via authorized POST."""
+        seed = _suffix()
+        post = create_test_post(
+            db_path=str(db_path),
+            title=f"Admin Comment Delete Post {seed}",
+            content=_valid_content(seed),
+            abstract=_valid_abstract(seed),
+            author="admin",
+        )
+
+        saved_post = get_post_by_url_id(str(db_path), post["url_id"])
+        assert saved_post is not None
+
+        comment_id = create_test_comment(
+            db_path=str(db_path),
+            post_id=saved_post["id"],
+            comment=f"Comment owned by {test_user.username} {seed} with enough length.",
+            username=test_user.username,
+        )
+
+        _login(
+            page,
+            flask_server,
+            app_settings["default_admin"]["username"],
+            app_settings["default_admin"]["password"],
+        )
+
+        post_page = PostPage(page, flask_server["base_url"])
+        post_page.navigate(post["url_id"])
+        post_page.expect_page_loaded()
+
+        csrf_token = _get_csrf_token(page)
+        canonical_url = page.url
+
+        response = page.request.post(
+            canonical_url,
+            form={
+                "csrf_token": csrf_token,
+                "comment_delete_button": "1",
+                "comment_id": str(comment_id),
+            },
+        )
+        assert response.ok
+
+        deleted_comment = get_comment_by_id(str(db_path), comment_id)
+        assert deleted_comment is None, (
+            "Admin should be able to remove another user's comment"
+        )

@@ -27,6 +27,12 @@ def _login(page, flask_server, username: str, password: str):
     page.wait_for_url("**/", timeout=5000)
 
 
+def _get_csrf_token(page) -> str:
+    token = page.locator('input[name="csrf_token"]').first.get_attribute("value")
+    assert token is not None and token != ""
+    return token
+
+
 class TestDashboard:
     """Tests for user dashboard functionality."""
 
@@ -121,3 +127,46 @@ class TestDashboard:
 
         deleted_post = get_post_by_url_id(str(db_path), post["url_id"])
         assert deleted_post is None, "post should be deleted from database"
+
+    @pytest.mark.auth
+    def test_dashboard_forged_request_cannot_delete_another_users_post(
+        self, page, flask_server, test_user, db_path
+    ):
+        """Forged dashboard POST must not delete a post owned by another user."""
+        seed = _suffix()
+        protected_post = create_test_post(
+            db_path=str(db_path),
+            title=f"Protected Dashboard Post {seed}",
+            content=f"Protected content {seed}",
+            abstract=f"Protected abstract {seed}. " + "A" * 160,
+            author="admin",
+        )
+
+        create_test_post(
+            db_path=str(db_path),
+            title=f"Owned Dashboard Post {seed}",
+            content=f"Owned content {seed}",
+            abstract=f"Owned abstract {seed}. " + "A" * 160,
+            author=test_user.username,
+        )
+
+        _login(page, flask_server, test_user.username, test_user.password)
+
+        dashboard_url = f"{flask_server['base_url']}/dashboard/{test_user.username}"
+        page.goto(dashboard_url, wait_until="domcontentloaded")
+        csrf_token = _get_csrf_token(page)
+
+        response = page.request.post(
+            dashboard_url,
+            form={
+                "csrf_token": csrf_token,
+                "post_delete_button": "1",
+                "post_id": str(protected_post["id"]),
+            },
+        )
+        assert response.ok
+
+        still_exists = get_post_by_url_id(str(db_path), protected_post["url_id"])
+        assert still_exists is not None, (
+            "Dashboard delete must not remove posts owned by another user"
+        )

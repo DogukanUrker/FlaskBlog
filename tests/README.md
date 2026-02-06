@@ -34,16 +34,24 @@ uv run pytest ../tests/e2e/post/test_post.py::TestPostComments::test_logged_in_u
 
 ## Current Suite Coverage
 
-Current local suite size: **105 tests** across **14 test files**.
+Current local suite size: **110 tests** across **14 test files**.
 
 | Suite | Files | Tests | Focus |
 | ----- | ----- | ----- | ----- |
 | `e2e/auth/` | 3 | 62 | Login, signup, logout, session handling |
-| `e2e/account/` | 5 | 16 | Account settings, username/profile updates, password change flow, dashboard, static pages, preferences |
-| `e2e/post/` | 1 | 12 | Create/edit/delete post, comments, authorization |
-| `e2e/admin/` | 1 | 6 | Admin access control, users, comments management |
+| `e2e/account/` | 5 | 17 | Account settings, username/profile updates, password change flow, dashboard, static pages, preferences |
+| `e2e/post/` | 1 | 14 | Create/edit/delete post, comments, authorization, admin moderation via protected POST flows |
+| `e2e/admin/` | 1 | 8 | Admin access control, users (role + delete), comments management |
 | `e2e/search/` | 2 | 6 | Search results and category filtering |
 | `e2e/home/` | 1 | 3 | Home rendering and sorting routes |
+
+Recently added high-impact coverage:
+
+- Dashboard forged delete requests cannot remove posts owned by other users.
+- Admin can delete users from `/admin/users`.
+- Non-admin users are blocked from `/admin/comments`.
+- Admin can delete other users' posts through the post route with valid CSRF.
+- Admin can delete other users' comments through the post route with valid CSRF.
 
 ## Parallel Execution
 
