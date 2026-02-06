@@ -73,12 +73,13 @@ def change_password():
                         f'User: "{session["username"]}" changed his password',
                     )
 
+                    language = session.get("language", "en")
                     session.clear()
                     flash_message(
                         page="change_password",
                         message="success",
                         category="success",
-                        language=session["language"],
+                        language=language,
                     )
 
                     return redirect("/login/redirect=&")
