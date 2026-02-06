@@ -18,6 +18,7 @@ from settings import Settings
 from utils.flash_message import flash_message
 from utils.forms.verify_user_form import VerifyUserForm
 from utils.log import Log
+from utils.route_guards import login_required
 
 verify_user_blueprint = Blueprint("verify_user", __name__)
 
@@ -25,6 +26,7 @@ verify_user_blueprint = Blueprint("verify_user", __name__)
 @verify_user_blueprint.route(
     "/verify-user/codesent=<code_sent>", methods=["GET", "POST"]
 )
+@login_required("verify user")
 def verify_user(code_sent):
     """
     This function handles the verification of the user's account.
@@ -37,68 +39,67 @@ def verify_user(code_sent):
 
     """
 
-    if "username" in session:
-        username = session["username"]
+    username = session["username"]
 
-        user = User.query.filter(func.lower(User.username) == username.lower()).first()
+    user = User.query.filter(func.lower(User.username) == username.lower()).first()
 
-        if not user:
-            return redirect("/")
+    if not user:
+        return redirect("/")
 
-        if user.is_verified == "True":
-            return redirect("/")
-        elif user.is_verified == "False":
-            global verification_code
+    if user.is_verified == "True":
+        return redirect("/")
+    elif user.is_verified == "False":
+        global verification_code
 
-            form = VerifyUserForm(request.form)
+        form = VerifyUserForm(request.form)
 
-            if code_sent == "true":
-                if request.method == "POST":
-                    code = request.form["code"]
+        if code_sent == "true":
+            if request.method == "POST":
+                code = request.form["code"]
 
-                    if code == verification_code:
-                        user.is_verified = "True"
-                        db.session.commit()
+                if code == verification_code:
+                    user.is_verified = "True"
+                    db.session.commit()
 
-                        Log.success(f'User: "{username}" has been verified')
-                        flash_message(
-                            page="verify_user",
-                            message="success",
-                            category="success",
-                            language=session["language"],
-                        )
-                        return redirect("/")
-                    else:
-                        flash_message(
-                            page="verify_user",
-                            message="wrong",
-                            category="error",
-                            language=session["language"],
-                        )
+                    Log.success(f'User: "{username}" has been verified')
+                    flash_message(
+                        page="verify_user",
+                        message="success",
+                        category="success",
+                        language=session["language"],
+                    )
+                    return redirect("/")
+                else:
+                    flash_message(
+                        page="verify_user",
+                        message="wrong",
+                        category="error",
+                        language=session["language"],
+                    )
 
-                return render_template(
-                    "verify_user.html",
-                    form=form,
-                    mail_sent=True,
-                )
-            elif code_sent == "false":
-                if request.method == "POST":
-                    if user:
-                        context = ssl.create_default_context()
-                        server = smtplib.SMTP(Settings.SMTP_SERVER, Settings.SMTP_PORT)
-                        server.ehlo()
-                        server.starttls(context=context)
-                        server.ehlo()
-                        server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
+            return render_template(
+                "verify_user.html",
+                form=form,
+                mail_sent=True,
+            )
+        elif code_sent == "false":
+            if request.method == "POST":
+                if user:
+                    context = ssl.create_default_context()
+                    server = smtplib.SMTP(Settings.SMTP_SERVER, Settings.SMTP_PORT)
+                    server.ehlo()
+                    server.starttls(context=context)
+                    server.ehlo()
+                    server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
 
-                        verification_code = str(randint(1000, 9999))
+                    verification_code = str(randint(1000, 9999))
 
-                        message = EmailMessage()
-                        message.set_content(
-                            f"Hi {username},\nHere is your account verification code:\n{verification_code}"
-                        )
-                        message.add_alternative(
-                            f"""\
+                    message = EmailMessage()
+                    message.set_content(
+                        f"Hi {username},\nHere is your account verification code:\n{verification_code}"
+                    )
+                    message.add_alternative(
+                        f"""\
                                 <html>
                                 <body>
                                     <div
@@ -127,25 +128,22 @@ def verify_user(code_sent):
                                 </body>
                                 </html>
                             """,
-                            subtype="html",
-                        )
-                        message["Subject"] = f"Verify your {Settings.APP_NAME} account!"
-                        message["From"] = Settings.SMTP_MAIL
-                        message["To"] = user.email
+                        subtype="html",
+                    )
+                    message["Subject"] = f"Verify your {Settings.APP_NAME} account!"
+                    message["From"] = Settings.SMTP_MAIL
+                    message["To"] = user.email
 
-                        server.send_message(message)
-                        server.quit()
-                        Log.success(
-                            f'Verification code sent to "{user.email}" for user: "{username}"'
-                        )
+                    server.send_message(message)
+                    server.quit()
+                    Log.success(
+                        f'Verification code sent to "{user.email}" for user: "{username}"'
+                    )
 
-                        return redirect("/verify-user/codesent=true")
+                    return redirect("/verify-user/codesent=true")
 
-                return render_template(
-                    "verify_user.html",
-                    form=form,
-                    mail_sent=False,
-                )
-    else:
-        Log.error(f"{request.remote_addr} tried to verify user without being logged in")
-        return redirect("/")
+            return render_template(
+                "verify_user.html",
+                form=form,
+                mail_sent=False,
+            )

@@ -42,12 +42,43 @@ def post(url_id=None, slug=None):
         db.session.commit()
 
         if request.method == "POST":
+            if "username" not in session:
+                Log.error(
+                    f'{request.remote_addr} attempted to submit to post "{url_id}" without login',
+                )
+                return redirect(f"/login/redirect=&post&{url_id}")
+
             if "post_delete_button" in request.form:
+                if (
+                    post.author != session["username"]
+                    and session.get("user_role") != "admin"
+                ):
+                    Log.error(
+                        f'User: "{session["username"]}" tried to delete post "{url_id}" without permission',
+                    )
+                    return redirect(url_for("post.post", url_id=url_id)), 301
+
                 delete_post(post.id)
                 return redirect("/")
 
             if "comment_delete_button" in request.form:
-                delete_comment(request.form["comment_id"])
+                comment_id = request.form["comment_id"]
+                comment = Comment.query.get(comment_id)
+
+                if not comment:
+                    Log.error(f'Comment: "{comment_id}" not found for post "{url_id}"')
+                    return redirect(url_for("post.post", url_id=url_id)), 301
+
+                if (
+                    comment.username != session["username"]
+                    and session.get("user_role") != "admin"
+                ):
+                    Log.error(
+                        f'User: "{session["username"]}" tried to delete comment "{comment_id}" without permission',
+                    )
+                    return redirect(url_for("post.post", url_id=url_id)), 301
+
+                delete_comment(comment_id)
                 return redirect(url_for("post.post", url_id=url_id)), 301
 
             comment_text = escape(request.form["comment"])

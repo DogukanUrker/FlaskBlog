@@ -4,226 +4,197 @@ End-to-end tests for Flask Blog using Pytest and Playwright.
 
 ## Quick Start
 
-### Using Makefile (Recommended)
+Use Make targets from the repository root:
 
 ```bash
-make install       # Install all dependencies
-make test          # Run all tests (parallel)
-make test-slow     # Run with visible browser (slow-mo, sequential)
+make install       # Install app + dev + test deps and Playwright browser
+make test          # Run all E2E tests (parallel)
+make test-slow     # Run headed browser with slow-mo (sequential)
 ```
 
-### Manual Commands
+## Run Specific Tests
+
+If you need targeted runs, execute pytest from `app/`:
 
 ```bash
 cd app
 
-# Install test dependencies
-uv sync --extra test
-uv run playwright install chromium
-
-# Run all tests (parallel by default)
+# Full E2E suite (parallel by default via pytest.ini)
 uv run pytest ../tests/e2e/ -v
 
-# Run specific test file
+# Specific domain
+uv run pytest ../tests/e2e/post/ -v
+uv run pytest ../tests/e2e/account/ -v
+
+# Specific file / class / test
 uv run pytest ../tests/e2e/auth/test_login.py -v
-
-# Run with headed browser (visible)
-uv run pytest ../tests/e2e/ --headed
-
-# Run specific test class
 uv run pytest ../tests/e2e/auth/test_login.py::TestLoginSuccess -v
+uv run pytest ../tests/e2e/post/test_post.py::TestPostComments::test_logged_in_user_can_comment_on_post -v
 ```
+
+## Current Suite Coverage
+
+Current local suite size: **110 tests** across **14 test files**.
+
+| Suite | Files | Tests | Focus |
+| ----- | ----- | ----- | ----- |
+| `e2e/auth/` | 3 | 62 | Login, signup, logout, session handling |
+| `e2e/account/` | 5 | 17 | Account settings, username/profile updates, password change flow, dashboard, static pages, preferences |
+| `e2e/post/` | 1 | 14 | Create/edit/delete post, comments, authorization, admin moderation via protected POST flows |
+| `e2e/admin/` | 1 | 8 | Admin access control, users (role + delete), comments management |
+| `e2e/search/` | 2 | 6 | Search results and category filtering |
+| `e2e/home/` | 1 | 3 | Home rendering and sorting routes |
+
+Recently added high-impact coverage:
+
+- Dashboard forged delete requests cannot remove posts owned by other users.
+- Admin can delete users from `/admin/users`.
+- Non-admin users are blocked from `/admin/comments`.
+- Admin can delete other users' posts through the post route with valid CSRF.
+- Admin can delete other users' comments through the post route with valid CSRF.
 
 ## Parallel Execution
 
-Tests run in parallel by default using `pytest-xdist` with automatic worker detection (`-n auto`). This uses all available CPU cores to speed up test execution.
+Tests run in parallel by default using `pytest-xdist` (`-n auto` from `pytest.ini`).
 
 ```bash
-# Run with specific number of workers
-uv run pytest ../tests/e2e/ -n 4
+cd app
 
-# Run sequentially (disable parallel)
-uv run pytest ../tests/e2e/ -n 0
+# Override worker count
+uv run pytest ../tests/e2e/ -n 4 -v
 
-# Run with slow motion for debugging (milliseconds)
-uv run pytest ../tests/e2e/ --slowmo 500
+# Disable parallel
+uv run pytest ../tests/e2e/ -n 0 -v
+
+# Headed + slow motion for debugging
+uv run pytest ../tests/e2e/ --headed --slowmo 500 -n 0 -v
 ```
 
-**How it works:**
+Parallel behavior:
 
-- A single Flask server is shared across all workers (coordinated via file locks)
-- Each test creates unique users with UUIDs to avoid conflicts
-- Database is backed up before tests and restored after all workers complete
-- Browser contexts are isolated per test for clean state
+- One shared Flask server is started with file-lock coordination.
+- Database is backed up before the session and restored at the end.
+- UUID-based user data avoids collisions between workers.
+- Each test gets an isolated browser context and page.
 
-## Structure
+## Project Structure
 
-```
+```text
 tests/
-├── conftest.py                 # Root fixtures
+├── conftest.py                       # Root fixtures (markers, app_settings)
+├── README.md
 └── e2e/
-    ├── conftest.py             # E2E fixtures (server, browser, database)
-    ├── auth/                   # Authentication tests
+    ├── conftest.py                   # Server, browser, DB coordination
+    ├── account/
+    │   ├── test_account_settings.py
+    │   ├── test_change_password_flow.py
+    │   ├── test_dashboard.py
+    │   ├── test_profile_and_preferences.py
+    │   └── test_static_pages.py
+    ├── admin/
+    │   └── test_admin.py
+    ├── auth/
     │   ├── test_login.py
     │   ├── test_logout.py
     │   └── test_signup.py
-    ├── pages/                  # Page Object Model
-    │   ├── base_page.py
-    │   ├── login_page.py
-    │   ├── signup_page.py
-    │   └── navbar_component.py
-    └── helpers/                # Utilities
-        ├── database_helpers.py
-        └── test_data.py
+    ├── home/
+    │   └── test_home.py
+    ├── post/
+    │   └── test_post.py
+    ├── search/
+    │   ├── test_category.py
+    │   └── test_search.py
+    ├── helpers/
+    │   ├── database_helpers.py
+    │   └── test_data.py
+    └── pages/
+        ├── base_page.py
+        ├── create_post_page.py
+        ├── login_page.py
+        ├── navbar_component.py
+        ├── post_page.py
+        └── signup_page.py
 ```
-
-## Test Coverage
-
-### Authentication (`e2e/auth/`)
-
-#### Login (`test_login.py` - 18 tests)
-
-| Category        | Test                                         | Description                                    |
-| --------------- | -------------------------------------------- | ---------------------------------------------- |
-| Page Rendering  | `test_login_page_renders`                    | Page loads with all required elements          |
-|                 | `test_login_page_has_csrf_token`             | CSRF protection enabled                        |
-|                 | `test_login_page_has_forgot_password_link`   | Forgot password link present                   |
-|                 | `test_login_page_title`                      | Correct page title                             |
-| Success Flows   | `test_login_with_valid_credentials`          | Admin login with valid credentials             |
-|                 | `test_login_redirect_after_success`          | Redirects to home after login                  |
-|                 | `test_login_case_insensitive_username`       | Username is case-insensitive                   |
-|                 | `test_login_whitespace_trimmed`              | Whitespace in username trimmed                 |
-| Error Handling  | `test_login_wrong_password`                  | Wrong password shows error                     |
-|                 | `test_login_nonexistent_user`                | Nonexistent user shows error                   |
-|                 | `test_login_empty_password`                  | Empty password validation                      |
-| Session         | `test_login_already_logged_in_redirects`     | Logged-in user redirected from login page      |
-|                 | `test_login_creates_session`                 | Session created (navbar shows logged-in state) |
-|                 | `test_session_persists_after_navigation`     | Session persists across pages                  |
-| Form Validation | `test_login_empty_username_validation`       | HTML5 validation for empty username            |
-|                 | `test_login_empty_password_validation`       | HTML5 validation for empty password            |
-|                 | `test_login_form_prevents_double_submission` | No double submission issues                    |
-| Dynamic Users   | `test_login_with_test_user`                  | Dynamic test user can login                    |
-|                 | `test_login_test_user_creates_session`       | Test user login creates session                |
-
-#### Logout (`test_logout.py` - 15 tests)
-
-| Category      | Test                                             | Description                       |
-| ------------- | ------------------------------------------------ | --------------------------------- |
-| Basic         | `test_logout_clears_session_and_redirects`       | Logout redirects to home          |
-|               | `test_logout_shows_success_flash_message`        | Success flash after logout        |
-|               | `test_logout_button_not_visible_when_logged_out` | Logout hidden when not logged in  |
-| Session State | `test_logout_removes_session_navbar_shows_login` | Navbar shows login after logout   |
-|               | `test_logout_session_does_not_persist`           | Session cleared after navigation  |
-|               | `test_cannot_access_create_post_after_logout`    | Protected pages redirect to login |
-| Edge Cases    | `test_logout_when_not_logged_in_redirects`       | Direct /logout redirects to home  |
-|               | `test_logout_when_not_logged_in_no_flash`        | No flash when not logged in       |
-|               | `test_double_logout_does_not_error`              | Double logout is safe             |
-| User Types    | `test_logout_admin_user`                         | Admin can logout                  |
-|               | `test_logout_regular_user`                       | Regular user can logout           |
-|               | `test_logout_and_login_as_different_user`        | Can switch users after logout     |
-| UI Behavior   | `test_login_link_appears_after_logout`           | Login link visible after logout   |
-|               | `test_profile_avatar_hidden_after_logout`        | Avatar hidden after logout        |
-|               | `test_create_post_button_hidden_after_logout`    | Create post hidden after logout   |
-
-#### Signup (`test_signup.py` - 22 tests)
-
-| Category        | Test                                              | Description                               |
-| --------------- | ------------------------------------------------- | ----------------------------------------- |
-| Page Rendering  | `test_signup_page_renders`                        | Page loads with all elements              |
-|                 | `test_signup_page_has_csrf_token`                 | CSRF protection enabled                   |
-|                 | `test_signup_page_has_privacy_policy_link`        | Privacy policy link present               |
-|                 | `test_signup_page_title`                          | Correct page title                        |
-| Success Flows   | `test_signup_with_valid_data`                     | User can signup with valid data           |
-|                 | `test_signup_creates_user_in_database`            | User record created in DB                 |
-|                 | `test_signup_auto_login`                          | User auto-logged in after signup          |
-|                 | `test_signup_awards_points`                       | 1 point awarded to new user               |
-|                 | `test_signup_user_is_unverified`                  | New user has is_verified='False'          |
-| Error Handling  | `test_signup_duplicate_username`                  | Existing username rejected                |
-|                 | `test_signup_duplicate_username_case_insensitive` | Case-insensitive username check           |
-|                 | `test_signup_duplicate_email`                     | Existing email rejected                   |
-|                 | `test_signup_duplicate_email_case_insensitive`    | Case-insensitive email check              |
-|                 | `test_signup_password_mismatch`                   | Mismatched passwords rejected             |
-|                 | `test_signup_non_ascii_username`                  | Non-ASCII username rejected               |
-|                 | `test_signup_both_username_and_email_taken`       | Both taken shows error                    |
-| Form Validation | `test_signup_username_too_short`                  | Username < 4 chars rejected               |
-|                 | `test_signup_username_too_long`                   | Username > 25 chars rejected              |
-|                 | `test_signup_email_invalid_format`                | Invalid email format rejected             |
-|                 | `test_signup_password_too_short`                  | Password < 8 chars rejected               |
-|                 | `test_signup_empty_fields_validation`             | Empty fields trigger validation           |
-|                 | `test_signup_username_whitespace_stripped`        | Whitespace stripped from username         |
-| Session         | `test_signup_when_already_logged_in`              | Logged-in user redirected from signup     |
-|                 | `test_signup_session_persists_after_navigation`   | Session persists after signup             |
-|                 | `test_can_access_protected_pages_after_signup`    | Can access protected pages after signup   |
-| Edge Cases      | `test_signup_with_special_email_characters`       | Plus-addressed email (user+tag@) accepted |
-|                 | `test_signup_minimum_valid_lengths`               | Minimum valid lengths work                |
-|                 | `test_signup_maximum_valid_lengths`               | Maximum valid lengths work                |
 
 ## Architecture
 
 ### Page Object Model
 
-Pages encapsulate UI interactions:
+Page objects encapsulate UI interactions (`tests/e2e/pages/`), including:
+
+- `LoginPage`
+- `SignupPage`
+- `CreatePostPage`
+- `PostPage`
+- `NavbarComponent`
+
+Example:
 
 ```python
-from tests.e2e.pages.login_page import LoginPage
+from tests.e2e.pages.create_post_page import CreatePostPage
 
-def test_login(page, flask_server):
-    login_page = LoginPage(page, flask_server["base_url"])
-    login_page.navigate()
-    login_page.login("admin", "admin")
-    login_page.expect_success_flash()
+def test_create_post(page, flask_server):
+    create_post_page = CreatePostPage(page, flask_server["base_url"])
+    create_post_page.navigate()
+    create_post_page.expect_page_loaded()
 ```
 
-### Fixtures
+### Key Fixtures
 
-| Fixture            | Scope    | Purpose                          |
-| ------------------ | -------- | -------------------------------- |
-| `flask_server`     | session  | Starts/stops the Flask app       |
-| `browser_instance` | session  | Single Chromium instance         |
-| `clean_db`         | session  | Resets database once at start    |
-| `page`             | function | Fresh page per test              |
-| `test_user`        | function | Creates a unique UUID-based user |
-| `logged_in_page`   | function | Pre-authenticated page           |
+| Fixture | Scope | Purpose |
+| ------- | ----- | ------- |
+| `flask_server` | session | Starts/stops Flask app and shares it across workers |
+| `browser_instance` | session | Single Chromium browser instance |
+| `context` | function | Fresh isolated browser context per test |
+| `page` | function | Fresh page per test |
+| `clean_db` | session | One-time DB cleanup before tests |
+| `test_user` | function | Creates unique UUID-based user |
+| `unverified_test_user` | function | Creates unique unverified user |
+| `logged_in_page` | function | Page pre-authenticated as default admin |
 
-### Test Data
+### Test Data Helpers
 
-Generate test users with `UserData`:
+`UserData` factory:
 
 ```python
 from tests.e2e.helpers.test_data import UserData
 
-user = UserData.generate()           # Random user
-admin = UserData.admin()             # Admin user
-unverified = UserData.unverified()   # Unverified user
+user = UserData.generate()
+unverified = UserData.unverified()
 ```
 
-### Database Helpers
-
-Direct database access for test setup:
+Database helpers (`tests/e2e/helpers/database_helpers.py`) are used for test setup/assertions, for example:
 
 ```python
-from tests.e2e.helpers.database_helpers import create_test_user, user_exists
+from tests.e2e.helpers.database_helpers import create_test_user, get_user_by_username
 
 create_test_user(db_path, "testuser", "test@example.com", "Password123!")
-assert user_exists(db_path, "testuser")
+assert get_user_by_username(db_path, "testuser") is not None
 ```
 
 ## Markers
 
-Run tests by category:
+Registered markers:
+
+- `auth`
+- `admin`
+- `smoke`
+- `slow`
+
+Usage:
 
 ```bash
-pytest -m auth      # Authentication tests
-pytest -m smoke     # Quick smoke tests
-pytest -m admin     # Admin-related tests
-pytest -m slow      # Long-running tests
+cd app
+uv run pytest ../tests/e2e/ -m auth -v
+uv run pytest ../tests/e2e/ -m smoke -v
+uv run pytest ../tests/e2e/ -m "admin and not smoke" -v
+uv run pytest ../tests/e2e/ -m "not slow" -v
 ```
 
-## CI/CD
+## CI
 
-Tests run automatically via GitHub Actions on:
+E2E tests run in GitHub Actions (`.github/workflows/e2e-tests.yaml`) on:
 
-- Push to `main`
-- Pull requests
-
-See `.github/workflows/e2e-tests.yml` for configuration.
+- Push to `main` (when `app/**`, `tests/**`, or workflow file changes)
+- Pull requests to `main`
+- Manual dispatch (`workflow_dispatch`) with optional `test_path`

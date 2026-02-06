@@ -82,7 +82,7 @@
     "set": "设置头像",
     "placeholder": "输入头像种子"
   },
-  "change_user_name": {
+  "change_username": {
     "title": "更改用户名",
     "placeholder": "新用户名",
     "change": "更改用户名"
@@ -223,7 +223,7 @@
     "change_profile_picture": {
       "success": "头像已更改。"
     },
-    "change_user_name": {
+    "change_username": {
       "same": "这已经是您的用户名。",
       "success": "用户名已更改。",
       "taken": "此用户名已被占用。",
