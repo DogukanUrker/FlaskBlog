@@ -83,7 +83,7 @@
     "set": "Définir la photo de profil",
     "placeholder": "Entrez la graine pour la photo de profil"
   },
-  "change_user_name": {
+  "change_username": {
     "title": "Changer le nom d'utilisateur",
     "placeholder": "Nouveau nom d'utilisateur",
     "change": "Changer le nom d'utilisateur"
@@ -224,7 +224,7 @@
     "change_profile_picture": {
       "success": "La photo de profil a été changée."
     },
-    "change_user_name": {
+    "change_username": {
       "same": "C'est déjà votre nom d'utilisateur.",
       "success": "Le nom d'utilisateur a été modifié.",
       "taken": "Ce nom d'utilisateur est déjà pris.",

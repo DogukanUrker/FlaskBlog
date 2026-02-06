@@ -83,7 +83,7 @@
     "set": "Set Profile Picture",
     "placeholder": "Enter seed for profile picture"
   },
-  "change_user_name": {
+  "change_username": {
     "title": "Change Username",
     "placeholder": "New Username",
     "change": "Change Username"
@@ -224,7 +224,7 @@
     "change_profile_picture": {
       "success": "Profile picture has been changed."
     },
-    "change_user_name": {
+    "change_username": {
       "same": "This is already your username.",
       "success": "Username has been changed.",
       "taken": "This username is already taken.",
