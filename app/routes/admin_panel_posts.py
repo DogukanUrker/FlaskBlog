@@ -9,6 +9,7 @@ from flask import (
 from models import Post
 from utils.log import Log
 from utils.paginate import paginate_query
+from utils.delete import delete_post
 
 admin_panel_posts_blueprint = Blueprint("admin_panel_posts", __name__)
 
@@ -17,6 +18,11 @@ admin_panel_posts_blueprint = Blueprint("admin_panel_posts", __name__)
 def admin_panel_posts():
     if "username" in session:
         Log.info(f"Admin: {session['username']} reached to posts admin panel")
+
+        if request.method == "POST":
+            if "post_delete_button" in request.form:
+                delete_post(request.form["post_id"])
+                return redirect("/admin/posts")
 
         query = Post.query.order_by(Post.time_stamp.desc())
         posts_objects, page, total_pages = paginate_query(query)
