@@ -6,49 +6,24 @@
     <div class="card bg-base-200 shadow-xl">
         <div class="card-body">
             <h1 class="card-title text-2xl font-bold justify-center mb-4">
-                {{ translations.create_post.title }}
+                Create Document
             </h1>
 
             <form method="post" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                 <fieldset class="fieldset">
-                    <label class="label">{{ translations.create_post.title_placeholder }}</label>
-                    {{ form.post_title(class_="input input-bordered w-full", autocomplete="off", placeholder=translations.create_post.title_placeholder) }}
-
-                    <label class="label">{{ translations.create_post.tags }}</label>
-                    {{ form.post_tags(class_="input input-bordered w-full", autocomplete="off", placeholder=translations.create_post.tags) }}
-                    <p class="text-xs text-base-content/60 mt-1">{{ translations.create_post.separate }}</p>
-
-                    <label class="label">{{ translations.create_post.abstract_placeholder }}</label>
-                    {{ form.post_abstract(class_="textarea textarea-bordered w-full", autocomplete="off", placeholder=translations.create_post.abstract_placeholder) }}
+                    <label class="label">Document Name</label>
+                    {{ form.post_title(class_="input input-bordered w-full", autocomplete="off", placeholder=untitled) }}
 
                     <label class="label">{{ translations.create_post.banner }}</label>
                     {{ form.post_banner(class_="file-input file-input-bordered w-full") }}
 
-                    <label class="label">{{ translations.create_post.category }}</label>
+                    <label class="label">Document Type</label>
                     <select class="select select-bordered w-full" id="post_category" name="post_category" required>
-                        <option value="Apps">{{translations.categories.apps}}</option>
-                        <option value="Art">{{ translations.categories.art }}</option>
-                        <option value="Books">{{ translations.categories.books }}</option>
-                        <option value="Business">{{ translations.categories.business }}</option>
-                        <option value="Code">{{ translations.categories.code }}</option>
-                        <option value="Education">{{ translations.categories.education }}</option>
-                        <option value="Finance">{{ translations.categories.finance }}</option>
-                        <option value="Foods">{{ translations.categories.foods }}</option>
-                        <option value="Games">{{ translations.categories.games }}</option>
-                        <option value="Health">{{ translations.categories.health }}</option>
-                        <option value="History">{{ translations.categories.history }}</option>
-                        <option value="Movies">{{ translations.categories.movies }}</option>
-                        <option value="Music">{{ translations.categories.music }}</option>
-                        <option value="Nature">{{ translations.categories.nature }}</option>
-                        <option value="Science">{{ translations.categories.science }}</option>
-                        <option value="Series">{{ translations.categories.series }}</option>
-                        <option value="Sports">{{ translations.categories.sports }}</option>
-                        <option value="Technology">{{ translations.categories.technology }}</option>
-                        <option value="Travel">{{ translations.categories.travel }}</option>
-                        <option value="Web">{{ translations.categories.web }}</option>
-                        <option value="Other">{{ translations.categories.other }}</option>
+                        <option value="Document">Document</option>
+                        <option value="Spreadsheet">Spreadsheet</option>
+                        <option value="Chart">Chart</option>
                     </select>
 
                     <label class="label">Content (Markdown)</label>

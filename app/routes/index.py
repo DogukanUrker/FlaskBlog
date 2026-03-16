@@ -15,7 +15,7 @@ from json import load
 
 from flask import Blueprint, redirect, render_template, session
 
-from models import Post
+from models import Post, User
 from utils.log import Log
 from utils.paginate import paginate_query
 
