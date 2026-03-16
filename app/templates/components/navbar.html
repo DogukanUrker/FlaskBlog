@@ -1,27 +1,8 @@
 <div class="navbar bg-base-100 px-4 lg:px-8 mt-4">
     <div class="navbar-start">
         <a href="/" class="btn btn-ghost btn-circle">
-            <img
-                src="https://raw.githubusercontent.com/DogukanUrker/flaskBlog/main/images/Icon180.ico"
-                class="w-10 h-10 rounded"
-                alt="flaskBlog"
-            />
+            <h2 class="ml-50 text-4xl">BusinessCorp&trade;</h2>
         </a>
-    </div>
-
-    <div class="navbar-center hidden md:flex">
-        <div class="join">
-            <input
-                type="text"
-                id="search-input"
-                autocomplete="off"
-                placeholder="{{translations.search_bar.placeholder}}"
-                class="input input-bordered join-item w-64"
-            />
-            <button onclick="search()" class="btn btn-primary join-item">
-                <i class="ti ti-search text-xl"></i>
-            </button>
-        </div>
     </div>
 
     <div class="navbar-end gap-1">
@@ -67,10 +48,6 @@
                 </a>
             {% endif %}
         {% endif %}
-
-        <button onclick="theme_modal.showModal()" class="btn btn-ghost btn-square">
-            <i class="ti ti-palette text-2xl"></i>
-        </button>
     </div>
 
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
