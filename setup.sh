@@ -1,3 +1,5 @@
+docker network create --driver bridge businessnet 
+
 # make docker
-docker build ./nginx -t businesscorpnginx
-sudo docker run --rm -p 8000:80 businesscorpnginx
+docker run --name reverse-proxy --rm -p 8000:80 -v ./nginx/reverse-proxy.conf:/etc/nginx/nginx.conf:ro --network businessnet nginx
+
