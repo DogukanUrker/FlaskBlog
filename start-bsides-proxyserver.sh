@@ -1,0 +1,1 @@
+docker run --name basic-proxy --rm -p 80:80 -d -v ./nginx/basic-proxy.conf:/etc/nginx/nginx.conf:ro nginx
