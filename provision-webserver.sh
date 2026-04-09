@@ -31,21 +31,14 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 
 
 
-# BEGIN REGISTER START WEBSERVER ON LOAD
+# BEGIN BUILD CONTAINERS
+# Prepare
+docker network create --driver bridge businessnet 
 
-# Source - https://stackoverflow.com/a/878647
-# Posted by dogbane, modified by community. See post 'Timeline' for change history
-# Retrieved 2026-04-09, License - CC BY-SA 3.0
+# Setup
+make docker
+docker run --name reverse-proxy --restart always --rm -p 80:80 -d -v ./nginx/reverse-proxy.conf:/etc/nginx/nginx.conf:ro --network businessnet nginx
 
-#write out current crontab
-crontab -l > mycron
-#echo new cron into cron file
-echo "@reboot ./start-bsides-proxyserver.sh" >> mycron
-#install new cron file
-crontab mycron
-rm mycron
-
-# END REGISTER START WEBSERVER ON LOAD
-
+# BEGIN BUILD CONTAINERS
 
 sudo reboot now

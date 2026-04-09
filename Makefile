@@ -38,6 +38,7 @@ docker-build: ## Build Docker image
 docker-run: ## Run Docker container
 	docker run --name flaskblog -d \
 		--rm -p 1283:1283 \
+		--restart always \
 		$(if $(wildcard .env),--env-file .env) \
 		--network businessnet \
 		flaskblog
