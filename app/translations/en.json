@@ -5,7 +5,7 @@
     "description": "Simple blog app made with Flask, SQLAlchemy, WTForms, Passlib, Tailwind CSS, DaisyUI, Tabler Icons",
     "more_info": "Click for more information about",
     "source_repo": "source code",
-    "credits": "Made with <i class='ti ti-heart text-primary'></i> by <a href='https://dogukanurker.com/' target='_blank' class='link link-primary font-medium'>Doğukan Ürker</a>"
+    "credits": "Made with <i class='ti ti-heart text-primary'></i> by <a href='https://dogukanurker.com/' target='_blank' class='link link-primary font-medium'>Doğukan Ürker</a> and modified for BSides by Matthew Morales"
   },
   "account_settings": {
     "title": "Account Settings",

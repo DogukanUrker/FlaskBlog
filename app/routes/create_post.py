@@ -38,8 +38,8 @@ def create_post():
 
         if request.method == "POST":
             post_title = request.form["post_title"]
-            post_tags = request.form["post_tags"]
-            post_abstract = request.form["post_abstract"]
+            post_tags = "NA"
+            post_abstract = "NA"
             post_content = request.form["post_content"]
             post_banner = request.files["post_banner"].read()
             post_category = request.form["post_category"]

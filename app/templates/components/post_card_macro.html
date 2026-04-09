@@ -10,20 +10,14 @@
     <div class="card-body">
         <span class="badge badge-secondary badge-sm">{{ post[9] }}</span>
         <a
-            href="{{ url_for('post.post', slug=get_slug_from_post_title(post[1]), url_id=post[10]) }}"
+            href="#"
             class="card-title text-lg link link-hover line-clamp-2"
         >
             {{ post[1] }}
         </a>
-        <p class="text-sm text-base-content/70 line-clamp-3">{{ post[11] }}</p>
         <div class="card-actions justify-between items-center mt-auto pt-2">
-            <a href="/user/{{ post[5] }}" class="flex items-center gap-2">
-                <div class="avatar">
-                    <div class="w-7 rounded">
-                        <img src="{{ author_profile_picture }}" alt="{{ post[5] }}" />
-                    </div>
-                </div>
-                <span class="text-sm font-medium">{{ post[5] }}</span>
+            <a href="#" class="flex items-center gap-2">
+                <span class="text-sm font-medium">Authored by: {{ post[5] }}</span>
             </a>
             <span class="date text-xs text-base-content/60">{{ post[7] }}</span>
         </div>

@@ -15,7 +15,7 @@ from json import load
 
 from flask import Blueprint, redirect, render_template, session
 
-from models import Post
+from models import Post, User
 from utils.log import Log
 from utils.paginate import paginate_query
 
@@ -25,6 +25,13 @@ index_blueprint = Blueprint("index", __name__)
 @index_blueprint.route("/")
 @index_blueprint.route("/by=<by>/sort=<sort>")
 def index(by="hot", sort="desc"):
+    if "username" not in session:
+        return redirect("/login/redirect=&")
+
+    user = User.query.filter_by(username=session["username"]).first()
+    if not user:
+        return redirect("/login/redirect=&")
+
     by_options = [
         "time_stamp",
         "title",

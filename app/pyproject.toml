@@ -15,6 +15,7 @@ dependencies = [
     "markdown2>=2.5.4",
     "bleach>=6.3.0",
     "python-dotenv>=1.2.1",
+    "gunicorn>=25.3.0",
 ]
 
 [project.optional-dependencies]

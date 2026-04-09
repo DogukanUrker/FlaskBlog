@@ -22,16 +22,6 @@ class CreatePostForm(Form):
         [validators.Length(min=4, max=75), validators.InputRequired()],
     )
 
-    post_tags = StringField(
-        "Post Tags",
-        [validators.InputRequired()],
-    )
-
-    post_abstract = TextAreaField(
-        "Post Abstract",
-        [validators.Length(min=150, max=200), validators.InputRequired()],
-    )
-
     post_content = TextAreaField(
         "Post Content",
         [validators.Length(min=50)],
@@ -39,30 +29,7 @@ class CreatePostForm(Form):
 
     post_banner = FileField("Post Banner")
 
-    post_category = SelectField(
+    post_category = StringField(
         "Post Category",
         [validators.InputRequired()],
-        choices=[
-            ("Apps", "Apps"),
-            ("Art", "Art"),
-            ("Books", "Books"),
-            ("Business", "Business"),
-            ("Code", "Code"),
-            ("Education", "Education"),
-            ("Finance", "Finance"),
-            ("Foods", "Foods"),
-            ("Games", "Games"),
-            ("Health", "Health"),
-            ("History", "History"),
-            ("Movies", "Movies"),
-            ("Music", "Music"),
-            ("Nature", "Nature"),
-            ("Science", "Science"),
-            ("Series", "Series"),
-            ("Sports", "Sports"),
-            ("Technology", "Technology"),
-            ("Travel", "Travel"),
-            ("Web", "Web"),
-            ("Other", "Other"),
-        ],
     )
