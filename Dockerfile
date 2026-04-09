@@ -24,4 +24,4 @@ ENV APP_PORT=1283
 
 EXPOSE 1283
 
-CMD ["uv", "run", "gunicorn", "-w", "4", "-b 0.0.0.0", "app:app"]
+CMD ["uv", "run", "gunicorn", "-w", "4", "-b 0.0.0.0:1283", "app:app"]
