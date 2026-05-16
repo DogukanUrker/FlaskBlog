@@ -134,14 +134,19 @@ class Settings:
     # SMTP Mail Configuration
     SMTP_SERVER = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
     SMTP_PORT = int(os.environ.get("SMTP_PORT", 587))
-    SMTP_MAIL = os.environ.get("SMTP_MAIL", "flaskblogdogukanurker@gmail.com")
-    SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "icovdnrxcgfdswal")
+    SMTP_MAIL = os.environ.get("SMTP_MAIL", "")
+    SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "")
 
     # Default Admin Account Configuration
     DEFAULT_ADMIN = _bool(os.environ.get("DEFAULT_ADMIN", "True"))
     DEFAULT_ADMIN_USERNAME = os.environ.get("DEFAULT_ADMIN_USERNAME", "admin")
     DEFAULT_ADMIN_EMAIL = os.environ.get("DEFAULT_ADMIN_EMAIL", "admin@flaskblog.com")
-    DEFAULT_ADMIN_PASSWORD = os.environ.get("DEFAULT_ADMIN_PASSWORD", "admin")
+    DEFAULT_ADMIN_PASSWORD = os.environ.get("DEFAULT_ADMIN_PASSWORD")
+    if DEFAULT_ADMIN and not DEFAULT_ADMIN_PASSWORD:
+        raise RuntimeError(
+            "DEFAULT_ADMIN_PASSWORD must be set when DEFAULT_ADMIN=True. "
+            "Set a strong password via the environment variable."
+        )
     DEFAULT_ADMIN_POINT = int(os.environ.get("DEFAULT_ADMIN_POINT", 0))
     DEFAULT_ADMIN_PROFILE_PICTURE = os.environ.get(
         "DEFAULT_ADMIN_PROFILE_PICTURE",
