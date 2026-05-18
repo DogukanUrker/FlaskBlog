@@ -61,7 +61,7 @@ class Settings:
     APP_ROOT_PATH = os.environ.get("APP_ROOT_PATH", ".")
     APP_HOST = os.environ.get("APP_HOST", "localhost")
     APP_PORT = int(os.environ.get("APP_PORT", 1283))
-    DEBUG_MODE = _bool(os.environ.get("DEBUG_MODE", "True"))
+    DEBUG_MODE = _bool(os.environ.get("DEBUG_MODE", "False"))
 
     # Feature Toggles
     LOG_IN = _bool(os.environ.get("LOG_IN", "True"))

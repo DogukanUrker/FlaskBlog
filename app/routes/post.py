@@ -43,12 +43,12 @@ def post(url_id=None, slug=None):
 
         if request.method == "POST":
             if "post_delete_button" in request.form:
-                delete_post(post.id)
-                return redirect("/")
+                if delete_post(post.id, session.get("username")):
+                    return redirect("/")
 
             if "comment_delete_button" in request.form:
-                delete_comment(request.form["comment_id"])
-                return redirect(url_for("post.post", url_id=url_id)), 301
+                if delete_comment(request.form["comment_id"], session.get("username")):
+                    return redirect(url_for("post.post", url_id=url_id)), 301
 
             comment_text = escape(request.form["comment"])
 

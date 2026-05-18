@@ -25,7 +25,7 @@ def dashboard(username):
         if session["username"].lower() == username.lower():
             if request.method == "POST":
                 if "post_delete_button" in request.form:
-                    delete_post(request.form["post_id"])
+                    delete_post(request.form["post_id"], session.get("username"))
 
                     return (
                         redirect(url_for("dashboard.dashboard", username=username)),
