@@ -20,12 +20,15 @@ from utils.generate_url_id_from_post import get_slug_from_post_title
 from utils.log import Log
 from utils.time import current_time_stamp
 
+from models import User
+
 post_blueprint = Blueprint("post", __name__)
 
 
 @post_blueprint.route("/post/<url_id>", methods=["GET", "POST"])
 @post_blueprint.route("/post/<slug>-<url_id>", methods=["GET", "POST"])
 def post(url_id=None, slug=None):
+    user = User.query.filter_by(username=session["username"]).first()
     form = CommentForm(request.form)
 
     post = Post.query.filter_by(url_id=url_id).first()
@@ -43,11 +46,20 @@ def post(url_id=None, slug=None):
 
         if request.method == "POST":
             if "post_delete_button" in request.form:
-                delete_post(post.id)
+                # only delete the post if the authenticated user is the auther or an admin
+                if session.get("username") == post.author or user.role == "admin":
+                    delete_post(post.id)
+
                 return redirect("/")
 
             if "comment_delete_button" in request.form:
-                delete_comment(request.form["comment_id"])
+                comment_id = request.form["comment_id"]
+                comment = Comment.query.get(comment_id)
+
+                # only delete comment if the authenticated user is the auther or an admin
+                if session.get("username") == comment.username or user.role == "admin":
+                    delete_comment(comment_id)
+
                 return redirect(url_for("post.post", url_id=url_id)), 301
 
             comment_text = escape(request.form["comment"])
