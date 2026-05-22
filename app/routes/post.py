@@ -28,7 +28,10 @@ post_blueprint = Blueprint("post", __name__)
 @post_blueprint.route("/post/<url_id>", methods=["GET", "POST"])
 @post_blueprint.route("/post/<slug>-<url_id>", methods=["GET", "POST"])
 def post(url_id=None, slug=None):
-    user = User.query.filter_by(username=session["username"]).first()
+    user = None
+    if "username" in session:
+        user = User.query.filter_by(username=session["username"]).first()
+
     form = CommentForm(request.form)
 
     post = Post.query.filter_by(url_id=url_id).first()
