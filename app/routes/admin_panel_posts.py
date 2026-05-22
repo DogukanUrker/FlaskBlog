@@ -10,12 +10,23 @@ from models import Post
 from utils.log import Log
 from utils.paginate import paginate_query
 
+from models import User
+
 admin_panel_posts_blueprint = Blueprint("admin_panel_posts", __name__)
 
 
 @admin_panel_posts_blueprint.route("/admin/posts", methods=["GET", "POST"])
 def admin_panel_posts():
     if "username" in session:
+        user = User.query.filter_by(username=session["username"]).first()
+
+        if user.role != "admin":
+            Log.error(
+                f"{request.remote_addr} tried to reach admin panel without being admin"
+            )
+
+            return redirect("/")
+
         Log.info(f"Admin: {session['username']} reached to posts admin panel")
 
         query = Post.query.order_by(Post.time_stamp.desc())
