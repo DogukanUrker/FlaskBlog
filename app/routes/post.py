@@ -47,7 +47,7 @@ def post(url_id=None, slug=None):
         if request.method == "POST":
             if "post_delete_button" in request.form:
                 # only delete the post if the authenticated user is the auther or an admin
-                if session.get("username") == post.author or user.role == "admin":
+                if session.get("username") == post.author or (user and user.role == "admin"):
                     delete_post(post.id)
 
                 return redirect("/")
@@ -57,7 +57,7 @@ def post(url_id=None, slug=None):
                 comment = Comment.query.get(comment_id)
 
                 # only delete comment if the authenticated user is the auther or an admin
-                if session.get("username") == comment.username or user.role == "admin":
+                if comment and (session.get("username") == comment.username or (user and user.role == "admin")):
                     delete_comment(comment_id)
 
                 return redirect(url_for("post.post", url_id=url_id)), 301
