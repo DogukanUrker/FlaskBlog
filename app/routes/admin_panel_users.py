@@ -25,6 +25,13 @@ def admin_panel_users():
         if not user:
             return redirect("/")
 
+        if user.role != "admin":
+            Log.error(
+                f"{request.remote_addr} tried to reach user admin panel without being admin"
+            )
+
+            return redirect("/")
+
         if request.method == "POST":
             if "user_delete_button" in request.form:
                 Log.info(
@@ -40,39 +47,32 @@ def admin_panel_users():
 
                 change_user_role(request.form["username"])
 
-        if user.role == "admin":
-            query = User.query
-            users_objects, page, total_pages = paginate_query(query)
+        query = User.query
+        users_objects, page, total_pages = paginate_query(query)
 
-            users = [
-                (
-                    u.user_id,
-                    u.username,
-                    u.email,
-                    u.password,
-                    u.profile_picture,
-                    u.role,
-                    u.points,
-                    u.time_stamp,
-                    u.is_verified,
-                )
-                for u in users_objects
-            ]
-
-            Log.info(f"Rendering admin_panel_users.html: params: users={len(users)}")
-
-            return render_template(
-                "admin_panel_users.html",
-                users=users,
-                page=page,
-                total_pages=total_pages,
+        users = [
+            (
+                u.user_id,
+                u.username,
+                u.email,
+                u.password,
+                u.profile_picture,
+                u.role,
+                u.points,
+                u.time_stamp,
+                u.is_verified,
             )
-        else:
-            Log.error(
-                f"{request.remote_addr} tried to reach user admin panel without being admin"
-            )
+            for u in users_objects
+        ]
 
-            return redirect("/")
+        Log.info(f"Rendering admin_panel_users.html: params: users={len(users)}")
+
+        return render_template(
+            "admin_panel_users.html",
+            users=users,
+            page=page,
+            total_pages=total_pages,
+        )
     else:
         Log.error(
             f"{request.remote_addr} tried to reach user admin panel being logged in"

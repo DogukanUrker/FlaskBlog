@@ -20,6 +20,9 @@ def admin_panel_posts():
     if "username" in session:
         user = User.query.filter_by(username=session["username"]).first()
 
+        if not user:
+            return redirect("/")
+
         if user.role != "admin":
             Log.error(
                 f"{request.remote_addr} tried to reach admin panel without being admin"
