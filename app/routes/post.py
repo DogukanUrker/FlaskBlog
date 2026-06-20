@@ -50,6 +50,13 @@ def post(url_id=None, slug=None):
                 delete_comment(request.form["comment_id"])
                 return redirect(url_for("post.post", url_id=url_id)), 301
 
+            if "username" not in session:
+                Log.error(
+                    f"{request.remote_addr} tried to comment on post: "
+                    f'"{url_id}" without logging in',
+                )
+                return redirect(f"/login/redirect=&post&{url_id}")
+
             comment_text = escape(request.form["comment"])
 
             new_comment = Comment(
