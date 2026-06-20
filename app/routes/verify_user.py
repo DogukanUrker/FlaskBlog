@@ -48,15 +48,13 @@ def verify_user(code_sent):
         if user.is_verified == "True":
             return redirect("/")
         elif user.is_verified == "False":
-            global verification_code
-
             form = VerifyUserForm(request.form)
 
             if code_sent == "true":
                 if request.method == "POST":
                     code = request.form["code"]
 
-                    if code == verification_code:
+                    if code == session.get("verification_code"):
                         user.is_verified = "True"
                         db.session.commit()
 
@@ -92,6 +90,7 @@ def verify_user(code_sent):
                         server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
 
                         verification_code = str(randint(1000, 9999))
+                        session["verification_code"] = verification_code
 
                         message = EmailMessage()
                         message.set_content(
