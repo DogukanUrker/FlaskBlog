@@ -37,14 +37,9 @@ def create_post():
         form = CreatePostForm(request.form)
 
         if request.method == "POST":
-            post_title = request.form["post_title"]
-            post_tags = request.form["post_tags"]
-            post_abstract = request.form["post_abstract"]
-            post_content = request.form["post_content"]
             post_banner = request.files["post_banner"].read()
-            post_category = request.form["post_category"]
 
-            if post_content == "" or post_abstract == "":
+            if not form.validate():
                 flash_message(
                     page="create_post",
                     message="empty",
@@ -52,9 +47,16 @@ def create_post():
                     language=session["language"],
                 )
                 Log.error(
-                    f'User: "{session["username"]}" tried to create a post with empty content',
+                    f'User: "{session["username"]}" tried to create a post with '
+                    f"invalid data: {form.errors}",
                 )
             else:
+                post_title = form.post_title.data
+                post_tags = form.post_tags.data
+                post_abstract = form.post_abstract.data
+                post_content = form.post_content.data
+                post_category = form.post_category.data
+
                 new_post = Post(
                     title=post_title,
                     tags=post_tags,
