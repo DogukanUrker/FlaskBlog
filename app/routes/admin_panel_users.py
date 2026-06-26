@@ -25,6 +25,12 @@ def admin_panel_users():
         if not user:
             return redirect("/")
 
+        if user.role != "admin":
+            Log.error(
+                f"{request.remote_addr} tried to reach user admin panel without being admin"
+            )
+            return redirect("/")
+
         if request.method == "POST":
             if "user_delete_button" in request.form:
                 Log.info(

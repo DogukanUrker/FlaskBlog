@@ -6,7 +6,7 @@ from flask import (
     session,
 )
 
-from models import Comment
+from models import Comment, User
 from utils.log import Log
 from utils.paginate import paginate_query
 
@@ -16,6 +16,14 @@ admin_panel_comments_blueprint = Blueprint("admin_panel_comments", __name__)
 @admin_panel_comments_blueprint.route("/admin/comments", methods=["GET", "POST"])
 def admin_panel_comments():
     if "username" in session:
+        user = User.query.filter_by(username=session["username"]).first()
+
+        if not user or user.role != "admin":
+            Log.error(
+                f"{request.remote_addr} tried to reach comment admin panel without being admin"
+            )
+            return redirect("/")
+
         Log.info(f"Admin: {session['username']} reached to comments admin panel")
 
         query = Comment.query.order_by(Comment.time_stamp.desc())

@@ -7,6 +7,7 @@ from flask import (
 )
 from passlib.hash import sha512_crypt as encryption
 from sqlalchemy import func
+from urllib.parse import urlparse
 
 from models import User
 from settings import Settings
@@ -33,6 +34,12 @@ def login(direct):
         401: If the login is unsuccessful.
     """
     direct = direct.replace("&", "/")
+    if direct:
+        parsed = urlparse(direct)
+        if parsed.netloc or parsed.scheme or not direct.startswith("/"):
+            direct = "/"
+    else:
+        direct = "/"
     if Settings.LOG_IN:
         if "username" in session:
             Log.error(f'User: "{session["username"]}" already logged in')

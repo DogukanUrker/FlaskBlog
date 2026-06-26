@@ -21,31 +21,44 @@ from utils.flash_message import flash_message
 from utils.log import Log
 
 
-def delete_post(post_id):
+def delete_post(post_id, username=None):
     """
     This function deletes a post and all associated comments from the database.
 
     Parameters:
     post_id (str): The ID of the post to be deleted.
+    username (str): The username of the user requesting deletion (for authorization).
 
     Returns:
-    None
+    bool: True if deleted, False if not authorized or not found
     """
     post = Post.query.get(post_id)
 
-    if post:
-        db.session.delete(post)
-        db.session.commit()
-
-        flash_message(
-            page="delete",
-            message="post",
-            category="error",
-            language=session["language"],
-        )
-        Log.success(f'Post: "{post_id}" deleted')
-    else:
+    if not post:
         Log.error(f'Post: "{post_id}" not found')
+        return False
+
+    user = User.query.filter_by(username=username).first() if username else None
+    is_admin = user and user.role == "admin"
+    is_author = username and post.author.lower() == username.lower()
+
+    if not is_admin and not is_author:
+        Log.error(
+            f'User: "{username}" tried to delete post: "{post_id}" without authorization'
+        )
+        return False
+
+    db.session.delete(post)
+    db.session.commit()
+
+    flash_message(
+        page="delete",
+        message="post",
+        category="error",
+        language=session["language"],
+    )
+    Log.success(f'Post: "{post_id}" deleted by "{username}"')
+    return True
 
 
 def delete_user(username):
@@ -87,28 +100,41 @@ def delete_user(username):
         return redirect("/")
 
 
-def delete_comment(comment_id):
+def delete_comment(comment_id, username=None):
     """
     This function deletes a comment from the database.
 
     Parameters:
     comment_id (str): The ID of the comment to be deleted.
+    username (str): The username of the user requesting deletion (for authorization).
 
     Returns:
-    None
+    bool: True if deleted, False if not authorized or not found
     """
     comment = Comment.query.get(comment_id)
 
-    if comment:
-        db.session.delete(comment)
-        db.session.commit()
-
-        flash_message(
-            page="delete",
-            message="comment",
-            category="error",
-            language=session["language"],
-        )
-        Log.success(f'Comment: "{comment_id}" deleted')
-    else:
+    if not comment:
         Log.error(f'Comment: "{comment_id}" not found')
+        return False
+
+    user = User.query.filter_by(username=username).first() if username else None
+    is_admin = user and user.role == "admin"
+    is_author = username and comment.username.lower() == username.lower()
+
+    if not is_admin and not is_author:
+        Log.error(
+            f'User: "{username}" tried to delete comment: "{comment_id}" without authorization'
+        )
+        return False
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    flash_message(
+        page="delete",
+        message="comment",
+        category="error",
+        language=session["language"],
+    )
+    Log.success(f'Comment: "{comment_id}" deleted by "{username}"')
+    return True
