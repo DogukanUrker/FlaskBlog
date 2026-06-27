@@ -12,7 +12,6 @@ Covers the authorization matrix:
 import uuid
 
 import pytest
-from playwright.sync_api import expect
 
 from tests.e2e.helpers.database_helpers import (
     create_test_user,

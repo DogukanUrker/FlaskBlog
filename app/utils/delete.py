@@ -80,12 +80,14 @@ def delete_user(target_username, perpetrator_username=None):
     Returns:
     bool: True if deleted, False if unauthorized, not found, or blocked.
     """
-    from sqlalchemy import func, text
+    from sqlalchemy import func
 
     if perpetrator_username is None:
         perpetrator_username = session.get("username")
 
-    target = User.query.filter(func.lower(User.username) == target_username.lower()).first()
+    target = User.query.filter(
+        func.lower(User.username) == target_username.lower()
+    ).first()
 
     if not target:
         Log.error(f'User: "{target_username}" not found')
