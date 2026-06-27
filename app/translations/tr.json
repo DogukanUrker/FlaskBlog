@@ -266,7 +266,9 @@
     "delete": {
       "user": "Kullanıcı silindi.",
       "post": "Gönderi silindi.",
-      "comment": "Yorum silindi."
+      "comment": "Yorum silindi.",
+      "not_authorized": "You are not authorized to delete this user.",
+      "last_admin": "Cannot delete the last administrator account."
     },
     "set_language": {
       "success": "Dil değiştirildi."

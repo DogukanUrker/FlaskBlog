@@ -266,7 +266,9 @@
     "delete": {
       "user": "Користувача було видалено.",
       "post": "Пост було видалено.",
-      "comment": "Коментар було видалено."
+      "comment": "Коментар було видалено.",
+      "not_authorized": "You are not authorized to delete this user.",
+      "last_admin": "Cannot delete the last administrator account."
     },
     "set_language": {
       "success": "Мову було змінено."

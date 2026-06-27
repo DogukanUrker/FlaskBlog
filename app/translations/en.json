@@ -266,7 +266,9 @@
     "delete": {
       "user": "User has been deleted.",
       "post": "Post has been deleted.",
-      "comment": "Comment has been deleted."
+      "comment": "Comment has been deleted.",
+      "not_authorized": "You are not authorized to delete this user.",
+      "last_admin": "Cannot delete the last administrator account."
     },
     "set_language": {
       "success": "Language has been changed."

@@ -61,28 +61,79 @@ def delete_post(post_id, username=None):
     return True
 
 
-def delete_user(username):
+def delete_user(target_username, perpetrator_username=None):
     """
     This function deletes a user and all associated data from the database.
 
+    Authorization rules:
+      - Non-admin users may only delete their own account.
+      - Admins may delete any non-admin user.
+      - Admins may delete another admin only if >= 2 admins remain after deletion.
+      - No user (admin or not) may delete themselves via the admin panel
+        (admin self-deletion is blocked at the account-settings page).
+
     Parameters:
-    username (str): The username of the user to be deleted.
+    target_username (str): The username of the user to be deleted.
+    perpetrator_username (str, optional): The username of the calling user,
+        taken from session["username"]. If None, falls back to session.
 
     Returns:
-    None
+    bool: True if deleted, False if unauthorized, not found, or blocked.
     """
-    from sqlalchemy import func
+    from sqlalchemy import func, text
 
-    user = User.query.filter(func.lower(User.username) == username.lower()).first()
+    if perpetrator_username is None:
+        perpetrator_username = session.get("username")
 
-    if not user:
-        Log.error(f'User: "{username}" not found')
-        return redirect("/")
+    target = User.query.filter(func.lower(User.username) == target_username.lower()).first()
 
-    perpetrator = User.query.filter_by(username=session["username"]).first()
-    perpetrator_role = perpetrator.role if perpetrator else None
+    if not target:
+        Log.error(f'User: "{target_username}" not found')
+        return False
 
-    db.session.delete(user)
+    perpetrator = User.query.filter_by(username=perpetrator_username).first()
+    if not perpetrator:
+        Log.error(f'Perpetrator: "{perpetrator_username}" not found')
+        return False
+
+    # Gate 1: Authorization
+    is_admin = perpetrator.role == "admin"
+    is_self = target.username.lower() == perpetrator.username.lower()
+
+    if not is_admin and not is_self:
+        Log.error(
+            f'User: "{perpetrator_username}" (role={perpetrator.role}) '
+            f'tried to delete user: "{target_username}" without authorization'
+        )
+        flash_message(
+            page="delete",
+            message="not_authorized",
+            category="error",
+            language=session.get("language", "en"),
+        )
+        return False
+
+    # Gate 2: Last-admin guard — never let admin count drop to zero
+    if target.role == "admin":
+        admin_count = (
+            db.session.query(func.count(User.user_id))
+            .filter(User.role == "admin")
+            .scalar()
+        )
+        if admin_count <= 1:
+            Log.error(
+                f'User: "{perpetrator_username}" tried to delete last admin: '
+                f'"{target_username}" — would leave no admins'
+            )
+            flash_message(
+                page="delete",
+                message="last_admin",
+                category="error",
+                language=session.get("language", "en"),
+            )
+            return False
+
+    db.session.delete(target)
     db.session.commit()
 
     flash_message(
@@ -91,13 +142,13 @@ def delete_user(username):
         category="error",
         language=session.get("language", "en"),
     )
-    Log.success(f'User: "{username}" deleted')
+    Log.success(f'User: "{target.username}" deleted by "{perpetrator.username}"')
 
-    if perpetrator_role == "admin":
-        return redirect("/admin/users")
-    else:
+    if is_self:
         session.clear()
         return redirect("/")
+    else:
+        return redirect("/admin/users")
 
 
 def delete_comment(comment_id, username=None):

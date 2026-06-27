@@ -265,7 +265,9 @@
     "delete": {
       "user": "用户已删除。",
       "post": "帖子已删除。",
-      "comment": "评论已删除。"
+      "comment": "评论已删除。",
+      "not_authorized": "You are not authorized to delete this user.",
+      "last_admin": "Cannot delete the last administrator account."
     },
     "set_language": {
       "success": "语言已更改。"

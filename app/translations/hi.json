@@ -266,7 +266,9 @@
     "delete": {
       "user": "उपयोगकर्ता हटा दिया गया है।",
       "post": "पोस्ट हटा दी गई है।",
-      "comment": "टिप्पणी हटा दी गई है।"
+      "comment": "टिप्पणी हटा दी गई है।",
+      "not_authorized": "You are not authorized to delete this user.",
+      "last_admin": "Cannot delete the last administrator account."
     },
     "set_language": {
       "success": "भाषा सफलतापूर्वक बदल दी गई है।"

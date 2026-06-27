@@ -266,7 +266,9 @@
     "delete": {
       "user": "ユーザーが削除されました。",
       "post": "投稿が削除されました。",
-      "comment": "コメントが削除されました。"
+      "comment": "コメントが削除されました。",
+      "not_authorized": "You are not authorized to delete this user.",
+      "last_admin": "Cannot delete the last administrator account."
     },
     "set_language": {
       "success": "言語が変更されました。"

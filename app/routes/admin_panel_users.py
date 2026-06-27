@@ -26,7 +26,12 @@ def admin_panel_users():
                 f"Admin: {session['username']} deleted user: {request.form['username']}"
             )
 
-            delete_user(request.form["username"])
+            result = delete_user(request.form["username"], session["username"])
+            if not result:
+                Log.warning(
+                    f"Admin: {session['username']} — delete_user rejected for "
+                    f"{request.form['username']}"
+                )
 
         if "user_role_change_button" in request.form:
             Log.info(
