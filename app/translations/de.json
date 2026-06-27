@@ -323,5 +323,7 @@
     "contact": "Kontaktieren Sie uns",
     "contact_text": "Wenn Sie Fragen oder Vorschläge zu unserer Datenschutzrichtlinie haben, zögern Sie nicht, uns zu kontaktieren. E-Mail:"
   },
-  "invalid_credentials": "Ungültige E-Mail oder Passwort"
+  "invalid_credentials": "Ungültige E-Mail oder Passwort",
+  "flash.delete.not_authorized": "Sie sind nicht berechtigt, diesen Benutzer zu löschen",
+  "flash.delete.last_admin": "Diesen Benutzer kann nicht gelöscht werden: Er ist der letzte Administrator im System"
 }

@@ -323,5 +323,7 @@
     "contact": "Contáctenos",
     "contact_text": "Si tiene alguna pregunta o sugerencia sobre nuestra Política de Privacidad, no dude en contactarnos. Correo electrónico:"
   },
-  "invalid_credentials": "Correo electrónico o contraseña no válidos"
+  "invalid_credentials": "Correo electrónico o contraseña no válidos",
+  "flash.delete.not_authorized": "No tiene autorización para eliminar este usuario",
+  "flash.delete.last_admin": "No se puede eliminar este usuario: es el último administrador en el sistema"
 }

@@ -323,5 +323,7 @@
     "contact": "Bize Ulaşın",
     "contact_text": "Gizlilik Politikamız hakkında herhangi bir sorunuz veya öneriniz varsa, bizimle iletişime geçmekten çekinmeyin. E-posta:"
   },
-  "invalid_credentials": "Geçersiz e-posta veya şifre"
+  "invalid_credentials": "Geçersiz e-posta veya şifre",
+  "flash.delete.not_authorized": "Bu kullanıcıyı silme yetkiniz yok",
+  "flash.delete.last_admin": "Bu kullanıcı silinemez: sistemdeki son yöneticidir"
 }

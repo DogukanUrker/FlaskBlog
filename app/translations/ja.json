@@ -323,5 +323,7 @@
     "contact": "お問い合わせ",
     "contact_text": "プライバシーポリシーについて質問や提案がある場合は、お気軽にご連絡ください。メール："
   },
-  "invalid_credentials": "無効なメールアドレスまたはパスワード"
+  "invalid_credentials": "無効なメールアドレスまたはパスワード",
+  "flash.delete.not_authorized": "このユーザーを削除する権限がありません",
+  "flash.delete.last_admin": "このユーザーを削除できません：システム最後の管理者です"
 }
