@@ -64,7 +64,7 @@ def verify_user(code_sent):
                         page="verify_user",
                         message="success",
                         category="success",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                     return redirect("/")
                 else:
@@ -72,7 +72,7 @@ def verify_user(code_sent):
                         page="verify_user",
                         message="wrong",
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
 
             return render_template(

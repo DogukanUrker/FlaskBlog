@@ -64,7 +64,7 @@ def login(direct):
                         page="login",
                         message="not_found",
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                 else:
                     if encryption.verify(password, user.password):
@@ -76,7 +76,7 @@ def login(direct):
                             page="login",
                             message="success",
                             category="success",
-                            language=session["language"],
+                            language=session.get("language", "en"),
                         )
 
                         return (
@@ -90,7 +90,7 @@ def login(direct):
                             page="login",
                             message="password",
                             category="error",
-                            language=session["language"],
+                            language=session.get("language", "en"),
                         )
 
             return render_template(

@@ -49,7 +49,7 @@ def change_password():
                 page="change_password",
                 message="login",
                 category="error",
-                language=session["language"],
+                language=session.get("language", "en"),
             )
             return redirect("/login/redirect=change-password")
 
@@ -59,7 +59,7 @@ def change_password():
                     page="change_password",
                     message="same",
                     category="error",
-                    language=session["language"],
+                    language=session.get("language", "en"),
                 )
 
             if password != password_confirm:
@@ -67,7 +67,7 @@ def change_password():
                     page="change_password",
                     message="match",
                     category="error",
-                    language=session["language"],
+                    language=session.get("language", "en"),
                 )
 
             if old_password != password and password == password_confirm:
@@ -93,7 +93,7 @@ def change_password():
                 page="change_password",
                 message="old",
                 category="error",
-                language=session["language"],
+                language=session.get("language", "en"),
             )
 
     return render_template(

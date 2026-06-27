@@ -49,7 +49,7 @@ def create_post():
                 page="create_post",
                 message="empty",
                 category="error",
-                language=session["language"],
+                language=session.get("language", "en"),
             )
             Log.error(
                 f'User: "{session["username"]}" tried to create a post with '
@@ -87,7 +87,7 @@ def create_post():
                 page="create_post",
                 message="success",
                 category="success",
-                language=session["language"],
+                language=session.get("language", "en"),
             )
             return redirect("/")
 

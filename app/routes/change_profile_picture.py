@@ -56,7 +56,7 @@ def change_profile_picture():
                 page="change_profile_picture",
                 message="success",
                 category="success",
-                language=session["language"],
+                language=session.get("language", "en"),
             )
 
         return redirect("/account-settings")

@@ -73,7 +73,7 @@ def change_username():
                 page="change_username",
                 message="success",
                 category="success",
-                language=session["language"],
+                language=session.get("language", "en"),
             )
 
             return redirect("/account-settings")
@@ -83,7 +83,7 @@ def change_username():
                 page="change_username",
                 message="taken",
                 category="error",
-                language=session["language"],
+                language=session.get("language", "en"),
             )
 
     return render_template(
