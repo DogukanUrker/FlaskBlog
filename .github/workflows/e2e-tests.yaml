@@ -48,6 +48,8 @@ jobs:
         run: make install
 
       - name: run e2e tests
+        env:
+          DEFAULT_ADMIN_PASSWORD: admin
         run: |
           if [ -n "${{ github.event.inputs.test_path }}" ]; then
             cd app && uv run pytest ../tests/${{ github.event.inputs.test_path }} -v --tb=short
