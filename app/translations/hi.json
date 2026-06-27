@@ -248,7 +248,7 @@
       "success": "आप सफलतापूर्वक लॉगिन हो गए हैं।",
       "password": "गलत पासवर्ड।",
       "not_found": "उपयोगकर्ता नहीं मिला।",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "अमान्य ईमेल या पासवर्ड"
     },
     "logout": {
       "success": "आप सफलतापूर्वक लॉगआउट हो गए हैं।"
@@ -261,7 +261,7 @@
       "match": "पासवर्ड मेल नहीं खा रहे हैं।",
       "not_found": "उपयोगकर्ता नहीं मिला।",
       "wrong": "गलत कोड।",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "अमान्य ईमेल या पासवर्ड"
     },
     "delete": {
       "user": "उपयोगकर्ता हटा दिया गया है।",

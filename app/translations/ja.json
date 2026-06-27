@@ -248,7 +248,7 @@
       "success": "ログインに成功しました。",
       "password": "パスワードが間違っています",
       "not_found": "ユーザーが見つかりません",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "無効なメールアドレスまたはパスワード"
     },
     "logout": {
       "success": "ログアウトに成功しました。"
@@ -261,7 +261,7 @@
       "match": "パスワードが一致しません。",
       "not_found": "ユーザーが見つかりません。",
       "wrong": "コードが間違っています。",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "無効なメールアドレスまたはパスワード"
     },
     "delete": {
       "user": "ユーザーが削除されました。",

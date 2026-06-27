@@ -248,7 +248,7 @@
       "success": "Başarıyla giriş yaptınız.",
       "password": "Yanlış şifre",
       "not_found": "Kullanıcı bulunamadı",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "Geçersiz e-posta veya şifre"
     },
     "logout": {
       "success": "Başarıyla çıkış yaptınız."
@@ -261,7 +261,7 @@
       "match": "Şifreler uyuşmuyor.",
       "not_found": "Kullanıcı bulunamadı.",
       "wrong": "Yanlış kod.",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "Geçersiz e-posta veya şifre"
     },
     "delete": {
       "user": "Kullanıcı silindi.",

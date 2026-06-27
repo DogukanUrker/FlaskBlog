@@ -248,7 +248,7 @@
       "success": "You have successfully logged in.",
       "password": "Wrong password",
       "not_found": "User not found",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "Invalid email or password"
     },
     "logout": {
       "success": "You have successfully logged out."
@@ -261,7 +261,7 @@
       "match": "Passwords do not match.",
       "not_found": "User not found.",
       "wrong": "Wrong code.",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "Invalid email or password"
     },
     "delete": {
       "user": "User has been deleted.",

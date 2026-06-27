@@ -248,7 +248,7 @@
       "success": "Vous vous êtes connecté avec succès.",
       "password": "Mot de passe incorrect",
       "not_found": "Utilisateur non trouvé",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "E-mail ou mot de passe invalide"
     },
     "logout": {
       "success": "Vous vous êtes déconnecté avec succès."
@@ -261,7 +261,7 @@
       "match": "Les mots de passe ne correspondent pas.",
       "not_found": "Utilisateur non trouvé.",
       "wrong": "Code incorrect.",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "E-mail ou mot de passe invalide"
     },
     "delete": {
       "user": "L'utilisateur a été supprimé.",

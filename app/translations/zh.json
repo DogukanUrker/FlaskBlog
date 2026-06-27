@@ -247,7 +247,7 @@
       "success": "您已成功登录。",
       "password": "密码错误",
       "not_found": "用户未找到",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "无效的电子邮件或密码"
     },
     "logout": {
       "success": "您已成功登出。"
@@ -260,7 +260,7 @@
       "match": "密码不匹配。",
       "not_found": "用户未找到。",
       "wrong": "错误的代码。",
-      "invalid_credentials": "Invalid username or password"
+      "invalid_credentials": "无效的电子邮件或密码"
     },
     "delete": {
       "user": "用户已删除。",
