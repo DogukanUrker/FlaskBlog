@@ -245,6 +245,8 @@
     },
     "login": {
       "success": "您已成功登录。",
+      "password": "密码错误",
+      "not_found": "用户未找到",
       "invalid_credentials": "Invalid username or password"
     },
     "logout": {
@@ -256,6 +258,8 @@
       "code": "代码已发送。",
       "same": "新密码不能与旧密码相同。",
       "match": "密码不匹配。",
+      "not_found": "用户未找到。",
+      "wrong": "错误的代码。",
       "invalid_credentials": "Invalid username or password"
     },
     "delete": {
@@ -315,5 +319,6 @@
     "changes_text": "我们可能会不时更新我们的隐私政策。因此，建议您定期查看此页面的任何更改。我们将在此页面上发布新的隐私政策，通知您任何更改。这些更改在发布到此页面后立即生效。",
     "contact": "联系我们",
     "contact_text": "如果您对我们的隐私政策有任何疑问或建议，请随时联系我们。电子邮件："
-  }
+  },
+  "invalid_credentials": "无效的电子邮件或密码"
 }

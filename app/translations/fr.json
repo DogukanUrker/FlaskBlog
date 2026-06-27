@@ -246,6 +246,8 @@
     },
     "login": {
       "success": "Vous vous êtes connecté avec succès.",
+      "password": "Mot de passe incorrect",
+      "not_found": "Utilisateur non trouvé",
       "invalid_credentials": "Invalid username or password"
     },
     "logout": {
@@ -257,6 +259,8 @@
       "code": "Le code a été envoyé.",
       "same": "Le nouveau mot de passe ne peut pas être identique à l'ancien mot de passe.",
       "match": "Les mots de passe ne correspondent pas.",
+      "not_found": "Utilisateur non trouvé.",
+      "wrong": "Code incorrect.",
       "invalid_credentials": "Invalid username or password"
     },
     "delete": {
@@ -316,5 +320,6 @@
     "changes_text": "Nous pouvons mettre à jour notre Politique de Confidentialité de temps en temps. Par conséquent, nous vous conseillons de consulter cette page périodiquement pour toute modification. Nous vous informerons de toute modification en publiant la nouvelle Politique de Confidentialité sur cette page. Ces modifications sont effectives immédiatement après leur publication sur cette page.",
     "contact": "Nous Contacter",
     "contact_text": "Si vous avez des questions ou des suggestions concernant notre Politique de Confidentialité, n'hésitez pas à nous contacter. Mail :"
-  }
+  },
+  "invalid_credentials": "E-mail ou mot de passe invalide"
 }

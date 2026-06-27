@@ -246,6 +246,8 @@
     },
     "login": {
       "success": "Sie haben sich erfolgreich eingeloggt.",
+      "password": "Falsches Passwort",
+      "not_found": "Benutzer nicht gefunden",
       "invalid_credentials": "Invalid username or password"
     },
     "logout": {
@@ -257,6 +259,8 @@
       "code": "Code wurde gesendet.",
       "same": "Das neue Passwort darf nicht mit dem alten Passwort übereinstimmen.",
       "match": "Passwörter stimmen nicht überein.",
+      "not_found": "Benutzer nicht gefunden.",
+      "wrong": "Falscher Code.",
       "invalid_credentials": "Invalid username or password"
     },
     "delete": {
@@ -316,5 +320,6 @@
     "changes_text": "Wir können unsere Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Daher wird empfohlen, diese Seite regelmäßig auf Änderungen zu überprüfen. Wir werden Sie über Änderungen informieren, indem wir die neue Datenschutzrichtlinie auf dieser Seite veröffentlichen. Diese Änderungen treten sofort nach ihrer Veröffentlichung auf dieser Seite in Kraft.",
     "contact": "Kontaktieren Sie uns",
     "contact_text": "Wenn Sie Fragen oder Vorschläge zu unserer Datenschutzrichtlinie haben, zögern Sie nicht, uns zu kontaktieren. E-Mail:"
-  }
+  },
+  "invalid_credentials": "Ungültige E-Mail oder Passwort"
 }
