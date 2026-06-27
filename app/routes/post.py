@@ -55,9 +55,7 @@ def post(url_id=None, slug=None):
 
             if "comment_delete_button" in request.form:
                 delete_comment(request.form["comment_id"], session.get("username"))
-                return redirect(
-                    url_for("post.post", url_id=url_id, slug=post_slug)
-                ), 301
+                return redirect(url_for("post.post", url_id=url_id, slug=post_slug))
 
             comment_text = escape(request.form["comment"])
 
@@ -83,7 +81,7 @@ def post(url_id=None, slug=None):
                 language=session.get("language", "en"),
             )
 
-            return redirect(url_for("post.post", url_id=url_id)), 301
+            return redirect(url_for("post.post", url_id=url_id))
 
         comments = (
             Comment.query.filter_by(post_id=post.id)

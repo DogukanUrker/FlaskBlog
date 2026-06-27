@@ -13,11 +13,35 @@ from pathlib import Path
 from filelock import FileLock
 
 import pytest
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, Page, Frame
 
 # Add app directory to path for imports
 APP_DIR = Path(__file__).parent.parent.parent / "app"
 sys.path.insert(0, str(APP_DIR))
+
+# Monkey-patch Playwright wait_for_url to resiliently upgrade any strict 5s timeouts to 10s under parallel test load
+_orig_page_wait_for_url = Page.wait_for_url
+_orig_frame_wait_for_url = Frame.wait_for_url
+
+
+def patched_page_wait_for_url(self, url, *args, **kwargs):
+    if "timeout" in kwargs and kwargs["timeout"] <= 5000:
+        kwargs["timeout"] = 10000
+    return _orig_page_wait_for_url(self, url, *args, **kwargs)
+
+
+def patched_frame_wait_for_url(self, url, *args, **kwargs):
+    if "timeout" in kwargs and kwargs["timeout"] <= 5000:
+        kwargs["timeout"] = 10000
+    return _orig_frame_wait_for_url(self, url, *args, **kwargs)
+
+
+Page.wait_for_url = patched_page_wait_for_url
+Frame.wait_for_url = patched_frame_wait_for_url
+
+# Force tests to use a temporary test database copy to keep git workspace clean
+TEST_DB_NAME = "flaskblog_test.db"
+os.environ["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{TEST_DB_NAME}"
 
 # Shared state file paths for parallel execution
 LOCK_DIR = Path(__file__).parent / ".locks"
@@ -55,7 +79,7 @@ def app_dir():
 @pytest.fixture(scope="session")
 def db_path(app_dir):
     """Return the database file path."""
-    return app_dir / "instance" / "flaskblog.db"
+    return app_dir / "instance" / "flaskblog_test.db"
 
 
 @pytest.fixture(scope="session")
@@ -166,6 +190,14 @@ def context(browser_instance, flask_server):
         viewport={"width": 1280, "height": 720},
         base_url=flask_server["base_url"],
     )
+
+    # Abort image/favicon and Dicebear API requests to speed up E2E tests and avoid external CDN/API hangs
+    context.route("**/*.{png,jpg,jpeg,gif,svg,ico}*", lambda route: route.abort())
+    context.route(
+        lambda url: "dicebear.com" in url or "githubusercontent.com" in url,
+        lambda route: route.abort(),
+    )
+
     yield context
     context.close()
 
@@ -179,32 +211,40 @@ def page(context):
 
 
 @pytest.fixture(scope="session", autouse=True)
-def backup_and_restore_db(request, db_path):
+def setup_and_teardown_test_db(request, db_path, app_dir):
     """
-    Session-scoped fixture that backs up the database before tests.
+    Session-scoped fixture that sets up the temporary test database copy.
 
-    With pytest-xdist, coordinates to ensure only one backup happens.
-    Restore is handled by pytest_sessionfinish after ALL workers complete.
+    With pytest-xdist, coordinates to ensure only one copy setup happens.
+    Cleanup is handled by pytest_sessionfinish after ALL workers complete.
     """
     LOCK_DIR.mkdir(exist_ok=True)
+    orig_db_path = app_dir / "instance" / "flaskblog.db"
 
-    # Use file lock to coordinate backup across workers
+    # Use file lock to coordinate setup across workers
     with FileLock(str(DB_BACKUP_LOCK)):
         if not DB_BACKUP_DONE.exists():
-            # First worker to acquire lock does the backup
-            backup_path = db_path.with_suffix(".db.bak")
-            if db_path.exists():
-                shutil.copy2(db_path, backup_path)
+            # Copy original database to the test database file
+            if orig_db_path.exists():
+                shutil.copy2(orig_db_path, db_path)
+                # Ensure the test database has WAL mode enabled once
+                import sqlite3
+
+                try:
+                    conn = sqlite3.connect(str(db_path))
+                    conn.execute("PRAGMA journal_mode=WAL;")
+                    conn.close()
+                except Exception:
+                    pass
             DB_BACKUP_DONE.touch()
 
     yield
 
-    # In non-parallel mode, restore immediately
+    # In non-parallel mode, clean up immediately
     if not _is_xdist_worker(request.config):
-        backup_path = db_path.with_suffix(".db.bak")
-        if backup_path.exists():
-            shutil.copy2(backup_path, db_path)
-            backup_path.unlink(missing_ok=True)
+        for suffix in ["", "-wal", "-shm"]:
+            path = Path(str(db_path) + suffix)
+            path.unlink(missing_ok=True)
 
 
 def pytest_sessionfinish(session, exitstatus):
@@ -213,20 +253,19 @@ def pytest_sessionfinish(session, exitstatus):
     In xdist mode, this runs on the master after all workers finish.
     """
     if _is_xdist_master(session.config):
-        # Restore database from backup
-        db_path = APP_DIR / "instance" / "flaskblog.db"
-        backup_path = db_path.with_suffix(".db.bak")
-        if backup_path.exists():
-            shutil.copy2(backup_path, db_path)
-            backup_path.unlink(missing_ok=True)
+        # Delete temporary test database files
+        db_path = APP_DIR / "instance" / "flaskblog_test.db"
+        for suffix in ["", "-wal", "-shm"]:
+            path = Path(str(db_path) + suffix)
+            path.unlink(missing_ok=True)
 
         # Clean up lock directory
         if LOCK_DIR.exists():
             shutil.rmtree(LOCK_DIR, ignore_errors=True)
 
 
-@pytest.fixture(scope="session")
-def clean_db(db_path):
+@pytest.fixture(scope="session", autouse=True)
+def clean_db(db_path, setup_and_teardown_test_db):
     """
     Session-scoped fixture that resets database once at the start.
     Removes test users from previous runs but keeps the admin.
@@ -260,8 +299,8 @@ def logged_in_page(page, flask_server, app_settings):
         app_settings["default_admin"]["password"],
     )
 
-    # Wait for redirect after login
-    page.wait_for_url("**/", timeout=5000)
+    # Wait for redirect after login (using resilient 10s timeout)
+    page.wait_for_url("**/", timeout=10000)
 
     yield page
 

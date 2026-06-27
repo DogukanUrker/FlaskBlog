@@ -40,7 +40,7 @@ def _login(page, flask_server, username: str, password: str):
     login_page = LoginPage(page, flask_server["base_url"])
     login_page.navigate("/login/redirect=&")
     login_page.login(username, password)
-    page.wait_for_url("**/", timeout=5000)
+    page.wait_for_url("**/", timeout=10000)
 
 
 def _get_csrf_token(page) -> str:

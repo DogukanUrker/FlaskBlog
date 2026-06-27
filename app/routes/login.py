@@ -43,10 +43,7 @@ def login(direct):
     if Settings.LOG_IN:
         if "username" in session:
             Log.error(f'User: "{session["username"]}" already logged in')
-            return (
-                redirect(direct),
-                301,
-            )
+            return redirect(direct)
         else:
             form = LoginForm(request.form)
             if request.method == "POST":
@@ -79,10 +76,7 @@ def login(direct):
                             language=session.get("language", "en"),
                         )
 
-                        return (
-                            redirect(direct),
-                            301,
-                        )
+                        return redirect(direct)
 
                     else:
                         Log.error("Wrong password")
@@ -99,7 +93,4 @@ def login(direct):
                 hide_login=True,
             )
     else:
-        return (
-            redirect(direct),
-            301,
-        )
+        return redirect(direct)

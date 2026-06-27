@@ -11,7 +11,9 @@ from passlib.hash import sha512_crypt as encryption
 
 def get_db_connection(db_path: str):
     """Create a database connection."""
-    return sqlite3.connect(db_path)
+    conn = sqlite3.connect(db_path, timeout=30.0, isolation_level=None)
+    conn.execute("PRAGMA busy_timeout=30000;")
+    return conn
 
 
 def reset_database(db_path: str):
@@ -19,15 +21,38 @@ def reset_database(db_path: str):
     Reset database to known state.
     Removes all test users (keeps admin), clears posts and comments created by test users.
     """
+    import os
+    from passlib.hash import sha512_crypt as encryption
+
+    admin_password = os.environ.get("DEFAULT_ADMIN_PASSWORD", "admin")
+    hashed_password = encryption.hash(admin_password)
+
     conn = get_db_connection(db_path)
-    cursor = conn.cursor()
-
     try:
-        # Delete all users except the default admin
-        cursor.execute("DELETE FROM users WHERE LOWER(username) != 'admin'")
+        conn.execute("BEGIN IMMEDIATE")
+        cursor = conn.cursor()
+        # Delete all users
+        cursor.execute("DELETE FROM users")
 
-        # Reset admin points to 0
-        cursor.execute("UPDATE users SET points = 0 WHERE LOWER(username) = 'admin'")
+        # Insert default admin user
+        profile_picture = (
+            "https://api.dicebear.com/7.x/identicon/svg?seed=admin&radius=10"
+        )
+        cursor.execute(
+            """
+            INSERT INTO users (username, email, password, profile_picture, role, points, is_verified)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                "admin",
+                "admin@flaskblog.com",
+                hashed_password,
+                profile_picture,
+                "admin",
+                0,
+                "True",
+            ),
+        )
 
         # Delete test posts (posts by users other than admin)
         cursor.execute("DELETE FROM posts WHERE LOWER(author) != 'admin'")
@@ -35,7 +60,13 @@ def reset_database(db_path: str):
         # Delete test comments (comments by users other than admin)
         cursor.execute("DELETE FROM comments WHERE LOWER(username) != 'admin'")
 
-        conn.commit()
+        conn.execute("COMMIT")
+    except Exception:
+        try:
+            conn.execute("ROLLBACK")
+        except Exception:
+            pass
+        raise
     finally:
         conn.close()
 
@@ -54,9 +85,9 @@ def create_test_user(
     Returns the user_id of the created user.
     """
     conn = get_db_connection(db_path)
-    cursor = conn.cursor()
-
     try:
+        conn.execute("BEGIN IMMEDIATE")
+        cursor = conn.cursor()
         hashed_password = encryption.hash(password)
         profile_picture = (
             f"https://api.dicebear.com/7.x/identicon/svg?seed={username}&radius=10"
@@ -78,8 +109,15 @@ def create_test_user(
             ),
         )
 
-        conn.commit()
-        return cursor.lastrowid
+        user_id = cursor.lastrowid
+        conn.execute("COMMIT")
+        return user_id
+    except Exception:
+        try:
+            conn.execute("ROLLBACK")
+        except Exception:
+            pass
+        raise
     finally:
         conn.close()
 
@@ -158,9 +196,9 @@ def create_test_post(
     Returns a dictionary with id, url_id, and title.
     """
     conn = get_db_connection(db_path)
-    cursor = conn.cursor()
-
     try:
+        conn.execute("BEGIN IMMEDIATE")
+        cursor = conn.cursor()
         now = int(time.time())
         resolved_url_id = url_id or f"testpost_{uuid.uuid4().hex[:12]}"
         resolved_banner = banner if banner is not None else b"test-banner-image"
@@ -196,13 +234,20 @@ def create_test_post(
                 abstract,
             ),
         )
-        conn.commit()
+        post_id = cursor.lastrowid
+        conn.execute("COMMIT")
 
         return {
-            "id": cursor.lastrowid,
+            "id": post_id,
             "url_id": resolved_url_id,
             "title": title,
         }
+    except Exception:
+        try:
+            conn.execute("ROLLBACK")
+        except Exception:
+            pass
+        raise
     finally:
         conn.close()
 
@@ -297,9 +342,9 @@ def create_test_comment(
     Returns the created comment ID.
     """
     conn = get_db_connection(db_path)
-    cursor = conn.cursor()
-
     try:
+        conn.execute("BEGIN IMMEDIATE")
+        cursor = conn.cursor()
         cursor.execute(
             """
             INSERT INTO comments (post_id, comment, username, time_stamp)
@@ -307,8 +352,15 @@ def create_test_comment(
             """,
             (post_id, comment, username, int(time.time())),
         )
-        conn.commit()
-        return cursor.lastrowid
+        comment_id = cursor.lastrowid
+        conn.execute("COMMIT")
+        return comment_id
+    except Exception:
+        try:
+            conn.execute("ROLLBACK")
+        except Exception:
+            pass
+        raise
     finally:
         conn.close()
 

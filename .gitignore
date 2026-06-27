@@ -175,3 +175,13 @@ tests/e2e/.locks/
 
 # .DS_Store files
 .DS_Store
+
+# Test databases
+*_test.db
+*_test.db-shm
+*_test.db-wal
+
+# SQLite temporary journal/WAL files
+*.db-shm
+*.db-wal
+*.db-journal
