@@ -267,8 +267,8 @@
       "user": "Користувача було видалено.",
       "post": "Пост було видалено.",
       "comment": "Коментар було видалено.",
-      "not_authorized": "You are not authorized to delete this user.",
-      "last_admin": "Cannot delete the last administrator account."
+      "not_authorized": "У вас немає прав для видалення цього користувача",
+      "last_admin": "Неможливо видалити цього користувача: це останній адміністратор у системі"
     },
     "set_language": {
       "success": "Мову було змінено."
@@ -323,7 +323,5 @@
     "contact": "Зв'яжіться з нами",
     "contact_text": "Якщо у вас є будь-які питання або пропозиції щодо нашої Політики конфіденційності, не вагайтеся зв’язатися з нами. Пошта:”"
   },
-  "invalid_credentials": "Невірний email або пароль",
-  "flash.delete.not_authorized": "У вас немає прав для видалення цього користувача",
-  "flash.delete.last_admin": "Неможливо видалити цього користувача: це останній адміністратор у системі"
+  "invalid_credentials": "Невірний email або пароль"
 }

@@ -267,8 +267,8 @@
       "user": "Usuário foi excluído.",
       "post": "Postagem foi excluída.",
       "comment": "Comentário foi excluído.",
-      "not_authorized": "You are not authorized to delete this user.",
-      "last_admin": "Cannot delete the last administrator account."
+      "not_authorized": "Você não está autorizado a excluir este usuário",
+      "last_admin": "Não é possível excluir este usuário: é o último administrador do sistema"
     },
     "set_language": {
       "success": "O idioma foi alterado."
@@ -323,7 +323,5 @@
     "contact": "Contate-Nos",
     "contact_text": "Se você tiver alguma dúvida ou sugestão sobre nossa Política de Privacidade, não hesite em entrar em contato conosco. E-mail:"
   },
-  "invalid_credentials": "E-mail ou senha inválidos",
-  "flash.delete.not_authorized": "Você não está autorizado a excluir este usuário",
-  "flash.delete.last_admin": "Não é possível excluir este usuário: é o último administrador do sistema"
+  "invalid_credentials": "E-mail ou senha inválidos"
 }

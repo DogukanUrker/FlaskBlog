@@ -267,8 +267,8 @@
       "user": "उपयोगकर्ता हटा दिया गया है।",
       "post": "पोस्ट हटा दी गई है।",
       "comment": "टिप्पणी हटा दी गई है।",
-      "not_authorized": "You are not authorized to delete this user.",
-      "last_admin": "Cannot delete the last administrator account."
+      "not_authorized": "आप इस उपयोगकर्ता को हटाने के लिए अनुमतित नहीं हैं",
+      "last_admin": "इस उपयोगकर्ता को हटाया नहीं जा सकता: यह तंत्र का अंतिम व्यवसायक है"
     },
     "set_language": {
       "success": "भाषा सफलतापूर्वक बदल दी गई है।"
@@ -323,7 +323,5 @@
     "contact": "हमसे संपर्क करें",
     "contact_text": "यदि आपके पास हमारी गोपनीयता नीति के बारे में कोई प्रश्न या सुझाव है, तो कृपया हमसे संपर्क करने में संकोच न करें। मेल:"
   },
-  "invalid_credentials": "अमान्य ईमेल या पासवर्ड",
-  "flash.delete.not_authorized": "आप इस उपयोगकर्ता को हटाने के लिए अनुमतित नहीं हैं",
-  "flash.delete.last_admin": "इस उपयोगकर्ता को हटाया नहीं जा सकता: यह तंत्र का अंतिम व्यवसायक है"
+  "invalid_credentials": "अमान्य ईमेल या पासवर्ड"
 }

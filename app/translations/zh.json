@@ -266,8 +266,8 @@
       "user": "用户已删除。",
       "post": "帖子已删除。",
       "comment": "评论已删除。",
-      "not_authorized": "You are not authorized to delete this user.",
-      "last_admin": "Cannot delete the last administrator account."
+      "not_authorized": "您沒有權限刪除此用戶",
+      "last_admin": "無法刪除此用戶：他是系統中最後的管理員"
     },
     "set_language": {
       "success": "语言已更改。"
@@ -322,7 +322,5 @@
     "contact": "联系我们",
     "contact_text": "如果您对我们的隐私政策有任何疑问或建议，请随时联系我们。电子邮件："
   },
-  "invalid_credentials": "无效的电子邮件或密码",
-  "flash.delete.not_authorized": "您沒有權限刪除此用戶",
-  "flash.delete.last_admin": "無法刪除此用戶：他是系統中最後的管理員"
+  "invalid_credentials": "无效的电子邮件或密码"
 }

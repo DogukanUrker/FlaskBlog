@@ -267,8 +267,8 @@
       "user": "ユーザーが削除されました。",
       "post": "投稿が削除されました。",
       "comment": "コメントが削除されました。",
-      "not_authorized": "You are not authorized to delete this user.",
-      "last_admin": "Cannot delete the last administrator account."
+      "not_authorized": "このユーザーを削除する権限がありません",
+      "last_admin": "このユーザーを削除できません：システム最後の管理者です"
     },
     "set_language": {
       "success": "言語が変更されました。"
@@ -323,7 +323,5 @@
     "contact": "お問い合わせ",
     "contact_text": "プライバシーポリシーについて質問や提案がある場合は、お気軽にご連絡ください。メール："
   },
-  "invalid_credentials": "無効なメールアドレスまたはパスワード",
-  "flash.delete.not_authorized": "このユーザーを削除する権限がありません",
-  "flash.delete.last_admin": "このユーザーを削除できません：システム最後の管理者です"
+  "invalid_credentials": "無効なメールアドレスまたはパスワード"
 }

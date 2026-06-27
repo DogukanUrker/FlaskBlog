@@ -267,8 +267,8 @@
       "user": "Użytkownik został usunięty.",
       "post": "Post został usunięty.",
       "comment": "Komentarz został usunięty.",
-      "not_authorized": "You are not authorized to delete this user.",
-      "last_admin": "Cannot delete the last administrator account."
+      "not_authorized": "Nie masz uprawnień do usunięcia tego użytkownika",
+      "last_admin": "Nie można usunąć tego użytkownika: jest ostatnim administratorem w systemie"
     },
     "set_language": {
       "success": "Język został zmieniony."
@@ -323,7 +323,5 @@
     "contact": "Kontakt",
     "contact_text": "Jeśli masz jakiekolwiek pytania lub sugestie dotyczące naszej Polityki prywatności, nie wahaj się z nami skontaktować. E-mail:"
   },
-  "invalid_credentials": "Nieprawidłowy email lub hasło",
-  "flash.delete.not_authorized": "Nie masz uprawnień do usunięcia tego użytkownika",
-  "flash.delete.last_admin": "Nie można usunąć tego użytkownika: jest ostatnim administratorem w systemie"
+  "invalid_credentials": "Nieprawidłowy email lub hasło"
 }
