@@ -2,12 +2,12 @@
 
 A modern blog application built with Flask, featuring a clean UI and powerful admin tools.
 
-> 🌐 **[Try the live demo →](https://flaskblog.dogukanurker.com)** · self-hosted on my home server behind a Cloudflare Tunnel, auto-deployed on every push and reset nightly. See **[DEMO.md](docs/DEMO.md)** for how it's wired end to end.
+> **[Try the live demo → flaskblog.dogukanurker.com](https://flaskblog.dogukanurker.com)** · self-hosted on my home server behind a Cloudflare Tunnel, auto-deployed on every push and reset nightly. See **[DEMO.md](docs/DEMO.md)** for how it's wired end to end.
 
 ![FlaskBlog Light Theme](/images/Light.png)
 [Watch demo on YouTube](https://youtu.be/WyIpAlSp2RM) — [See screenshots (mobile/desktop, dark/light)](https://github.com/DogukanUrker/flaskBlog/tree/main/images)
 
-## ✨ Features
+## Features
 
 - **User System** - Registration, login, profiles with custom avatars
 - **Rich Editor** - [Milkdown](https://milkdown.dev/) editor for creating beautiful posts
@@ -18,7 +18,7 @@ A modern blog application built with Flask, featuring a clean UI and powerful ad
 - **Responsive Design** - Works great on all devices
 - **Advanced Logging** - Powered by [Tamga](https://github.com/dogukanurker/tamga) logger
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -94,21 +94,21 @@ make ci            # Run CI checks
 make clean         # Remove cache files
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Backend:** Flask, SQLite3, WTForms, Passlib \
 **Frontend:** TailwindCSS, jQuery, Summer Note Editor \
 **Icons:** Tabler Icons
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
+## Author
 
 **Doğukan Ürker** \
 [Website](https://dogukanurker.com) | [Email](mailto:dogukanurker@icloud.com)
