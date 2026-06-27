@@ -246,7 +246,9 @@
     },
     "login": {
       "success": "Başarıyla giriş yaptınız.",
-      "invalid_credentials": "Invalid username or password"
+      "password": "Yanlış şifre",
+      "not_found": "Kullanıcı bulunamadı",
+      "invalid_credentials": "Geçersiz e-posta veya şifre"
     },
     "logout": {
       "success": "Başarıyla çıkış yaptınız."
@@ -257,7 +259,9 @@
       "code": "Kod gönderildi.",
       "same": "Yeni şifre eski şifre ile aynı olamaz.",
       "match": "Şifreler uyuşmuyor.",
-      "invalid_credentials": "Invalid username or password"
+      "not_found": "Kullanıcı bulunamadı.",
+      "wrong": "Yanlış kod.",
+      "invalid_credentials": "Geçersiz e-posta veya şifre"
     },
     "delete": {
       "user": "Kullanıcı silindi.",
@@ -316,5 +320,6 @@
     "changes_text": "Gizlilik Politikamızı zaman zaman güncelleyebiliriz. Bu nedenle, bu sayfayı periyodik olarak gözden geçirmeniz önerilir. Herhangi bir değişiklik olduğunda sizi bu sayfada yeni Gizlilik Politikası'nı yayınlayarak bilgilendireceğiz. Bu değişiklikler, bu sayfada yayınlandıktan hemen sonra yürürlüğe girer.",
     "contact": "Bize Ulaşın",
     "contact_text": "Gizlilik Politikamız hakkında herhangi bir sorunuz veya öneriniz varsa, bizimle iletişime geçmekten çekinmeyin. E-posta:"
-  }
+  },
+  "invalid_credentials": "Geçersiz e-posta veya şifre"
 }

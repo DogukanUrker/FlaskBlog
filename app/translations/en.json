@@ -246,7 +246,9 @@
     },
     "login": {
       "success": "You have successfully logged in.",
-      "invalid_credentials": "Invalid username or password"
+      "password": "Wrong password",
+      "not_found": "User not found",
+      "invalid_credentials": "Invalid email or password"
     },
     "logout": {
       "success": "You have successfully logged out."
@@ -257,7 +259,9 @@
       "code": "Code has been sent.",
       "same": "New password can not be same with old password.",
       "match": "Passwords do not match.",
-      "invalid_credentials": "Invalid username or password"
+      "not_found": "User not found.",
+      "wrong": "Wrong code.",
+      "invalid_credentials": "Invalid email or password"
     },
     "delete": {
       "user": "User has been deleted.",
@@ -316,5 +320,6 @@
     "changes_text": "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.",
     "contact": "Contact Us",
     "contact_text": "If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us. Mail:"
-  }
+  },
+  "invalid_credentials": "Invalid email or password"
 }

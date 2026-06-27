@@ -60,7 +60,7 @@ def password_reset(code_sent):
                 if not user:
                     flash_message(
                         page="password_reset",
-                        message="not_found",
+                        message="invalid_credentials",
                         category="error",
                         language=session.get("language", "en"),
                     )

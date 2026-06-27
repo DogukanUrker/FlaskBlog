@@ -246,7 +246,9 @@
     },
     "login": {
       "success": "Has iniciado sesión con éxito.",
-      "invalid_credentials": "Invalid username or password"
+      "password": "Contraseña incorrecta",
+      "not_found": "Usuario no encontrado",
+      "invalid_credentials": "Correo electrónico o contraseña no válidos"
     },
     "logout": {
       "success": "Has cerrado sesión con éxito."
@@ -257,7 +259,9 @@
       "code": "Código enviado.",
       "same": "La nueva contraseña no puede ser la misma que la antigua.",
       "match": "Las contraseñas no coinciden.",
-      "invalid_credentials": "Invalid username or password"
+      "not_found": "Usuario no encontrado.",
+      "wrong": "Código incorrecto.",
+      "invalid_credentials": "Correo electrónico o contraseña no válidos"
     },
     "delete": {
       "user": "El usuario ha sido eliminado.",
@@ -316,5 +320,6 @@
     "changes_text": "Podemos actualizar nuestra Política de Privacidad de vez en cuando. Por lo tanto, se le aconseja que revise esta página periódicamente para ver cualquier cambio. Le notificaremos de cualquier cambio publicando la nueva Política de Privacidad en esta página. Estos cambios entran en vigor inmediatamente después de ser publicados en esta página.",
     "contact": "Contáctenos",
     "contact_text": "Si tiene alguna pregunta o sugerencia sobre nuestra Política de Privacidad, no dude en contactarnos. Correo electrónico:"
-  }
+  },
+  "invalid_credentials": "Correo electrónico o contraseña no válidos"
 }

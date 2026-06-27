@@ -246,7 +246,9 @@
     },
     "login": {
       "success": "Zalogowano pomyślnie.",
-      "invalid_credentials": "Invalid username or password"
+      "password": "Niepoprawne hasło",
+      "not_found": "Użytkownik nie został znaleziony",
+      "invalid_credentials": "Nieprawidłowy email lub hasło"
     },
     "logout": {
       "success": "Wylogowano pomyślnie."
@@ -257,7 +259,9 @@
       "code": "Kod został wysłany.",
       "same": "Nowe hasło nie może być takie samo jak stare hasło.",
       "match": "Hasła nie pasują do siebie.",
-      "invalid_credentials": "Invalid username or password"
+      "not_found": "Użytkownik nie został znaleziony.",
+      "wrong": "Kod jest niepoprawny.",
+      "invalid_credentials": "Nieprawidłowy email lub hasło"
     },
     "delete": {
       "user": "Użytkownik został usunięty.",
@@ -316,5 +320,6 @@
     "changes_text": "Możemy od czasu do czasu aktualizować naszą Politykę prywatności. Dlatego zaleca się regularne przeglądanie tej strony w celu sprawdzenia wszelkich zmian. Powiadomimy Cię o wszelkich zmianach, publikując nową Politykę prywatności na tej stronie. Zmiany te wchodzą w życie natychmiast po ich opublikowaniu na tej stronie.",
     "contact": "Kontakt",
     "contact_text": "Jeśli masz jakiekolwiek pytania lub sugestie dotyczące naszej Polityki prywatności, nie wahaj się z nami skontaktować. E-mail:"
-  }
+  },
+  "invalid_credentials": "Nieprawidłowy email lub hasło"
 }
