@@ -62,7 +62,7 @@ def login(direct):
                     Log.error(f'User: "{username}" not found')
                     flash_message(
                         page="login",
-                        message="password",
+                        message="invalid_credentials",
                         category="error",
                         language=session.get("language", "en"),
                     )
@@ -88,7 +88,7 @@ def login(direct):
                         Log.error("Wrong password")
                         flash_message(
                             page="login",
-                            message="password",
+                            message="invalid_credentials",
                             category="error",
                             language=session.get("language", "en"),
                         )

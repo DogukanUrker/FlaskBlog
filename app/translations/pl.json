@@ -246,8 +246,7 @@
     },
     "login": {
       "success": "Zalogowano pomyślnie.",
-      "password": "Niepoprawne hasło",
-      "not_found": "Użytkownik nie został znaleziony"
+      "invalid_credentials": "Invalid username or password"
     },
     "logout": {
       "success": "Wylogowano pomyślnie."
@@ -258,8 +257,7 @@
       "code": "Kod został wysłany.",
       "same": "Nowe hasło nie może być takie samo jak stare hasło.",
       "match": "Hasła nie pasują do siebie.",
-      "not_found": "Użytkownik nie został znaleziony.",
-      "wrong": "Kod jest niepoprawny."
+      "invalid_credentials": "Invalid username or password"
     },
     "delete": {
       "user": "Użytkownik został usunięty.",

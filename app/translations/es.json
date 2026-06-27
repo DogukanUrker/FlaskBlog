@@ -246,8 +246,7 @@
     },
     "login": {
       "success": "Has iniciado sesión con éxito.",
-      "password": "Contraseña incorrecta",
-      "not_found": "Usuario no encontrado"
+      "invalid_credentials": "Invalid username or password"
     },
     "logout": {
       "success": "Has cerrado sesión con éxito."
@@ -258,8 +257,7 @@
       "code": "Código enviado.",
       "same": "La nueva contraseña no puede ser la misma que la antigua.",
       "match": "Las contraseñas no coinciden.",
-      "not_found": "Usuario no encontrado.",
-      "wrong": "Código incorrecto."
+      "invalid_credentials": "Invalid username or password"
     },
     "delete": {
       "user": "El usuario ha sido eliminado.",

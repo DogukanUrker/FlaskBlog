@@ -97,7 +97,7 @@ def password_reset(code_sent):
             else:
                 flash_message(
                     page="password_reset",
-                    message="wrong",
+                    message="invalid_credentials",
                     category="error",
                     language=session.get("language", "en"),
                 )
@@ -170,7 +170,7 @@ def password_reset(code_sent):
                 Log.error(f'User: "{username}" with email: "{email}" not found')
                 flash_message(
                     page="password_reset",
-                    message="wrong",
+                    message="invalid_credentials",
                     category="error",
                     language=session.get("language", "en"),
                 )

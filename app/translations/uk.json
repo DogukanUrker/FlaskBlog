@@ -246,8 +246,7 @@
     },
     "login": {
       "success": "Ви успішно увійшли в систему.",
-      "password": "Невірний пароль",
-      "not_found": "Користувача не знайдено"
+      "invalid_credentials": "Invalid username or password"
     },
     "logout": {
       "success": "Ви успішно вийшли з системи."
@@ -258,8 +257,7 @@
       "code": "Код було надіслано.",
       "same": "Новий пароль не може бути таким самим, як старий пароль.",
       "match": "Паролі не збігаються.",
-      "not_found": "Користувача не знайдено.",
-      "wrong": "Невірний код."
+      "invalid_credentials": "Invalid username or password"
     },
     "delete": {
       "user": "Користувача було видалено.",
