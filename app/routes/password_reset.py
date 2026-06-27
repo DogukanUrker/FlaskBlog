@@ -170,7 +170,7 @@ def password_reset(code_sent):
                 Log.error(f'User: "{username}" with email: "{email}" not found')
                 flash_message(
                     page="password_reset",
-                    message="not_found",
+                    message="wrong",
                     category="error",
                     language=session.get("language", "en"),
                 )

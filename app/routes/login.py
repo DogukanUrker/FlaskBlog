@@ -62,7 +62,7 @@ def login(direct):
                     Log.error(f'User: "{username}" not found')
                     flash_message(
                         page="login",
-                        message="not_found",
+                        message="password",
                         category="error",
                         language=session.get("language", "en"),
                     )
