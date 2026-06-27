@@ -83,7 +83,7 @@
     "set": "Ustaw zdjęcie profilowe",
     "placeholder": "Wprowadź seed dla zdjęcia profilowego"
   },
-  "change_user_name": {
+  "change_username": {
     "title": "Zmień nazwę użytkownika",
     "placeholder": "Nowa nazwa użytkownika",
     "change": "Zmień nazwę użytkownika"
@@ -224,7 +224,7 @@
     "change_profile_picture": {
       "success": "Zdjęcie profilowe zostało zmienione."
     },
-    "change_user_name": {
+    "change_username": {
       "same": "To jest już twoja nazwa użytkownika.",
       "success": "Nazwa użytkownika została zmieniona.",
       "taken": "Ta nazwa użytkownika jest już zajęta.",

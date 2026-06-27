@@ -18,7 +18,6 @@ from utils.flash_message import flash_message
 from utils.forms.comment_form import CommentForm
 from utils.generate_url_id_from_post import get_slug_from_post_title
 from utils.log import Log
-from utils.sanitize_for_log import sanitize_for_log
 from utils.time import current_time_stamp
 
 post_blueprint = Blueprint("post", __name__)
@@ -43,22 +42,22 @@ def post(url_id=None, slug=None):
         db.session.commit()
 
         if request.method == "POST":
+            if "username" not in session:
+                Log.error(
+                    f'{request.remote_addr} attempted to submit to post "{url_id}" without login',
+                )
+                return redirect(f"/login/redirect=&post&{url_id}")
+
             if "post_delete_button" in request.form:
                 if delete_post(post.id, session.get("username")):
                     return redirect("/")
+                return redirect(url_for("post.post", url_id=url_id, slug=post_slug))
 
             if "comment_delete_button" in request.form:
-                if delete_comment(request.form["comment_id"], session.get("username")):
-                    return redirect(url_for("post.post", url_id=url_id)), 301
-
-            if "username" not in session:
-                safe_remote_addr = sanitize_for_log(request.remote_addr)
-                safe_url_id = sanitize_for_log(url_id)
-                Log.error(
-                    f"{safe_remote_addr} tried to comment on post: "
-                    f'"{safe_url_id}" without logging in',
-                )
-                return redirect(f"/login/redirect=&post&{url_id}")
+                delete_comment(request.form["comment_id"], session.get("username"))
+                return redirect(
+                    url_for("post.post", url_id=url_id, slug=post_slug)
+                ), 301
 
             comment_text = escape(request.form["comment"])
 

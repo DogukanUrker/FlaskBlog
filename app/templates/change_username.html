@@ -1,5 +1,5 @@
 {% extends 'layout.html' %} {% block head %}
-<title>{{translations.change_user_name.title}}</title>
+<title>{{translations.change_username.title}}</title>
 {% endblock head %} {% block body %}
 
 <div class="hero min-h-[calc(100vh-8rem)]">
@@ -8,13 +8,13 @@
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <div class="card-body">
                 <h1 class="card-title text-2xl font-bold justify-center">
-                    {{translations.change_user_name.title}}
+                    {{translations.change_username.title}}
                 </h1>
                 <fieldset class="fieldset">
-                    <label class="label">{{translations.change_user_name.placeholder}}</label>
-                    {{ form.new_username(class_="input input-bordered w-full", placeholder=translations.change_user_name.placeholder) }}
+                    <label class="label">{{translations.change_username.placeholder}}</label>
+                    {{ form.new_username(class_="input input-bordered w-full", placeholder=translations.change_username.placeholder) }}
                     <button type="submit" class="btn btn-primary mt-4">
-                        {{translations.change_user_name.change}}
+                        {{translations.change_username.change}}
                     </button>
                 </fieldset>
             </div>

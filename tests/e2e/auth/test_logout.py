@@ -216,7 +216,9 @@ class TestLogoutWithDifferentUsers:
         # Login as test user
         login_page.navigate("/login/redirect=&")
         login_page.login(test_user.username, test_user.password)
-        page.wait_for_url("**/", timeout=5000)
+        expect(page).to_have_url(
+            re.compile(rf"^{re.escape(flask_server['base_url'])}/?$"), timeout=10000
+        )
 
         # Verify logged in
         navbar.expect_logged_in()

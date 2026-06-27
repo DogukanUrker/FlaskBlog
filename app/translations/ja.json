@@ -83,7 +83,7 @@
     "set": "プロフィール写真を設定",
     "placeholder": "プロフィール写真のシードを入力"
   },
-  "change_user_name": {
+  "change_username": {
     "title": "ユーザー名の変更",
     "placeholder": "新しいユーザー名",
     "change": "ユーザー名を変更"
@@ -224,7 +224,7 @@
     "change_profile_picture": {
       "success": "プロフィール写真が変更されました。"
     },
-    "change_user_name": {
+    "change_username": {
       "same": "これはすでにあなたのユーザー名です。",
       "success": "ユーザー名が変更されました。",
       "taken": "このユーザー名はすでに使用されています。",
