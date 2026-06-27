@@ -80,7 +80,7 @@ def post(url_id=None, slug=None):
                 page="post",
                 message="success",
                 category="success",
-                language=session["language"],
+                language=session.get("language", "en"),
             )
 
             return redirect(url_for("post.post", url_id=url_id)), 301

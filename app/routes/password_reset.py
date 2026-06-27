@@ -62,7 +62,7 @@ def password_reset(code_sent):
                         page="password_reset",
                         message="not_found",
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                 else:
                     if password == password_confirm:
@@ -71,7 +71,7 @@ def password_reset(code_sent):
                                 page="password_reset",
                                 message="same",
                                 category="error",
-                                language=session["language"],
+                                language=session.get("language", "en"),
                             )
                         else:
                             password_reset_codes_storage.pop(username)
@@ -84,7 +84,7 @@ def password_reset(code_sent):
                                 page="password_reset",
                                 message="success",
                                 category="success",
-                                language=session["language"],
+                                language=session.get("language", "en"),
                             )
                             return redirect("/login/redirect=&")
                     else:
@@ -92,14 +92,14 @@ def password_reset(code_sent):
                             page="password_reset",
                             message="match",
                             category="error",
-                            language=session["language"],
+                            language=session.get("language", "en"),
                         )
             else:
                 flash_message(
                     page="password_reset",
                     message="wrong",
                     category="error",
-                    language=session["language"],
+                    language=session.get("language", "en"),
                 )
 
         return render_template(
@@ -163,7 +163,7 @@ def password_reset(code_sent):
                     page="password_reset",
                     message="code",
                     category="success",
-                    language=session["language"],
+                    language=session.get("language", "en"),
                 )
                 return redirect("/password-reset/codesent=true")
             else:
@@ -172,7 +172,7 @@ def password_reset(code_sent):
                     page="password_reset",
                     message="not_found",
                     category="error",
-                    language=session["language"],
+                    language=session.get("language", "en"),
                 )
 
         return render_template(

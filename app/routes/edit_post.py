@@ -64,7 +64,7 @@ def edit_post(url_id):
                         page="edit_post",
                         message="empty",
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                     Log.error(
                         f'User: "{session["username"]}" tried to edit a post with empty content',
@@ -88,7 +88,7 @@ def edit_post(url_id):
                         page="edit_post",
                         message="success",
                         category="success",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                     return redirect(f"/post/{post.url_id}")
 
@@ -105,7 +105,7 @@ def edit_post(url_id):
                 page="edit_post",
                 message="author",
                 category="error",
-                language=session["language"],
+                language=session.get("language", "en"),
             )
             Log.error(
                 f'User: "{session["username"]}" tried to edit another authors post',

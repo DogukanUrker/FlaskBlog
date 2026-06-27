@@ -92,7 +92,7 @@ def signup():
                                 page="signup",
                                 message="success",
                                 category="success",
-                                language=session["language"],
+                                language=session.get("language", "en"),
                             )
 
                             # Send welcome email (with error handling)
@@ -157,7 +157,7 @@ def signup():
                                 page="signup",
                                 message="ascii",
                                 category="error",
-                                language=session["language"],
+                                language=session.get("language", "en"),
                             )
                     else:
                         Log.error("Passwords do not match")
@@ -166,7 +166,7 @@ def signup():
                             page="signup",
                             message="password",
                             category="error",
-                            language=session["language"],
+                            language=session.get("language", "en"),
                         )
 
                 if username_taken and email_taken:
@@ -175,7 +175,7 @@ def signup():
                         page="signup",
                         message="taken",
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
                 if not username_taken and email_taken:
                     Log.error(f'This email "{email}" is unavailable')
@@ -184,7 +184,7 @@ def signup():
                         page="signup",
                         message="email",
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
 
                 if username_taken and not email_taken:
@@ -194,7 +194,7 @@ def signup():
                         page="signup",
                         message="username",
                         category="error",
-                        language=session["language"],
+                        language=session.get("language", "en"),
                     )
 
             return render_template(

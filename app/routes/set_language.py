@@ -24,7 +24,7 @@ def set_language(language):
             page="set_language",
             message="success",
             category="success",
-            language=session["language"],
+            language=session.get("language", "en"),
         )
     else:
         Log.warning(f"Language not supported: {language}")

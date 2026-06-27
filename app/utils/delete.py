@@ -55,7 +55,7 @@ def delete_post(post_id, username=None):
         page="delete",
         message="post",
         category="error",
-        language=session["language"],
+        language=session.get("language", "en"),
     )
     Log.success(f'Post: "{post_id}" deleted by "{username}"')
     return True
@@ -89,7 +89,7 @@ def delete_user(username):
         page="delete",
         message="user",
         category="error",
-        language=session["language"],
+        language=session.get("language", "en"),
     )
     Log.success(f'User: "{username}" deleted')
 
@@ -134,7 +134,7 @@ def delete_comment(comment_id, username=None):
         page="delete",
         message="comment",
         category="error",
-        language=session["language"],
+        language=session.get("language", "en"),
     )
     Log.success(f'Comment: "{comment_id}" deleted by "{username}"')
     return True
