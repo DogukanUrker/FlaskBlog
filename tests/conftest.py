@@ -2,7 +2,12 @@
 Root-level pytest configuration for Flask Blog tests.
 """
 
+import os
 import pytest
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 
 def pytest_configure(config):
@@ -21,7 +26,7 @@ def app_settings():
         "port": 1283,
         "default_admin": {
             "username": "admin",
-            "password": "admin",
+            "password": os.environ.get("DEFAULT_ADMIN_PASSWORD", "admin"),
             "email": "admin@flaskblog.com",
         },
     }
