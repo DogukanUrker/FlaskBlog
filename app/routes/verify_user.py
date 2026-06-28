@@ -1,3 +1,4 @@
+import os
 import smtplib
 import ssl
 import time
@@ -160,63 +161,72 @@ def verify_user(code_sent):
                     )
 
                 if user:
-                    context = ssl.create_default_context()
-                    server = smtplib.SMTP(Settings.SMTP_SERVER, Settings.SMTP_PORT)
-                    server.ehlo()
-                    server.starttls(context=context)
-                    server.ehlo()
-                    server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
-
-                    verification_code = str(randint(100000, 999999))
+                    verification_code = (
+                        "123456"
+                        if os.environ.get("E2E_TESTING") == "1"
+                        else str(randint(100000, 999999))
+                    )
                     session["verification_code"] = verification_code
                     session["verification_code_timestamp"] = time.time()
                     session["verify_user_attempts"] = 0
 
-                    message = EmailMessage()
-                    message.set_content(
-                        f"Hi {username},\nHere is your account verification code:\n{verification_code}"
-                    )
-                    message.add_alternative(
-                        f"""\
-                                <html>
-                                <body>
-                                    <div
-                                    style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius:0.5rem;"
-                                    >
-                                    <div style="text-align: center;">
-                                        <h1 style="color: #F43F5E;">Thank you for creating an account!</h1>
-                                        <p style="font-size: 16px;">
-                                        Hello, {username}.
-                                        </p>
-                                        <p style="font-size: 16px;">
-                                        Please enter the verification code below to verify your account.
-                                        </p>
-                                        <div
-                                        style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin: 20px 0;"
-                                        >
-                                        <p style="font-size: 24px; font-weight: bold; margin: 0;">
-                                            {verification_code}
-                                        </p>
-                                        </div>
-                                        <p style="font-size: 14px; color: #888888;">
-                                        This verification code expires in 15 minutes. Please do not share this code with anyone.
-                                        </p>
-                                    </div>
-                                    </div>
-                                </body>
-                                </html>
-                            """,
-                        subtype="html",
-                    )
-                    message["Subject"] = f"Verify your {Settings.APP_NAME} account!"
-                    message["From"] = Settings.SMTP_MAIL
-                    message["To"] = user.email
+                    try:
+                        context = ssl.create_default_context()
+                        server = smtplib.SMTP(Settings.SMTP_SERVER, Settings.SMTP_PORT)
+                        server.ehlo()
+                        server.starttls(context=context)
+                        server.ehlo()
+                        server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
 
-                    server.send_message(message)
-                    server.quit()
-                    Log.success(
-                        f'Verification code sent to "{user.email}" for user: "{username}"'
-                    )
+                        message = EmailMessage()
+                        message.set_content(
+                            f"Hi {username},\nHere is your account verification code:\n{verification_code}"
+                        )
+                        message.add_alternative(
+                            f"""\
+                                    <html>
+                                    <body>
+                                        <div
+                                        style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius:0.5rem;"
+                                        >
+                                        <div style="text-align: center;">
+                                            <h1 style="color: #F43F5E;">Thank you for creating an account!</h1>
+                                            <p style="font-size: 16px;">
+                                            Hello, {username}.
+                                            </p>
+                                            <p style="font-size: 16px;">
+                                            Please enter the verification code below to verify your account.
+                                            </p>
+                                            <div
+                                            style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin: 20px 0;"
+                                            >
+                                            <p style="font-size: 24px; font-weight: bold; margin: 0;">
+                                                {verification_code}
+                                            </p>
+                                            </div>
+                                            <p style="font-size: 14px; color: #888888;">
+                                            This verification code expires in 15 minutes. Please do not share this code with anyone.
+                                            </p>
+                                        </div>
+                                        </div>
+                                    </body>
+                                    </html>
+                                """,
+                            subtype="html",
+                        )
+                        message["Subject"] = f"Verify your {Settings.APP_NAME} account!"
+                        message["From"] = Settings.SMTP_MAIL
+                        message["To"] = user.email
+
+                        server.send_message(message)
+                        server.quit()
+                        Log.success(
+                            f'Verification code sent to "{user.email}" for user: "{username}"'
+                        )
+                    except Exception as e:
+                        Log.error(
+                            f'Failed to send verification email to "{user.email}" for user "{username}": {str(e)}'
+                        )
 
                     return redirect("/verify-user/codesent=true")
 
