@@ -261,7 +261,9 @@
       "match": "Passwörter stimmen nicht überein.",
       "not_found": "Benutzer nicht gefunden.",
       "wrong": "Falscher Code.",
-      "invalid_credentials": "Ungültige E-Mail oder Passwort"
+      "invalid_credentials": "Ungültige E-Mail oder Passwort",
+      "too_many_attempts": "Zu viele fehlgeschlagene Versuche. Bitte versuchen Sie es in 15 Minuten erneut.",
+      "code_expired": "Der Zurücksetzungscode ist abgelaufen. Bitte fordern Sie einen neuen Code an."
     },
     "delete": {
       "user": "Benutzer wurde gelöscht.",
@@ -286,7 +288,9 @@
       "success": "Ihr Konto wurde verifiziert.",
       "code": "Code wurde gesendet.",
       "not_found": "Benutzer nicht gefunden.",
-      "wrong": "Falscher Code."
+      "wrong": "Falscher Code.",
+      "too_many_attempts": "Zu viele fehlgeschlagene Versuche. Bitte versuchen Sie es in 15 Minuten erneut.",
+      "code_expired": "Der Verifizierungscode ist abgelaufen. Bitte fordern Sie einen neuen Code an."
     },
     "error": {
       "wrong_call": "Sie haben einen falschen Flash-Nachrichtenaufruf auf der Serverseite gemacht."

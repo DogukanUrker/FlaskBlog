@@ -261,7 +261,9 @@
       "match": "Hasła nie pasują do siebie.",
       "not_found": "Użytkownik nie został znaleziony.",
       "wrong": "Kod jest niepoprawny.",
-      "invalid_credentials": "Nieprawidłowy email lub hasło"
+      "invalid_credentials": "Nieprawidłowy email lub hasło",
+      "too_many_attempts": "Zbyt wiele nieudanych prób. Spróbuj ponownie za 15 minut.",
+      "code_expired": "Kod resetowania wygasł. Poproś o nowy kod."
     },
     "delete": {
       "user": "Użytkownik został usunięty.",
@@ -286,7 +288,9 @@
       "success": "Twoje konto zostało zweryfikowane.",
       "code": "Kod został wysłany.",
       "not_found": "Użytkownik nie został znaleziony.",
-      "wrong": "Kod jest niepoprawny."
+      "wrong": "Kod jest niepoprawny.",
+      "too_many_attempts": "Zbyt wiele nieudanych prób. Spróbuj ponownie za 15 minut.",
+      "code_expired": "Kod weryfikacyjny wygasł. Poproś o nowy kod."
     },
     "error": {
       "wrong_call": "Dokonano błędnego wywołania komunikatu flash po stronie serwera."

@@ -28,7 +28,7 @@ class PasswordResetForm(Form):
 
     code = StringField(
         "code",
-        [validators.Length(min=4, max=4), validators.InputRequired()],
+        [validators.Length(min=6, max=6), validators.InputRequired()],
     )
 
     password = PasswordField(

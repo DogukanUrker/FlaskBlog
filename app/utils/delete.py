@@ -13,7 +13,7 @@ from the database.
 - delete_comment(comment_id): This function deletes a comment from the database.
 """
 
-from flask import redirect, session
+from flask import session
 
 from database import db
 from models import Comment, Post, User
@@ -69,7 +69,7 @@ def delete_user(username):
     username (str): The username of the user to be deleted.
 
     Returns:
-    None
+    bool: True if deleted, False if not authorized or not found
     """
     from sqlalchemy import func
 
@@ -77,10 +77,29 @@ def delete_user(username):
 
     if not user:
         Log.error(f'User: "{username}" not found')
-        return redirect("/")
+        return False
 
-    perpetrator = User.query.filter_by(username=session["username"]).first()
-    perpetrator_role = perpetrator.role if perpetrator else None
+    perpetrator = User.query.filter_by(username=session.get("username")).first()
+
+    if not perpetrator:
+        Log.error("Unauthorized delete_user attempt: no active session")
+        return False
+
+    perpetrator_role = perpetrator.role
+    is_admin = perpetrator_role == "admin"
+    is_self = perpetrator.username.lower() == username.lower()
+
+    # Admins cannot delete themselves
+    if is_admin and is_self:
+        Log.error(f'Admin: "{perpetrator.username}" tried to delete their own account')
+        return False
+
+    # Non-admin users can only delete their own account
+    if not is_admin and not is_self:
+        Log.error(
+            f'User: "{perpetrator.username}" tried to delete user: "{username}" without authorization'
+        )
+        return False
 
     db.session.delete(user)
     db.session.commit()
@@ -91,13 +110,9 @@ def delete_user(username):
         category="error",
         language=session.get("language", "en"),
     )
-    Log.success(f'User: "{username}" deleted')
+    Log.success(f'User: "{username}" deleted by "{perpetrator.username}"')
 
-    if perpetrator_role == "admin":
-        return redirect("/admin/users")
-    else:
-        session.clear()
-        return redirect("/")
+    return True
 
 
 def delete_comment(comment_id, username=None):

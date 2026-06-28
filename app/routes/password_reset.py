@@ -1,5 +1,6 @@
 import smtplib
 import ssl
+import time
 from email.message import EmailMessage
 from random import randint
 
@@ -22,8 +23,10 @@ from utils.log import Log
 
 password_reset_blueprint = Blueprint("password_reset", __name__)
 
-
-password_reset_codes_storage = {}
+# Rate limiting constants
+MAX_RESET_ATTEMPTS = 5
+LOCKOUT_DURATION = 900  # 15 minutes in seconds
+CODE_EXPIRY = 900  # 15 minutes in seconds
 
 
 @password_reset_blueprint.route(
@@ -52,7 +55,40 @@ def password_reset(code_sent):
             password = request.form["password"]
             password_confirm = request.form["password_confirm"]
 
-            if code == password_reset_codes_storage.get(username, ""):
+            # Check rate limiting
+            lockout_until = session.get("password_reset_lockout_until", 0)
+            if time.time() < lockout_until:
+                flash_message(
+                    page="password_reset",
+                    message="too_many_attempts",
+                    category="error",
+                    language=session.get("language", "en"),
+                )
+                return render_template(
+                    "password_reset.html",
+                    form=form,
+                    mail_sent=True,
+                )
+
+            # Check code expiry
+            code_timestamp = session.get("password_reset_timestamp", 0)
+            if time.time() - code_timestamp > CODE_EXPIRY:
+                session.pop("password_reset_code", None)
+                session.pop("password_reset_username", None)
+                session.pop("password_reset_timestamp", None)
+                session.pop("password_reset_attempts", None)
+                flash_message(
+                    page="password_reset",
+                    message="code_expired",
+                    category="error",
+                    language=session.get("language", "en"),
+                )
+                return redirect("/password-reset/codesent=false")
+
+            stored_code = session.get("password_reset_code", "")
+            stored_username = session.get("password_reset_username", "")
+
+            if code == stored_code and username.lower() == stored_username.lower():
                 user = User.query.filter(
                     func.lower(User.username) == username.lower()
                 ).first()
@@ -74,7 +110,12 @@ def password_reset(code_sent):
                                 language=session.get("language", "en"),
                             )
                         else:
-                            password_reset_codes_storage.pop(username)
+                            # Clear all password reset session data
+                            session.pop("password_reset_code", None)
+                            session.pop("password_reset_username", None)
+                            session.pop("password_reset_timestamp", None)
+                            session.pop("password_reset_attempts", None)
+                            session.pop("password_reset_lockout_until", None)
 
                             user.password = encryption.hash(password)
                             db.session.commit()
@@ -95,12 +136,34 @@ def password_reset(code_sent):
                             language=session.get("language", "en"),
                         )
             else:
-                flash_message(
-                    page="password_reset",
-                    message="invalid_credentials",
-                    category="error",
-                    language=session.get("language", "en"),
-                )
+                # Track failed attempts
+                attempts = session.get("password_reset_attempts", 0) + 1
+                session["password_reset_attempts"] = attempts
+
+                if attempts >= MAX_RESET_ATTEMPTS:
+                    session["password_reset_lockout_until"] = (
+                        time.time() + LOCKOUT_DURATION
+                    )
+                    session.pop("password_reset_code", None)
+                    session.pop("password_reset_username", None)
+                    session.pop("password_reset_timestamp", None)
+                    session["password_reset_attempts"] = 0
+                    Log.error(
+                        f'Too many failed password reset attempts for user: "{username}"'
+                    )
+                    flash_message(
+                        page="password_reset",
+                        message="too_many_attempts",
+                        category="error",
+                        language=session.get("language", "en"),
+                    )
+                else:
+                    flash_message(
+                        page="password_reset",
+                        message="invalid_credentials",
+                        category="error",
+                        language=session.get("language", "en"),
+                    )
 
         return render_template(
             "password_reset.html",
@@ -112,6 +175,21 @@ def password_reset(code_sent):
             username = request.form["username"]
             email = request.form["email"]
             username = username.replace(" ", "")
+
+            # Check rate limiting
+            lockout_until = session.get("password_reset_lockout_until", 0)
+            if time.time() < lockout_until:
+                flash_message(
+                    page="password_reset",
+                    message="too_many_attempts",
+                    category="error",
+                    language=session.get("language", "en"),
+                )
+                return render_template(
+                    "password_reset.html",
+                    form=form,
+                    mail_sent=False,
+                )
 
             user = User.query.filter(
                 func.lower(User.username) == username.lower(),
@@ -125,8 +203,11 @@ def password_reset(code_sent):
                 server.starttls(context=context)
                 server.ehlo()
                 server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
-                password_reset_code = str(randint(1000, 9999))
-                password_reset_codes_storage[username] = password_reset_code
+                password_reset_code = str(randint(100000, 999999))
+                session["password_reset_code"] = password_reset_code
+                session["password_reset_username"] = username
+                session["password_reset_timestamp"] = time.time()
+                session["password_reset_attempts"] = 0
                 message = EmailMessage()
                 message.set_content(
                     f"Hi {username},\nForgot your password? No problem.\nHere is your password reset code:\n{password_reset_code}"
@@ -142,7 +223,7 @@ def password_reset(code_sent):
                         <p>We received a request to reset your password for your account. If you did not request this, please ignore this email.</p>
                         <p>To reset your password, enter the following code in the app:</p>
                         <span style="display: inline-block; background-color: #e0e0e0; color: #000000;padding: 10px 20px;font-size: 24px;font-weight: bold; border-radius: 0.5rem;">{password_reset_code}</span>
-                        <p style="font-family: Arial, sans-serif; font-size: 16px;">This code will expire when you refresh the page.</p>
+                        <p style="font-family: Arial, sans-serif; font-size: 16px;">This code will expire in 15 minutes.</p>
                         <p>Thank you for using {Settings.APP_NAME}.</p>
                         </div>
                     </div>
@@ -157,7 +238,7 @@ def password_reset(code_sent):
                 server.send_message(message)
                 server.quit()
                 Log.success(
-                    f'Password reset code: "{password_reset_code}" sent to "{email}" for user: "{username}"'
+                    f'Password reset code sent to "{email}" for user: "{username}"'
                 )
                 flash_message(
                     page="password_reset",

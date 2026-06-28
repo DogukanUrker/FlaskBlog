@@ -22,10 +22,6 @@ def admin_panel_users():
 
     if request.method == "POST":
         if "user_delete_button" in request.form:
-            Log.info(
-                f"Admin: {session['username']} deleted user: {request.form['username']}"
-            )
-
             delete_user(request.form["username"])
 
         if "user_role_change_button" in request.form:

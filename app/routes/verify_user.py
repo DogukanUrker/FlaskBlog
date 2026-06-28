@@ -1,5 +1,6 @@
 import smtplib
 import ssl
+import time
 from email.message import EmailMessage
 from random import randint
 
@@ -21,6 +22,11 @@ from utils.log import Log
 from utils.route_guards import login_required
 
 verify_user_blueprint = Blueprint("verify_user", __name__)
+
+# Rate limiting constants
+MAX_VERIFY_ATTEMPTS = 5
+LOCKOUT_DURATION = 900  # 15 minutes in seconds
+CODE_EXPIRY = 900  # 15 minutes in seconds
 
 
 @verify_user_blueprint.route(
@@ -55,7 +61,42 @@ def verify_user(code_sent):
             if request.method == "POST":
                 code = request.form["code"]
 
+                # Check rate limiting
+                lockout_until = session.get("verify_user_lockout_until", 0)
+                if time.time() < lockout_until:
+                    flash_message(
+                        page="verify_user",
+                        message="too_many_attempts",
+                        category="error",
+                        language=session.get("language", "en"),
+                    )
+                    return render_template(
+                        "verify_user.html",
+                        form=form,
+                        mail_sent=True,
+                    )
+
+                # Check code expiry
+                code_timestamp = session.get("verification_code_timestamp", 0)
+                if time.time() - code_timestamp > CODE_EXPIRY:
+                    session.pop("verification_code", None)
+                    session.pop("verification_code_timestamp", None)
+                    session.pop("verify_user_attempts", None)
+                    flash_message(
+                        page="verify_user",
+                        message="code_expired",
+                        category="error",
+                        language=session.get("language", "en"),
+                    )
+                    return redirect("/verify-user/codesent=false")
+
                 if code == session.get("verification_code"):
+                    # Clear verification session data
+                    session.pop("verification_code", None)
+                    session.pop("verification_code_timestamp", None)
+                    session.pop("verify_user_attempts", None)
+                    session.pop("verify_user_lockout_until", None)
+
                     user.is_verified = "True"
                     db.session.commit()
 
@@ -68,12 +109,33 @@ def verify_user(code_sent):
                     )
                     return redirect("/")
                 else:
-                    flash_message(
-                        page="verify_user",
-                        message="wrong",
-                        category="error",
-                        language=session.get("language", "en"),
-                    )
+                    # Track failed attempts
+                    attempts = session.get("verify_user_attempts", 0) + 1
+                    session["verify_user_attempts"] = attempts
+
+                    if attempts >= MAX_VERIFY_ATTEMPTS:
+                        session["verify_user_lockout_until"] = (
+                            time.time() + LOCKOUT_DURATION
+                        )
+                        session.pop("verification_code", None)
+                        session.pop("verification_code_timestamp", None)
+                        session["verify_user_attempts"] = 0
+                        Log.error(
+                            f'Too many failed verification attempts for user: "{username}"'
+                        )
+                        flash_message(
+                            page="verify_user",
+                            message="too_many_attempts",
+                            category="error",
+                            language=session.get("language", "en"),
+                        )
+                    else:
+                        flash_message(
+                            page="verify_user",
+                            message="wrong",
+                            category="error",
+                            language=session.get("language", "en"),
+                        )
 
             return render_template(
                 "verify_user.html",
@@ -82,6 +144,21 @@ def verify_user(code_sent):
             )
         elif code_sent == "false":
             if request.method == "POST":
+                # Check rate limiting
+                lockout_until = session.get("verify_user_lockout_until", 0)
+                if time.time() < lockout_until:
+                    flash_message(
+                        page="verify_user",
+                        message="too_many_attempts",
+                        category="error",
+                        language=session.get("language", "en"),
+                    )
+                    return render_template(
+                        "verify_user.html",
+                        form=form,
+                        mail_sent=False,
+                    )
+
                 if user:
                     context = ssl.create_default_context()
                     server = smtplib.SMTP(Settings.SMTP_SERVER, Settings.SMTP_PORT)
@@ -90,8 +167,10 @@ def verify_user(code_sent):
                     server.ehlo()
                     server.login(Settings.SMTP_MAIL, Settings.SMTP_PASSWORD)
 
-                    verification_code = str(randint(1000, 9999))
+                    verification_code = str(randint(100000, 999999))
                     session["verification_code"] = verification_code
+                    session["verification_code_timestamp"] = time.time()
+                    session["verify_user_attempts"] = 0
 
                     message = EmailMessage()
                     message.set_content(
@@ -120,7 +199,7 @@ def verify_user(code_sent):
                                         </p>
                                         </div>
                                         <p style="font-size: 14px; color: #888888;">
-                                        This verification code is valid for a limited time. Please do not share this code with anyone.
+                                        This verification code expires in 15 minutes. Please do not share this code with anyone.
                                         </p>
                                     </div>
                                     </div>
