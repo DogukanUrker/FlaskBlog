@@ -20,8 +20,9 @@ class TestPagination:
                 title=f"Pagination Test Post {i + 1:02d}",
                 content=f"Content for post {i + 1}",
                 abstract=f"Abstract for post {i + 1}",
-                # Ensure they sort properly by manipulating the views or title
-                views=i,
+                # Ensure they sort properly by giving them massively high views
+                # to override any posts created by parallel tests
+                views=2000000 + i,
             )
 
         # Navigate to homepage sorted by views descending
@@ -42,6 +43,7 @@ class TestPagination:
         # Wait for the next page to load
         page.wait_for_url("**/by=views/sort=desc?page=2")
 
-        # We should now see the remaining 2 posts (lowest views + the default admin post)
-        expect(page.locator(".grid .card")).to_have_count(2)
+        # We should now see our 13th post (lowest views of our batch: 2000000).
+        # We DO NOT assert exact card count here, because page 2 will also
+        # contain posts created by other parallel workers.
         expect(page.locator("body")).to_contain_text("Pagination Test Post 01")
