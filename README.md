@@ -10,7 +10,7 @@ A modern blog application built with Flask, featuring a clean UI and powerful ad
 ## Features
 
 - **User System** - Registration, login, profiles with custom avatars
-- **Rich Editor** - [Milkdown](https://milkdown.dev/) editor for creating beautiful posts
+- **Rich Editor** - Custom Markdown editor with toolbar for formatting posts
 - **Admin Panel** - Full control over users, posts, and comments
 - **Dark/Light Themes** - Automatic theme switching
 - **Categories** - Organize posts by topics
@@ -96,8 +96,8 @@ make clean         # Remove cache files
 
 ## Tech Stack
 
-**Backend:** Flask, SQLite3, WTForms, Passlib \
-**Frontend:** TailwindCSS, jQuery, Summer Note Editor \
+**Backend:** Flask, Flask-SQLAlchemy, Flask-WTF, Passlib, Bleach, Markdown2 \
+**Frontend:** Tailwind CSS v4, DaisyUI v5 \
 **Icons:** Tabler Icons
 
 ## Contributing
