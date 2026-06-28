@@ -46,7 +46,7 @@ class TestHomePage:
             title=high_title,
             content=f"Content for high views {seed}",
             abstract=f"Abstract for high views {seed}. " + "A" * 160,
-            views=999999,
+            views=9999999,
         )
 
         page.goto(
