@@ -6,7 +6,6 @@ A modern blog application built with Flask, featuring a clean UI and powerful ad
 
 ![FlaskBlog Desktop](/images/DesktopLight.png)
 [Watch demo on YouTube](https://youtu.be/WyIpAlSp2RM) — [See screenshots (mobile/desktop, dark/light)](https://github.com/DogukanUrker/flaskBlog/tree/main/images)
-_Note: This video showcases v2; the current v3 demo is available on the [live site](https://flaskblog.dogukanurker.com)._
 
 ## Features
 
