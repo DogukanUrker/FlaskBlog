@@ -261,7 +261,9 @@
       "match": "Şifreler uyuşmuyor.",
       "not_found": "Kullanıcı bulunamadı.",
       "wrong": "Yanlış kod.",
-      "invalid_credentials": "Geçersiz e-posta veya şifre"
+      "invalid_credentials": "Geçersiz e-posta veya şifre",
+      "too_many_attempts": "Çok fazla başarısız deneme. Lütfen 15 dakika sonra tekrar deneyin.",
+      "code_expired": "Sıfırlama kodu süresi doldu. Lütfen yeni bir kod isteyin."
     },
     "delete": {
       "user": "Kullanıcı silindi.",
@@ -286,7 +288,9 @@
       "success": "Hesabınız doğrulandı.",
       "code": "Kod gönderildi.",
       "not_found": "Kullanıcı bulunamadı.",
-      "wrong": "Yanlış kod."
+      "wrong": "Yanlış kod.",
+      "too_many_attempts": "Çok fazla başarısız deneme. Lütfen 15 dakika sonra tekrar deneyin.",
+      "code_expired": "Doğrulama kodu süresi doldu. Lütfen yeni bir kod isteyin."
     },
     "error": {
       "wrong_call": "Sunucu tarafında yanlış bir flash mesaj çağrısı yaptınız."

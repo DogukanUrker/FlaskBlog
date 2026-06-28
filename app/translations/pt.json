@@ -261,7 +261,9 @@
       "match": "As senhas não correspondem.",
       "not_found": "Usuário não encontrado.",
       "wrong": "Código errado.",
-      "invalid_credentials": "E-mail ou senha inválidos"
+      "invalid_credentials": "E-mail ou senha inválidos",
+      "too_many_attempts": "Muitas tentativas falhadas. Tente novamente em 15 minutos.",
+      "code_expired": "O código de redefinição expirou. Solicite um novo código."
     },
     "delete": {
       "user": "Usuário foi excluído.",
@@ -286,7 +288,9 @@
       "success": "Sua conta foi verificada.",
       "code": "Código foi enviado.",
       "not_found": "Usuário não encontrado.",
-      "wrong": "Código errado."
+      "wrong": "Código errado.",
+      "too_many_attempts": "Muitas tentativas falhadas. Tente novamente em 15 minutos.",
+      "code_expired": "O código de verificação expirou. Solicite um novo código."
     },
     "error": {
       "wrong_call": "Você fez uma chamada errada de mensagem flash no lado do servidor."

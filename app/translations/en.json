@@ -261,7 +261,9 @@
       "match": "Passwords do not match.",
       "not_found": "User not found.",
       "wrong": "Wrong code.",
-      "invalid_credentials": "Invalid email or password"
+      "invalid_credentials": "Invalid email or password",
+      "too_many_attempts": "Too many failed attempts. Please try again in 15 minutes.",
+      "code_expired": "Reset code has expired. Please request a new code."
     },
     "delete": {
       "user": "User has been deleted.",
@@ -286,7 +288,9 @@
       "success": "Your account has been verified.",
       "code": "Code has been sent.",
       "not_found": "User not found.",
-      "wrong": "Wrong code."
+      "wrong": "Wrong code.",
+      "too_many_attempts": "Too many failed attempts. Please try again in 15 minutes.",
+      "code_expired": "Verification code has expired. Please request a new code."
     },
     "error": {
       "wrong_call": "You made a wrong flash message call on server side."

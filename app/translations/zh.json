@@ -260,7 +260,9 @@
       "match": "密码不匹配。",
       "not_found": "用户未找到。",
       "wrong": "错误的代码。",
-      "invalid_credentials": "无效的电子邮件或密码"
+      "invalid_credentials": "无效的电子邮件或密码",
+      "too_many_attempts": "失败尝试次数过多。请在15分钟后重试。",
+      "code_expired": "重置代码已过期。请重新获取验证码。"
     },
     "delete": {
       "user": "用户已删除。",
@@ -285,7 +287,9 @@
       "success": "您的帐户已验证。",
       "code": "代码已发送。",
       "not_found": "用户未找到。",
-      "wrong": "错误的代码。"
+      "wrong": "错误的代码。",
+      "too_many_attempts": "失败尝试次数过多。请在15分钟后重试。",
+      "code_expired": "验证码已过期。请重新获取验证码。"
     },
     "error": {
       "wrong_call": "您在服务器端发出了错误的闪存消息调用。"

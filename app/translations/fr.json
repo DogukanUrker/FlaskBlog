@@ -261,7 +261,9 @@
       "match": "Les mots de passe ne correspondent pas.",
       "not_found": "Utilisateur non trouvé.",
       "wrong": "Code incorrect.",
-      "invalid_credentials": "E-mail ou mot de passe invalide"
+      "invalid_credentials": "E-mail ou mot de passe invalide",
+      "too_many_attempts": "Trop de tentatives échouées. Veuillez réessayer dans 15 minutes.",
+      "code_expired": "Le code de réinitialisation a expiré. Veuillez demander un nouveau code."
     },
     "delete": {
       "user": "L'utilisateur a été supprimé.",
@@ -286,7 +288,9 @@
       "success": "Votre compte a été vérifié.",
       "code": "Le code a été envoyé.",
       "not_found": "Utilisateur non trouvé.",
-      "wrong": "Code incorrect."
+      "wrong": "Code incorrect.",
+      "too_many_attempts": "Trop de tentatives échouées. Veuillez réessayer dans 15 minutes.",
+      "code_expired": "Le code de vérification a expiré. Veuillez demander un nouveau code."
     },
     "error": {
       "wrong_call": "Vous avez effectué un appel de message flash incorrect côté serveur."

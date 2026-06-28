@@ -261,7 +261,9 @@
       "match": "Las contraseñas no coinciden.",
       "not_found": "Usuario no encontrado.",
       "wrong": "Código incorrecto.",
-      "invalid_credentials": "Correo electrónico o contraseña no válidos"
+      "invalid_credentials": "Correo electrónico o contraseña no válidos",
+      "too_many_attempts": "Demasiados intentos fallidos. Inténtelo de nuevo en 15 minutos.",
+      "code_expired": "El código de restablecimiento ha expirado. Solicite un nuevo código."
     },
     "delete": {
       "user": "El usuario ha sido eliminado.",
@@ -286,7 +288,9 @@
       "success": "Tu cuenta ha sido verificada.",
       "code": "Código enviado.",
       "not_found": "Usuario no encontrado.",
-      "wrong": "Código incorrecto."
+      "wrong": "Código incorrecto.",
+      "too_many_attempts": "Demasiados intentos fallidos. Inténtelo de nuevo en 15 minutos.",
+      "code_expired": "El código de verificación ha expirado. Solicite un nuevo código."
     },
     "error": {
       "wrong_call": "Has hecho una llamada de mensaje flash incorrecta en el servidor."

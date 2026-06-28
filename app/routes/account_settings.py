@@ -16,8 +16,10 @@ def account_settings():
         return redirect("/")
 
     if request.method == "POST":
-        delete_user(user.username)
-        return redirect("/")
+        if delete_user(user.username):
+            session.clear()
+            return redirect("/")
+        return redirect("/account-settings")
 
     return render_template(
         "account_settings.html",

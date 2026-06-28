@@ -107,7 +107,6 @@ def search(query):
                 u.user_id,
                 u.username,
                 u.email,
-                u.password,
                 u.profile_picture,
                 u.role,
                 u.points,
