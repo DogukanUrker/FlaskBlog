@@ -34,24 +34,18 @@ uv run pytest ../tests/e2e/post/test_post.py::TestPostComments::test_logged_in_u
 
 ## Current Suite Coverage
 
-Current local suite size: **110 tests** across **14 test files**.
+Current local suite size: **120 tests** across **18 test files**.
 
-| Suite | Files | Tests | Focus |
-| ----- | ----- | ----- | ----- |
-| `e2e/auth/` | 3 | 62 | Login, signup, logout, session handling |
-| `e2e/account/` | 5 | 17 | Account settings, username/profile updates, password change flow, dashboard, static pages, preferences |
-| `e2e/post/` | 1 | 14 | Create/edit/delete post, comments, authorization, admin moderation via protected POST flows |
-| `e2e/admin/` | 1 | 8 | Admin access control, users (role + delete), comments management |
-| `e2e/search/` | 2 | 6 | Search results and category filtering |
-| `e2e/home/` | 1 | 3 | Home rendering and sorting routes |
-
-Recently added high-impact coverage:
-
-- Dashboard forged delete requests cannot remove posts owned by other users.
-- Admin can delete users from `/admin/users`.
-- Non-admin users are blocked from `/admin/comments`.
-- Admin can delete other users' posts through the post route with valid CSRF.
-- Admin can delete other users' comments through the post route with valid CSRF.
+| Suite          | Files | Tests | Focus                                                                                                  |
+| -------------- | ----- | ----- | ------------------------------------------------------------------------------------------------------ |
+| `e2e/auth/`    | 5     | 64    | Login, signup, logout, session handling, password reset, and user verification                         |
+| `e2e/account/` | 5     | 17    | Account settings, username/profile updates, password change flow, dashboard, static pages, preferences |
+| `e2e/post/`    | 1     | 14    | Create/edit/delete post, comments, authorization, admin moderation via protected POST flows            |
+| `e2e/admin/`   | 1     | 8     | Admin access control, users (role + delete), comments management                                       |
+| `e2e/search/`  | 2     | 6     | Search results and category filtering                                                                  |
+| `e2e/home/`    | 2     | 4     | Home rendering, sorting routes, and pagination                                                         |
+| `e2e/user/`    | 1     | 2     | Public user profiles, metadata, and 404 validation                                                     |
+| `e2e/` (root)  | 1     | 5     | Utility-level security tests (`test_delete_user.py`)                                                   |
 
 ## Parallel Execution
 
@@ -96,14 +90,19 @@ tests/
     ├── auth/
     │   ├── test_login.py
     │   ├── test_logout.py
-    │   └── test_signup.py
+    │   ├── test_password_reset.py
+    │   ├── test_signup.py
+    │   └── test_verify_user.py
     ├── home/
-    │   └── test_home.py
+    │   ├── test_home.py
+    │   └── test_pagination.py
     ├── post/
     │   └── test_post.py
     ├── search/
     │   ├── test_category.py
     │   └── test_search.py
+    ├── user/
+    │   └── test_user_profile.py
     ├── helpers/
     │   ├── database_helpers.py
     │   └── test_data.py
@@ -112,8 +111,11 @@ tests/
         ├── create_post_page.py
         ├── login_page.py
         ├── navbar_component.py
+        ├── password_reset_page.py
         ├── post_page.py
-        └── signup_page.py
+        ├── signup_page.py
+        ├── user_profile_page.py
+        └── verify_user_page.py
 ```
 
 ## Architecture
@@ -127,6 +129,9 @@ Page objects encapsulate UI interactions (`tests/e2e/pages/`), including:
 - `CreatePostPage`
 - `PostPage`
 - `NavbarComponent`
+- `PasswordResetPage`
+- `VerifyUserPage`
+- `UserProfilePage`
 
 Example:
 
@@ -141,16 +146,16 @@ def test_create_post(page, flask_server):
 
 ### Key Fixtures
 
-| Fixture | Scope | Purpose |
-| ------- | ----- | ------- |
-| `flask_server` | session | Starts/stops Flask app and shares it across workers |
-| `browser_instance` | session | Single Chromium browser instance |
-| `context` | function | Fresh isolated browser context per test |
-| `page` | function | Fresh page per test |
-| `clean_db` | session | One-time DB cleanup before tests |
-| `test_user` | function | Creates unique UUID-based user |
-| `unverified_test_user` | function | Creates unique unverified user |
-| `logged_in_page` | function | Page pre-authenticated as default admin |
+| Fixture                | Scope    | Purpose                                             |
+| ---------------------- | -------- | --------------------------------------------------- |
+| `flask_server`         | session  | Starts/stops Flask app and shares it across workers |
+| `browser_instance`     | session  | Single Chromium browser instance                    |
+| `context`              | function | Fresh isolated browser context per test             |
+| `page`                 | function | Fresh page per test                                 |
+| `clean_db`             | session  | One-time DB cleanup before tests                    |
+| `test_user`            | function | Creates unique UUID-based user                      |
+| `unverified_test_user` | function | Creates unique unverified user                      |
+| `logged_in_page`       | function | Page pre-authenticated as default admin             |
 
 ### Test Data Helpers
 

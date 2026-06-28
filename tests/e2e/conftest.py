@@ -120,6 +120,7 @@ def flask_server(request, app_settings, app_dir):
         # Start the Flask application
         env = os.environ.copy()
         env["PYTHONUNBUFFERED"] = "1"
+        env["E2E_TESTING"] = "1"
 
         process = subprocess.Popen(
             [sys.executable, "app.py"],
