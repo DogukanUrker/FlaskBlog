@@ -11,7 +11,7 @@ dependencies = [
     "flask-sqlalchemy>=3.1.1",
     "flask-wtf>=1.2.2",
     "passlib>=1.7.4",
-    "wtforms>=3.2.1",
+    "wtforms>=3.2.2",
     "markdown2==2.5.5",
     "bleach>=6.3.0",
     "python-dotenv==1.2.2",
