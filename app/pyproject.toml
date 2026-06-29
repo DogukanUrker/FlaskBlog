@@ -13,7 +13,7 @@ dependencies = [
     "passlib>=1.7.4",
     "wtforms>=3.2.2",
     "markdown2==2.5.5",
-    "bleach>=6.3.0",
+    "bleach>=6.4.0",
     "python-dotenv==1.2.2",
     "ruff==0.15.4",
     "filelock==3.25.0",
@@ -22,7 +22,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
-    "pytest>=9.0.2",
+    "pytest>=9.0.3",
     "pytest-playwright>=0.7.2",
     "pytest-xdist>=3.8.0",
     "filelock>=3.20.3",
