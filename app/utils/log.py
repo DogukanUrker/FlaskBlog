@@ -17,4 +17,5 @@ Log = Tamga(
     console_output=Settings.TAMGA_LOGGER,
     file_path=Settings.LOG_FILE_ROOT,
     json_path=Settings.LOG_JSON_ROOT,
+    enable_backup=Settings.LOG_ENABLE_BACKUP,
 )

@@ -36,6 +36,7 @@ class Settings:
         LOG_FOLDER_ROOT (str): Root path of the log folder.
         LOG_FILE_ROOT (str): Root path of the log file.
         LOG_JSON_ROOT (str): Root path of the log JSON file.
+        LOG_ENABLE_BACKUP (bool): Toggle Tamga rotation backup (.bak) files.
         APP_SECRET_KEY (str): Secret key for Flask sessions.
         SESSION_PERMANENT (bool): Toggle permanent sessions for the Flask application.
         DB_FOLDER_ROOT (str): Root path of the database folder.
@@ -119,6 +120,8 @@ class Settings:
     LOG_FOLDER_ROOT = os.environ.get("LOG_FOLDER_ROOT", "log/")
     LOG_FILE_ROOT = LOG_FOLDER_ROOT + "log.log"
     LOG_JSON_ROOT = LOG_FOLDER_ROOT + "log.json"
+    LOG_ENABLE_BACKUP = _bool(os.environ.get("LOG_ENABLE_BACKUP", "True"))
+
     # Session Configuration
     APP_SECRET_KEY = os.environ.get("APP_SECRET_KEY", secrets.token_urlsafe(32))
     SESSION_PERMANENT = _bool(os.environ.get("SESSION_PERMANENT", "True"))
