@@ -22,7 +22,7 @@ test = [
     "pytest==9.1.1",
     "pytest-playwright==0.8.0",
     "pytest-xdist==3.8.0",
-    "filelock==3.29.4",
+    "filelock==3.32.0",
     "playwright==1.60.0",
 ]
 dev = [
