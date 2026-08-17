@@ -26,5 +26,5 @@ test = [
     "playwright==1.60.0",
 ]
 dev = [
-    "ruff==0.15.20",
+    "ruff==0.16.3",
 ]
