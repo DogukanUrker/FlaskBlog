@@ -14,7 +14,7 @@ dependencies = [
     "wtforms==3.2.2",
     "markdown2==2.5.5",
     "bleach==6.4.0",
-    "python-dotenv==1.2.2",
+    "python-dotenv==1.2.3",
 ]
 
 [project.optional-dependencies]
